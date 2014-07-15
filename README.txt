@@ -1,113 +1,83 @@
-=== @TODO: Plugin Name ===
-Contributors: (this should be a list of wordpress.org userids)
-Donate link: http://example.com/
-Tags: comments, spam
-Requires at least: 3.5.1
-Tested up to: 3.6
+=== Sunny ===
+Contributors: tangrufus
+Donate link: http://tangrufus.com/
+Tags: cloudflare, cache, CDN, performance
+Requires at least: 3.8.0
+Tested up to: 3.9.1
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+Automatically clear CloudFlare cache. And, manage your CloudFlare settings within WordPress.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Sunny automatically clears CloudFlare cache. And, manage your CloudFlare settings within WordPress.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Features:
 
-A few notes about the sections above:
+* Automatically clears corresponding CloudFlare cache whenever a post is updated.
+* Purge your entire CloudFlare cache manually
+* Test your CloudFlare API key
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+Planned features:
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+* Purge homepage, tag pages and category pages cache during post update.
+* Purge images during post update.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+Things you need to know:
+
+* You need a CloudFlare account.
+* This plugin was not built by CloudFlare.
+
+Who make this plugin:
+
+[Tang Rufus](http://tangrufus.com), a freelance developer for hire.
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-= Using The WordPress Dashboard =
-
-1. Navigate to the 'Add New' in the plugins dashboard
-2. Search for 'plugin-name'
-3. Click 'Install Now'
-4. Activate the plugin on the Plugin dashboard
-
-= Uploading in WordPress Dashboard =
-
-1. Navigate to the 'Add New' in the plugins dashboard
-2. Navigate to the 'Upload' area
-3. Select `plugin-name.zip` from your computer
-4. Click 'Install Now'
-5. Activate the plugin in the Plugin dashboard
-
-= Using FTP =
-
-1. Download `plugin-name.zip`
-2. Extract the `plugin-name` directory to your computer
-3. Upload the `plugin-name` directory to the `/wp-content/plugins/` directory
-4. Activate the plugin in the Plugin dashboard
+1. Download the plugin.
+1. Go to the WordPress Plugin menu and activate it.
+1. Go to "Settings" --> "Sunny"
+1. Fill in your CloudFlare account info
+1. That's it!
 
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Is this plugin written by CloudFlare, Inc.? =
 
-An answer to that question.
+No.
+Sunny is written by [Tang Rufus](http://tangrufus.com)
 
-= What about foo bar? =
+= When does Sunny purge my cache? =
 
-Answer to foo bar dilemma.
+Every time a *published* post is updated.
+
+= What page does it purge when a post is updated? =
+
+So far, only the post itself.
+See planned features on the Description section.
+
+= Dose it support mulitsite? =
+
+Never tested. However, I am is planning to written one. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Sunny Settings Page
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 1.0.0 =
+* Add Readme.txt
+* Add Screenshots
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+= 0.0.2 =
+* Support GitHub Updater
+
+= 0.0.1 =
+* Initial Alpha Test
 
 == Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
-
-== Updates ==
-
-The basic structure of this plugin was cloned from the [WordPress-Plugin-Boilerplate](https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate) project.
-This plugin supports the [GitHub Updater](https://github.com/afragen/github-updater) plugin, so if you install that, this plugin becomes automatically updateable direct from GitHub. Any submission to WP.org repo will make this redundant.
+Use the Connection Tester on Sunny settings page.
