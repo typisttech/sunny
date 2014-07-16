@@ -32,6 +32,14 @@ if ( ! defined( 'WPINC' ) ) {
 
 class Sunny_Zone_Purger {
 
+    /**
+     *
+     * @since     1.0.0
+     *
+     * @param     $_response        The response after api call, could be WP Error object or HTTP return object.
+     *
+     * @return    $_return_arg      array of arguments for making redirect url
+     */
     private static function check_response( $_response ) {
         $_return_arg['zone_purge_result'] = '1';
         if ( is_wp_error( $_response ) ) {

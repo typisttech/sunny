@@ -22,8 +22,6 @@ if ( ! defined( 'WPINC' ) ) {
 
 class Sunny_API_Debugger {
     /**
-     * Return an instance of this class.
-     * Originally get_instance()
      *
      * @since     1.0.0
      *
