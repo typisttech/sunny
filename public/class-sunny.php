@@ -29,7 +29,7 @@ class Sunny {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.0.0';
+	const VERSION = '1.0.1';
 
 	/**
 	 * @TODO - Rename "plugin-name" to the name of your plugin
