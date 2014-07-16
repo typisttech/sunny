@@ -15,14 +15,14 @@
  * Plugin Name:       Sunny (Purge CloudFlare Cache)
  * Plugin URI:        http://tangrufus.com
  * Description:       Automatic CloudFlare Purge
- * Version:           1.0.0
+ * Version:           0.0.2
  * Author:            Tang Rufus
  * Author URI:        http://tangrufus.com
  * Text Domain:       sunny
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages
- * GitHub Plugin URI: https://github.com/TangRufus/sunny/
+ * GitHub Plugin URI: https://github.com/TangRufus/sunny
  * GitHub Branch:     master
  * WordPress-Plugin-Boilerplate: v2.6.1
  */
