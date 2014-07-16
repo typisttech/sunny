@@ -78,7 +78,7 @@ Never tested. However, I am is planning to written one. [Drop me a note](http://
 * Add PayPal Donation Link
 
 = 1.0.1 =
-Submit to WordPress Plugin Directory
+* Submit to WordPress Plugin Directory
 
 = 1.0.0 =
 Initial Release
