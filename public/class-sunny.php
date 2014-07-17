@@ -73,8 +73,8 @@ class Sunny {
      * @return    string    CloudFlare Account Email
      */
      public function get_domain() {
-     	$host_names = explode( ".", parse_url( site_url(), PHP_URL_HOST ) );
-        return $host_names[count($host_names)-2] . "." . $host_names[count($host_names)-1];
+     	$host_names = explode( '.', parse_url( site_url(), PHP_URL_HOST ) );
+        return $host_names[count($host_names)-2] . '.' . $host_names[count($host_names)-1];
      }
 
 	/**

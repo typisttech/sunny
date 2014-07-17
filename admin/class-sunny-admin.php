@@ -1,11 +1,12 @@
 <?php
 /**
  *
- * @package   Sunny
- * @author    Tang Rufus <tangrufus@gmail.com>
- * @license   GPL-2.0+
- * @link      http://tangrufus.com
- * @copyright 2014 Tang Rufus
+ * @package   	Sunny
+ * @subpackage 	Sunny_Admin
+ * @author    	Tang Rufus <tangrufus@gmail.com>
+ * @license   	GPL-2.0+
+ * @link      	http://tangrufus.com
+ * @copyright 	2014 Tang Rufus
  */
 
 /**
@@ -65,11 +66,6 @@ class Sunny_Admin {
 
 		/*
 		 * Call $plugin_slug from public plugin class.
-		 *
-		 * @TODO:
-		 *
-		 * - Rename "Plugin_Name" to the name of your initial plugin class
-		 *
 		 */
 		$plugin = Sunny::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
@@ -92,9 +88,10 @@ class Sunny_Admin {
 		add_action( 'admin_init', array( 'Sunny_Option', 'get_instance' ) );
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
-
-		add_action( 'admin_post_sunny_connection_test', array( 'Sunny_Connection_Tester', 'process_connection_test' ) );
-		add_action( 'admin_post_sunny_zone_purge', array( 'Sunny_Zone_Purger', 'process_sunny_zone_purger' ) );
+		// Add `Purge All` button callback
+		add_action( 'admin_init', array( 'Sunny_Zone_Purger', 'get_instance' ) );
+		// Add `Connection Test` handler
+		add_action( 'admin_init', array( 'Sunny_Connection_Tester', 'get_instance' ) );
 	}
 
 	/**
@@ -126,10 +123,6 @@ class Sunny_Admin {
 	/**
 	 * Register and enqueue admin-specific style sheet.
 	 *
-	 * @TODO:
-	 *
-	 * - Rename "Plugin_Name" to the name your plugin
-	 *
 	 * @since     1.0.0
 	 *
 	 * @return    null    Return early if no settings page is registered.
@@ -149,10 +142,6 @@ class Sunny_Admin {
 
 	/**
 	 * Register and enqueue admin-specific JavaScript.
-	 *
-	 * @TODO:
-	 *
-	 * - Rename "Plugin_Name" to the name your plugin
 	 *
 	 * @since     1.0.0
 	 *
@@ -198,7 +187,7 @@ class Sunny_Admin {
 			'manage_options',
 			$this->plugin_slug,
 			array( $this, 'display_plugin_admin_page' )
-		);
+			);
 
 	}
 
@@ -225,9 +214,9 @@ class Sunny_Admin {
 		return array_merge(
 			array(
 				'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
-			),
+				),
 			$links
-		);
+			);
 
 	}
 

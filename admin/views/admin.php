@@ -5,16 +5,16 @@
  * This includes the header, options, and other information that should provide
  * The User Interface to the end user.
  *
- * @package   Sunny
- * @author    Tang Rufus <tangrufus@gmail.com>
- * @license   GPL-2.0+
- * @link      http://tangrufus.com
- * @copyright 2014 Tang Rufus
+ * @package 	Sunny
+ * @subpackage 	Sunny_Admin
+ * @author 		Tang Rufus <tangrufus@gmail.com>
+ * @license  	GPL-2.0+
+ * @link  		http://tangrufus.com
+ * @copyright 	2014 Tang Rufus
  */
 ?>
 
 <div class="wrap">
-
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
 	  <form action="options.php" method="POST">
@@ -24,5 +24,4 @@
             <?php do_settings_sections( $plugin_slug ); ?>
             <?php submit_button( __('Save', $plugin_slug ) ); ?>
         </form>
-
 </div>

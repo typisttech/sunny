@@ -1,25 +1,12 @@
 <?php
-
 /**
- *
- * @package   Sunny_Admin
- * @author    Tang Rufus <tangrufus@gmail.com>
- * @license   GPL-2.0+
- * @link      http://tangrufus.com
- * @copyright 2014 Tang Rufus
- */
-
-/**
- * Plugin class. This class should ideally be used to work with the
- * options page of the WordPress site.
- *
- * If you're interested in introducing public-facing
- * functionality, then refer to `class-plugin-name.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
- * @package Sunny_Option
- * @author  Tang Rufus <tangrufus@gmail.com>
+ * @package     Sunny
+ * @subpackage  Sunny_Admin
+ * @author      Tang Rufus <tangrufus@gmail.com>
+ * @license     GPL-2.0+
+ * @link        http://tangrufus.com
+ * @copyright   2014 Tang Rufus
+ * @author      Tang Rufus <tangrufus@gmail.com>
  */
 
 /* ------------------------------------------------------------------------ *
@@ -39,7 +26,6 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 class Sunny_Option {
-
     /**
      * Instance of this class.
      *
@@ -54,7 +40,6 @@ class Sunny_Option {
      *
      * @since     1.0.0
      */
-
     private function __construct() {
 
         /*
