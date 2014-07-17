@@ -2,11 +2,12 @@
 /**
  * Represents the `Purge All` result view for the administration dashboard.
  *
- * @package   Sunny_Zone_Purger
- * @author    Tang Rufus <tangrufus@gmail.com>
- * @license   GPL-2.0+
- * @link      http://tangrufus.com
- * @copyright 2014 Tang Rufus
+ * @package     Sunny
+ * @subpackage  Sunny_Admin
+ * @author      Tang Rufus <tangrufus@gmail.com>
+ * @license     GPL-2.0+
+ * @link        http://tangrufus.com
+ * @copyright   2014 Tang Rufus
  */
 
 if ( ! isset( $_GET['zone_purge_result'] ) || '1' != $_GET['zone_purge_result'] )

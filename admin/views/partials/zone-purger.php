@@ -3,7 +3,7 @@
  * Represents the `Purge All` button view for the administration dashboard.
  *
  * @package 	Sunny
- * @subpackage 	Sunny_Zone_Purger
+ * @subpackage 	Sunny_Admin
  * @author 		Tang Rufus <tangrufus@gmail.com>
  * @license  	GPL-2.0+
  * @link  		http://tangrufus.com

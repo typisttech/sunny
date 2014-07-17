@@ -3,7 +3,7 @@
  * Make CloudFlare Client API calls via wp_remote_post
  * A fork from CloudFlare-API by VEXXHOST, Inc.
  *
- * @package     WordPress_CloudFlare_API_Wrapper
+ * @package     CloudFlare_API_Helper
  * @link        https://github.com/vexxhost/CloudFlare-API
  * @link        https://www.cloudflare.com/docs/client-api.html
  */

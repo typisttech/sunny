@@ -1,8 +1,8 @@
 <?php
 /**
  * Represents the test result view for the administration dashboard.
- * @package     Sunny_Admin
- * @subpackage  Sunny_Connection_Tester
+ * @package     Sunny
+ * @subpackage  Sunny_Admin
  * @author      Tang Rufus <tangrufus@gmail.com>
  * @license     GPL-2.0+
  * @link        http://tangrufus.com

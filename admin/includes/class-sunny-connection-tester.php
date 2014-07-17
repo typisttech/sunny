@@ -1,11 +1,11 @@
 <?php
 /**
- * @package     Sunny_Admin
+ * @package     Sunny
+ * @subpackage  Sunny_Admin
  * @author      Tang Rufus <tangrufus@gmail.com>
  * @license     GPL-2.0+
  * @link        http://tangrufus.com
  * @copyright   2014 Tang Rufus
- * @subpackage  Sunny_Connection_Tester
  * @author      Tang Rufus <tangrufus@gmail.com>
  */
 
