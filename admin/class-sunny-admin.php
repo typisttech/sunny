@@ -90,12 +90,11 @@ class Sunny_Admin {
 
 		// Add the option settings
 		add_action( 'admin_init', array( 'Sunny_Option', 'get_instance' ) );
+		// Hook Post Purger into Save Post
+		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
 
-
-		add_action ( 'admin_post_sunny_connection_test', array( 'Sunny_Connection_Tester', 'process_connection_test' ) );
-		add_action ( 'admin_post_sunny_zone_purge', array( 'Sunny_Zone_Purger', 'process_sunny_zone_purger' ) );
-		add_action ( 'save_post', array( 'Sunny_Post_Purger', 'purge_after_save' ) );
-	
+		add_action( 'admin_post_sunny_connection_test', array( 'Sunny_Connection_Tester', 'process_connection_test' ) );
+		add_action( 'admin_post_sunny_zone_purge', array( 'Sunny_Zone_Purger', 'process_sunny_zone_purger' ) );
 	}
 
 	/**
