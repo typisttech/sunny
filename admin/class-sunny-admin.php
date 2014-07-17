@@ -89,7 +89,7 @@ class Sunny_Admin {
 		add_action( 'init', array( $this, 'load_includes' ) );
 
 		// Add the option settings
-		add_action( 'admin_init', array( $this, 'sunny_initialize_plugin_options' ) );
+		add_action( 'admin_init', array( 'Sunny_Option', 'get_instance' ) );
 
 
 		add_action ( 'admin_post_sunny_connection_test', array( 'Sunny_Connection_Tester', 'process_connection_test' ) );
@@ -230,16 +230,6 @@ class Sunny_Admin {
 			$links
 		);
 
-	}
-
-	/**
-	 * Initializes the plugin options page by registering the Sections,
-	 * Fields, and Settings.
-	 *
-	 * @since    1.0.0
-	 */
-	public function sunny_initialize_plugin_options() {
-		Sunny_Option::initialize_registration();
 	}
 
 	function load_includes() {

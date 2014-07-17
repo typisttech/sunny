@@ -78,13 +78,12 @@ class Sunny_Option {
 
     /**
      * Return an instance of this class.
-     * Originally get_instance()
      *
      * @since     1.0.0
      *
      * @return    object    A single instance of this class.
      */
-    public static function initialize_registration() {
+    public static function get_instance() {
 
         /*
          * @TODO :
