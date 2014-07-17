@@ -24,6 +24,9 @@ Planned features:
 
 * Purge homepage, tag pages and category pages cache during post update.
 * Purge images during post update.
+* Turn on develop mode when login
+* Purge CloudFlare when Super Cache purge
+* Blacklist an IP when WP Better Secuity lockdown it
 
 Things you need to know:
 
