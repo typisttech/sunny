@@ -21,6 +21,9 @@ class Sunny_Post_Purger {
 	 * Hooked into 'save_post'
 	 *
 	 * @param    integer    $post_id    The current post being saved
+	 *
+	 * @since 	 1.0.0
+	 *
 	 */
 	public static function purge_after_save( $post_id ) {
 		Sunny_API_Debugger::write_triggered_report( 'save_post hook' );
@@ -33,6 +36,8 @@ class Sunny_Post_Purger {
 	/**
 	 * Verifies that the user who is currently logged in has permission to save the post
 	 * and the post is published.
+	 *
+	 * @since 	 1.0.0
 	 *
 	 * @param    integer    $post_id    The current post being saved.
 	 * @return   boolean                True if the user can save the information
