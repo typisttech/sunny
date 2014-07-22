@@ -12,7 +12,11 @@ Automatically clear CloudFlare cache. And, manage your CloudFlare settings withi
 
 == Description ==
 
-Sunny automatically clears CloudFlare cache. And, manage your CloudFlare settings within WordPress.
+Sunny automatically clears CloudFlare cache. And, manage your CloudFlare settings within WordPress (Comming Soon).
+
+= How does Sunny different from CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/)? =
+
+At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) doesn't purge anything for WordPress. It provides the real IP of your visitors and notify CloudFlare when you marking an IP as SPAM. However, it does not include a way to clear the cache or make adjustments to how it works. Here comes Sunny! Sunny focus on cache purging.
 
 Features:
 
@@ -53,6 +57,15 @@ Who make this plugin:
 No.
 Sunny is written by [Tang Rufus](http://tangrufus.com)
 
+= Can I install Sunny and CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) at the same time? =
+
+Yes.
+
+= When should I install Sunny and CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) at the same time? =
+
+Install Sunny if you want to purge CloudFlare cache automatically.
+Install the offical plugin if you can't see the real IP from visitors.
+
 = When does Sunny purge my cache? =
 
 Every time a *published* post is updated.
@@ -73,6 +86,10 @@ Never tested. However, I am is planning to written one. [Drop me a note](http://
 
 
 == Changelog ==
+
+
+= 1.1.0 =
+* Better Description and Documents
 
 = 1.0.4 =
 * Tidy Up Source Code According to WordPress Coding Standard
