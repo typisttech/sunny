@@ -13,7 +13,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Sunny (Purge CloudFlare Cache)
- * Plugin URI:        http://tangrufus.com/sunny
+ * Plugin URI:        http://tangrufus.com/
  * Description:       Automatic CloudFlare Purge
  * Version:           1.0.4
  * Author:            Tang Rufus

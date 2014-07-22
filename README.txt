@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance
 Requires at least: 3.8.0
 Tested up to: 3.9.1
-Stable tag: 1.0.4
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,13 +20,13 @@ At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plu
 
 = Features =
 
-* Automatically clears corresponding CloudFlare cache whenever a post is updated.
+* Automatically clears corresponding CloudFlare caches whenever a post is updated.
 * Purge your entire CloudFlare cache manually
 * Test your CloudFlare API key
 
 = Planned features =
 
-* Purge homepage, tag pages and category pages cache during post update.
+* Purge homepage cache during post update.
 * Purge images during post update.
 * Turn on develop mode when login
 * Purge CloudFlare when Super Cache purge
@@ -52,6 +52,7 @@ At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plu
 1. Go to the WordPress Plugin menu and activate it.
 1. Go to "Settings" --> "Sunny"
 1. Fill in your CloudFlare account info
+1. Test it with Connection Tester (via Settings Page)
 1. That's it!
 
 
@@ -94,7 +95,7 @@ Never tested. However, I am is planning to written one. [Drop me a note](http://
 
 
 = 1.1.0 =
-* Add URL purge
+* Add URL Purger
 * Purge Related URLs during Post Update
 * Better Description and Documents
 
