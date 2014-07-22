@@ -30,4 +30,5 @@ $plugin_slug = $plugin->get_plugin_slug();
             _e( 'Unknown error.', $plugin_slug );;
         }?>
     </p>
+    <br />
 </div>

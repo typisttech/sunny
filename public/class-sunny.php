@@ -74,7 +74,7 @@ class Sunny {
      */
      public function get_domain() {
      	$host_names = explode( '.', parse_url( site_url(), PHP_URL_HOST ) );
-        return $host_names[count($host_names)-2] . '.' . $host_names[count($host_names)-1];
+        return $host_names[count( $host_names )-2] . '.' . $host_names[count( $host_names )-1];
      }
 
 	/**
@@ -94,7 +94,7 @@ class Sunny {
      * @return    string    CloudFlare Account Email
      */
      public function get_cloudflare_email() {
-        	return sanitize_email( get_option( 'sunny_cloudflare_email', '' ) );
+        return sanitize_email( get_option( 'sunny_cloudflare_email', '' ) );
      }
 
 
@@ -115,7 +115,7 @@ class Sunny {
      * @return    string    CloudFlare Account API Key
      */
      public function get_cloudflare_api_key() {
-        	return Sunny_Helper::sanitize_alphanumeric( get_option( 'sunny_cloudflare_api_key', '' ) );
+        return Sunny_Helper::sanitize_alphanumeric( get_option( 'sunny_cloudflare_api_key', '' ) );
      }
 
 	/**

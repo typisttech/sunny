@@ -42,17 +42,4 @@ class Sunny_API_Logger {
         	}
         }
     }
-
-    /**
-     * Log debug messages in php error log.
-     *
-     * @since     1.0.0
-     *
-     * @param     $reporter Who make this method call
-     *
-     * @return    void      No return
-     */
-    public static function write_triggered_report( $reporter ) {
-        error_log( 'Sunny ' . 'Triggered by ' . $reporter );
-    }
 }
