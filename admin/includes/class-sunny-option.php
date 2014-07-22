@@ -87,6 +87,12 @@ class Sunny_Option {
         return self::$instance;
     }
 
+    /**
+     * Register the CloudFlare account section, CloudFlare email field
+     * and CloudFlare api key field
+     *
+     * @since     1.0.0
+     */
     private function register_settings() {
 
         // First, we register a section. This is necessary since all future settingss must belong to one.
@@ -128,8 +134,8 @@ class Sunny_Option {
             );
 
         register_setting(
-            'sunny_cloudflare_account_section',     // The settings group name. Must exist prior to the register_setting call.
-            'sunny_cloudflare_api_key',     // The name of an option to sanitize and save.
+            'sunny_cloudflare_account_section',
+            'sunny_cloudflare_api_key',
             array( $this, 'sunny_validate_input_cloudflare_api_key' )
             );
 
@@ -140,9 +146,9 @@ class Sunny_Option {
 
     /**
      * This function provides a simple description for the Sunny Settings page.
+     * It is passed as a parameter in the add_settings_section function.
      *
-     * It is called from the 'sunny_initialize_plugin_settings' function by being passed as a parameter
-     * in the add_settings_section function.
+     * @since 1.0.0
      */
     public function sunny_display_cloudflare_account() {
         echo '<p>Sunny purges CloudFlare cache when post updated.</p>';
@@ -178,16 +184,15 @@ class Sunny_Option {
      * ------------------------------------------------------------------------ */
 
     /**
-     * Sanitization callback for the social options. Since each of the social options are text inputs,
-     * this function loops through the incoming option and strips all tags and slashes from the value
-     * before serializing it.
+     * Sanitization callback for the email option.
+     * Use is_email for Sanitization
      *
-     * @params  $input  The unsanitized collection of options.
+     * @param  $input  The email user inputed
      *
-     * @returns         The collection of sanitized values.
+     * @return         The sanitized email.
+     *
+     * @since 1.0.0
      */
-
-
     public function sunny_validate_input_cloudflare_email ( $input ) {
         // Get old value from DB
         $plugin = Sunny::get_instance();
@@ -202,11 +207,21 @@ class Sunny_Option {
         else
             add_settings_error( 'sunny_cloudflare_account_section', 'invalid-email', __( 'You have entered an invalid email.', $this->plugin_slug ) );
 
-        // Return the array processing any additional functions filtered by this action
         return apply_filters( 'sunny_before_save_cloudflare_email', $output, $input );
 
     } //end sunny_validate_input_cloudflare_email
 
+
+    /**
+     * Sanitization callback for the email option.
+     * Use is_email for Sanitization
+     *
+     * @param  $input  The api key user inputed
+     *
+     * @return         The sanitized api key.
+     *
+     * @since 1.0.0
+     */
     public function sunny_validate_input_cloudflare_api_key( $input ) {
         // Get old value
         $plugin = Sunny::get_instance();
@@ -221,8 +236,6 @@ class Sunny_Option {
         else
             add_settings_error( 'sunny_cloudflare_account_section', 'invalid-api-key', __( 'You have entered an invalid API key.', $this->plugin_slug ) );
 
-
-        // Return the array processing any additional functions filtered by this action
         return apply_filters( 'after_sunny_validate_input_cloudflare_api_key', $output, $input );
 
     } // end sunny_validate_input_cloudflare_api_key

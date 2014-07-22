@@ -82,7 +82,7 @@ class Sunny_Admin {
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
 		// Load includes
-		add_action( 'init', array( $this, 'load_includes' ) );
+		add_action( 'admin_init', array( $this, 'load_includes' ) );
 
 		// Add the option settings
 		add_action( 'admin_init', array( 'Sunny_Option', 'get_instance' ) );
