@@ -88,6 +88,8 @@ class Sunny_Admin {
 		add_action( 'admin_init', array( 'Sunny_Option', 'get_instance' ) );
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
+		// Add `Purge URL` handler
+		add_action( 'admin_init', array( 'Sunny_URL_Purger', 'get_instance' ) );
 		// Add `Purge All` button callback
 		add_action( 'admin_init', array( 'Sunny_Zone_Purger', 'get_instance' ) );
 		// Add `Connection Test` handler
@@ -198,6 +200,8 @@ class Sunny_Admin {
 	 */
 	public function display_plugin_admin_page() {
 		include_once( 'views/admin.php' );
+		include_once( 'views/partials/url-purger.php' );
+		include_once( 'views/partials/url-purge-result.php' );
 		include_once( 'views/partials/zone-purger.php' );
 		include_once( 'views/partials/zone-purge-result.php' );
 		include_once( 'views/partials/connection-tester.php' );
@@ -221,10 +225,12 @@ class Sunny_Admin {
 	}
 
 	function load_includes() {
+		require_once( 'includes/class-sunny-admin-helper.php' );
 		require_once( 'includes/class-sunny-option.php' );
 		require_once( 'includes/class-sunny-connection-tester.php' );
 		require_once( 'includes/class-sunny-zone-purger.php' );
 		require_once( 'includes/class-sunny-post-purger.php' );
+		require_once( 'includes/class-sunny-url-purger.php' );
 	}
 
 } // end sunny_admin class

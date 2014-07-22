@@ -77,8 +77,8 @@ Every time a *published* post is updated.
 
 = What page does it purge when a post is updated? =
 
-So far, only the post itself.
-See planned features on the Description section.
+The post itself and its catories, tags and taxonomies archive.
+Use the URL purger in settings page to check what will be cleared for a particular URL.
 
 = Dose it support mulitsite? =
 
@@ -94,6 +94,8 @@ Never tested. However, I am is planning to written one. [Drop me a note](http://
 
 
 = 1.1.0 =
+* Add URL purge
+* Purge Related URLs during Post Update
 * Better Description and Documents
 
 = 1.0.4 =
