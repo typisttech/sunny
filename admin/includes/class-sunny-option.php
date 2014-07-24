@@ -56,8 +56,6 @@ class Sunny_Option {
          */
         $plugin = Sunny::get_instance();
         $this->plugin_slug = $plugin->get_plugin_slug();
-        // $plugin =
-        // $this->cloudflare_email =
 
 
         /*
@@ -67,7 +65,7 @@ class Sunny_Option {
         $this->view_dir_path = $admin->get_view_dir_path();
 
         $this->register_settings();
-        $this->generate_view();
+        $this->generate_meta_box();
 
     }
 
@@ -108,7 +106,7 @@ class Sunny_Option {
         // First, we register a section. This is necessary since all future settingss must belong to one.
         add_settings_section(
             'sunny_cloudflare_account_section',     // ID used to identify this section and with which to register options
-            NULL,                   // Title to be displayed on the administration page
+            NULL,                                   // Title to be displayed on the administration page
             array( $this, 'sunny_display_cloudflare_account' ),    // Callback used to render the description of the section
             $this->plugin_slug                      // Page on which to add this section of options
             );
@@ -116,21 +114,21 @@ class Sunny_Option {
         // Next, we will introduce the fields for CloudFlare Account info.
         add_settings_field(
             'sunny_cloudflare_email',                   // ID used to identify the field throughout the theme
-            'Email',                                    // The label to the left of the option interface element
-            array( $this, 'sunny_render_form_html' ),    // The name of the function responsible for rendering the option interface
+            __( 'Email', $this->plugin_slug ),          // The label to the left of the option interface element
+            array( $this, 'sunny_render_form_html' ),   // The name of the function responsible for rendering the option interface
             $this->plugin_slug,                         // The page on which this option will be displayed
             'sunny_cloudflare_account_section',         // The name of the section to which this field belongs
             array (
                 'label_for' => 'sunny_cloudflare_email',
                 'type'      => 'text',
                 'value'     => Sunny::get_instance()->get_cloudflare_email(),
-                'desc'      => 'The e-mail address associated with the CloudFlare account.',
+                'desc'      => __( 'The e-mail address associated with the CloudFlare account.', $this->plugin_slug ),
                 ) // The array of arguments to pass to the callback.
             );
 
         add_settings_field(
             'sunny_cloudflare_api_key',
-            'API Key',
+            __( 'API Key', $this->plugin_slug ),
             array( $this, 'sunny_render_form_html' ),
             $this->plugin_slug,
             'sunny_cloudflare_account_section',
@@ -138,7 +136,8 @@ class Sunny_Option {
                 'label_for' => 'sunny_cloudflare_api_key',
                 'type'      => 'text',
                 'value'     => Sunny::get_instance()->get_cloudflare_api_key(),
-                'desc'      => 'This is the API key made available on your <a href="https://www.cloudflare.com/my-account.html">CloudFlare Account</a> page.'
+                'desc'      => __( 'This is the API key made available on your <a href="https://www.cloudflare.com/my-account.html">CloudFlare Account</a> page.', $this->plugin_slug )
+
                 ) // The array of arguments to pass to the callback.
             );
 
@@ -167,7 +166,9 @@ class Sunny_Option {
      * @since 1.0.0
      */
     public function sunny_display_cloudflare_account() {
-        echo '<p>Sunny purges CloudFlare cache when post updated.</p>';
+        echo '<p>';
+        _e( 'Sunny purges CloudFlare cache when post updated.', $this->plugin_slug );
+        echo '</p>';
     } // end sunny_display_cloudflare_account
 
     /* ------------------------------------------------------------------------ *
@@ -260,12 +261,12 @@ class Sunny_Option {
      *
      * @since     1.2.0
      */
-    private function generate_view() {
+    private function generate_meta_box() {
 
         add_meta_box(
-        'sunny_cloudflare_accoun', //Meta box ID
+        'sunny_cloudflare_account', //Meta box ID
         __( 'CloudFlare Account', $this->plugin_slug ), //Meta box Title
-        array( $this, 'render_view' ), //Callback defining the plugin's innards
+        array( $this, 'render_meta_box' ), //Callback defining the plugin's innards
         $this->plugin_slug, // Screen to which to add the meta box
         'advanced' // Context
         );
@@ -277,7 +278,7 @@ class Sunny_Option {
      *
      * @since     1.2.0
      */
-    public function render_view() {
+    public function render_meta_box() {
         require( $this->view_dir_path . '/partials/settings.php' );
 
     }

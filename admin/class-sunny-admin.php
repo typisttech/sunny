@@ -182,6 +182,7 @@ class Sunny_Admin {
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 			wp_enqueue_script( 'postbox' );
 			// wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
+			wp_enqueue_script( $this->plugin_slug . '-admin-ajax-script', plugins_url( 'assets/js/admin-ajax.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
 		}
 	}
 

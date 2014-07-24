@@ -22,20 +22,19 @@
 	<?php $plugin_slug = $plugin->get_plugin_slug(); ?>
 
 	<?php settings_errors(); ?>
-	<form action="options.php" method="POST">
-		<div class="postbox-container" style="width: 60%;">
+	<div class="postbox-container" style="width: 60%;">
 
-			<div class="metabox-holder">
-				<?php do_meta_boxes( $plugin_slug, 'advanced' ); ?>
-				<?php do_meta_boxes( $plugin_slug, 'normal' ); ?>
-			</div>
-
+		<div class="metabox-holder">
+			<?php do_meta_boxes( $plugin_slug, 'advanced', NULL ); ?>
+			<?php do_meta_boxes( $plugin_slug, 'normal', NULL ); ?>
 		</div>
-	</form>
+
+	</div>
+
 	<div class="postbox-container side" style="width: 261px;">
 
 		<div class="metabox-holder">
-			<?php do_meta_boxes( $plugin_slug, 'side' ); ?>
+			<?php do_meta_boxes( $plugin_slug, 'side', NULL ); ?>
 		</div>
 
 	</div>
