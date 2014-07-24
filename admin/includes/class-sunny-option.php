@@ -56,9 +56,19 @@ class Sunny_Option {
          */
         $plugin = Sunny::get_instance();
         $this->plugin_slug = $plugin->get_plugin_slug();
+        // $plugin =
+        // $this->cloudflare_email =
 
-        // Register Settings
+
+        /*
+         * Call $view_dir_path from admin plugin class.
+         */
+        $admin = Sunny_Admin::get_instance();
+        $this->view_dir_path = $admin->get_view_dir_path();
+
         $this->register_settings();
+        $this->generate_view();
+
     }
 
     /**
@@ -98,7 +108,7 @@ class Sunny_Option {
         // First, we register a section. This is necessary since all future settingss must belong to one.
         add_settings_section(
             'sunny_cloudflare_account_section',     // ID used to identify this section and with which to register options
-            'CloudFlare Account',                   // Title to be displayed on the administration page
+            NULL,                   // Title to be displayed on the administration page
             array( $this, 'sunny_display_cloudflare_account' ),    // Callback used to render the description of the section
             $this->plugin_slug                      // Page on which to add this section of options
             );
@@ -107,23 +117,29 @@ class Sunny_Option {
         add_settings_field(
             'sunny_cloudflare_email',                   // ID used to identify the field throughout the theme
             'Email',                                    // The label to the left of the option interface element
-            array( $this, 'sunny_render_cloudflare_email_input_html' ),    // The name of the function responsible for rendering the option interface
+            array( $this, 'sunny_render_form_html' ),    // The name of the function responsible for rendering the option interface
             $this->plugin_slug,                         // The page on which this option will be displayed
             'sunny_cloudflare_account_section',         // The name of the section to which this field belongs
-            array(                    // The array of arguments to pass to the callback. In this case, just a description.
-                'The e-mail address associated with the CloudFlare account.'
-                )
+            array (
+                'label_for' => 'sunny_cloudflare_email',
+                'type'      => 'text',
+                'value'     => Sunny::get_instance()->get_cloudflare_email(),
+                'desc'      => 'The e-mail address associated with the CloudFlare account.',
+                ) // The array of arguments to pass to the callback.
             );
 
         add_settings_field(
             'sunny_cloudflare_api_key',
             'API Key',
-            array( $this, 'sunny_render_cloudflare_api_key_input_html' ),
+            array( $this, 'sunny_render_form_html' ),
             $this->plugin_slug,
             'sunny_cloudflare_account_section',
-            array(
-                'This is the API key made available on your <a href="https://www.cloudflare.com/my-account.html">CloudFlare Account</a> page.'
-                )
+                        array (
+                'label_for' => 'sunny_cloudflare_api_key',
+                'type'      => 'text',
+                'value'     => Sunny::get_instance()->get_cloudflare_api_key(),
+                'desc'      => 'This is the API key made available on your <a href="https://www.cloudflare.com/my-account.html">CloudFlare Account</a> page.'
+                ) // The array of arguments to pass to the callback.
             );
 
         // Finally, we register the fields with WordPress
@@ -157,27 +173,26 @@ class Sunny_Option {
     /* ------------------------------------------------------------------------ *
      * Field Callbacks
      * ------------------------------------------------------------------------ */
+    /**
+     * This function provides a simple description for the Sunny Settings page.
+     * It is passed as a parameter in the add_settings_field function.
+     *
+     * @param array     $args   from add_settings_field
+     *
+     * @since 1.2.0
+     */
+    public function sunny_render_form_html ( $args ) {
 
-    public function sunny_render_cloudflare_email_input_html($args) {
+        $type   = $args[ 'type' ];
+        $id     = $args[ 'label_for' ];
+        $desc   = $args[ 'desc' ];
+        $value  = $args[ 'value' ];
 
-        // First, we read the option from db
-        $plugin = Sunny::get_instance();
-        $sunny_cloudflare_email = $plugin->get_cloudflare_email();
-
-        // Next, we need to make sure the element is defined in the options. If not, we'll set an empty string.
         // Render the output
-        echo '<input type="text" id="sunny_input_cloudflare_email" name="sunny_cloudflare_email" size="40" value="' . $sunny_cloudflare_email . '" />';
+        echo '<input type="' . $type .'" id="' . $id . '" name="' . $id . '" size="40" value="' . $value . '" /><br/>';
+        echo '<span class="description">' . $desc . '</span>';
 
     } // end sunny_render_cloudflare_email_input_html
-
-    public function sunny_render_cloudflare_api_key_input_html($args) {
-        $plugin = Sunny::get_instance();
-        $sunny_cloudflare_api_key = $plugin->get_cloudflare_api_key();
-
-        // Render the output
-        echo '<input type="text" id="sunny_input_cloudflare_api_key" name="sunny_cloudflare_api_key" size="40" value="' . $sunny_cloudflare_api_key . '" />';
-
-    } // end sunny_render_cloudflare_api_key_input_html
 
     /* ------------------------------------------------------------------------ *
      * Setting Callbacks
@@ -239,5 +254,33 @@ class Sunny_Option {
         return apply_filters( 'after_sunny_validate_input_cloudflare_api_key', $output, $input );
 
     } // end sunny_validate_input_cloudflare_api_key
+
+    /**
+     * Generate the meta box on options page.
+     *
+     * @since     1.2.0
+     */
+    private function generate_view() {
+
+        add_meta_box(
+        'sunny_cloudflare_accoun', //Meta box ID
+        __( 'CloudFlare Account', $this->plugin_slug ), //Meta box Title
+        array( $this, 'render_view' ), //Callback defining the plugin's innards
+        $this->plugin_slug, // Screen to which to add the meta box
+        'advanced' // Context
+        );
+
+    }
+
+    /**
+     * Print the meta box on options page.
+     *
+     * @since     1.2.0
+     */
+    public function render_view() {
+        require( $this->view_dir_path . '/partials/settings.php' );
+
+    }
+
 
 } //end Sunny_Option Class
