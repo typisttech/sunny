@@ -95,9 +95,9 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
  * Helper Functionality
  *----------------------------------------------------------------------------*/
 
-// Load helper class
-add_action( 'plugins_loaded', 'load_helper_classes', 5 );
-function load_helper_classes() {
+// Load helper class in sunny/includes
+add_action( 'plugins_loaded', 'load_load_dependencies', 5 );
+function load_load_dependencies() {
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-cloudflare-api-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-purger.php' );
