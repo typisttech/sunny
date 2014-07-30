@@ -109,7 +109,7 @@ class Sunny_URL_Purger {
 
         $links = Sunny_Admin_Helper::get_all_terms_links_by_url( $post_url );
 
-                // Add the input url at front
+        // Add the input url at front
         array_unshift( $links, $post_url );
 
         foreach ( $links as $link ) {
@@ -210,7 +210,9 @@ class Sunny_URL_Purger {
      */
     public function sunny_display_url_purger() {
         echo '<p>';
-        _e( 'Purge a post and its related pages(e.g: categories, tags and archives) by URL.', $this->plugin_slug );
+        _e( 'Purge a post by URL.', $this->plugin_slug );
+        echo '<br />';
+        _e( 'And, if enabled, its associated pages(e.g: categories, tags and archives).', $this->plugin_slug );
         echo '</p>';
     } // end sunny_display_cloudflare_account
 

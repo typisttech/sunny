@@ -26,36 +26,49 @@ class Sunny_Admin_Helper {
 	 * @since 	1.1.0
 	 */
 	static function get_all_terms_links_by_url( $post_url ){
-		// get post id
-		$post_id = url_to_postid( $post_url );
-
-  		// get post type by post
-		$post_type = get_post_type( $post_id );
-
-  		// get all taxonomies for the post type
-		$taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
 		$urls = array();
-		foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+
+		$options = get_option( 'sunny_purger_settings' );
+		if ( false == $options ) {
+			return $urls;
+		}
+
+		if ( '1' == $options['purge_homepage'] ) {
+			array_push( $urls, site_url() );
+		}
+
+		if ( '1' == $options['purge_associated'] ) {
+		// get post id
+			$post_id = url_to_postid( $post_url );
+
+  		// get post type by post
+			$post_type = get_post_type( $post_id );
+
+  		// get all taxonomies for the post type
+			$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+
+			foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
 
 	    	// get the terms related to post
-			$terms = get_the_terms( $post_id, $taxonomy_slug );
+				$terms = get_the_terms( $post_id, $taxonomy_slug );
 
-			if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 
-				foreach ( $terms as $term) {
+					foreach ( $terms as $term) {
 
-					$term_link = get_term_link( $term );
+						$term_link = get_term_link( $term );
 
-					if ( ! is_wp_error( $term_link ) ) {
+						if ( ! is_wp_error( $term_link ) ) {
 
-						array_push( $urls, $term_link );
+							array_push( $urls, $term_link );
 
+						}
 					}
 				}
 
 			}
-		}
+		} // purge_associated
 
 		return $urls;
 	}
