@@ -102,23 +102,21 @@ class Sunny_Admin {
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
 		// Load dependencies for admin area
-		add_action( 'admin_init', array( $this, 'load_admin_dependencies' ) );
+		add_action( 'admin_init', array( $this, 'load_admin_dependencies' ), 5 );
 
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
 
 		// Make option page tabs
-		add_action( 'load-toplevel_page_sunny', array( $this, 'make_tabs' ), 5 );
-		// Load dependencies for options page
-		add_action( 'load-toplevel_page_sunny', array( $this, 'load_options_page_dependencies' ), 5 );
+		add_action( 'admin_init', array( $this, 'make_tabs' ), 5 );
 		// Add the option settings
-		add_action( 'load-toplevel_page_sunny', array( 'Sunny_CloudFlare_Account', 'get_instance' ) );
+		add_action( 'admin_init', array( 'Sunny_CloudFlare_Account', 'get_instance' ) );
 		// Add `Purge URL` handler
-		add_action( 'load-toplevel_page_sunny', array( 'Sunny_URL_Purger', 'get_instance' ) );
+		add_action( 'admin_init', array( 'Sunny_URL_Purger', 'get_instance' ) );
 		// Add `Purge All` button callback
-		add_action( 'load-toplevel_page_sunny', array( 'Sunny_Zone_Purger', 'get_instance' ) );
+		add_action( 'admin_init', array( 'Sunny_Zone_Purger', 'get_instance' ) );
 		// Add `Connection Test` handler
-		add_action( 'load-toplevel_page_sunny', array( 'Sunny_Connection_Tester', 'get_instance' ) );
+		add_action( 'admin_init', array( 'Sunny_Connection_Tester', 'get_instance' ) );
 	}
 
 	/**
@@ -262,15 +260,8 @@ class Sunny_Admin {
 	 * @since    1.2.0
 	 */
 	public function make_tabs() {
-		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
-			return;
-		}
-
-		$screen = get_current_screen();
-		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
-			$this->plugin_settings_tabs['general_settings'] = 'Settings';
-			$this->plugin_settings_tabs['purger_settings'] = 'Purger';
-		}
+		$this->plugin_settings_tabs['general_settings'] = 'Settings';
+		$this->plugin_settings_tabs['purger_settings'] = 'Purger';
 	}
 
 	/**
@@ -281,14 +272,6 @@ class Sunny_Admin {
 	public function load_admin_dependencies() {
 		require_once( 'includes/class-sunny-admin-helper.php' );
 		require_once( 'includes/class-sunny-post-purger.php' );
-	}
-
-	/**
-	 * Load dependencies for options page
-	 *
-	 * @since    1.2.0
-	 */
-	public function load_options_page_dependencies() {
 		require_once( 'includes/class-sunny-cloudflare-account.php' );
 		require_once( 'includes/class-sunny-connection-tester.php' );
 		require_once( 'includes/class-sunny-zone-purger.php' );

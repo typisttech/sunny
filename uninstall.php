@@ -78,4 +78,8 @@ if ( is_multisite() ) {
 
 	if ( get_option( 'sunny_cloudflare_api_key' ) != false )
 		delete_option('sunny_cloudflare_api_key');
+
+	if ( get_option( 'sunny_cloudflare_account' ) != false )
+		delete_option('sunny_cloudflare_account');
+
 }
