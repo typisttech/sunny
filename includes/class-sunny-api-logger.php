@@ -28,6 +28,11 @@ class Sunny_API_Logger {
      * @return    void      No return
      */
 	public static function write_report( $response, $url ) {
+
+        if ( ! defined( 'WP_DEBUG' ) || WP_DEBUG == false ) {
+            return;
+        }
+
 		if ( is_wp_error( $response ) ) {
 			error_log( 'Sunny ' . 'WP Error ' . $url );
         }// end WP Error
