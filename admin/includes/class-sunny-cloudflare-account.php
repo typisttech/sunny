@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-class Sunny_Option {
+class Sunny_CloudFlare_Account {
     /**
      * Instance of this class.
      *
@@ -41,22 +41,11 @@ class Sunny_Option {
      * @since     1.0.0
      */
     private function __construct() {
-
-        /*
-         * @TODO :
-         *
-         * - Uncomment following lines if the admin class should only be available for super admins
-         */
-        /* if( ! is_super_admin() ) {
-            return;
-        } */
-
         /*
          * Call $plugin_slug from public plugin class.
          */
         $plugin = Sunny::get_instance();
         $this->plugin_slug = $plugin->get_plugin_slug();
-
 
         /*
          * Call $view_dir_path from admin plugin class.
