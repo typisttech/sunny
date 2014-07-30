@@ -97,8 +97,8 @@ if ( is_admin() ) {
  *----------------------------------------------------------------------------*/
 
 // Load helper class in sunny/includes
-add_action( 'plugins_loaded', 'load_load_dependencies', 5 );
-function load_load_dependencies() {
+add_action( 'plugins_loaded', 'load_dependencies', 5 );
+function load_dependencies() {
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-cloudflare-api-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-purger.php' );
