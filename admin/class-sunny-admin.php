@@ -117,6 +117,8 @@ class Sunny_Admin {
 		add_action( 'admin_init', array( 'Sunny_Zone_Purger', 'get_instance' ) );
 		// Add `Connection Test` handler
 		add_action( 'admin_init', array( 'Sunny_Connection_Tester', 'get_instance' ) );
+		// Add Purger Settings
+		add_action( 'admin_init', array( 'Sunny_Purger_Settings', 'get_instance' ) );
 	}
 
 	/**
@@ -276,6 +278,7 @@ class Sunny_Admin {
 		require_once( 'includes/class-sunny-connection-tester.php' );
 		require_once( 'includes/class-sunny-zone-purger.php' );
 		require_once( 'includes/class-sunny-url-purger.php' );
+		require_once( 'includes/class-sunny-purger-settings.php' );
 	}
 
 } // end sunny_admin class

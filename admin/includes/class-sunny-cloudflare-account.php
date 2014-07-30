@@ -151,7 +151,7 @@ class Sunny_CloudFlare_Account {
      */
     public function sunny_display_cloudflare_account() {
         echo '<p>';
-        _e( 'The CloudFlare account associated to this site.', $this->plugin_slug );
+        _e( 'Additional purge during post updated.', $this->plugin_slug );
         echo '</p>';
     } // end sunny_display_cloudflare_account
 
@@ -174,7 +174,7 @@ class Sunny_CloudFlare_Account {
         $value  = $args[ 'value' ];
 
         // Render the output
-        echo '<input type="' . $type .'" id="' . $id . '" name=sunny_cloudflare_account[' . $id . '] value="' . $value . '" /><br/>';
+        echo '<input type="' . $type .'" id="' . $id . '" name=sunny_cloudflare_account[' . $id . '] value="' . $value . '"/><br/>';
         echo '<span class="description">' . $desc . '</span>';
 
     } // end sunny_render_cloudflare_email_input_html
