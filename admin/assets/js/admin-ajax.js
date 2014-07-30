@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
         var data = {
             action:     'sunny-purge-url',
             nonce:      jQuery('#sunny-url-purger-nonce').val(),// The security nonce
-            "post-url": jQuery('#post-url').val()
+            "post-url": jQuery('#sunny_post_url').val()
         };
         jQuery.post( ajaxurl, data, function (response) {
             var output = "<p>" + response.message + "</p>";
