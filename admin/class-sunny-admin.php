@@ -97,26 +97,28 @@ class Sunny_Admin {
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 
-		// Make option page tabs
-		add_action( 'load-toplevel_page_sunny', array( $this, 'make_tabs' ) );
-
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-		// Load includes
-		add_action( 'admin_init', array( $this, 'load_includes' ) );
+		// Load dependencies for admin area
+		add_action( 'admin_init', array( $this, 'load_admin_dependencies' ) );
 
-		// Add the option settings
-		add_action( 'admin_init', array( 'Sunny_CloudFlare_Account', 'get_instance' ) );
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
+
+		// Make option page tabs
+		add_action( 'load-toplevel_page_sunny', array( $this, 'make_tabs' ), 5 );
+		// Load dependencies for options page
+		add_action( 'load-toplevel_page_sunny', array( $this, 'load_options_page_dependencies' ), 5 );
+		// Add the option settings
+		add_action( 'load-toplevel_page_sunny', array( 'Sunny_CloudFlare_Account', 'get_instance' ) );
 		// Add `Purge URL` handler
-		add_action( 'admin_init', array( 'Sunny_URL_Purger', 'get_instance' ) );
+		add_action( 'load-toplevel_page_sunny', array( 'Sunny_URL_Purger', 'get_instance' ) );
 		// Add `Purge All` button callback
-		add_action( 'admin_init', array( 'Sunny_Zone_Purger', 'get_instance' ) );
+		add_action( 'load-toplevel_page_sunny', array( 'Sunny_Zone_Purger', 'get_instance' ) );
 		// Add `Connection Test` handler
-		add_action( 'admin_init', array( 'Sunny_Connection_Tester', 'get_instance' ) );
+		add_action( 'load-toplevel_page_sunny', array( 'Sunny_Connection_Tester', 'get_instance' ) );
 	}
 
 	/**
@@ -271,12 +273,25 @@ class Sunny_Admin {
 		}
 	}
 
-	function load_includes() {
+	/**
+	 * Load dependencies for admin area
+	 *
+	 * @since    1.2.0
+	 */
+	public function load_admin_dependencies() {
 		require_once( 'includes/class-sunny-admin-helper.php' );
+		require_once( 'includes/class-sunny-post-purger.php' );
+	}
+
+	/**
+	 * Load dependencies for options page
+	 *
+	 * @since    1.2.0
+	 */
+	public function load_options_page_dependencies() {
 		require_once( 'includes/class-sunny-cloudflare-account.php' );
 		require_once( 'includes/class-sunny-connection-tester.php' );
 		require_once( 'includes/class-sunny-zone-purger.php' );
-		require_once( 'includes/class-sunny-post-purger.php' );
 		require_once( 'includes/class-sunny-url-purger.php' );
 	}
 
