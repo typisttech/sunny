@@ -41,9 +41,12 @@ class Sunny_Helper {
       */
      public static function url_match_site_domain( $url ) {
           $temp_url = explode( '.', parse_url( esc_url_raw( $url ), PHP_URL_HOST ) );
+
+          if ( '' == $temp_url ) {
+          	return false;
+          }
+
           $url_host_names = $temp_url[count( $temp_url )-2] . '.' . $temp_url[count( $temp_url )-1];
-
-
           $plugin = Sunny::get_instance();
           return ( $url_host_names == $plugin->get_domain() );
      }

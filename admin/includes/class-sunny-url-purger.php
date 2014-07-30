@@ -96,10 +96,10 @@ class Sunny_URL_Purger {
     $post_url = esc_url_raw( $_REQUEST['post-url'], array( 'http', 'https' ) );
 
     if ( '' == $post_url  ) {
-        $message = 'Error: Invalid URL.';
-    }
 
-    if ( !  Sunny_Helper::url_match_site_domain( $post_url ) && '' != $post_url ) {
+        $message = 'Error: Invalid URL.';
+
+    } elseif ( '' != $post_url && ! Sunny_Helper::url_match_site_domain( $post_url ) ) {
 
         $message = 'Error: This URL does not live in your domain.';
 
