@@ -45,10 +45,9 @@ class Sunny_Zone_Purger {
         $admin = Sunny_Admin::get_instance();
         $this->view_dir_path = $admin->get_view_dir_path();
 
-        // add_action( 'admin_post_sunny_zone_purge', array( $this, 'process_sunny_zone_purger' ) );
         $this->generate_meta_box();
 
-        add_action( 'wp_ajax_sunny-purge-zone', array( $this, 'process_sunny_purge_zone' ) );
+        add_action( 'wp_ajax_sunny-purge-zone', array( $this, 'process_ajax' ) );
     }
 
     /**
@@ -69,7 +68,7 @@ class Sunny_Zone_Purger {
     /**
      * @since     1.2.0
      */
-    public function process_sunny_purge_zone() {
+    public function process_ajax() {
 
         header('Content-Type: application/json');
 
@@ -92,7 +91,6 @@ class Sunny_Zone_Purger {
         $response = json_encode( $return_args  );
 
         // return json response
-        header('Content-Type: application/json');
         echo $response;
 
         die;

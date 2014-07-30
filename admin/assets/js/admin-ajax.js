@@ -18,4 +18,23 @@ jQuery(document).ready(function($) {
         // Prevent Default Action Again
         return false;
     }); // end #sunny-zone-purger-form submit
+
+    jQuery("#sunny-connection-tester-form").submit(function(){
+        event.preventDefault();
+        jQuery("#sunny-connection-tester-result").show();
+        jQuery("#sunny-connection-tester-form-spinner").show();
+        jQuery("#sunny-connection-tester-button").attr("disabled", "disabled")
+        var data = {
+            action: 'sunny-test-connection',
+            nonce:  jQuery('#sunny-connection-tester-nonce').val()// The security nonce
+        };
+        jQuery.post( ajaxurl, data, function (response) {
+            var output = "<p>" + response.result + ": " + response.message + "</p>";
+            jQuery("#sunny-connection-tester-result").append(jQuery(output).fadeIn('slow'));
+            jQuery("#sunny-connection-tester-form-spinner").hide();
+            jQuery("#sunny-connection-tester-button").removeAttr("disabled");
+        }, 'json');
+        // Prevent Default Action Again
+        return false;
+    }); // end #sunny-zone-purger-form submit
 });
