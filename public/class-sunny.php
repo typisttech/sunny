@@ -73,10 +73,10 @@ class Sunny {
      *
      * @return    string    CloudFlare Account Email
      */
-     public function get_domain() {
-     	$host_names = explode( '.', parse_url( site_url(), PHP_URL_HOST ) );
-        return $host_names[count( $host_names )-2] . '.' . $host_names[count( $host_names )-1];
-     }
+	public function get_domain() {
+		$host_names = explode( '.', parse_url( site_url(), PHP_URL_HOST ) );
+		return $host_names[count( $host_names )-2] . '.' . $host_names[count( $host_names )-1];
+	}
 
 	/**
 	 *
@@ -94,10 +94,10 @@ class Sunny {
      *
      * @return    string    CloudFlare Account Email
      */
-     public function get_cloudflare_email() {
-        return sanitize_email( get_option( 'sunny_cloudflare_email', '' ) );
-     }
-
+	 public function get_cloudflare_email() {
+	 	$cloudflare_account = get_option( 'sunny_cloudflare_account' );
+	 	return sanitize_email( $cloudflare_account['sunny_cloudflare_email'] );
+	 }
 
 	/**
 	 *
@@ -115,9 +115,10 @@ class Sunny {
      *
      * @return    string    CloudFlare Account API Key
      */
-     public function get_cloudflare_api_key() {
-        return Sunny_Helper::sanitize_alphanumeric( get_option( 'sunny_cloudflare_api_key', '' ) );
-     }
+	 public function get_cloudflare_api_key() {
+	 	$cloudflare_account = get_option( 'sunny_cloudflare_account' );
+	 	return Sunny_Helper::sanitize_alphanumeric( $cloudflare_account['sunny_cloudflare_api_key'] );
+	 }
 
 	/**
 	 * Initialize the plugin by setting localization and loading public scripts
@@ -292,7 +293,20 @@ class Sunny {
 	 * @since    1.0.0
 	 */
 	private static function single_activate() {
-		// @TODO: Define activation functionality here
+		if( false != get_option( 'sunny_cloudflare_email' ) ) {
+			delete_option( 'sunny_cloudflare_email' );
+		}
+
+		if( false != get_option( 'sunny_cloudflare_api_key' ) ) {
+			delete_option( 'sunny_cloudflare_api_key' );
+		}
+
+		$options = get_option( 'sunny_cloudflare_account' );
+		if( false == $options || '' == $options ) {
+			$options = array( 'sunny_cloudflare_email' => 'you@exampl.com', 'sunny_cloudflare_api_key' => 'abcd1234' );
+			delete_option( 'sunny_cloudflare_account' );
+			add_option( 'sunny_cloudflare_account', $options );
+		}
 	}
 
 	/**

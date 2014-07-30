@@ -110,9 +110,9 @@ class Sunny_CloudFlare_Account {
             'sunny_cloudflare_account_section',         // The name of the section to which this field belongs
             array (
                 'label_for' => 'sunny_cloudflare_email',
-                'type'      => 'text',
+                'type'      => 'email',
                 'value'     => Sunny::get_instance()->get_cloudflare_email(),
-                'desc'      => __( 'The e-mail address associated with the CloudFlare account.', $this->plugin_slug ),
+                'desc'      => __( 'The email address associated with the CloudFlare account.', $this->plugin_slug ),
                 ) // The array of arguments to pass to the callback.
             );
 
@@ -134,14 +134,8 @@ class Sunny_CloudFlare_Account {
         // Finally, we register the fields with WordPress
         register_setting(
             'sunny_cloudflare_account_section', // The settings group name. Must exist prior to the register_setting call.
-            'sunny_cloudflare_email',           // The name of an option to sanitize and save.
-            array( $this, 'sunny_validate_input_cloudflare_email' )
-            );
-
-        register_setting(
-            'sunny_cloudflare_account_section',
-            'sunny_cloudflare_api_key',
-            array( $this, 'sunny_validate_input_cloudflare_api_key' )
+            'sunny_cloudflare_account',           // The name of an option to sanitize and save.
+            array( $this, 'sunny_validate_cloudflare_account' )
             );
 
     }// end Setting Registration
@@ -180,7 +174,7 @@ class Sunny_CloudFlare_Account {
         $value  = $args[ 'value' ];
 
         // Render the output
-        echo '<input type="' . $type .'" id="' . $id . '" name="' . $id . '" size="40" value="' . $value . '" /><br/>';
+        echo '<input type="' . $type .'" id="' . $id . '" name=sunny_cloudflare_account[' . $id . '] value="' . $value . '" /><br/>';
         echo '<span class="description">' . $desc . '</span>';
 
     } // end sunny_render_cloudflare_email_input_html
@@ -197,55 +191,42 @@ class Sunny_CloudFlare_Account {
      *
      * @return         The sanitized email.
      *
-     * @since 1.0.0
+     * @since 1.2.0
      */
-    public function sunny_validate_input_cloudflare_email ( $input ) {
+    public function sunny_validate_cloudflare_account ( $input ) {
+
+        $output = array();
+        // email
         // Get old value from DB
         $plugin = Sunny::get_instance();
-        $sunny_cloudflare_email = $plugin->get_cloudflare_email();
+        $output['sunny_cloudflare_email'] = $plugin->get_cloudflare_email();
+        $output['sunny_cloudflare_api_key'] = $plugin->get_cloudflare_api_key();
 
         // Don't trust users
-        $input = sanitize_email( $input );
+        $clean_input_email = sanitize_email( $input['sunny_cloudflare_email'] );
 
-        if ( !empty( $input ) || is_email( $input ) ) {
-            $output = $input;
-        }
-        else
+        if ( empty( $clean_input_email ) || ! is_email( $clean_input_email ) || $clean_input_email != $input['sunny_cloudflare_email'] ) {
+
             add_settings_error( 'sunny_cloudflare_account_section', 'invalid-email', __( 'You have entered an invalid email.', $this->plugin_slug ) );
 
-        return apply_filters( 'sunny_before_save_cloudflare_email', $output, $input );
+        }
 
-    } //end sunny_validate_input_cloudflare_email
+        $output['sunny_cloudflare_email'] = $clean_input_email;
 
-
-    /**
-     * Sanitization callback for the email option.
-     * Use is_email for Sanitization
-     *
-     * @param  $input  The api key user inputed
-     *
-     * @return         The sanitized api key.
-     *
-     * @since 1.0.0
-     */
-    public function sunny_validate_input_cloudflare_api_key( $input ) {
-        // Get old value
-        $plugin = Sunny::get_instance();
-        $output = $plugin->get_cloudflare_api_key();
+        // api key
 
         // Don't trust users
         // Strip all HTML and PHP tags and properly handle quoted strings
-        $input = Sunny_Helper::sanitize_alphanumeric( $input );
-        $output = $input;
+        $clean_input_api_key = Sunny_Helper::sanitize_alphanumeric( $input['sunny_cloudflare_api_key'] );
+        $output['sunny_cloudflare_api_key'] = $clean_input_api_key;
 
-        if( empty( $input ) ) {
-
+        if( empty( $clean_input_api_key ) || $clean_input_api_key != $input['sunny_cloudflare_api_key'] ) {
             add_settings_error( 'sunny_cloudflare_account_section', 'invalid-api-key', __( 'You have entered an invalid API key.', $this->plugin_slug ) );
         }
 
-        return apply_filters( 'after_sunny_validate_input_cloudflare_api_key', $output, $input );
+        return $output;
 
-    } // end sunny_validate_input_cloudflare_api_key
+    } //end sunny_validate_input_cloudflare_account
 
     /**
      * Generate the meta box on options page.

@@ -97,7 +97,7 @@ class Sunny_URL_Purger {
 
     $post_url = esc_url_raw( $_REQUEST['post-url'], array( 'http', 'https' ) );
 
-    if ( '' == $post_url  ) {
+    if ( '' == $post_url || $_REQUEST['post-url'] != $post_url ) {
 
         $message = 'Error: Invalid URL.';
 
@@ -195,7 +195,7 @@ class Sunny_URL_Purger {
             'sunny_url_purger_section',         // The name of the section to which this field belongs
             array (
                 'label_for' => 'sunny_post_url',
-                'type'      => 'text',
+                'type'      => 'url',
                 'value'     => 'http://example.com/hello-world/',
                 'desc'      => __( 'The URL you want to purge.', $this->plugin_slug ),
                 ) // The array of arguments to pass to the callback.
