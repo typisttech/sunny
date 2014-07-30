@@ -28,7 +28,12 @@ class Sunny_Post_Purger {
      * @since     1.0.4
      */
     private function __construct() {
-		add_action( 'save_post', array( $this, 'purge_after_save' ) );
+
+		// Post ID is received
+		add_action( 'wp_trash_post', array( $this, 'purge_post' ) );
+		add_action( 'edit_post', array( $this, 'purge_post' ) ); // leaving a comment called edit_post
+		add_action( 'delete_post', array( $this, 'purge_post' ) );
+		add_action( 'publish_phone', array( $this, 'purge_post' ) );
 	}
 
     /**
@@ -54,7 +59,7 @@ class Sunny_Post_Purger {
 	 *
 	 * @since 	 1.0.0
 	 */
-	public function purge_after_save( $post_id ) {
+	public function purge_post( $post_id ) {
 		if ( $this->should_purge( $post_id ) ) {
 
 			$post_url = get_permalink( $post_id );
@@ -69,6 +74,8 @@ class Sunny_Post_Purger {
 
             }
 		}
+
+		return $post_id;
 	}
 
 	/**
@@ -82,6 +89,10 @@ class Sunny_Post_Purger {
 	 * @return   boolean                True if the user can save the information
 	 */
 	private function should_purge( $post_id ) {
+		$post = get_post( $post_id );
+		if ( is_object( $post ) == false ) {
+			return false;
+		}
 	    $is_autosave = wp_is_post_autosave( $post_id );
 	    $is_revision = wp_is_post_revision( $post_id );
 	    $is_published = ( 'publish' == get_post_status( $post_id ) );
