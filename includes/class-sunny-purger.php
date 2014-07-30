@@ -40,5 +40,6 @@ Class Sunny_Purger {
 		$cf_api_helper = CloudFlare_API_Helper::get_instance();
 		$response = $cf_api_helper->zone_file_purge( $domain, $url );
 		Sunny_API_Logger::write_report( $response, $url );
+		return $response;
 	}
 } // end Sunny_Purger

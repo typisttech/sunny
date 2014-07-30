@@ -12,16 +12,19 @@
  */
 ?>
 
+<?php $plugin = Sunny::get_instance(); ?>
+<?php $plugin_slug = $plugin->get_plugin_slug(); ?>
 <div id="sunny-url-purger" class="wrap">
-	<h2>URL Purge</h2>
-		<p>To check what pages will be purged when you update a post.<br />
-		This function also tries to clear the caches of a post and its associated<br />
-		However, it <strong>will not</strong> show the purge request is success or not.</p>
-		<form action="admin-post.php" method="POST">
-		<?php wp_nonce_field( 'sunny_url_purger', 'sunny_url_purger_nonce' ) ?>
-		<input type="hidden" name="action" value="sunny_url_purge">
+	<form id="sunny-url-purger-form" method="POST">
+		<?php wp_nonce_field( 'sunny-purge-url', 'sunny-url-purger-nonce'); ?>
+		<p>This function will clear the caches of a post and its associated pages. </p>
 		<label for="post-url">Post URL: </label>
-  		<input type="url" name="post-url" size="60" id="post-url">
-	  	<?php submit_button( __('Purge this URL & related', $plugin_slug ) ); ?>
-    </form>
+  		<input type="url" name="post-url" id="post-url">
+		<?php submit_button( __('Purge this URL & related pages', $plugin_slug ), 'primary', 'sunny-url-purger-button' ); ?>
+	</form>
+	<br class="clear">
+	<div id="sunny-url-purger-result" style="display: none">
+		<h3 id="sunny-url-purger-result-heading">URL Purger Result</h3>
+		<img id="sunny-url-purger-form-spinner" style="display: none" src="<?php echo admin_url(); ?>images/spinner-2x.gif">
+	</div>
 </div>

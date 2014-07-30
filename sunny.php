@@ -75,17 +75,18 @@ add_action( 'plugins_loaded', array( 'Sunny', 'get_instance' ) );
  * - replace Plugin_Name_Admin with the name of the class defined in
  *   `class-plugin-name-admin.php`
  *
- * If you want to include Ajax within the dashboard, change the following
+ * If you don't want to include Ajax within the dashboard, change the following
  * conditional to:
  *
- * if ( is_admin() ) {
+ * if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+ *
  *   ...
  * }
  *
  * The code below is intended to to give the lightest footprint possible.
  */
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
 
+if ( is_admin() ) {
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-sunny-admin.php' );
 	add_action( 'plugins_loaded', array( 'Sunny_Admin', 'get_instance' ) );
 
@@ -95,9 +96,9 @@ if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
  * Helper Functionality
  *----------------------------------------------------------------------------*/
 
-// Load helper class
-add_action( 'plugins_loaded', 'load_helper_classes', 5 );
-function load_helper_classes() {
+// Load helper class in sunny/includes
+add_action( 'plugins_loaded', 'load_load_dependencies', 5 );
+function load_load_dependencies() {
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-cloudflare-api-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-purger.php' );

@@ -33,7 +33,21 @@ class Sunny_Zone_Purger {
      * @since     1.0.4
      */
     private function __construct() {
-        add_action( 'admin_post_sunny_zone_purge', array( $this, 'process_sunny_zone_purger' ) );
+        /*
+         * Call $plugin_slug from public plugin class.
+         */
+        $plugin = Sunny::get_instance();
+        $this->plugin_slug = $plugin->get_plugin_slug();
+
+        /*
+         * Call $view_dir_path from admin plugin class.
+         */
+        $admin = Sunny_Admin::get_instance();
+        $this->view_dir_path = $admin->get_view_dir_path();
+
+        $this->generate_meta_box();
+
+        add_action( 'wp_ajax_sunny-purge-zone', array( $this, 'process_ajax' ) );
     }
 
     /**
@@ -52,55 +66,91 @@ class Sunny_Zone_Purger {
     }
 
     /**
-     * @since     1.0.0
-     *
-     * @return    void      This function has no return.
+     * @since     1.2.0
      */
-    public function process_sunny_zone_purger() {
-        // Check that user has proper secuity level
-        if ( ! current_user_can( 'manage_options') ) {
-            die( 'Not allowed');
+    public function process_ajax() {
+
+        header('Content-Type: application/json');
+
+        // Check that user has proper secuity level  && Check the nonce field
+        if ( ! current_user_can( 'manage_options') ||
+             ! wp_verify_nonce( $_POST['nonce'], 'sunny-purge-zone' ) ) {
+
+            $return_args = array(
+                                "result" => "Error",
+                                "message" => "403 Forbidden",
+                            );
+            $response = json_encode( $return_args );
+            echo $response;
+            die;
+
         }
 
-        //Check the nonce field
-        check_admin_referer( 'sunny_zone_purger', 'sunny_zone_purger_nonce' );
+        $cf_response = Sunny_Purger::purge_cloudflare_cache_all();
+        $return_args = $this->check_response( $cf_response );
+        $response = json_encode( $return_args  );
 
-        $response = Sunny_Purger::purge_cloudflare_cache_all();
-        $return_arg = $this->check_response( $response );
+        // return json response
+        echo $response;
 
-        $plugin = Sunny::get_instance();
-        $return_arg['page'] = $plugin->get_plugin_slug();
-
-        wp_redirect( add_query_arg( $return_arg, admin_url( 'options-general.php' ) ) );
         die;
-    } // end process_connection_test
+
+    }
 
     /**
      * @since     1.0.0
      *
      * @param     $_response        The response after api call, could be WP Error object or HTTP return object.
      *
-     * @return    $_return_arg      array of arguments for making redirect url
+     * @return    $_return_arg      array of arguments for making json response
      */
     private function check_response( $_response ) {
         $_return_arg['zone_purge_result'] = '1';
         if ( is_wp_error( $_response ) ) {
             $_return_arg['result'] = 'WP_Error';
-            $_return_arg['message'] = str_replace( ' ', '%20', implode( '<br/>', $_response->get_error_messages() ) );
-        }// end wp error
+            $_return_arg['message'] = $_response->get_error_messages();
+        } // end wp error
         else {
             // API made
             $_response_array = json_decode( $_response['body'], true );
 
             if ( 'error' == $_response_array['result'] ) {
                 $_return_arg['result'] = 'Error';
-                $_return_arg['message'] = str_replace( ' ', '%20', $_response_array['msg'] );
-            }
+                $_return_arg['message'] = $_response_array['msg'];
+            } // end api returns error
             elseif ( 'success' == $_response_array['result'] ) {
                 $_return_arg['result'] = 'Success';
-                $_return_arg['message'] = str_replace( ' ', '%20', 'All cache has been purged.' );
-            } // end connection success
-        }
+                $_return_arg['message'] = 'All cache has been purged.';
+            } // end api success
+        } // end connection success
         return $_return_arg;
     }
+
+    /**
+     * Generate the meta box on options page.
+     *
+     * @since     1.2.0
+     */
+    private function generate_meta_box() {
+
+        add_meta_box(
+        'sunny_zone_purger', //Meta box ID
+        __( 'Zone Purger', $this->plugin_slug ), //Meta box Title
+        array( $this, 'render_meta_box' ), //Callback defining the plugin's innards
+        $this->plugin_slug, // Screen to which to add the meta box
+        'normal' // Context
+        );
+
+    }
+
+    /**
+     * Print the meta box on options page.
+     *
+     * @since     1.2.0
+     */
+    public function render_meta_box() {
+        require( $this->view_dir_path . '/partials/zone-purger.php' );
+
+    }
+
 } //end Sunny_Test Class

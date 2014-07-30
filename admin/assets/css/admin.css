@@ -1,1 +1,24 @@
 /* This stylesheet is used to style the admin option form of the plugin. */
+div.inside a {
+    font-family: 'Lucida Grande', Verdana, Arial, 'Bitstream Vera Sans', sans-serif;
+    text-decoration: none;
+}
+
+div.inside a:hover {
+    text-decoration: underline;
+}
+
+.text, .select {
+    width: 250px;
+}
+
+.postbox .inside {
+    text-align: left;
+    margin: 0 10px 10px 10px;
+    font-size: 13px;
+    line-height: 150%;
+}
+
+.postbox {
+    margin: 10px
+}

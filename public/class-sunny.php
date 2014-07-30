@@ -59,6 +59,7 @@ class Sunny {
 	/**
 	 *
 	 * String of TLD
+	 *
 	 * @since    1.0.0
 	 *
 	 * @var      string
