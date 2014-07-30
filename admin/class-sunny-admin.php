@@ -108,7 +108,7 @@ class Sunny_Admin {
 		add_action( 'admin_init', array( $this, 'load_includes' ) );
 
 		// Add the option settings
-		add_action( 'admin_init', array( 'Sunny_Option', 'get_instance' ) );
+		add_action( 'admin_init', array( 'Sunny_CloudFlare_Account', 'get_instance' ) );
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
 		// Add `Purge URL` handler
@@ -273,7 +273,7 @@ class Sunny_Admin {
 
 	function load_includes() {
 		require_once( 'includes/class-sunny-admin-helper.php' );
-		require_once( 'includes/class-sunny-option.php' );
+		require_once( 'includes/class-sunny-cloudflare-account.php' );
 		require_once( 'includes/class-sunny-connection-tester.php' );
 		require_once( 'includes/class-sunny-zone-purger.php' );
 		require_once( 'includes/class-sunny-post-purger.php' );
