@@ -167,7 +167,7 @@ class Sunny_Option {
      */
     public function sunny_display_cloudflare_account() {
         echo '<p>';
-        _e( 'Sunny purges CloudFlare cache when post updated.', $this->plugin_slug );
+        _e( 'This function will clear the caches of a post and its associated pages.', $this->plugin_slug );
         echo '</p>';
     } // end sunny_display_cloudflare_account
 

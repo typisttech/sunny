@@ -47,6 +47,7 @@ class Sunny_URL_Purger {
         $admin = Sunny_Admin::get_instance();
         $this->view_dir_path = $admin->get_view_dir_path();
 
+        $this->register_settings();
         $this->generate_meta_box();
 
         add_action( 'wp_ajax_sunny-purge-url', array( $this, 'process_ajax' ) );
@@ -169,5 +170,68 @@ class Sunny_URL_Purger {
         require( $this->view_dir_path . '/partials/url-purger.php' );
 
     }
+
+    /**
+     * Register the CloudFlare account section, CloudFlare email field
+     * and CloudFlare api key field
+     *
+     * @since     1.0.0
+     */
+    private function register_settings() {
+
+        add_settings_section(
+            'sunny_url_purger_section',     // ID used to identify this section and with which to register options
+            NULL,                                   // Title to be displayed on the administration page
+            array( $this, 'sunny_display_url_purger' ),    // Callback used to render the description of the section
+           'sunny_url_purger_section'                     // Page on which to add this section of options
+            );
+
+        add_settings_field(
+            'sunny_post_url',                   // ID used to identify the field throughout the theme
+            __( 'Post URL', $this->plugin_slug ),          // The label to the left of the option interface element
+            array( $this, 'sunny_render_form_html' ),   // The name of the function responsible for rendering the option interface
+            'sunny_url_purger_section',                         // The page on which this option will be displayed
+            'sunny_url_purger_section',         // The name of the section to which this field belongs
+            array (
+                'label_for' => 'sunny_post_url',
+                'type'      => 'text',
+                'value'     => 'http://example.com/hello-world/',
+                'desc'      => __( 'The URL you want to purge.', $this->plugin_slug ),
+                ) // The array of arguments to pass to the callback.
+            );
+
+    }// end Setting Registration
+
+    /**
+     * This function provides a simple description for the url purger section.
+     *
+     * @since 1.0.0
+     */
+    public function sunny_display_url_purger() {
+        echo '<p>';
+        _e( 'Purge a post and its related pages(e.g: categories, tags and archives) by URL.', $this->plugin_slug );
+        echo '</p>';
+    } // end sunny_display_cloudflare_account
+
+    /**
+     * This function provides a simple description for the Sunny Settings page.
+     * It is passed as a parameter in the add_settings_field function.
+     *
+     * @param array     $args   from add_settings_field
+     *
+     * @since 1.2.0
+     */
+    public function sunny_render_form_html ( $args ) {
+
+        $type   = $args[ 'type' ];
+        $id     = $args[ 'label_for' ];
+        $desc   = $args[ 'desc' ];
+        $value  = $args[ 'value' ];
+
+        // Render the output
+        echo '<input type="' . $type .'" id="' . $id . '" name="' . $id . '" size="40" value="' . $value . '" /><br/>';
+        echo '<span class="description">' . $desc . '</span>';
+
+    } // end sunny_render_cloudflare_email_input_html
 
 } //end Sunny_Test Class

@@ -17,9 +17,8 @@
 <div id="sunny-url-purger" class="wrap">
 	<form id="sunny-url-purger-form" method="POST">
 		<?php wp_nonce_field( 'sunny-purge-url', 'sunny-url-purger-nonce'); ?>
-		<p>This function will clear the caches of a post and its associated pages. </p>
-		<label for="post-url">Post URL: </label>
-  		<input type="url" name="post-url" id="post-url">
+		<?php settings_fields( 'sunny_url_purger_section' ); ?>
+		<?php do_settings_sections( 'sunny_url_purger_section' ); ?>
 		<?php submit_button( __('Purge this URL & related pages', $plugin_slug ), 'primary', 'sunny-url-purger-button' ); ?>
 	</form>
 	<br class="clear">
