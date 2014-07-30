@@ -57,6 +57,14 @@ class Sunny_Admin {
 	protected $view_dir_path = null;
 
 	/**
+	 * For easier overriding we declared the keys
+	 * here as well as our tabs array
+	 *
+	 * @since    1.2.0
+	 */
+	private $plugin_settings_tabs = array();
+
+	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
@@ -88,6 +96,9 @@ class Sunny_Admin {
 
 		// Add the options page and menu item.
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+
+		// Make option page tabs
+		add_action( 'load-toplevel_page_sunny', array( $this, 'make_tabs' ) );
 
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
@@ -146,6 +157,17 @@ class Sunny_Admin {
 	}
 
 	/**
+	 * Return plugin settings tabs
+	 *
+	 * @since    1.2.0
+	 *
+	 * @return   array 	plugin_settings_tabs variable.
+	 */
+	public function get_plugin_settings_tabs() {
+		return $this->plugin_settings_tabs;
+	}
+
+	/**
 	 * Register and enqueue admin-specific style sheet.
 	 *
 	 * @since     1.0.0
@@ -195,17 +217,6 @@ class Sunny_Admin {
 
 		/*
 		 * Add a settings page for this plugin to the Settings menu.
-		 *
-		 * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-		 *
-		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
-		 *
-		 * @TODO:
-		 *
-		 * - Change 'Page Title' to the title of your plugin admin page
-		 * - Change 'Menu Text' to the text for menu item for the plugin settings page
-		 * - Change 'manage_options' to the capability you see fit
-		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
 		 */
 
 		$this->plugin_screen_hook_suffix = add_menu_page(
@@ -225,12 +236,6 @@ class Sunny_Admin {
 	 */
 	public function display_plugin_admin_page() {
 		include_once( 'views/admin.php' );
-		// include_once( 'views/partials/url-purger.php' );
-		// include_once( 'views/partials/url-purge-result.php' );
-		// include_once( 'views/partials/zone-purger.php' );
-		// include_once( 'views/partials/zone-purge-result.php' );
-		// include_once( 'views/partials/connection-tester.php' );
-		// include_once( 'views/partials/connection-test-result.php' );
 	}
 
 	/**
@@ -242,11 +247,28 @@ class Sunny_Admin {
 
 		return array_merge(
 			array(
-				'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
+				'settings' => '<a href="' . admin_url( 'admin.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
 				),
 			$links
 			);
 
+	}
+
+	/**
+	 * Make tabs in options page.
+	 *
+	 * @since    1.2.0
+	 */
+	public function make_tabs() {
+		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+			$this->plugin_settings_tabs['general_settings'] = 'Settings';
+			$this->plugin_settings_tabs['purger_settings'] = 'Purger';
+		}
 	}
 
 	function load_includes() {

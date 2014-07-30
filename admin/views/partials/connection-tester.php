@@ -13,6 +13,7 @@
 
 <?php $plugin = Sunny::get_instance(); ?>
 <?php $plugin_slug = $plugin->get_plugin_slug(); ?>
+
 <div id="sunny-connection-tester" class="wrap">
 	<form id="sunny-connection-tester-form" method="POST">
 		<?php wp_nonce_field( 'sunny-test-connection', 'sunny-connection-tester-nonce'); ?>

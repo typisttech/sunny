@@ -44,6 +44,7 @@ class Sunny_Connection_Tester {
          */
         $admin = Sunny_Admin::get_instance();
         $this->view_dir_path = $admin->get_view_dir_path();
+        $this->tab_slug = 'general_settings';
 
         $this->generate_meta_box();
 
@@ -163,7 +164,7 @@ class Sunny_Connection_Tester {
         'sunny_connection_tester', //Meta box ID
         __( 'Connection Tester', $this->plugin_slug ), //Meta box Title
         array( $this, 'render_meta_box' ), //Callback defining the plugin's innards
-        $this->plugin_slug, // Screen to which to add the meta box
+        $this->tab_slug, // Screen to which to add the meta box
         'normal' // Context
         );
 
