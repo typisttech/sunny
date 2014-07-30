@@ -74,7 +74,7 @@ class Sunny_Connection_Tester {
 
         // Check that user has proper secuity level  && Check the nonce field
         if ( ! current_user_can( 'manage_options') ||
-         ! wp_verify_nonce( $_POST['nonce'], 'sunny_connection_tester_nonce' ) ) {
+         ! wp_verify_nonce( $_POST['nonce'], 'sunny-test-connection' ) ) {
 
             $return_args = array(
                 "result" => "Error",
@@ -86,9 +86,7 @@ class Sunny_Connection_Tester {
         }
 
         $plugin = Sunny::get_instance();
-        // $domain = $plugin->get_domain();
-
-         $domain = 'tangrufus.com';
+        $domain = $plugin->get_domain();
 
         $api_helper = CloudFlare_API_Helper::get_instance();
         $cf_response = $api_helper->rec_load_all( $domain );
@@ -114,7 +112,7 @@ class Sunny_Connection_Tester {
         $return_arg['connection_test_result'] = '1';
 
         if ( is_wp_error( $_response ) ) {
-            $return_arg['result'] = 'wp_error';
+            $return_arg['result'] = 'WP Error';
             $return_arg['message'] = $_response->get_error_messages();
         }// end WP Error
         else {
@@ -122,10 +120,10 @@ class Sunny_Connection_Tester {
             $_response_array = json_decode( $_response['body'], true );
 
             if ( 'error' == $_response_array['result'] ) {
-                $return_arg['result'] = 'API Error';
+                $return_arg['result'] = 'Error';
                 $return_arg['message'] = $_response_array['msg'];
             } else {
-                $return_arg['result'] = 'API Success';
+                $return_arg['result'] = 'Success';
 
                 $domain = parse_url( site_url(), PHP_URL_HOST );
 

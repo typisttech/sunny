@@ -74,7 +74,7 @@ class Sunny_Zone_Purger {
 
         // Check that user has proper secuity level  && Check the nonce field
         if ( ! current_user_can( 'manage_options') ||
-             ! wp_verify_nonce( $_POST['nonce'], 'sunny_zone_purger_nonce' ) ) {
+             ! wp_verify_nonce( $_POST['nonce'], 'sunny-purge-zone' ) ) {
 
             $return_args = array(
                                 "result" => "Error",

@@ -10,11 +10,12 @@
  * @copyright 	2014 Tang Rufus
  */
 ?>
+
 <?php $plugin = Sunny::get_instance(); ?>
 <?php $plugin_slug = $plugin->get_plugin_slug(); ?>
 <div id="sunny-zone-purger" class="wrap">
 	<form id="sunny-zone-purger-form" method="POST">
-		<?php wp_nonce_field( 'sunny_zone_purger_nonce', 'sunny-zone-purger-nonce') ?>
+		<?php wp_nonce_field( 'sunny-purge-zone', 'sunny-zone-purger-nonce'); ?>
 		<p>Immediately clear all cached resources for your website.</p>
 		<p>This function will purge CloudFlare of any cached files. <br />
 			It may take up to 48 hours for the cache to rebuild and optimum performance to be achieved so this function should be used sparingly.
@@ -24,6 +25,6 @@
 	<br class="clear">
 	<div id="sunny-zone-purger-result" style="display: none">
 		<h3 id="sunny-zone-purger-result-heading">Zone Purge Result</h3>
-		<img id="sunny-zone-purger-form-spinner" style="display: none" src="http://sunny.dev/wp-admin/images/spinner-2x.gif" >
+		<img id="sunny-zone-purger-form-spinner" style="display: none" src="<?php echo admin_url(); ?>images/spinner-2x.gif">
 	</div>
 </div>
