@@ -251,7 +251,7 @@ class Sunny_CloudFlare_Account {
      * @since     1.2.0
      */
     public function render_meta_box() {
-        require( $this->view_dir_path . '/partials/settings.php' );
+        require( $this->view_dir_path . '/partials/cloudflare-account.php' );
 
     }
 
