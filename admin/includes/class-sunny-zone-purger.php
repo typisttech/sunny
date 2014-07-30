@@ -44,6 +44,7 @@ class Sunny_Zone_Purger {
          */
         $admin = Sunny_Admin::get_instance();
         $this->view_dir_path = $admin->get_view_dir_path();
+        $this->tab_slug = 'purger_settings';
 
         $this->generate_meta_box();
 
@@ -137,7 +138,7 @@ class Sunny_Zone_Purger {
         'sunny_zone_purger', //Meta box ID
         __( 'Zone Purger', $this->plugin_slug ), //Meta box Title
         array( $this, 'render_meta_box' ), //Callback defining the plugin's innards
-        $this->plugin_slug, // Screen to which to add the meta box
+        $this->tab_slug, // Screen to which to add the meta box
         'normal' // Context
         );
 

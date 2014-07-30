@@ -63,6 +63,7 @@ class Sunny_Option {
          */
         $admin = Sunny_Admin::get_instance();
         $this->view_dir_path = $admin->get_view_dir_path();
+        $this->tab_slug = 'general_settings';
 
         $this->register_settings();
         $this->generate_meta_box();
@@ -108,7 +109,7 @@ class Sunny_Option {
             'sunny_cloudflare_account_section',     // ID used to identify this section and with which to register options
             NULL,                                   // Title to be displayed on the administration page
             array( $this, 'sunny_display_cloudflare_account' ),    // Callback used to render the description of the section
-            $this->plugin_slug                      // Page on which to add this section of options
+            'sunny_cloudflare_account_section'                    // Page on which to add this section of options
             );
 
         // Next, we will introduce the fields for CloudFlare Account info.
@@ -116,7 +117,7 @@ class Sunny_Option {
             'sunny_cloudflare_email',                   // ID used to identify the field throughout the theme
             __( 'Email', $this->plugin_slug ),          // The label to the left of the option interface element
             array( $this, 'sunny_render_form_html' ),   // The name of the function responsible for rendering the option interface
-            $this->plugin_slug,                         // The page on which this option will be displayed
+            'sunny_cloudflare_account_section',         // The page on which this option will be displayed
             'sunny_cloudflare_account_section',         // The name of the section to which this field belongs
             array (
                 'label_for' => 'sunny_cloudflare_email',
@@ -130,7 +131,7 @@ class Sunny_Option {
             'sunny_cloudflare_api_key',
             __( 'API Key', $this->plugin_slug ),
             array( $this, 'sunny_render_form_html' ),
-            $this->plugin_slug,
+            'sunny_cloudflare_account_section',
             'sunny_cloudflare_account_section',
                         array (
                 'label_for' => 'sunny_cloudflare_api_key',
@@ -143,8 +144,8 @@ class Sunny_Option {
 
         // Finally, we register the fields with WordPress
         register_setting(
-            'sunny_cloudflare_account_section',     // The settings group name. Must exist prior to the register_setting call.
-            'sunny_cloudflare_email',     // The name of an option to sanitize and save.
+            'sunny_cloudflare_account_section', // The settings group name. Must exist prior to the register_setting call.
+            'sunny_cloudflare_email',           // The name of an option to sanitize and save.
             array( $this, 'sunny_validate_input_cloudflare_email' )
             );
 
@@ -167,7 +168,7 @@ class Sunny_Option {
      */
     public function sunny_display_cloudflare_account() {
         echo '<p>';
-        _e( 'This function will clear the caches of a post and its associated pages.', $this->plugin_slug );
+        _e( 'The CloudFlare account associated to this site.', $this->plugin_slug );
         echo '</p>';
     } // end sunny_display_cloudflare_account
 
@@ -246,11 +247,12 @@ class Sunny_Option {
         // Don't trust users
         // Strip all HTML and PHP tags and properly handle quoted strings
         $input = Sunny_Helper::sanitize_alphanumeric( $input );
-        if( !empty( $input ) ) {
-            $output = $input;
-        }
-        else
+        $output = $input;
+
+        if( empty( $input ) ) {
+
             add_settings_error( 'sunny_cloudflare_account_section', 'invalid-api-key', __( 'You have entered an invalid API key.', $this->plugin_slug ) );
+        }
 
         return apply_filters( 'after_sunny_validate_input_cloudflare_api_key', $output, $input );
 
@@ -267,7 +269,7 @@ class Sunny_Option {
         'sunny_cloudflare_account', //Meta box ID
         __( 'CloudFlare Account', $this->plugin_slug ), //Meta box Title
         array( $this, 'render_meta_box' ), //Callback defining the plugin's innards
-        $this->plugin_slug, // Screen to which to add the meta box
+        $this->tab_slug, // Screen to which to add the meta box
         'advanced' // Context
         );
 

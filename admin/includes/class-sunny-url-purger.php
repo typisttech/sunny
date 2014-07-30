@@ -46,6 +46,7 @@ class Sunny_URL_Purger {
          */
         $admin = Sunny_Admin::get_instance();
         $this->view_dir_path = $admin->get_view_dir_path();
+        $this->tab_slug = 'purger_settings';
 
         $this->register_settings();
         $this->generate_meta_box();
@@ -155,7 +156,7 @@ class Sunny_URL_Purger {
         'sunny_url_purger', //Meta box ID
         __( 'URL Purger', $this->plugin_slug ), //Meta box Title
         array( $this, 'render_meta_box' ), //Callback defining the plugin's innards
-        $this->plugin_slug, // Screen to which to add the meta box
+        $this->tab_slug, // Screen to which to add the meta box
         'normal' // Context
         );
 
