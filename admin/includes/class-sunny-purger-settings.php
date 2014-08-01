@@ -157,7 +157,6 @@ class Sunny_Purger_Settings {
 
         $id     = $args[ 'label_for' ];
         $desc   = $args[ 'desc' ];
-        $value  = $args[ 'value' ];
 
         // Render the output
         $options = get_option( 'sunny_purger_settings' );
