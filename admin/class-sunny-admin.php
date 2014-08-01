@@ -65,6 +65,12 @@ class Sunny_Admin {
 	private $plugin_settings_tabs = array();
 
 	/**
+	 *
+	 * @since    1.2.0
+	 */
+	private $option_boxes = array();
+
+	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
@@ -119,6 +125,9 @@ class Sunny_Admin {
 		add_action( 'admin_init', array( 'Sunny_Connection_Tester', 'get_instance' ) );
 		// Add Purger Settings
 		add_action( 'admin_init', array( 'Sunny_Purger_Settings', 'get_instance' ) );
+
+
+		add_action( 'admin_init', array( $this, 'make_option_boxes' ) );
 	}
 
 	/**
@@ -266,6 +275,10 @@ class Sunny_Admin {
 		$this->plugin_settings_tabs['purger_settings'] = 'Purger';
 	}
 
+	public function make_option_boxes() {
+		new Sunny_Admin_Bar_Option_Box( $this );
+	}
+
 	/**
 	 * Load dependencies for admin area
 	 *
@@ -279,6 +292,8 @@ class Sunny_Admin {
 		require_once( 'includes/class-sunny-zone-purger.php' );
 		require_once( 'includes/class-sunny-url-purger.php' );
 		require_once( 'includes/class-sunny-purger-settings.php' );
+		require_once( 'includes/class-abstract-option-box.php' );
+		require_once( 'includes/class-sunny-admin-bar-option-box.php' );
 	}
 
 } // end sunny_admin class
