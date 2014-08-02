@@ -16,9 +16,9 @@
 
 <div id="sunny-purger-settings" class="wrap">
 	<form action="options.php" method="POST">
-		<?php settings_fields( 'sunny_purger_settings_section' ); ?>
-		<?php do_settings_sections( 'sunny_purger_settings_section' ); ?>
+		<?php settings_fields( 'sunny_purger_settings' ); ?>
+		<?php do_settings_sections( 'sunny_purger_settings' ); ?>
 		<?php submit_button( __('Save Purge Settings', $plugin_slug ), 'primary' ); ?>
-		<br class"clear" />
+		<br class="clear" />
 	</form>
 </div>

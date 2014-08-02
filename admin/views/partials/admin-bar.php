@@ -14,11 +14,11 @@
 <?php $plugin = Sunny::get_instance(); ?>
 <?php $plugin_slug = $plugin->get_plugin_slug(); ?>
 
-<div id="sunny-admin-bar-settings" class="wrap">
+<div id="sunny-admin-bar" class="wrap">
 	<form action="options.php" method="POST">
-		<?php settings_fields( 'sunny_admin_bar_section' ); ?>
-		<?php do_settings_sections( 'sunny_admin_bar_section' ); ?>
+		<?php settings_fields( 'sunny_admin_bar' ); ?>
+		<?php do_settings_sections( 'sunny_admin_bar' ); ?>
 		<?php submit_button( __('Save', $plugin_slug ), 'primary' ); ?>
+		<br class="clear" />
 	</form>
-	<br class="clear">
 </div>

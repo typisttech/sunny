@@ -25,6 +25,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+
+if ( ! class_exists( 'Sunny_Option_Box_Base', false ) ) {
+    require_once( 'class-sunny-option-box-base.php' );
+}
+
 class Sunny_CloudFlare_Account {
     /**
      * Instance of this class.
