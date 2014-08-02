@@ -22,16 +22,16 @@
 <div class="wrap" >
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
-		<?php settings_errors(); ?>
+	<?php settings_errors(); ?>
 
-		<?php $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings' ?>
+	<?php $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings' ?>
 
-		<h2 class="nav-tab-wrapper">
+	<h2 class="nav-tab-wrapper">
 		<?php foreach ( $plugin_settings_tabs as $tab_key => $tab_caption ) { ?>
-			<?php $active = $current_tab == $tab_key ? 'nav-tab-active' : ''; ?>
-			<?php echo '<a class="nav-tab ' . $active . '" href="admin.php?page=' . $plugin_slug . '&tab=' . $tab_key . '">' . $tab_caption . '</a>'; ?>
+		<?php $active = $current_tab == $tab_key ? 'nav-tab-active' : ''; ?>
+		<?php echo '<a class="nav-tab ' . $active . '" href="admin.php?page=' . $plugin_slug . '&tab=' . $tab_key . '">' . $tab_caption . '</a>'; ?>
 		<?php } ?>
-		</h2>
+	</h2>
 
 	<div class="postbox-container" style="width: 60%;">
 

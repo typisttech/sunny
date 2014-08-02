@@ -30,10 +30,11 @@ class Sunny_Purger_Settings extends Sunny_Option_Box_Base {
 
 	protected function set_class_properties() {
 
-		$this->view_file            = 'purger-settings';
 		$this->option_group         = 'sunny_purger_settings';
+
+		$this->button_text			= __('Save Purge Settings', $this->plugin_slug );
+
 		$this->meta_box             = array(
-										'id'        => 'sunny_purger_settings',
 										'title'     => __( 'Purger Settings', $this->plugin_slug ),
 										'context'   => 'normal',
 										);
@@ -65,9 +66,11 @@ class Sunny_Purger_Settings extends Sunny_Option_Box_Base {
 	 * @since 1.2.0
 	 */
 	public function render_section() {
+
 		echo '<p>';
 			_e( 'The CloudFlare account associated to this site.', $this->plugin_slug );
 		echo '</p>';
+
 	}
 
 } //end Sunny_Option Class

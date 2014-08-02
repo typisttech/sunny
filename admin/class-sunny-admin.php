@@ -48,6 +48,15 @@ class Sunny_Admin {
 	protected $plugin_screen_hook_suffix = null;
 
 	/**
+	 * Slug of the plugin
+	 *
+	 * @since    1.2.0
+	 *
+	 * @var      string
+	 */
+	protected $plugin_slug = null;
+
+	/**
 	 * Path to admin/views directory
 	 *
 	 * @since    1.2.0
@@ -123,8 +132,6 @@ class Sunny_Admin {
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
 
-		// Add the option settings
-		add_action( 'admin_init', array( 'Sunny_CloudFlare_Account', 'get_instance' ) );
 		// Add `Purge URL` handler
 		add_action( 'admin_init', array( 'Sunny_URL_Purger', 'get_instance' ) );
 		// Add `Purge All` button callback
@@ -158,6 +165,17 @@ class Sunny_Admin {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Return slug of the plugin
+	 *
+	 * @since    1.2.0
+	 *
+	 * @return   plugin_slug variable.
+	 */
+	public function get_plugin_slug() {
+		return $this->plugin_slug;
 	}
 
 	/**
@@ -301,10 +319,9 @@ class Sunny_Admin {
 		$this->plugin_settings_tabs['purger_settings'] = 'Purger';
 
 		// Make Option Boxes
-		
+		$this->option_boxes[] = new Sunny_CloudFlare_Account( $this, 'general_settings' );
 		$this->option_boxes[] = new Sunny_Purger_Settings( $this, 'general_settings' );
 		$this->option_boxes[] = new Sunny_Admin_Bar_Option_Box( $this, 'general_settings' );
-
 
 	}
 

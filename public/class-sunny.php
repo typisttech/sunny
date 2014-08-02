@@ -96,7 +96,7 @@ class Sunny {
      */
 	 public function get_cloudflare_email() {
 	 	$cloudflare_account = get_option( 'sunny_cloudflare_account' );
-	 	return sanitize_email( $cloudflare_account['sunny_cloudflare_email'] );
+	 	return sanitize_email( $cloudflare_account['email'] );
 	 }
 
 	/**
@@ -117,7 +117,7 @@ class Sunny {
      */
 	 public function get_cloudflare_api_key() {
 	 	$cloudflare_account = get_option( 'sunny_cloudflare_account' );
-	 	return Sunny_Helper::sanitize_alphanumeric( $cloudflare_account['sunny_cloudflare_api_key'] );
+	 	return Sunny_Helper::sanitize_alphanumeric( $cloudflare_account['api_key'] );
 	 }
 
 	/**

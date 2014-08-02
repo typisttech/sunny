@@ -17,13 +17,13 @@ if ( ! defined( 'WPINC' ) ) {
 class Sunny_Option_Box_Base {
 
 	// Admin Properties
-	protected $plugin_slug		= NULL;
-	protected $view_dir_path 	= NULL;
-	protected $tab_slug 		= NULL;
+	protected $plugin_slug		= null;
+	protected $view_dir_path 	= null;
+	protected $tab_slug 		= null;
 
 	// Class Properties
-	protected $view_file 		= NULL;
-	protected $option_group 	= NULL;
+	protected $option_group 	= null;
+	protected $button_text		= null;
 	protected $meta_box 		= array();
 	protected $settings_fields 	= array();
 
@@ -42,7 +42,7 @@ class Sunny_Option_Box_Base {
 	 */
 	private function set_admin_properties( Sunny_Admin $admin, $tab_slug ) {
 
-		$this->plugin_slug = $admin->plugin_slug;
+		$this->plugin_slug = $admin->get_plugin_slug();
 		$this->view_dir_path = $admin->get_view_dir_path();
 		$this->tab_slug = $tab_slug;
 
@@ -52,7 +52,7 @@ class Sunny_Option_Box_Base {
 	 * @since     1.2.0
 	 */
 	protected function set_class_properties() {
-		// return;
+		// Leave for Subclass
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Sunny_Option_Box_Base {
 		// First, we register a section. This is necessary since all future settingss must belong to one.
 		add_settings_section(
 				$this->option_group,      			// ID used to identify this section and with which to register options
-				NULL,                               // Title to be displayed on the administration page
+				null,                               // Title to be displayed on the administration page
 				array( $this, 'render_section' ),	// Callback used to render the description of the section
 				$this->option_group 				// Page on which to add this section of options
 				);
@@ -91,6 +91,9 @@ class Sunny_Option_Box_Base {
 	}
 
 	/**
+     * This function provides a simple description for the section.
+     * It is passed as a parameter in the add_settings_section function.
+     *
 	 * @since     	1.2.0
 	 */
 	public function render_section() {
@@ -108,7 +111,37 @@ class Sunny_Option_Box_Base {
 
 	}
 
+
+	/* ------------------------------------------------------------------------ *
+	 * Setting Callbacks
+	 * ------------------------------------------------------------------------ */
 	/**
+	 * This function provides a simple description for the Sunny Settings page.
+     * It is passed as a parameter in the add_settings_field function.
+     *
+	 * Create a Text input field
+	 *
+	 * @since 		1.2.0
+	 */
+	public function text( $args ) {
+
+		if ( is_array( $args ) ) {
+
+			foreach( $args as $key => $val ) {
+
+				${$key} = $val;
+
+			}
+
+		}
+
+		// Render the output
+		echo "<input type='$type' id='$id' name='$this->option_group[$id]' value='$value' /><br/>";
+		echo "<span class='description'>$desc</span>";
+	}
+
+	/**
+     *
 	 * Create a Checkbox input field
 	 *
 	 * @since 		1.2.0
@@ -129,8 +162,9 @@ class Sunny_Option_Box_Base {
 
 		$checked = ( isset( $options[$id] ) && '1' == $options[$id] ) ? true : false;
 
-		echo "<input type='checkbox' id='$id' name='" . $this->option_group . "[$id]' value='1' " . checked( $checked, true, false ) . " /><br />";
+		echo "<input type='checkbox' id='$id' name='$this->option_group[$id]' value='1' " . checked( $checked, true, false ) . " /><br />";
 		echo "<span class='description'>$desc</span>";
+
 	}
 
 	/**
@@ -141,7 +175,7 @@ class Sunny_Option_Box_Base {
 	public function generate_meta_box() {
 
 		add_meta_box(
-			$this->meta_box['id'],              // Meta box ID
+			$this->option_group,              // Meta box ID
 			$this->meta_box['title'],           // Meta box Title
 			array( $this, 'render_meta_box' ),  // Callback defining the plugin's innards
 			$this->tab_slug,                    // Screen to which to add the meta box
@@ -157,7 +191,7 @@ class Sunny_Option_Box_Base {
 	 */
 	public function render_meta_box() {
 
-		require( $this->view_dir_path . '/partials/' . $this->view_file . '.php' );
+		require( $this->view_dir_path . '/partials/option-box.php' );
 
 	}
 
