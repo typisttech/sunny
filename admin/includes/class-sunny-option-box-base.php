@@ -14,7 +14,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-class Sunny_Option_Box_Base {
+abstract class Sunny_Option_Box_Base {
 
 	// Admin Properties
 	protected $plugin_slug		= null;
@@ -49,6 +49,15 @@ class Sunny_Option_Box_Base {
 	}
 
 	/**
+	 * Subclass should overide this function to set necessary information
+	 * about the settings section, settings fields, and meta box properties.
+	 *
+	 * These properties must be set: -
+	 * $option_group
+	 * $button_text
+	 * $meta_box
+	 * $settings_fields
+	 *
 	 * @since     1.2.0
 	 */
 	protected function set_class_properties() {
@@ -60,7 +69,10 @@ class Sunny_Option_Box_Base {
 	 */
 	public function register_settings() {
 
-		// First, we register a section. This is necessary since all future settingss must belong to one.
+		/**
+		 * First, we register a section. This is necessary since all future settings must belong to one.
+		 * Each section represents an array stored in the database.
+		 */
 		add_settings_section(
 				$this->option_group,      			// ID used to identify this section and with which to register options
 				null,                               // Title to be displayed on the administration page
@@ -68,14 +80,15 @@ class Sunny_Option_Box_Base {
 				$this->option_group 				// Page on which to add this section of options
 				);
 
+		// Then, we register all fields. Each field represents an element in the array.
 		foreach ( $this->settings_fields as $settings_field ) {
 
 			add_settings_field(
 					$settings_field['id'],      	// ID used to identify the field throughout the theme
 					$settings_field['title'],       // The label to the left of the option interface element
 					$settings_field['callback'],   	// The name of the function responsible for rendering the option interface
-					$this->option_group,  // The page on which this option will be displayed
-					$this->option_group,  // The name of the section to which this field belongs
+					$this->option_group,  			// The page on which this option will be displayed
+					$this->option_group,  			// The name of the section to which this field belongs
 					$settings_field['args']			// The array of arguments to pass to the callback.
 					);
 
@@ -175,7 +188,7 @@ class Sunny_Option_Box_Base {
 	public function generate_meta_box() {
 
 		add_meta_box(
-			$this->option_group,              // Meta box ID
+			$this->option_group,              	// Meta box ID
 			$this->meta_box['title'],           // Meta box Title
 			array( $this, 'render_meta_box' ),  // Callback defining the plugin's innards
 			$this->tab_slug,                    // Screen to which to add the meta box

@@ -132,6 +132,8 @@ class Sunny_Admin {
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
 
+
+		// @TO-DO: Make Ajax Classes Abstract
 		// Add `Purge URL` handler
 		add_action( 'admin_init', array( 'Sunny_URL_Purger', 'get_instance' ) );
 		// Add `Purge All` button callback
@@ -230,14 +232,17 @@ class Sunny_Admin {
 	public function enqueue_admin_scripts() {
 
 		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+
 			return;
+
 		}
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+
 			wp_enqueue_script( 'postbox' );
-			// wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
-			wp_enqueue_script( $this->plugin_slug . '-admin-ajax-script', plugins_url( 'assets/js/admin-ajax.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
+			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
+
 		}
 	}
 
@@ -319,8 +324,8 @@ class Sunny_Admin {
 		$this->plugin_settings_tabs['purger_settings'] = 'Purger';
 
 		// Make Option Boxes
-		$this->option_boxes[] = new Sunny_CloudFlare_Account( $this, 'general_settings' );
-		$this->option_boxes[] = new Sunny_Purger_Settings( $this, 'general_settings' );
+		$this->option_boxes[] = new Sunny_CloudFlare_Account_Option_Box( $this, 'general_settings' );
+		$this->option_boxes[] = new Sunny_Purger_Settings_Option_Box( $this, 'general_settings' );
 		$this->option_boxes[] = new Sunny_Admin_Bar_Option_Box( $this, 'general_settings' );
 
 	}
@@ -334,13 +339,18 @@ class Sunny_Admin {
 	 */
 	public function load_admin_dependencies() {
 
+		// Helpers
 		require_once( 'includes/class-sunny-admin-helper.php' );
+
+		// Ajax
 		require_once( 'includes/class-sunny-post-purger.php' );
-		require_once( 'includes/class-sunny-cloudflare-account.php' );
 		require_once( 'includes/class-sunny-connection-tester.php' );
 		require_once( 'includes/class-sunny-zone-purger.php' );
 		require_once( 'includes/class-sunny-url-purger.php' );
-		require_once( 'includes/class-sunny-purger-settings.php' );
+
+		// Option Boxes
+		require_once( 'includes/class-sunny-cloudflare-account-option-box.php' );
+		require_once( 'includes/class-sunny-purger-settings-option-box.php' );
 		require_once( 'includes/class-sunny-admin-bar-option-box.php' );
 
 	}

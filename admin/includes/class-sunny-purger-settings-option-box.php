@@ -9,10 +9,6 @@
  * @author      Tang Rufus <tangrufus@gmail.com>
  */
 
-/* ------------------------------------------------------------------------ *
- * Setting Registration
- * ------------------------------------------------------------------------ */
-
 /**
  * This class handles the purger settings.
  */
@@ -26,7 +22,7 @@ if ( ! class_exists( 'Sunny_Option_Box_Base', false ) ) {
 	require_once( 'class-sunny-option-box-base.php' );
 }
 
-class Sunny_Purger_Settings extends Sunny_Option_Box_Base {
+class Sunny_Purger_Settings_Option_Box extends Sunny_Option_Box_Base {
 
 	protected function set_class_properties() {
 

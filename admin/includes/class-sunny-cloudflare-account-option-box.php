@@ -19,7 +19,7 @@ if ( ! class_exists( 'Sunny_Option_Box_Base', false ) ) {
 	require_once( 'class-sunny-option-box-base.php' );
 }
 
-class Sunny_CloudFlare_Account extends Sunny_Option_Box_Base {
+class Sunny_CloudFlare_Account_Option_Box extends Sunny_Option_Box_Base {
 
 	protected function set_class_properties() {
 
