@@ -13,11 +13,6 @@
  * Plugin class. This class should ideally be used to work with the
  * administrative side of the WordPress site.
  *
- * If you're interested in introducing public-facing
- * functionality, then refer to `class-plugin-name.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
  * @package Sunny_Admin
  * @author  Tang Rufus <tangrufus@gmail.com>
  */
@@ -80,21 +75,18 @@ class Sunny_Admin {
 	private $option_boxes = array();
 
 	/**
+	 *
+	 * @since    1.2.0
+	 */
+	private $ajax_handler = array();
+
+	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
 	 * @since     1.0.0
 	 */
 	private function __construct() {
-
-		/*
-		 * @TODO :
-		 *
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-			return;
-		} */
 
 		/*
 		 * Call $plugin_slug from public plugin class.
@@ -110,6 +102,8 @@ class Sunny_Admin {
 
 		// Prepare the option boxes
 		$this->set_options_box();
+
+		$this->set_ajax_handler();
 
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
@@ -128,18 +122,8 @@ class Sunny_Admin {
 		 */
 		add_action( 'admin_init', array( $this, 'register_options_box_settings' ) );
 
-
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
-
-
-		// @TO-DO: Make Ajax Classes Abstract
-		// Add `Purge URL` handler
-		add_action( 'admin_init', array( 'Sunny_URL_Purger', 'get_instance' ) );
-		// Add `Purge All` button callback
-		add_action( 'admin_init', array( 'Sunny_Zone_Purger', 'get_instance' ) );
-		// Add `Connection Test` handler
-		add_action( 'admin_init', array( 'Sunny_Connection_Tester', 'get_instance' ) );
 
 	}
 
@@ -320,13 +304,32 @@ class Sunny_Admin {
 	public function set_options_box() {
 
 		// Make option page tabs
-		$this->plugin_settings_tabs['general_settings'] = 'Settings';
-		$this->plugin_settings_tabs['purger_settings'] = 'Purger';
+		$this->plugin_settings_tabs['sunny_general_settings'] = 'Settings';
+		$this->plugin_settings_tabs['sunny_purger_settings'] = 'Purger';
 
 		// Make Option Boxes
-		$this->option_boxes[] = new Sunny_CloudFlare_Account_Option_Box( $this, 'general_settings' );
-		$this->option_boxes[] = new Sunny_Purger_Settings_Option_Box( $this, 'general_settings' );
-		$this->option_boxes[] = new Sunny_Admin_Bar_Option_Box( $this, 'general_settings' );
+		// Settings Tab
+		$this->option_boxes[] = new Sunny_CloudFlare_Account_Option_Box( $this, 'sunny_general_settings' );
+		// $this->option_boxes[] = new Sunny_Connection_Tester_Ajax_Box( $this, 'sunny_purger_settings' );
+		$this->option_boxes[] = new Sunny_Purger_Settings_Option_Box( $this, 'sunny_general_settings' );
+		$this->option_boxes[] = new Sunny_Admin_Bar_Option_Box( $this, 'sunny_general_settings' );
+
+
+		// Purger Settings Tab
+		// $this->option_boxes[] = new Sunny_Zone_Purger_Ajax_Box( $this, 'sunny_purger_settings' );
+		$this->option_boxes[] = new Sunny_URL_Purger_Ajax_Box( $this, 'sunny_purger_settings' );
+
+	}
+
+	/**
+	 *
+	 * @since    1.2.0
+	 */
+	public function set_ajax_handler() {
+
+		// $ajax_handler[] = new Sunny_Connection_Tester_Ajax_Handler( 'sunny_purge_url' );
+		// $ajax_handler[] = new Sunny_Zone_Purger_Ajax_Handler( 'sunny_purge_url' );
+		$ajax_handler[] = new Sunny_URL_Purger_Ajax_Handler( 'sunny_purge_url' );
 
 	}
 
@@ -342,16 +345,24 @@ class Sunny_Admin {
 		// Helpers
 		require_once( 'includes/class-sunny-admin-helper.php' );
 
-		// Ajax
 		require_once( 'includes/class-sunny-post-purger.php' );
-		require_once( 'includes/class-sunny-connection-tester.php' );
-		require_once( 'includes/class-sunny-zone-purger.php' );
-		require_once( 'includes/class-sunny-url-purger.php' );
+
+		// Ajax
+		require_once( 'includes/class-sunny-url-purger-ajax-handler.php' );
+		// require_once( 'includes/class-sunny-connection-tester-ajax-handler.php' );
+		// require_once( 'includes/class-sunny-zone-purger-ajax-handler.php' );
 
 		// Option Boxes
+		// Settings Tab
 		require_once( 'includes/class-sunny-cloudflare-account-option-box.php' );
+		// require_once( 'includes/class-sunny-connection-tester-option-box.php' );
 		require_once( 'includes/class-sunny-purger-settings-option-box.php' );
 		require_once( 'includes/class-sunny-admin-bar-option-box.php' );
+
+		// Purger Settings Tab
+		// require_once( 'includes/class-sunny-zone-purger-ajax-box.php' );
+		require_once( 'includes/class-sunny-url-purger-ajax-box.php' );
+
 
 	}
 

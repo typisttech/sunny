@@ -15,6 +15,6 @@
 <form action="options.php" method="POST">
 	<?php settings_fields( $this->option_group ); ?>
 	<?php do_settings_sections( $this->option_group ); ?>
-	<?php submit_button( $this->button_text ); ?>
+	<?php submit_button( $this->button_text, $this->button_type ); ?>
 </form>
 <br class="clear" />
