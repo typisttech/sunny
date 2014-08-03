@@ -2,9 +2,9 @@
 Contributors: tangrufus
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%40gmail%2ecom&lc=HK&item_name=Sunny%20%28CloudFlare%20Management%29%20Plugin%20Donation&item_number=sunny%2edonation%2ewp%2eorg&amount=10%2e00&currency_code=USD&button_subtype=products&no_note=0&add=1&bn=PP%2dShopCartBF%3abtn_cart_LG%2egif%3aNonHostedGuest
 Tags: cloudflare, cache, CDN, performance
-Requires at least: 3.8.0
+Requires at least: 3.6.0
 Tested up to: 3.9.1
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,25 +12,25 @@ Automatically clear CloudFlare cache. And, manage your CloudFlare settings withi
 
 == Description ==
 
-Sunny automatically clears CloudFlare cache. And, manage your CloudFlare settings within WordPress (Comming Soon).
+Sunny automatically clears CloudFlare cache.
 
-= How does Sunny different from CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/)? =
+= How does Sunny different from CloudFlare's offical plugin? =
 
 At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) doesn't purge anything for WordPress. It provides the real IP of your visitors and notify CloudFlare when you marking an IP as SPAM. However, it does not include a way to clear the cache or make adjustments to how it works. Here comes Sunny! Sunny focus on cache purging.
 
 = Features =
 
-* Automatically clears corresponding CloudFlare caches whenever a post is updated.
+* Automatically clears corresponding CloudFlare caches whenever a post is updated or commented.
 * Purge your entire CloudFlare cache manually
+* Purge your a URL cache manually
 * Test your CloudFlare API key
 
 = Planned features =
 
-* Purge homepage cache during post update.
-* Purge images during post update.
 * Turn on develop mode when login
 * Purge CloudFlare when Super Cache purge
 * Blacklist an IP when WP Better Secuity lockdown it
+* Blacklist an IP when it tries to login with username `admin`
 
 = Things you need to know =
 
@@ -63,36 +63,45 @@ At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plu
 No.
 Sunny is written by [Tang Rufus](http://tangrufus.com)
 
-= Can I install Sunny and CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) at the same time? =
+= Can I install both Sunny and CloudFlare's offical plugin at the same time? =
 
 Yes.
 
-= When should I install Sunny and CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) at the same time? =
+= When should I install Sunny and CloudFlare's offical plugin at the same time? =
 
-Install Sunny if you want to purge CloudFlare cache automatically.
+Install Sunny if you want to purge CloudFlare's cache automatically.
 Install the offical plugin if you can't see the real IP from visitors.
 
 = When does Sunny purge my cache? =
 
-Every time a *published* post is updated.
+Every time a *published* post is updated or commented.
 
-= What page does it purge when a post is updated? =
+= What pages does it purge when a post is updated? =
 
-The post itself and its catories, tags and taxonomies archive.
-Use the URL purger in settings page to check what will be cleared for a particular URL.
+The post itself, homepage and its catories, tags and taxonomies archive.
+Use the URL purger in `Purger` tab to check what will be cleared for a particular URL.
+You can disable this behavior via the `Settings` tab.
 
 = Dose it support mulitsite? =
 
-Never tested. However, I am is planning to written one. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
+Never tested. However, I am planning to written one. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
 
 
 == Screenshots ==
 
-1. Sunny Settings Page
+1. CloudFlare Account Settings & Connection Tester
+1. More Settings
+1. Purgers
 
 
 == Changelog ==
 
+= 1.2.0 =
+* Admin Bar Hider
+* Code Rewrite
+* UI Improvement
+* Performance Improvement
+* Remove GitHub Updater
 
 = 1.1.1 =
 * Fix Wrong Version Number
@@ -127,4 +136,4 @@ Initial Release
 * Initial Alpha Test
 
 == Upgrade Notice ==
-Sunny now purges catories and tags archive pages during post updates.
+If you encounter errors during update, uninstall Sunny and then re-activate Sunny again.

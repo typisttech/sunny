@@ -29,7 +29,7 @@ class Sunny {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.1.1';
+	const VERSION = '1.2.0';
 
 	/**
 	 * @TODO - Rename "plugin-name" to the name of your plugin
@@ -314,7 +314,13 @@ class Sunny {
 			delete_option( 'sunny_cloudflare_account' );
 			add_option( 'sunny_cloudflare_account', $options );
 		}
-	}
+
+		if ( false == get_option( 'sunny_purger_settings' ) )
+			add_option( 'sunny_purger_settings', '' );
+
+		if ( false == get_option( 'sunny_admin_bar' ) )
+			add_option( 'sunny_admin_bar', '' );
+	} // end single_activate
 
 	/**
 	 * Fired for each blog when the plugin is deactivated.
