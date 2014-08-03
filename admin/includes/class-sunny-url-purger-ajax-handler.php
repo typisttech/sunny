@@ -29,7 +29,7 @@ class Sunny_URL_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 		header('Content-Type: application/json');
 
 		// Check that user has proper secuity level  && Check the nonce field
-		if ( ! current_user_can( 'manage_options') || ! wp_verify_nonce( $_POST['nonce'], 'sunny_url_purger' ) ) {
+		if ( ! current_user_can( 'manage_options') || ! check_ajax_referer( 'sunny_url_purger', 'nonce', false ) ) {
 
 			$return_args = array(
 								"result" => "Error",
