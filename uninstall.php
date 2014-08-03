@@ -73,13 +73,19 @@ if ( is_multisite() ) {
 	$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."TABLE_NAME`");
 	$GLOBALS['wpdb']->query("OPTIMIZE TABLE `" .$GLOBALS['wpdb']->prefix."options`");
 	*/
-	if ( get_option( 'sunny_cloudflare_email' ) != false )
+	if ( false != get_option( 'sunny_cloudflare_email' ) )
 		delete_option('sunny_cloudflare_email');
 
-	if ( get_option( 'sunny_cloudflare_api_key' ) != false )
+	if ( false != get_option( 'sunny_cloudflare_api_key' ) )
 		delete_option('sunny_cloudflare_api_key');
 
-	if ( get_option( 'sunny_cloudflare_account' ) != false )
+	if ( false != get_option( 'sunny_cloudflare_account' ) )
 		delete_option('sunny_cloudflare_account');
+
+	if ( false != get_option( 'sunny_purger_settings' ) )
+		delete_option('sunny_purger_settings');
+
+	if ( false != get_option( 'sunny_admin_bar' ) )
+		delete_option('sunny_admin_bar');
 
 }
