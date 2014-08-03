@@ -20,7 +20,7 @@
 
 	<?php settings_errors(); ?>
 
-	<?php $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings' ?>
+	<?php $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'sunny_general_settings' ?>
 
 	<h2 class="nav-tab-wrapper">
 		<?php foreach ( $this->plugin_settings_tabs as $tab_key => $tab_caption ) { ?>
