@@ -20,7 +20,7 @@
 	</form>
 	<br class="clear">
 	<div id="<?php echo $this->option_group; ?>_result" style="display: none">
-		<h3 id="<?php echo $this->option_group; ?>_result_heading">URL Purger Result</h3>
+		<h3 id="<?php echo $this->option_group; ?>_result_heading"><?php echo $this->meta_box['title']; ?> Result</h3>
 		<img id="<?php echo $this->option_group; ?>_form_spinner" style="display: none" src="<?php echo admin_url(); ?>images/spinner-2x.gif">
 	</div>
 </div>
