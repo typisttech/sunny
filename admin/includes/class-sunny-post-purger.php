@@ -14,42 +14,43 @@
  */
 class Sunny_Post_Purger {
 	/**
-     * Instance of this class.
-     *
-     * @since    1.0.4
-     *
-     * @var      object
-     */
-    protected static $instance = null;
+	 * Instance of this class.
+	 *
+	 * @since    1.0.4
+	 *
+	 * @var      object
+	 */
+	protected static $instance = null;
 
-    /**
-     * Initialize the class and purge after post saved
-     *
-     * @since     1.0.4
-     */
-    private function __construct() {
+	/**
+	 * Initialize the class and purge after post saved
+	 *
+	 * @since     1.0.4
+	 */
+	private function __construct() {
 
 		// Post ID is received
 		add_action( 'wp_trash_post', array( $this, 'purge_post' ) );
 		add_action( 'edit_post', array( $this, 'purge_post' ) ); // leaving a comment called edit_post
 		add_action( 'delete_post', array( $this, 'purge_post' ) );
 		add_action( 'publish_phone', array( $this, 'purge_post' ) );
+
 	}
 
-    /**
-     * Return an instance of this class.
-     *
-     * @since     1.0.4
-     *
-     * @return    object    A single instance of this class.
-     */
-    public static function get_instance() {
-        // If the single instance hasn't been set, set it now.
-        if ( null == self::$instance ) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since     1.0.4
+	 *
+	 * @return    object    A single instance of this class.
+	 */
+	public static function get_instance() {
+		// If the single instance hasn't been set, set it now.
+		if ( null == self::$instance ) {
+			self::$instance = new self;
+		}
+		return self::$instance;
+	}
 
 	/**
 	 * Purge the updated post only if it is published.
@@ -60,19 +61,20 @@ class Sunny_Post_Purger {
 	 * @since 	 1.0.0
 	 */
 	public function purge_post( $post_id ) {
+
 		if ( $this->should_purge( $post_id ) ) {
 
 			$post_url = get_permalink( $post_id );
 			$urls = Sunny_Admin_Helper::get_all_terms_links_by_url( $post_url );
 
-            // Add the input url at front
-            array_unshift( $urls, $post_url );
+			// Add the input url at front
+			array_unshift( $urls, $post_url );
 
-            foreach ( $urls as $url ) {
+			foreach ( $urls as $url ) {
 
-                Sunny_Purger::purge_cloudflare_cache_by_url( $url );
+				Sunny_Purger::purge_cloudflare_cache_by_url( $url );
 
-            }
+			}
 		}
 
 		return $post_id;
@@ -89,14 +91,21 @@ class Sunny_Post_Purger {
 	 * @return   boolean                True if the user can save the information
 	 */
 	private function should_purge( $post_id ) {
-		$post = get_post( $post_id );
-		if ( is_object( $post ) == false ) {
-			return false;
-		}
-	    $is_autosave = wp_is_post_autosave( $post_id );
-	    $is_revision = wp_is_post_revision( $post_id );
-	    $is_published = ( 'publish' == get_post_status( $post_id ) );
 
-	    return ! ( $is_autosave || $is_revision ) && $is_published;
-	}
+		$post = get_post( $post_id );
+
+		if ( is_object( $post ) == false ) {
+
+			return false;
+
+		} // end if
+
+		$is_autosave = wp_is_post_autosave( $post_id );
+		$is_revision = wp_is_post_revision( $post_id );
+		$is_published = ( 'publish' == get_post_status( $post_id ) );
+
+		return ! ( $is_autosave || $is_revision ) && $is_published;
+
+	} //end should_purge
+
 }

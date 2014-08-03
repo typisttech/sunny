@@ -14,24 +14,20 @@
  * @since 		1.0.0
  */
 ?>
-<?php $plugin = Sunny::get_instance(); ?>
-<?php $plugin_slug = $plugin->get_plugin_slug(); ?>
-<?php $admin = Sunny_Admin::get_instance(); ?>
-<?php $plugin_settings_tabs = $admin->get_plugin_settings_tabs(); ?>
 
 <div class="wrap" >
 	<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
-		<?php settings_errors(); ?>
+	<?php settings_errors(); ?>
 
-		<?php $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings' ?>
+	<?php $current_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings' ?>
 
-		<h2 class="nav-tab-wrapper">
-		<?php foreach ( $plugin_settings_tabs as $tab_key => $tab_caption ) { ?>
+	<h2 class="nav-tab-wrapper">
+		<?php foreach ( $this->plugin_settings_tabs as $tab_key => $tab_caption ) { ?>
 			<?php $active = $current_tab == $tab_key ? 'nav-tab-active' : ''; ?>
-			<?php echo '<a class="nav-tab ' . $active . '" href="admin.php?page=' . $plugin_slug . '&tab=' . $tab_key . '">' . $tab_caption . '</a>'; ?>
+			<?php echo "<a class='nav-tab $active' href='admin.php?page=$this->plugin_slug&tab=$tab_key'>$tab_caption</a>"; ?>
 		<?php } ?>
-		</h2>
+	</h2>
 
 	<div class="postbox-container" style="width: 60%;">
 
@@ -51,6 +47,3 @@
 	</div>
 
 </div>
-
-<script>jQuery(document).ready(function(){ postboxes.add_postbox_toggles(pagenow); });</script>
-

@@ -13,11 +13,6 @@
  * Plugin class. This class should ideally be used to work with the
  * administrative side of the WordPress site.
  *
- * If you're interested in introducing public-facing
- * functionality, then refer to `class-plugin-name.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
  * @package Sunny_Admin
  * @author  Tang Rufus <tangrufus@gmail.com>
  */
@@ -48,6 +43,15 @@ class Sunny_Admin {
 	protected $plugin_screen_hook_suffix = null;
 
 	/**
+	 * Slug of the plugin
+	 *
+	 * @since    1.2.0
+	 *
+	 * @var      string
+	 */
+	protected $plugin_slug = null;
+
+	/**
 	 * Path to admin/views directory
 	 *
 	 * @since    1.2.0
@@ -65,6 +69,18 @@ class Sunny_Admin {
 	private $plugin_settings_tabs = array();
 
 	/**
+	 *
+	 * @since    1.2.0
+	 */
+	private $option_boxes = array();
+
+	/**
+	 *
+	 * @since    1.2.0
+	 */
+	private $ajax_handler = array();
+
+	/**
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
@@ -73,22 +89,21 @@ class Sunny_Admin {
 	private function __construct() {
 
 		/*
-		 * @TODO :
-		 *
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-			return;
-		} */
-
-		/*
 		 * Call $plugin_slug from public plugin class.
 		 */
 		$plugin = Sunny::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
+		// Load dependencies for admin area
+		$this->load_admin_dependencies();
 
+		// For option boxes use
 		$this->view_dir_path = plugin_dir_path( __FILE__ ) . 'views';
+
+		// Prepare the option boxes
+		$this->set_options_box();
+
+		$this->set_ajax_handler();
 
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
@@ -101,24 +116,15 @@ class Sunny_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-		// Load dependencies for admin area
-		add_action( 'admin_init', array( $this, 'load_admin_dependencies' ), 5 );
+		/*
+		 *	Register settings for options box
+		 *	Hook in admin_init to prevent Options page not found error
+		 */
+		add_action( 'admin_init', array( $this, 'register_options_box_settings' ) );
 
 		// Hook Post Purger into Save Post
 		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
 
-		// Make option page tabs
-		add_action( 'admin_init', array( $this, 'make_tabs' ), 5 );
-		// Add the option settings
-		add_action( 'admin_init', array( 'Sunny_CloudFlare_Account', 'get_instance' ) );
-		// Add `Purge URL` handler
-		add_action( 'admin_init', array( 'Sunny_URL_Purger', 'get_instance' ) );
-		// Add `Purge All` button callback
-		add_action( 'admin_init', array( 'Sunny_Zone_Purger', 'get_instance' ) );
-		// Add `Connection Test` handler
-		add_action( 'admin_init', array( 'Sunny_Connection_Tester', 'get_instance' ) );
-		// Add Purger Settings
-		add_action( 'admin_init', array( 'Sunny_Purger_Settings', 'get_instance' ) );
 	}
 
 	/**
@@ -130,21 +136,23 @@ class Sunny_Admin {
 	 */
 	public static function get_instance() {
 
-		/*
-		 * @TODO :
-		 *
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-			return;
-		} */
-
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Return slug of the plugin
+	 *
+	 * @since    1.2.0
+	 *
+	 * @return   plugin_slug variable.
+	 */
+	public function get_plugin_slug() {
+		return $this->plugin_slug;
 	}
 
 	/**
@@ -199,14 +207,17 @@ class Sunny_Admin {
 	public function enqueue_admin_scripts() {
 
 		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+
 			return;
+
 		}
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+
 			wp_enqueue_script( 'postbox' );
-			// wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
-			wp_enqueue_script( $this->plugin_slug . '-admin-ajax-script', plugins_url( 'assets/js/admin-ajax.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
+			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Sunny::VERSION );
+
 		}
 	}
 
@@ -237,6 +248,13 @@ class Sunny_Admin {
 	 * @since    1.0.0
 	 */
 	public function display_plugin_admin_page() {
+
+		foreach ( $this->option_boxes as $option_box ) {
+
+			$option_box->generate_meta_box();
+
+		} // end foreach
+
 		include_once( 'views/admin.php' );
 	}
 
@@ -257,14 +275,56 @@ class Sunny_Admin {
 	}
 
 	/**
-	 * Make tabs in options page.
 	 *
 	 * @since    1.2.0
 	 */
-	public function make_tabs() {
-		$this->plugin_settings_tabs['general_settings'] = 'Settings';
-		$this->plugin_settings_tabs['purger_settings'] = 'Purger';
+	public function register_options_box_settings() {
+
+		foreach ( $this->option_boxes as $option_box ) {
+
+			$option_box->register_settings();
+
+		}
+
 	}
+
+	/**
+	 *
+	 * @since    1.2.0
+	 */
+	public function set_options_box() {
+
+		// Make option page tabs
+		$this->plugin_settings_tabs['sunny_general_settings'] = 'Settings';
+		$this->plugin_settings_tabs['sunny_purger_settings'] = 'Purger';
+
+		// Make Option Boxes
+		// Settings Tab
+		$this->option_boxes[] = new Sunny_CloudFlare_Account_Option_Box( $this, 'sunny_general_settings' );
+		$this->option_boxes[] = new Sunny_Connection_Tester_Ajax_Box( $this, 'sunny_general_settings' );
+		$this->option_boxes[] = new Sunny_Purger_Settings_Option_Box( $this, 'sunny_general_settings' );
+		$this->option_boxes[] = new Sunny_Admin_Bar_Option_Box( $this, 'sunny_general_settings' );
+
+
+		// Purger Settings Tab
+		$this->option_boxes[] = new Sunny_Zone_Purger_Ajax_Box( $this, 'sunny_purger_settings' );
+		$this->option_boxes[] = new Sunny_URL_Purger_Ajax_Box( $this, 'sunny_purger_settings' );
+
+	}
+
+	/**
+	 *
+	 * @since    1.2.0
+	 */
+	public function set_ajax_handler() {
+
+		$ajax_handler[] = new Sunny_Connection_Tester_Ajax_Handler( 'sunny_test_connection' );
+		$ajax_handler[] = new Sunny_Zone_Purger_Ajax_Handler( 'sunny_purge_zone' );
+		$ajax_handler[] = new Sunny_URL_Purger_Ajax_Handler( 'sunny_purge_url' );
+
+	}
+
+
 
 	/**
 	 * Load dependencies for admin area
@@ -272,13 +332,30 @@ class Sunny_Admin {
 	 * @since    1.2.0
 	 */
 	public function load_admin_dependencies() {
+
+		// Helpers
 		require_once( 'includes/class-sunny-admin-helper.php' );
+
+		//
 		require_once( 'includes/class-sunny-post-purger.php' );
-		require_once( 'includes/class-sunny-cloudflare-account.php' );
-		require_once( 'includes/class-sunny-connection-tester.php' );
-		require_once( 'includes/class-sunny-zone-purger.php' );
-		require_once( 'includes/class-sunny-url-purger.php' );
-		require_once( 'includes/class-sunny-purger-settings.php' );
+
+		// Ajax
+		require_once( 'includes/class-sunny-url-purger-ajax-handler.php' );
+		require_once( 'includes/class-sunny-connection-tester-ajax-handler.php' );
+		require_once( 'includes/class-sunny-zone-purger-ajax-handler.php' );
+
+		// Option Boxes
+		// Settings Tab
+		require_once( 'includes/class-sunny-cloudflare-account-option-box.php' );
+		require_once( 'includes/class-sunny-connection-tester-ajax-box.php' );
+		require_once( 'includes/class-sunny-purger-settings-option-box.php' );
+		require_once( 'includes/class-sunny-admin-bar-option-box.php' );
+
+		// Purger Settings Tab
+		require_once( 'includes/class-sunny-zone-purger-ajax-box.php' );
+		require_once( 'includes/class-sunny-url-purger-ajax-box.php' );
+
+
 	}
 
 } // end sunny_admin class
