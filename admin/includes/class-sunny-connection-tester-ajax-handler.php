@@ -19,94 +19,110 @@ if ( ! class_exists( 'Sunny_Ajax_Handler_Base', false ) ) {
 	require_once( 'class-sunny-ajax-handler-base.php' );
 }
 
+/**
+ * This class handles the connection tester ajax requests.
+ */
 class Sunny_Connection_Tester_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 	/**
 	 * @since     1.2.0
 	 */
-	    public function process_ajax() {
+	public function process_ajax() {
 
-        header('Content-Type: application/json');
+		header('Content-Type: application/json');
 
-        // Check that user has proper secuity level  && Check the nonce field
-       if ( ! current_user_can( 'manage_options') || ! check_ajax_referer( 'sunny_connection_tester', 'nonce', false ) ) {
+		// Check that user has proper secuity level  && Check the nonce field
+		if ( ! current_user_can( 'manage_options') || ! check_ajax_referer( 'sunny_connection_tester', 'nonce', false ) ) {
 
-            $return_args = array(
-                "result" => "Error",
-                "message" => "403 Forbidden",
-                );
-            $response = json_encode( $return_args );
-            echo $response;
+			$return_args = array(
+				"result" => "Error",
+				"message" => "403 Forbidden",
+				);
+			$response = json_encode( $return_args );
+			echo $response;
 
-            die;
+			die;
 
-        }
+		}
 
-        $domain = Sunny::get_instance()->get_domain();
+		$domain = Sunny::get_instance()->get_domain();
 
 
-        $cf_response = CloudFlare_API_Helper::get_instance()->rec_load_all( $domain );
-        Sunny_API_Logger::write_report( $cf_response, 'Test_Connection' );
+		$cf_response = CloudFlare_API_Helper::get_instance()->rec_load_all( $domain );
+		Sunny_API_Logger::write_report( $cf_response, 'Test_Connection' );
 
-        $return_args = $this->check_response( $cf_response );
-        $response = json_encode( $return_args  );
+		$return_args = $this->check_response( $cf_response );
+		$response = json_encode( $return_args  );
 
-        // return json response
-        echo $response;
+		// return json response
+		echo $response;
 
-        die;
-    } // process_ajax
+		die;
 
-     /**
-     * @since     1.2.0
-     *
-     * @param     $_response        The response after api call, could be WP Error object or HTTP return object.
-     *
-     * @return    $_return_arg      array of arguments for making json response
-     */
-    private function check_response( $_response ) {
+	} // process_ajax
 
-        $return_arg['connection_test_result'] = '1';
+	 /**
+	 * @since     1.2.0
+	 *
+	 * @param     $_response        The response after api call, could be WP Error object or HTTP return object.
+	 *
+	 * @return    $_return_arg      array of arguments for making json response
+	 */
+	 private function check_response( $_response ) {
 
-        if ( is_wp_error( $_response ) ) {
-            $return_arg['result'] = 'WP Error';
-            $return_arg['message'] = $_response->get_error_messages();
-        }// end WP Error
-        else {
-            // API call made
-            $_response_array = json_decode( $_response['body'], true );
+		$return_arg['connection_test_result'] = '1';
 
-            if ( 'error' == $_response_array['result'] ) {
-                $return_arg['result'] = 'Error';
-                $return_arg['message'] = $_response_array['msg'];
-            } else {
-                $return_arg['result'] = 'Success';
+		if ( is_wp_error( $_response ) ) {
 
-                $domain = parse_url( site_url(), PHP_URL_HOST );
+			$return_arg['result'] = 'WP Error';
+			$return_arg['message'] = $_response->get_error_messages();
 
-                $dns_record_found = 'No';
-                $service_mode_on = 'No';
+		}// end if //WP Error
 
-                foreach( $_response_array['response']['recs']['objs'] as $obj ){
-                    if ( $obj['name'] == $domain ) {
-                        $dns_match = true;
-                        $dns_record_found = ( 'A' == $obj['type'] || 'AAAA' == $obj['type'] || 'CNAME' == $obj['type'] ) ? 'Yes' : 'No';
-                        $service_mode_on = ( '1' == $obj['service_mode'] ) ? 'Yes' : 'No';
-                        break;
-                    }
-                }
+		else {
+			// API call made
+			$_response_array = json_decode( $_response['body'], true );
 
-                $dns_match = ( true === $dns_match ) ? 'Yes' : 'No';
+			if ( 'error' == $_response_array['result'] ) {
 
-                $str_message = '<br />';
-                $str_message .= 'DNS record for ' . $domain . ' found: ' . $dns_record_found . '<br />';
-                $str_message .= 'Service mode turned on: ' . $service_mode_on . '<br />';
-                $return_arg['message'] = $str_message;
-        } // end connection success
-        }// end api else
+				$return_arg['result'] = 'Error';
+				$return_arg['message'] = $_response_array['msg'];
 
-        return $return_arg;
+			} else {
 
-    } // end check_response
+				$return_arg['result'] = 'Success';
+
+				$domain = parse_url( site_url(), PHP_URL_HOST );
+
+				$dns_record_found = 'No';
+				$service_mode_on = 'No';
+
+				foreach( $_response_array['response']['recs']['objs'] as $obj ){
+
+					if ( $obj['name'] == $domain ) {
+
+						$dns_match = true;
+						$dns_record_found = ( 'A' == $obj['type'] || 'AAAA' == $obj['type'] || 'CNAME' == $obj['type'] ) ? 'Yes' : 'No';
+						$service_mode_on = ( '1' == $obj['service_mode'] ) ? 'Yes' : 'No';
+						break;
+
+					} // end if
+
+				} // end foreach
+
+				$dns_match = ( true === $dns_match ) ? 'Yes' : 'No';
+
+				$str_message = '<br />';
+				$str_message .= 'DNS record for ' . $domain . ' found: ' . $dns_record_found . '<br />';
+				$str_message .= 'Service mode turned on: ' . $service_mode_on . '<br />';
+				$return_arg['message'] = $str_message;
+
+			} // end else // apiconnection success
+
+		}// end else // api connection
+
+		return $return_arg;
+
+	} // end check_response
 
 } // end Sunny_Connection_Tester_Ajax_Handler

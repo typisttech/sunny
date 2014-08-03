@@ -11,7 +11,7 @@
  */
 
 /**
- * This class handles the purger settings.
+ * This class handles the url purger ajax requests.
  */
 
 // If this file is called directly, abort.
@@ -23,6 +23,9 @@ if ( ! class_exists( 'Sunny_Ajax_Box_Base', false ) ) {
 	require_once( 'class-sunny-ajax-box-base.php' );
 }
 
+/**
+ * This class handles the url purger ajax requests.
+ */
 class Sunny_URL_Purger_Ajax_Box extends Sunny_Ajax_Box_Base {
 
 	protected function set_class_properties() {
@@ -49,7 +52,7 @@ class Sunny_URL_Purger_Ajax_Box extends Sunny_Ajax_Box_Base {
 																),
 											);
 
-	}
+	} // end set_class_properties
 
 	/**
 	 * This function provides a simple description for the url purger section.
@@ -62,6 +65,6 @@ class Sunny_URL_Purger_Ajax_Box extends Sunny_Ajax_Box_Base {
 			_e( 'Purge a post by URL and (if enabled) its associated pages(e.g: categories, tags and archives).', $this->plugin_slug );
 		echo '</p>';
 
-	}
+	} // end render_section
 
 }

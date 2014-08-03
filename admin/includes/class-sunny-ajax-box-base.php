@@ -30,6 +30,6 @@ abstract class Sunny_Ajax_Box_Base extends Sunny_Box_Base {
 
 		require( $this->view_dir_path . '/partials/ajax-box.php' );
 
-	}
+	} // end render_meta_box
 
 } //end Sunny_Ajax_Box_Base

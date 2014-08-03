@@ -33,27 +33,27 @@ class Sunny_CloudFlare_Account_Option_Box extends Sunny_Option_Box_Base {
 											);
 
 		$this->settings_fields[]    = array(
-											'id'        => 'cloudflare_email',
+											'id' 		=> 'cloudflare_email',
 											'title'     => __( 'Email', $this->plugin_slug ),
-											'callback'  => array( $this, 'text' ),
+											'callback' 	=> array( $this, 'text' ),
 											'args'      => array (
-												'id'        => 'email',
-												'type'      => 'email',
-												'value'     => Sunny::get_instance()->get_cloudflare_email(),
-												'desc'      => __( 'The email address associated with the CloudFlare account.', $this->plugin_slug ),
-												),
-											);
+																'id'        => 'email',
+																'type'      => 'email',
+																'value' 	=> Sunny::get_instance()->get_cloudflare_email(),
+																'desc'      => __( 'The email address associated with the CloudFlare account.', $this->plugin_slug ),
+																),
+															);
 
 		$this->settings_fields[]    = array(
 											'id'        => 'cloudflare_api_key',
 											'title'     => __( 'API Key', $this->plugin_slug ),
 											'callback'  => array( $this, 'text' ),
 											'args'      => array (
-												'id'        => 'api_key',
-												'type'      => 'text',
-												'value'     => Sunny::get_instance()->get_cloudflare_api_key(),
-												'desc'      => __( 'This is the API key made available on your <a href="https://www.cloudflare.com/my-account.html">CloudFlare Account</a> page.', $this->plugin_slug )
-												),
+																'id'        => 'api_key',
+																'type'      => 'text',
+																'value'     => Sunny::get_instance()->get_cloudflare_api_key(),
+																'desc'      => __( 'This is the API key made available on your <a href="https://www.cloudflare.com/my-account.html">CloudFlare Account</a> page.', $this->plugin_slug )
+																),
 											);
 
 	}

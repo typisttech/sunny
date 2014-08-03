@@ -23,14 +23,16 @@ abstract class Sunny_Ajax_Handler_Base {
 	public function __construct( $action ) {
 
 		if ( !empty($action) ) {
-			add_action( "wp_ajax_$action", array( $this, 'process_ajax' ) );
-		}
 
-	}
+			add_action( "wp_ajax_$action", array( $this, 'process_ajax' ) );
+
+		} // end if
+
+	} // end __construc
 
 	/**
-	 * @since     1.1.0
+	 * @since     1.2.0
 	 */
 	abstract public function process_ajax();
 
-}
+} // end Sunny_Ajax_Handler_Base

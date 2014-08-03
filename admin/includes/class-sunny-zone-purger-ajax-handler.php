@@ -19,6 +19,9 @@ if ( ! class_exists( 'Sunny_Ajax_Handler_Base', false ) ) {
 	require_once( 'class-sunny-ajax-handler-base.php' );
 }
 
+/**
+ * This class handles the zone purger ajax requests.
+ */
 class Sunny_Zone_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 	/**
@@ -34,9 +37,10 @@ class Sunny_Zone_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 			$return_args = array(
 								"result" => "Error",
 								"message" => "403 Forbidden",
-							);
+								);
 			$response = json_encode( $return_args );
 			echo $response;
+
 			die;
 
 		}

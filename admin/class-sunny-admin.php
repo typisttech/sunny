@@ -336,6 +336,7 @@ class Sunny_Admin {
 		// Helpers
 		require_once( 'includes/class-sunny-admin-helper.php' );
 
+		//
 		require_once( 'includes/class-sunny-post-purger.php' );
 
 		// Ajax

@@ -19,6 +19,9 @@ if ( ! class_exists( 'Sunny_Ajax_Handler_Base', false ) ) {
 	require_once( 'class-sunny-ajax-handler-base.php' );
 }
 
+/**
+ * This class handles the url purger ajax requests.
+ */
 class Sunny_URL_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 	/**
@@ -110,4 +113,4 @@ class Sunny_URL_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 	} // end process_ajax
 
-}
+} //end Sunny_URL_Purger_Ajax_Handler

@@ -59,7 +59,7 @@ abstract class Sunny_Box_Base {
 		$this->set_admin_properties( $admin, $tab_slug );
 		$this->set_class_properties();
 
-	}
+	} // end __construct
 
 	/**
 	 * @since     1.2.0
@@ -70,9 +70,7 @@ abstract class Sunny_Box_Base {
 		$this->view_dir_path = $admin->get_view_dir_path();
 		$this->tab_slug = $tab_slug;
 
-	}
-
-
+	} // end set_admin_properties
 
 	/**
 	 * @since     1.2.0
@@ -102,9 +100,9 @@ abstract class Sunny_Box_Base {
 					$settings_field['args']			// The array of arguments to pass to the callback.
 					);
 
-		}
+		} // end foreach
 
-	}
+	} // end register_settings
 
 	/**
 	 * This function provides a simple description for the section.
@@ -114,9 +112,10 @@ abstract class Sunny_Box_Base {
 	 */
 	public function render_section() {
 
+		// Do nothing
 		return;
 
-	}
+	} // end render_section
 
 	/* ------------------------------------------------------------------------ *
 	 * Setting Callbacks
@@ -137,16 +136,17 @@ abstract class Sunny_Box_Base {
 
 				${$key} = $val;
 
-			}
+			} // end foreach
 
-		}
+		} // end if
 
 		$_size = ( ! empty( $size ) ) ? "size='$size'" : null;
 
 		// Render the output
 		echo "<input type='$type' id='$id' name='$this->option_group[$id]' value='$value' $_size ><br/>";
 		echo "<span class='description'>$desc</span>";
-	}
+
+	} //end text
 
 	/**
 	 *
@@ -162,9 +162,9 @@ abstract class Sunny_Box_Base {
 
 				${$key} = $value;
 
-			}
+			} // end foreach
 
-		}
+		} // end if
 
 		$options = get_option( $this->option_group );
 
@@ -173,7 +173,7 @@ abstract class Sunny_Box_Base {
 		echo "<input type='checkbox' id='$id' name='$this->option_group[$id]' value='1' " . checked( $checked, true, false ) . " ><br />";
 		echo "<span class='description'>$desc</span>";
 
-	}
+	} // end checkbox
 
 	/**
 	 * Generate the meta box on options page.
@@ -183,13 +183,13 @@ abstract class Sunny_Box_Base {
 	public function generate_meta_box() {
 
 		add_meta_box(
-			$this->option_group,              	// Meta box ID
-			$this->meta_box['title'],           // Meta box Title
-			array( $this, 'render_meta_box' ),  // Callback defining the plugin's innards
-			$this->tab_slug,                    // Screen to which to add the meta box
-			$this->meta_box['context']         	// Context
-			);
+				$this->option_group,              	// Meta box ID
+				$this->meta_box['title'],           // Meta box Title
+				array( $this, 'render_meta_box' ),  // Callback defining the plugin's innards
+				$this->tab_slug,                    // Screen to which to add the meta box
+				$this->meta_box['context']         	// Context
+				);
 
-	}
+	} // end generate_meta_box
 
-} //end Abstract_Option_Box
+} //end Sunny_Box_Base

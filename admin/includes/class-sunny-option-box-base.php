@@ -7,6 +7,7 @@
  * @link        http://tangrufus.com
  * @copyright   2014 Tang Rufus
  * @author      Tang Rufus <tangrufus@gmail.com>
+ * @since  		1.2.0
  */
 
 // If this file is called directly, abort.
@@ -34,7 +35,7 @@ abstract class Sunny_Option_Box_Base extends Sunny_Box_Base {
 				array( $this, 'validate_section' )	// A callback function that sanitizes the option's value.
 				);
 
-	}
+	} // end register_settings
 
 	/**
 	 * @since 		1.2.0
@@ -43,7 +44,7 @@ abstract class Sunny_Option_Box_Base extends Sunny_Box_Base {
 
 		return $input;
 
-	}
+	} // end validate_section
 
 	/**
 	 * Print the meta box on options page.
@@ -54,6 +55,6 @@ abstract class Sunny_Option_Box_Base extends Sunny_Box_Base {
 
 		require( $this->view_dir_path . '/partials/option-box.php' );
 
-	}
+	} // end render_meta_box
 
 } //end Sunny_Option_Box_Base

@@ -24,6 +24,10 @@ if ( ! class_exists( 'Sunny_Option_Box_Base', false ) ) {
 
 class Sunny_Purger_Settings_Option_Box extends Sunny_Option_Box_Base {
 
+	/**
+	 *
+	 * @since 1.2.0
+	 */
 	protected function set_class_properties() {
 
 		$this->option_group         = 'sunny_purger_settings';
@@ -55,7 +59,7 @@ class Sunny_Purger_Settings_Option_Box extends Sunny_Option_Box_Base {
 															),
 										);
 
-	}
+	} // end set_class_properties
 
 	/**
 	 *
@@ -67,6 +71,6 @@ class Sunny_Purger_Settings_Option_Box extends Sunny_Option_Box_Base {
 			_e( 'The CloudFlare account associated to this site.', $this->plugin_slug );
 		echo '</p>';
 
-	}
+	} // end render_section
 
 } //end Sunny_Option Class

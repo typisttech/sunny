@@ -11,7 +11,7 @@
  */
 
 /**
- * This class handles the purger settings.
+ * This class displays the purger settings.
  */
 
 // If this file is called directly, abort.
@@ -27,16 +27,16 @@ class Sunny_Connection_Tester_Ajax_Box extends Sunny_Ajax_Box_Base {
 
 	protected function set_class_properties() {
 
-		$this->option_group 		= 'sunny_connection_tester';
+		$this->option_group = 'sunny_connection_tester';
 
-		$this->button_text          = __('Test Connection', $this->plugin_slug );
+		$this->button_text 	= __('Test Connection', $this->plugin_slug );
 
-		$this->meta_box 			= array(
-											'title'		=> __( 'Test Connection', $this->plugin_slug ),
-											'context'	=> 'normal',
-											);
+		$this->meta_box 	= array(
+									'title'		=> __( 'Test Connection', $this->plugin_slug ),
+									'context'	=> 'normal',
+									);
 
-	}
+	} // end set_class_properties
 
 	/**
 	 * This function provides a simple description for the url purger section.
@@ -49,6 +49,6 @@ class Sunny_Connection_Tester_Ajax_Box extends Sunny_Ajax_Box_Base {
 			_e( "To check if Sunny can connect to CloudFlare's server", $this->plugin_slug );
 		echo '</p>';
 
-	}
+	} // end render_section
 
 }
