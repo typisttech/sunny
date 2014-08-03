@@ -7,71 +7,57 @@
  * @link        http://tangrufus.com
  * @copyright   2014 Tang Rufus
  * @author      Tang Rufus <tangrufus@gmail.com>
+ * @since 		1.2.0
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-    die;
+	die;
 }
 
-/**
- * This class handles the connection tester callback from settings page
- */
-class Sunny_Connection_Tester {
-    /**
-     * Instance of this class.
-     *
-     * @since    1.0.4
-     *
-     * @var      object
-     */
-    protected static $instance = null;
+if ( ! class_exists( 'Sunny_Ajax_Handler_Base', false ) ) {
+	require_once( 'class-sunny-ajax-handler-base.php' );
+}
 
-    /**
-     * Initialize the class and hook `Purge All` button callback
-     *
-     * @since     1.0.4
-     */
-    private function __construct() {
-        /*
-         * Call $plugin_slug from public plugin class.
-         */
-        $plugin = Sunny::get_instance();
-        $this->plugin_slug = $plugin->get_plugin_slug();
+class Sunny_Connection_Tester_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
-        /*
-         * Call $view_dir_path from admin plugin class.
-         */
-        $admin = Sunny_Admin::get_instance();
-        $this->view_dir_path = $admin->get_view_dir_path();
-        $this->tab_slug = 'general_settings';
+	/**
+	 * @since     1.2.0
+	 */
+	    public function process_ajax() {
 
-        $this->generate_meta_box();
+        header('Content-Type: application/json');
 
-        add_action( 'wp_ajax_sunny-test-connection', array( $this, 'process_ajax' ) );
-    }
+        // Check that user has proper secuity level  && Check the nonce field
+       if ( ! current_user_can( 'manage_options') || ! check_ajax_referer( 'sunny_connection_tester', 'nonce', false ) ) {
 
-    /**
-     * Return an instance of this class.
-     *
-     * @since     1.0.4
-     *
-     * @return    object    A single instance of this class.
-     */
-    public static function get_instance() {
-        // If the single instance hasn't been set, set it now.
-        if ( null == self::$instance ) {
-            self::$instance = new self;
+            $return_args = array(
+                "result" => "Error",
+                "message" => "403 Forbidden",
+                );
+            $response = json_encode( $return_args );
+            echo $response;
+
+            die;
+
         }
-        return self::$instance;
-    }
 
-    /**
-     * @since     1.2.0
-     */
+        $domain = Sunny::get_instance()->get_domain();
 
 
-    /**
+        $cf_response = CloudFlare_API_Helper::get_instance()->rec_load_all( $domain );
+        Sunny_API_Logger::write_report( $cf_response, 'Test_Connection' );
+
+        $return_args = $this->check_response( $cf_response );
+        $response = json_encode( $return_args  );
+
+        // return json response
+        echo $response;
+
+        die;
+    } // process_ajax
+
+     /**
      * @since     1.2.0
      *
      * @param     $_response        The response after api call, could be WP Error object or HTTP return object.
@@ -121,33 +107,6 @@ class Sunny_Connection_Tester {
 
         return $return_arg;
 
-    }
+    } // end check_response
 
-    /**
-     * Generate the meta box on options page.
-     *
-     * @since     1.2.0
-     */
-    private function generate_meta_box() {
-
-        add_meta_box(
-        'sunny_connection_tester', //Meta box ID
-        __( 'Connection Tester', $this->plugin_slug ), //Meta box Title
-        array( $this, 'render_meta_box' ), //Callback defining the plugin's innards
-        $this->tab_slug, // Screen to which to add the meta box
-        'normal' // Context
-        );
-
-    }
-
-    /**
-     * Print the meta box on options page.
-     *
-     * @since     1.2.0
-     */
-    public function render_meta_box() {
-        require( $this->view_dir_path . '/partials/connection-tester.php' );
-
-    }
-
-} //end Sunny_Test Class
+} // end Sunny_Connection_Tester_Ajax_Handler

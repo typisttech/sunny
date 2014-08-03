@@ -136,15 +136,6 @@ class Sunny_Admin {
 	 */
 	public static function get_instance() {
 
-		/*
-		 * @TODO :
-		 *
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-			return;
-		} */
-
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
 			self::$instance = new self;
@@ -262,7 +253,7 @@ class Sunny_Admin {
 
 			$option_box->generate_meta_box();
 
-		}
+		} // end foreach
 
 		include_once( 'views/admin.php' );
 	}
@@ -310,7 +301,7 @@ class Sunny_Admin {
 		// Make Option Boxes
 		// Settings Tab
 		$this->option_boxes[] = new Sunny_CloudFlare_Account_Option_Box( $this, 'sunny_general_settings' );
-		// $this->option_boxes[] = new Sunny_Connection_Tester_Ajax_Box( $this, 'sunny_purger_settings' );
+		$this->option_boxes[] = new Sunny_Connection_Tester_Ajax_Box( $this, 'sunny_general_settings' );
 		$this->option_boxes[] = new Sunny_Purger_Settings_Option_Box( $this, 'sunny_general_settings' );
 		$this->option_boxes[] = new Sunny_Admin_Bar_Option_Box( $this, 'sunny_general_settings' );
 
@@ -327,7 +318,7 @@ class Sunny_Admin {
 	 */
 	public function set_ajax_handler() {
 
-		// $ajax_handler[] = new Sunny_Connection_Tester_Ajax_Handler( 'sunny_purge_url' );
+		$ajax_handler[] = new Sunny_Connection_Tester_Ajax_Handler( 'sunny_test_connection' );
 		$ajax_handler[] = new Sunny_Zone_Purger_Ajax_Handler( 'sunny_purge_zone' );
 		$ajax_handler[] = new Sunny_URL_Purger_Ajax_Handler( 'sunny_purge_url' );
 
@@ -349,13 +340,13 @@ class Sunny_Admin {
 
 		// Ajax
 		require_once( 'includes/class-sunny-url-purger-ajax-handler.php' );
-		// require_once( 'includes/class-sunny-connection-tester-ajax-handler.php' );
+		require_once( 'includes/class-sunny-connection-tester-ajax-handler.php' );
 		require_once( 'includes/class-sunny-zone-purger-ajax-handler.php' );
 
 		// Option Boxes
 		// Settings Tab
 		require_once( 'includes/class-sunny-cloudflare-account-option-box.php' );
-		// require_once( 'includes/class-sunny-connection-tester-option-box.php' );
+		require_once( 'includes/class-sunny-connection-tester-ajax-box.php' );
 		require_once( 'includes/class-sunny-purger-settings-option-box.php' );
 		require_once( 'includes/class-sunny-admin-bar-option-box.php' );
 
