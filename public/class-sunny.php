@@ -67,12 +67,12 @@ class Sunny {
 	protected $domain = '';
 
 	/**
-     * Return CloudFlare Account Email from Database
-     *
-     * @since     1.0.0
-     *
-     * @return    string    CloudFlare Account Email
-     */
+	 * Return CloudFlare Account Email from Database
+	 *
+	 * @since     1.0.0
+	 *
+	 * @return    string    CloudFlare Account Email
+	 */
 	public function get_domain() {
 		$host_names = explode( '.', parse_url( site_url(), PHP_URL_HOST ) );
 		return $host_names[count( $host_names )-2] . '.' . $host_names[count( $host_names )-1];
@@ -88,15 +88,15 @@ class Sunny {
 	protected $cloudflare_email = '';
 
 	 /**
-     * Return CloudFlare Account Email from Database
-     *
-     * @since     1.0.0
-     *
-     * @return    string    CloudFlare Account Email
-     */
+	 * Return CloudFlare Account Email from Database
+	 *
+	 * @since     1.0.0
+	 *
+	 * @return    string    CloudFlare Account Email
+	 */
 	 public function get_cloudflare_email() {
-	 	$cloudflare_account = get_option( 'sunny_cloudflare_account' );
-	 	return sanitize_email( $cloudflare_account['email'] );
+		$cloudflare_account = get_option( 'sunny_cloudflare_account' );
+		return sanitize_email( $cloudflare_account['email'] );
 	 }
 
 	/**
@@ -109,15 +109,15 @@ class Sunny {
 	protected $cloudflare_api_key = '';
 
 	 /**
-     * Return CloudFlare Account API Key from Database
-     *
-     * @since     1.0.0
-     *
-     * @return    string    CloudFlare Account API Key
-     */
+	 * Return CloudFlare Account API Key from Database
+	 *
+	 * @since     1.0.0
+	 *
+	 * @return    string    CloudFlare Account API Key
+	 */
 	 public function get_cloudflare_api_key() {
-	 	$cloudflare_account = get_option( 'sunny_cloudflare_account' );
-	 	return Sunny_Helper::sanitize_alphanumeric( $cloudflare_account['api_key'] );
+		$cloudflare_account = get_option( 'sunny_cloudflare_account' );
+		return Sunny_Helper::sanitize_alphanumeric( $cloudflare_account['api_key'] );
 	 }
 
 	/**
@@ -131,6 +131,9 @@ class Sunny {
 		$cloudflare_email = $this->get_cloudflare_email();
 		$cloudflare_api_key = $this->get_cloudflare_api_key();
 
+		// Load dependencies for admin area
+		$this->load_public_dependencies();
+
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
@@ -140,6 +143,10 @@ class Sunny {
 		// Load public-facing style sheet and JavaScript.
 		// add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		// add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
+		// Hide admin bar
+		add_action( 'wp_loaded', array( 'Sunny_Admin_Bar_Hider', 'get_instance' ) );
+
 	}
 
 	/**
@@ -350,4 +357,16 @@ class Sunny {
 	// public function enqueue_scripts() {
 	// 	wp_enqueue_script( $this->plugin_slug . '-plugin-script', plugins_url( 'assets/js/public.js', __FILE__ ), array( 'jquery' ), self::VERSION );
 	// }
+
+	/**
+	 * Load dependencies for admin area
+	 *
+	 * @since    1.2.0
+	 */
+	private function load_public_dependencies() {
+
+		// Helpers
+		require_once( 'includes/class-sunny-admin-bar-hider.php' );
+
+	} // end load_public_dependencies
 }// end of class

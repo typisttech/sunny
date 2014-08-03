@@ -331,7 +331,7 @@ class Sunny_Admin {
 	 *
 	 * @since    1.2.0
 	 */
-	public function load_admin_dependencies() {
+	private function load_admin_dependencies() {
 
 		// Helpers
 		require_once( 'includes/class-sunny-admin-helper.php' );
