@@ -79,13 +79,13 @@ if ( is_multisite() ) {
 	if ( false != get_option( 'sunny_cloudflare_api_key' ) )
 		delete_option('sunny_cloudflare_api_key');
 
-	if ( false != get_option( 'sunny_cloudflare_account' ) )
+	if ( false != get_option( 'sunny_cloudflare_account' ) || '' == get_option( 'sunny_cloudflare_account' ) )
 		delete_option('sunny_cloudflare_account');
 
-	if ( false != get_option( 'sunny_purger_settings' ) )
+	if ( false != get_option( 'sunny_purger_settings' ) || '' == get_option( 'sunny_purger_settings' ))
 		delete_option('sunny_purger_settings');
 
-	if ( false != get_option( 'sunny_admin_bar' ) )
+	if ( false != get_option( 'sunny_admin_bar' ) || '' == get_option( 'sunny_admin_bar' ))
 		delete_option('sunny_admin_bar');
 
 }

@@ -29,7 +29,7 @@ class Sunny {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.2.0';
+	const VERSION = '1.2.1';
 
 	/**
 	 * @TODO - Rename "plugin-name" to the name of your plugin
@@ -310,7 +310,7 @@ class Sunny {
 
 		$options = get_option( 'sunny_cloudflare_account' );
 		if( false == $options || '' == $options ) {
-			$options = array( 'sunny_cloudflare_email' => 'you@exampl.com', 'sunny_cloudflare_api_key' => 'abcd1234' );
+			$options = array( 'email' => 'you@exampl.com', 'api_key' => 'abcd1234' );
 			delete_option( 'sunny_cloudflare_account' );
 			add_option( 'sunny_cloudflare_account', $options );
 		}
