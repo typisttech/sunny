@@ -34,7 +34,9 @@ class Sunny_API_Logger {
         }
 
 		if ( is_wp_error( $response ) ) {
-			error_log( 'Sunny ' . 'WP Error ' . $url );
+
+			error_log( 'Sunny ' . 'WP Error ' . $response->get_error_message() .'--' . $url );
+
         }// end WP Error
         else {
             // API made

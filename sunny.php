@@ -15,7 +15,7 @@
  * Plugin Name:       Sunny (Purge CloudFlare Cache)
  * Plugin URI:        http://tangrufus.com/
  * Description:       Automatic CloudFlare Purge
- * Version:           1.2.2
+ * Version:           1.2.3
  * Author:            Tang Rufus
  * Author URI:        http://tangrufus.com
  * Text Domain:       sunny

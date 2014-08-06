@@ -74,7 +74,7 @@ class Sunny_URL_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 				if ( is_wp_error( $_response ) ) {
 
-					$tmp_message .= 'WP Error: ';
+					$tmp_message .= 'WP Error: ' . $_response->get_error_message();
 
 				} // end wp error
 				else {
@@ -93,11 +93,11 @@ class Sunny_URL_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 					} // end api success //end elseif
 
-					$tmp_message .= esc_url( $link );
-
-					$message .= $tmp_message . '<br />';
+					$tmp_message .= esc_url( $link );	
 
 				} // end else
+
+				$message .= $tmp_message . '<br />';
 
 			} // end foreach
 
