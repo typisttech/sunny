@@ -11,15 +11,13 @@
 /**
  * Plugin class. This class should ideally be used to work with the
  * public-facing side of the WordPress site.
- *
- * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `class-plugin-name-admin.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
- * @package Sunny
- * @author  Tang Rufus <tangrufus@gmail.com>
  */
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 class Sunny {
 
 	/**
@@ -29,7 +27,7 @@ class Sunny {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.2.1';
+	const VERSION = '1.2.2';
 
 	/**
 	 * @TODO - Rename "plugin-name" to the name of your plugin

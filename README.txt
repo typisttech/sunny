@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance
 Requires at least: 3.6.0
 Tested up to: 3.9.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,10 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 
 
 == Changelog ==
+
+= 1.2.2 =
+* Ready for Localization
+* Resovle Class 'Parent' Not Found Fatal Error
 
 = 1.2.1 =
 * Bug Fix
