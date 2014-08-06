@@ -26,7 +26,7 @@ abstract class Sunny_Option_Box_Base extends Sunny_Box_Base {
 	 */
 	public function register_settings() {
 
-		Parent::register_settings();
+		parent::register_settings();
 
 		// Finally, we register the fields with WordPress ( if not ajax )
 		register_setting(
