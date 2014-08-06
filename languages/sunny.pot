@@ -2,30 +2,168 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: TODO 1.0.0\n"
+"Project-Id-Version: Sunny 1.2.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2013-05-10 11:23:19+00:00\n"
-"PO-Revision-Date: 2013-05-10 10:37-0500\n"
+"POT-Creation-Date: 2014-08-06 11:03+0800\n"
+"PO-Revision-Date: 2014-08-06 11:03+0800\n"
 "Last-Translator: FULL NAME <email@example.com>\n"
-"Language-Team: LANGUAGE <translations@example.com >\n"
+"Language-Team: Tang Rufus <rufus@tangrufus.com>\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
 "esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: class-plugin-name-admin.php:170
-msgid "Page Title"
+#: admin/class-sunny-admin.php:236
+msgid "Sunny Settings - Purge CloudFlare Cache"
 msgstr ""
 
-#: class-plugin-name-admin.php:171
-msgid "Menu Text"
+#: admin/class-sunny-admin.php:237
+msgid "Sunny"
 msgstr ""
 
-#: class-plugin-name-admin.php:197
+#: admin/class-sunny-admin.php:270
 msgid "Settings"
+msgstr ""
+
+#: admin/includes/class-sunny-admin-bar-option-box.php:28
+msgid "Save Admin Bar Settings"
+msgstr ""
+
+#: admin/includes/class-sunny-admin-bar-option-box.php:31
+msgid "Admin Bar Settings"
+msgstr ""
+
+#: admin/includes/class-sunny-admin-bar-option-box.php:37
+msgid "Hide Admin Bar"
+msgstr ""
+
+#: admin/includes/class-sunny-admin-bar-option-box.php:42
+msgid "Hide admin bar on public-facing pages."
+msgstr ""
+
+#: admin/includes/class-sunny-admin-bar-option-box.php:57
+msgid ""
+"If you have set a `Cache Everything` Page Rule, you want to hide the admin "
+"bar in case of CloudFlare caching it for the public."
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:28
+msgid "Save CloudFlare Account Settings"
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:31
+msgid "CloudFlare Account"
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:37
+msgid "Email"
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:43
+msgid "The email address associated with the CloudFlare account."
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:49
+msgid "API Key"
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:55
+msgid ""
+"This is the API key made available on your <a href=\"https://www.cloudflare."
+"com/my-account.html\">CloudFlare Account</a> page."
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:70
+msgid "Additional purge during post updated."
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:104
+msgid "You have entered an invalid email."
+msgstr ""
+
+#: admin/includes/class-sunny-cloudflare-account-option-box.php:119
+msgid "You have entered an invalid API key."
+msgstr ""
+
+#: admin/includes/class-sunny-connection-tester-ajax-box.php:32
+#: admin/includes/class-sunny-connection-tester-ajax-box.php:35
+msgid "Test Connection"
+msgstr ""
+
+#: admin/includes/class-sunny-connection-tester-ajax-box.php:49
+msgid "To check if Sunny can connect to CloudFlare's server"
+msgstr ""
+
+#: admin/includes/class-sunny-purger-settings-option-box.php:35
+msgid "Save Purge Settings"
+msgstr ""
+
+#: admin/includes/class-sunny-purger-settings-option-box.php:38
+msgid "Purger Settings"
+msgstr ""
+
+#: admin/includes/class-sunny-purger-settings-option-box.php:44
+msgid "Homepage"
+msgstr ""
+
+#: admin/includes/class-sunny-purger-settings-option-box.php:48
+msgid "Purge homepage whenever post updated."
+msgstr ""
+
+#: admin/includes/class-sunny-purger-settings-option-box.php:54
+msgid "Associated Pages"
+msgstr ""
+
+#: admin/includes/class-sunny-purger-settings-option-box.php:58
+msgid ""
+"Purge associated pages(e.g.: tags, categories and custom taxonomies) "
+"whenever post updated."
+msgstr ""
+
+#: admin/includes/class-sunny-purger-settings-option-box.php:71
+msgid "The CloudFlare account associated to this site."
+msgstr ""
+
+#: admin/includes/class-sunny-url-purger-ajax-box.php:35
+msgid "Purge"
+msgstr ""
+
+#: admin/includes/class-sunny-url-purger-ajax-box.php:38
+msgid "URL Purger"
+msgstr ""
+
+#: admin/includes/class-sunny-url-purger-ajax-box.php:44
+msgid "Post URL"
+msgstr ""
+
+#: admin/includes/class-sunny-url-purger-ajax-box.php:51
+msgid "The URL you want to purge."
+msgstr ""
+
+#: admin/includes/class-sunny-url-purger-ajax-box.php:65
+msgid ""
+"Purge a post by URL and (if enabled) its associated pages(e.g: categories, "
+"tags and archives)."
+msgstr ""
+
+#: admin/includes/class-sunny-zone-purger-ajax-box.php:31
+msgid "Purge All Files"
+msgstr ""
+
+#: admin/includes/class-sunny-zone-purger-ajax-box.php:34
+msgid "Zone Purger"
+msgstr ""
+
+#: admin/includes/class-sunny-zone-purger-ajax-box.php:48
+msgid ""
+"Clear CloudFlare's cache. <br />This function will purge CloudFlare of any "
+"cached files. It may take up to 48 hours for the cache to rebuild and "
+"optimum performance to be achieved so this function should be used sparingly."
 msgstr ""
