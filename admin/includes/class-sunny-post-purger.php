@@ -30,10 +30,10 @@ class Sunny_Post_Purger {
 	private function __construct() {
 
 		// Post ID is received
-		add_action( 'wp_trash_post', array( $this, 'purge_post' ) );
-		add_action( 'edit_post', array( $this, 'purge_post' ) ); // leaving a comment called edit_post
-		add_action( 'delete_post', array( $this, 'purge_post' ) );
-		add_action( 'publish_phone', array( $this, 'purge_post' ) );
+		add_action( 'wp_trash_post', array( $this, 'purge_post' ), 20 );
+		add_action( 'edit_post', array( $this, 'purge_post' ), 20 ); // leaving a comment called edit_post
+		add_action( 'delete_post', array( $this, 'purge_post' ), 20 );
+		add_action( 'publish_phone', array( $this, 'purge_post' ), 20 );
 
 	}
 

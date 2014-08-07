@@ -122,8 +122,11 @@ class Sunny_Admin {
 		 */
 		add_action( 'admin_init', array( $this, 'register_options_box_settings' ) );
 
-		// Hook Post Purger into Save Post
-		add_action( 'admin_init', array( 'Sunny_Post_Purger', 'get_instance' ) );
+		// Hook Post Purger into Hooks
+		add_action( 'wp_trash_post', array( 'Sunny_Post_Purger', 'get_instance' ), 5 );
+		add_action( 'edit_post', array( 'Sunny_Post_Purger', 'get_instance' ), 5 ); // leaving a comment called edit_post
+		add_action( 'delete_post', array( 'Sunny_Post_Purger', 'get_instance' ), 5 );
+		add_action( 'publish_phone', array( 'Sunny_Post_Purger', 'get_instance' ), 5 );
 
 	}
 
