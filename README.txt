@@ -147,4 +147,6 @@ Initial Release
 * Initial Alpha Test
 
 == Upgrade Notice ==
+
+= 1.2.4 =
 If you encounter errors during update, uninstall Sunny and then re-activate Sunny again.
