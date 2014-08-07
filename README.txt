@@ -3,7 +3,7 @@ Contributors: tangrufus
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%40gmail%2ecom&lc=HK&item_name=Sunny%20%28CloudFlare%20Management%29%20Plugin%20Donation&item_number=sunny%2edonation%2ewp%2eorg&amount=10%2e00&currency_code=USD&button_subtype=products&no_note=0&add=1&bn=PP%2dShopCartBF%3abtn_cart_LG%2egif%3aNonHostedGuest
 Tags: cloudflare, cache, CDN, performance
 Requires at least: 3.6.0
-Tested up to: 3.9.1
+Tested up to: 3.9.2
 Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -148,5 +148,5 @@ Initial Release
 
 == Upgrade Notice ==
 
-= 1.2.4 =
+= 1.2.3 =
 If you encounter errors during update, uninstall Sunny and then re-activate Sunny again.
