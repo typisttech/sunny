@@ -313,6 +313,10 @@ class Sunny_Admin {
 		$this->option_boxes[] = new Sunny_Zone_Purger_Ajax_Box( $this, 'sunny_purger_settings' );
 		$this->option_boxes[] = new Sunny_URL_Purger_Ajax_Box( $this, 'sunny_purger_settings' );
 
+		// SideBar
+		$this->option_boxes[] = new Sunny_Mailing_List_Box( $this, 'sunny_general_settings' );
+		$this->option_boxes[] = new Sunny_Mailing_List_Box( $this, 'sunny_purger_settings' );
+
 	}
 
 	/**
@@ -358,6 +362,8 @@ class Sunny_Admin {
 		require_once( 'includes/class-sunny-zone-purger-ajax-box.php' );
 		require_once( 'includes/class-sunny-url-purger-ajax-box.php' );
 
+		// SideBar
+		require_once( 'includes/class-sunny-mailing-list-box.php' );
 
 	}
 
