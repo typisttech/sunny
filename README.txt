@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance
 Requires at least: 3.6.0
 Tested up to: 3.9.2
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,6 +96,9 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 
 == Changelog ==
 
+= 1.2.6 =
+* Bug Fix
+
 = 1.2.5 =
 * Mailing List Signup Form 
 
@@ -154,5 +157,5 @@ Initial Release
 
 == Upgrade Notice ==
 
-= 1.2.5 =
+= 1.2.6 =
 If you encounter errors during update, uninstall Sunny and then re-activate Sunny again.

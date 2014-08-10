@@ -27,7 +27,7 @@ class Sunny {
 	 *
 	 * @var     string
 	 */
-	const VERSION = '1.2.4';
+	const VERSION = '1.2.6';
 
 	/**
 	 *
