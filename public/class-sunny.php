@@ -145,6 +145,10 @@ class Sunny {
 		// Hide admin bar
 		add_action( 'wp_loaded', array( 'Sunny_Admin_Bar_Hider', 'get_instance' ) );
 
+		// Logging
+		add_action( 'after_purge_cloudflare_cache_all', array( 'Sunny_Helper', 'write_report' ), 10, 3 );
+		add_action( 'after_purge_cloudflare_cache_by_url', array( 'Sunny_Helper', 'write_report' ), 10, 3 );
+
 	}
 
 	/**

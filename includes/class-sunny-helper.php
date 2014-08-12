@@ -155,4 +155,44 @@ class Sunny_Helper {
 
 	} // end get_domain( $domain )
 
+	/**
+     * Log debug messages in php error log.
+     *
+     * @since 	1.0.0
+     *
+     * @param 	$response 	The response after api call, could be WP Error object or HTTP return object
+     * @param 	$action 	The API action
+     * @param 	$target 	The Url/IP that API calls 
+     *
+     * @return    void      No return
+     */
+	public static function write_report( $response, $action, $target ) {
+
+        if ( ! defined( 'WP_DEBUG' ) || WP_DEBUG == false || 'false' === WP_DEBUG ) {
+
+            return;
+            
+        }
+
+		if ( is_wp_error( $response ) ) {
+
+			error_log( "Sunny: $action $target WP Error " . $response->get_error_message() );
+
+        }// end WP Error
+        else {
+            // API made
+        	$response_array = json_decode( $response['body'], true );
+
+        	if ( 'error' == $response_array['result'] ) {
+
+        		error_log( "Sunny: $action $target API Error " . $response_array['msg'] );
+
+        	} else {
+
+        		error_log( "Sunny: $action $target Success" );
+
+        	}
+        }
+    }
+
 }// end Sunny_Helper class

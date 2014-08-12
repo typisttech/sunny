@@ -22,7 +22,8 @@ Class Sunny_Purger {
 		$cf_api_helper = CloudFlare_API_Helper::get_instance();
 		$response = $cf_api_helper->fpurge_ts( $domain );
 
-		Sunny_API_Logger::write_report( $response, 'fpurge_ts' );
+		do_action( 'after_purge_cloudflare_cache_all', $response, 'fpurge_ts', $domain );
+
 		return $response;
 	}
 
@@ -39,7 +40,9 @@ Class Sunny_Purger {
 
 		$cf_api_helper = CloudFlare_API_Helper::get_instance();
 		$response = $cf_api_helper->zone_file_purge( $domain, $url );
-		Sunny_API_Logger::write_report( $response, $url );
+		
+		do_action( 'after_purge_cloudflare_cache_by_url', $response, 'zone_file_purge', $url );
+
 		return $response;
 	}
 } // end Sunny_Purger

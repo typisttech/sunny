@@ -80,7 +80,7 @@ class Sunny_Zone_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 			if ( 'error' == $_response_array['result'] ) {
 
-				$_return_arg['result'] = 'Error';
+				$_return_arg['result'] = 'API Error';
 				$_return_arg['message'] = $_response_array['msg'];
 
 			} // end api returns error
