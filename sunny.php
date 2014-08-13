@@ -100,4 +100,5 @@ function load_dependencies() {
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-cloudflare-api-helper.php' );
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-purger.php' );
+	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-lock.php' );
 }

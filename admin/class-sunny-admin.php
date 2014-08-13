@@ -307,6 +307,7 @@ class Sunny_Admin {
 		$this->option_boxes[] = new Sunny_Connection_Tester_Ajax_Box( $this, 'sunny_general_settings' );
 		$this->option_boxes[] = new Sunny_Purger_Settings_Option_Box( $this, 'sunny_general_settings' );
 		$this->option_boxes[] = new Sunny_Admin_Bar_Option_Box( $this, 'sunny_general_settings' );
+		$this->option_boxes[] = new Sunny_Ban_Ip_Option_Box( $this, 'sunny_general_settings' );
 
 
 		// Purger Settings Tab
@@ -357,6 +358,7 @@ class Sunny_Admin {
 		require_once( 'includes/class-sunny-connection-tester-ajax-box.php' );
 		require_once( 'includes/class-sunny-purger-settings-option-box.php' );
 		require_once( 'includes/class-sunny-admin-bar-option-box.php' );
+		require_once( 'includes/class-sunny-ban-ip-option-box.php' );
 
 		// Purger Settings Tab
 		require_once( 'includes/class-sunny-zone-purger-ajax-box.php' );

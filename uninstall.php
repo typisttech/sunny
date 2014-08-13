@@ -88,4 +88,7 @@ if ( is_multisite() ) {
 	if ( false != get_option( 'sunny_admin_bar' ) || '' == get_option( 'sunny_admin_bar' ))
 		delete_option('sunny_admin_bar');
 
+	if ( false != get_option( 'sunny_security' ) || '' == get_option( 'sunny_security' ))
+		delete_option('sunny_security');
+
 }

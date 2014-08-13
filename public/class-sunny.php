@@ -145,10 +145,16 @@ class Sunny {
 		// Hide admin bar
 		add_action( 'wp_loaded', array( 'Sunny_Admin_Bar_Hider', 'get_instance' ) );
 
+		// Lock
+		add_action( '', array( 'Sunny_Ban_Login_As_Admin', 'get_instance' ), 5 );
+
+		add_action( 'wp_authenticate', array( 'Sunny_Ban_Login_As_Admin', 'get_instance' ), -100 );
+		// add_action( 'wp_login_failed', array( 'Sunny_Ban_Login_As_Admin', 'get_instance' ), -100 );
+
 		// Logging
 		add_action( 'after_purge_cloudflare_cache_all', array( 'Sunny_Helper', 'write_report' ), 10, 3 );
 		add_action( 'after_purge_cloudflare_cache_by_url', array( 'Sunny_Helper', 'write_report' ), 10, 3 );
-
+		add_action( 'after_sunny_lock_ban_ip', array( 'Sunny_Helper', 'write_report' ), 10, 3 );
 	}
 
 	/**
@@ -373,8 +379,8 @@ class Sunny {
 	 */
 	private function load_public_dependencies() {
 
-		// Helpers
 		require_once( 'includes/class-sunny-admin-bar-hider.php' );
+		require_once( 'includes/class-sunny-ban-login-as-admin.php' );
 
 	} // end load_public_dependencies
 }// end of class
