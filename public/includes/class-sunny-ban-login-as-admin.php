@@ -10,6 +10,11 @@
  * @since  		1.3.0
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 /**
  * This class takes care the purge process fired from the admin dashboard.
  */

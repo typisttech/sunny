@@ -44,7 +44,7 @@ class Sunny_Helper {
 	 public static function url_match_site_domain( $url ) {
 
 
-	 	return ( self::get_domain( $url ) == Sunny::get_instance()->get_domain() );
+		return ( self::get_domain( $url ) == Sunny::get_instance()->get_domain() );
 
 	 } // end url_match_site_domain( $url )
 
@@ -192,19 +192,22 @@ class Sunny_Helper {
 				error_log( "Sunny: $action $target Success" );
 
 			}
+
 		}
-	}
+
+	} // end write_report
 
 	/**
 	 * Retrieve the real ip address of the user in the current request.
 	 *
 	 * @return string The real ip address of the user in the current request.
-	 * 
+	 *
 	 * @since  1.3.0
-	 * 
+	 *
 	 * @see  sucuri-scanner.php sucuriscan_get_remoteaddr()
 	 */
-	public static function get_remoteaddr(){
+	public static function get_remoteaddr() {
+
 		$alternatives = array(
 			'HTTP_X_REAL_IP',
 			'HTTP_CLIENT_IP',
@@ -217,29 +220,29 @@ class Sunny_Helper {
 			);
 		foreach($alternatives as $alternative){
 
-			if( !isset( $_SERVER[$alternative] ) ){ continue; }
+			if( !isset( $_SERVER[$alternative] ) )
+				continue;
 
 			$remote_addr = preg_replace('/[^0-9a-z.,: ]/', '', $_SERVER[$alternative]);
-			
-			if($remote_addr) break;
-			
-			} //end foreach
 
-			if( $remote_addr == '::1' ){
+			if($remote_addr)
+				break;
 
-				$remote_addr = '127.0.0.1';
+		} //end foreach
 
-			}
+		if( $remote_addr == '::1' )
+			$remote_addr = '127.0.0.1';
 
-			return $remote_addr;
-		}
+		return $remote_addr;
+
+	} // get_remoteaddr
 
 	/**
 	 * Check whether the IP address specified is a valid IPv4 format.
 	 *
 	 * @param  string  $remote_addr The host IP address.
 	 * @return boolean              TRUE if the address specified is a valid IPv4 format, FALSE otherwise.
-	 * 
+	 *
 	 * @since  1.3.0
 	 * @see  sucuri-scanner.php sucuriscan_is_valid_ipv4
 	 */
@@ -253,6 +256,7 @@ class Sunny_Helper {
 		}
 
 		return FALSE;
+
 	} // end is_valid_ipv4
 
 	/**
@@ -260,14 +264,14 @@ class Sunny_Helper {
 	 *
 	 * @param  string  $remote_addr The host IP address.
 	 * @return boolean              TRUE if the address specified is a localhost IP, FALSE otherwise.
-	 * 
+	 *
 	 * @since  1.3.0
 	 */
 	public static function is_localhost( $remote_addr = '' ){
 
 		$localhost = array(
 			'127.0.0.0',
-			'127.0.0.0',
+			'127.0.0.1',
 			'127.0.0.2',
 			'127.0.0.3',
 			'127.0.0.4',

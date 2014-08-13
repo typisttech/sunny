@@ -1,9 +1,5 @@
 <?php
 /**
- * The WordPress Plugin Boilerplate.
- *
- * A foundation off of which to build well-documented WordPress plugins that
- * also follow WordPress Coding Standards and PHP best practices.
  *
  * @package   Sunny
  * @author    Tang Rufus <tangrufus@gmail.com>
@@ -12,10 +8,10 @@
  * @copyright 2014 Tang Rufus
  *
  * @wordpress-plugin
- * Plugin Name:       Sunny (Purge CloudFlare Cache)
+ * Plugin Name:       Sunny (Connecting CloudFlare and WordPress)
  * Plugin URI:        http://tangrufus.com/
- * Description:       Automatic CloudFlare Purge
- * Version:           1.2.6
+ * Description:       Automatically clear CloudFlare cache. And, protect your WordPress site at DNS level.
+ * Version:           1.3.0
  * Author:            Tang Rufus
  * Author URI:        http://tangrufus.com
  * Text Domain:       sunny
