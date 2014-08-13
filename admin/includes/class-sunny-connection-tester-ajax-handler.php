@@ -49,7 +49,6 @@ class Sunny_Connection_Tester_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 
 		$cf_response = CloudFlare_API_Helper::get_instance()->rec_load_all( $domain );
-		Sunny_API_Logger::write_report( $cf_response, 'Test_Connection' );
 
 		$return_args = $this->check_response( $cf_response );
 		$response = json_encode( $return_args  );

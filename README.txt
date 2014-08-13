@@ -1,36 +1,36 @@
-=== Sunny ===
+=== Sunny (Connecting CloudFlare and WordPress) ===
 Contributors: tangrufus
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%40gmail%2ecom&lc=HK&item_name=Sunny%20%28CloudFlare%20Management%29%20Plugin%20Donation&item_number=sunny%2edonation%2ewp%2eorg&amount=10%2e00&currency_code=USD&button_subtype=products&no_note=0&add=1&bn=PP%2dShopCartBF%3abtn_cart_LG%2egif%3aNonHostedGuest
-Tags: cloudflare, cache, CDN, performance
+Tags: cloudflare, cache, CDN, performance, security
 Requires at least: 3.6.0
 Tested up to: 3.9.2
-Stable tag: 1.2.6
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Automatically clear CloudFlare cache. And, manage your CloudFlare settings within WordPress.
+Automatically clear CloudFlare cache. And, protect your WordPress site at DNS level.
 
 == Description ==
 
-Sunny automatically clears CloudFlare cache.
-
-= How does Sunny different from CloudFlare's offical plugin? =
-
-At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) doesn't purge anything for WordPress. It provides the real IP of your visitors and notify CloudFlare when you marking an IP as SPAM. However, it does not include a way to clear the cache or make adjustments to how it works. Here comes Sunny! Sunny focus on cache purging.
+Sunny automatically clears CloudFlare cache. And, blacklist IP if attempt to login as `Admin`.
 
 = Features =
 
+* Blacklist IP if attempt to login as `Admin`
 * Automatically clears corresponding CloudFlare caches whenever a post is updated or commented.
 * Purge your entire CloudFlare cache manually
 * Purge your a URL cache manually
 * Test your CloudFlare API key
+
+= How does Sunny different from CloudFlare's offical plugin? =
+
+At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) doesn't purge anything for WordPress. It provides the real IP of your visitors and notify CloudFlare when you marking an IP as SPAM. However, it does not include a way to clear the cache or make adjustments to how it works. Here comes Sunny! Sunny focus on cache purging.
 
 = Planned features =
 
 * Turn on develop mode when login
 * Purge CloudFlare when Super Cache purge
 * Blacklist an IP when WP Better Secuity lockdown it
-* Blacklist an IP when it tries to login with username `admin`
 
 = Things you need to know =
 
@@ -82,6 +82,11 @@ The post itself, homepage and its catories, tags and taxonomies archive.
 Use the URL purger in `Purger` tab to check what will be cleared for a particular URL.
 You can disable this behavior via the `Settings` tab.
 
+= What if Sunny blacklisted my IP? =
+
+1. Login [CloudFlare](http://cloudflare.com).
+2. Release you IP on the threat control dashborad.
+
 = Dose it support mulitsite? =
 
 Never tested. However, I am planning to written one. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
@@ -95,6 +100,9 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 
 
 == Changelog ==
+
+= 1.3.0 =
+* Ban IP if Login As `Admin`
 
 = 1.2.6 =
 * Bug Fix
@@ -157,5 +165,5 @@ Initial Release
 
 == Upgrade Notice ==
 
-= 1.2.6 =
-If you encounter errors during update, uninstall Sunny and then re-activate Sunny again.
+= 1.3.0 =
+You can ban an IP with Sunny now!

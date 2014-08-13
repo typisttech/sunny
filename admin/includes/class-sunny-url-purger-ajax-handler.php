@@ -35,9 +35,9 @@ class Sunny_URL_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 		if ( ! current_user_can( 'manage_options') || ! check_ajax_referer( 'sunny_url_purger', 'nonce', false ) ) {
 
 			$return_args = array(
-								"result" => "Error",
-								"message" => "403 Forbidden",
-								);
+				"result" => "Error",
+				"message" => "403 Forbidden",
+				);
 			$response = json_encode( $return_args );
 			echo $response;
 
@@ -69,48 +69,56 @@ class Sunny_URL_Purger_Ajax_Handler extends Sunny_Ajax_Handler_Base {
 
 			foreach ( $links as $link ) {
 
-				$tmp_message = '';
 				$_response = Sunny_Purger::purge_cloudflare_cache_by_url( $link );
-
-				if ( is_wp_error( $_response ) ) {
-
-					$tmp_message .= 'WP Error: ' . $_response->get_error_message();
-
-				} // end wp error
-				else {
-
-					// API made
-					$_response_array = json_decode( $_response['body'], true );
-
-					if ( 'error' == $_response_array['result'] ) {
-
-						$tmp_message .= 'API Error: ';
-
-					} // end api returns error
-					elseif ( 'success' == $_response_array['result'] ) {
-
-						$tmp_message .= 'Success: ';
-
-					} // end api success //end elseif
-
-					$tmp_message .= esc_url( $link );	
-
-				} // end else
-
-				$message .= $tmp_message . '<br />';
+				$message .= $this->check_response( $_response ) . ' - ' . esc_url( $link ) . '<br />';
 
 			} // end foreach
 
 		} // end elseif
 
 		$return_args = array(
-							'message' => $message,
-							);
+			'message' => $message,
+			);
 		$response = json_encode( $return_args );
 		echo $response;
 
 		die;
 
 	} // end process_ajax
+
+	/**
+	 * 
+	 * @since  1.3.0
+	 */
+	private function check_response( $_response ) {
+
+		$message = '';
+
+		if ( is_wp_error( $_response ) ) {
+
+			$message .= 'WP Error: ' . $_response->get_error_message();
+
+		} // end wp error
+		else {
+
+			// API made
+			$_response_array = json_decode( $_response['body'], true );
+
+			if ( 'error' == $_response_array['result'] ) {
+
+				$message .= 'API Error: ' . $_response_array['msg'];
+
+			} // end api returns error
+			elseif ( 'success' == $_response_array['result'] ) {
+
+				$message .= 'Success: ';
+
+			} // end api success //end elseif
+
+		} // end else
+
+		return $message;
+
+	}
 
 } //end Sunny_URL_Purger_Ajax_Handler
