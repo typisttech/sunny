@@ -84,11 +84,15 @@ class Sunny_Ban_Login_As_Admin {
 	 */
 	private function should_ban( $username, $ip ) {
 
-		return ( 'admin' == strtolower( trim( sanitize_text_field( $username ) ) ) ) 
+		$_username 		= strtolower( trim( sanitize_text_field( $username ) ) );
+		$bad_usernames 	= array( 'admin',
+								'administrator' );
+		$is_bad_username = in_array( $_username, $bad_usernames );
+
+		return $is_bad_username
 				&& Sunny_Helper::is_valid_ipv4( $ip ) 
 				&& ! Sunny_Helper::is_localhost( $ip );
 		 
-
 	} // end should_ban
 
 	/**
