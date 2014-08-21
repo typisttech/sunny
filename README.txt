@@ -1,7 +1,7 @@
 === Sunny (Connecting CloudFlare and WordPress) ===
 Contributors: tangrufus
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%40gmail%2ecom&lc=HK&item_name=Sunny%20%28CloudFlare%20Management%29%20Plugin%20Donation&item_number=sunny%2edonation%2ewp%2eorg&amount=10%2e00&currency_code=USD&button_subtype=products&no_note=0&add=1&bn=PP%2dShopCartBF%3abtn_cart_LG%2egif%3aNonHostedGuest
-Tags: cloudflare, cache, CDN, performance, security
+Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 3.9.2
 Stable tag: 1.3.0
@@ -12,12 +12,12 @@ Automatically clear CloudFlare cache. And, protect your WordPress site at DNS le
 
 == Description ==
 
-Sunny automatically clears CloudFlare cache. And, blacklist IP if attempt to login as `Admin`.
+Sunny automatically clears CloudFlare cache. And, protect your WordPress site at DNS level.
 
 = Features =
 
-* Blacklist IP if attempt to login as `Admin`
-* Automatically clears corresponding CloudFlare caches whenever a post is updated or commented.
+* Blacklist IP if attempt to login with bad username, e.g.: `Admin` & `Administrator`
+* Automatically clears corresponding CloudFlare caches whenever a post is updated, commented or trashed.
 * Purge your entire CloudFlare cache manually
 * Purge your a URL cache manually
 * Test your CloudFlare API key
@@ -28,8 +28,6 @@ At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plu
 
 = Planned features =
 
-* Turn on develop mode when login
-* Purge CloudFlare when Super Cache purge
 * Blacklist an IP when WP Better Secuity lockdown it
 
 = Things you need to know =
@@ -100,6 +98,10 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 
 
 == Changelog ==
+
+= 1.4.0 =
+* Code Rewrite & File Organization
+* Ban IP if Login As `Administrator`
 
 = 1.3.0 =
 * Ban IP if Login As `Admin`
