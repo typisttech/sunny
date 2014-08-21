@@ -1,94 +1,88 @@
 <?php
+
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package   Sunny
- * @author    Tang Rufus <tangrufus@gmail.com>
- * @license   GPL-2.0+
- * @link      http://tangrufus.com
- * @copyright 2014 Tang Rufus
+ * When populating this file, consider the following flow
+ * of control:
+ *
+ * - This method should be static
+ * - Check if the $_REQUEST content actually is the plugin name
+ * - Run an admin referrer check to make sure it goes through authentication
+ * - Verify the output of $_GET makes sense
+ * - Repeat with other user roles. Best directly by using the links/query string parameters.
+ * - Repeat things for multisite. Once for a single site in the network, once sitewide.
+ *
+ * This file may be updated more in future version of the Boilerplate; however, this is the
+ * general skeleton and outline for how the file should work.
+ *
+ * For more information, see the following discussion:
+ * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
+ *
+ * @package   	Sunny
+ * @author    	Tang Rufus <tangrufus@gmail.com>
+ * @license   	GPL-2.0+
+ * @link      	http://tangrufus.com
+ * @copyright 	2014 Tang Rufus
+ * @since 		1.0.0
  */
 
-// If uninstall not called from WordPress, then exit
+
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	exit;
+}
+
+// If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-global $wpdb;
+// Important: Check if the file is the one
+// that was registered during the uninstall hook.
+if ( 'sunny/sunny.php' !== WP_UNINSTALL_PLUGIN )  {
+	exit;
+}
 
-if ( is_multisite() ) {
+// Check if the $_REQUEST content actually is the plugin name
+if ( ! in_array( 'sunny/sunny.php', $_REQUEST['checked'] ) ) {
+	exit;
+}
 
-	$blogs = $wpdb->get_results( "SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A );
-		/* @TODO: delete all transient, options and files you may have added
-		delete_transient( 'TRANSIENT_NAME' );
-		delete_option('OPTION_NAME');
-		//info: remove custom file directory for main site
-		$upload_dir = wp_upload_dir();
-		$directory = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . "CUSTOM_DIRECTORY_NAME" . DIRECTORY_SEPARATOR;
-		if (is_dir($directory)) {
-			foreach(glob($directory.'*.*') as $v){
-				unlink($v);
-			}
-			rmdir($directory);
-		}
-		*/
-	if ( $blogs ) {
+if ( 'delete-selected' !== $_REQUEST['action'] ) {
+	exit;
+}
 
-		foreach ( $blogs as $blog ) {
-			switch_to_blog( $blog['blog_id'] );
-			/* @TODO: delete all transient, options and files you may have added
-			delete_transient( 'TRANSIENT_NAME' );
-			delete_option('OPTION_NAME');
-			//info: remove custom file directory for main site
-			$upload_dir = wp_upload_dir();
-			$directory = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . "CUSTOM_DIRECTORY_NAME" . DIRECTORY_SEPARATOR;
-			if (is_dir($directory)) {
-				foreach(glob($directory.'*.*') as $v){
-					unlink($v);
-				}
-				rmdir($directory);
-			}
-			//info: remove and optimize tables
-			$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."TABLE_NAME`");
-			$GLOBALS['wpdb']->query("OPTIMIZE TABLE `" .$GLOBALS['wpdb']->prefix."options`");
-			*/
-			restore_current_blog();
-		}
-	}
+// Check user roles.
+if ( ! current_user_can( 'activate_plugins' ) ) {
+	exit;
+}
 
-} else {
-	/* @TODO: delete all transient, options and files you may have added
-	delete_transient( 'TRANSIENT_NAME' );
-	delete_option('OPTION_NAME');
-	//info: remove custom file directory for main site
-	$upload_dir = wp_upload_dir();
-	$directory = $upload_dir['basedir'] . DIRECTORY_SEPARATOR . "CUSTOM_DIRECTORY_NAME" . DIRECTORY_SEPARATOR;
-	if (is_dir($directory)) {
-		foreach(glob($directory.'*.*') as $v){
-			unlink($v);
-		}
-		rmdir($directory);
-	}
-	//info: remove and optimize tables
-	$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."TABLE_NAME`");
-	$GLOBALS['wpdb']->query("OPTIMIZE TABLE `" .$GLOBALS['wpdb']->prefix."options`");
-	*/
-	if ( false != get_option( 'sunny_cloudflare_email' ) )
-		delete_option('sunny_cloudflare_email');
+// Run an admin referrer check to make sure it goes through authentication
+check_admin_referer( 'bulk-plugins' );
 
-	if ( false != get_option( 'sunny_cloudflare_api_key' ) )
-		delete_option('sunny_cloudflare_api_key');
+// Safe to carry on
+if ( false != get_option( 'sunny_cloudflare_email' ) || '' == get_option( 'sunny_cloudflare_email' ) ) {
+	delete_option('sunny_cloudflare_email');
+}
 
-	if ( false != get_option( 'sunny_cloudflare_account' ) || '' == get_option( 'sunny_cloudflare_account' ) )
-		delete_option('sunny_cloudflare_account');
+if ( false != get_option( 'sunny_cloudflare_api_key' ) || '' == get_option( 'sunny_cloudflare_api_key' ) ) {
+	delete_option('sunny_cloudflare_api_key');
+}
 
-	if ( false != get_option( 'sunny_purger_settings' ) || '' == get_option( 'sunny_purger_settings' ))
-		delete_option('sunny_purger_settings');
+if ( false != get_option( 'sunny_cloudflare_account' ) || '' == get_option( 'sunny_cloudflare_account' ) ) {
+	delete_option('sunny_cloudflare_account');
+}
 
-	if ( false != get_option( 'sunny_admin_bar' ) || '' == get_option( 'sunny_admin_bar' ))
-		delete_option('sunny_admin_bar');
+if ( false != get_option( 'sunny_purger_settings' ) || '' == get_option( 'sunny_purger_settings' ) ) {
+	delete_option('sunny_purger_settings');
+}
 
-	if ( false != get_option( 'sunny_security' ) || '' == get_option( 'sunny_security' ))
-		delete_option('sunny_security');
+if ( false != get_option( 'sunny_admin_bar' ) || '' == get_option( 'sunny_admin_bar' ) ) {
+	delete_option('sunny_admin_bar');
+}
 
+if ( false != get_option( 'sunny_security' ) || '' == get_option( 'sunny_security' ) ) {
+	delete_option('sunny_security');
 }
