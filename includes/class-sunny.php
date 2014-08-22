@@ -56,7 +56,7 @@ class Sunny {
 	public function __construct() {
 
 		$this->plugin_name = 'sunny';
-		$this->version = '1.0.0';
+		$this->version = '1.4.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -139,8 +139,18 @@ class Sunny {
 
 		$plugin_admin = new Sunny_Admin( $this->get_plugin_name(), $this->get_version() );
 
+		// Load admin style sheet and JavaScript.
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		// Add the options page and menu item.
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+
+
+		// Add an action link pointing to the options page.
+		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_name . '.php' );
+		$this->loader->add_action( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+		
 
 	}
 
@@ -153,7 +163,7 @@ class Sunny {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Sunny_Public( $this->get_plugin_name(), $this->get_version() );
+		// $plugin_public = new Sunny_Public( $this->get_plugin_name(), $this->get_version() );
 
 		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );

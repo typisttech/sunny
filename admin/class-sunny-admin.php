@@ -32,6 +32,15 @@ class Sunny_Admin {
 	private $version;
 
 	/**
+	 * Slug of the plugin screen.
+	 *
+	 * @since    1.0.0
+	 *
+	 * @var      string
+	 */
+	protected $plugin_screen_hook_suffix = null;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -62,10 +71,18 @@ class Sunny_Admin {
 		 * The Sunny_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
+		 * 
+		 * Return early if no settings page is registered.
 		 */
+		
+		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+			return;
+		}
 
-		wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
-
+		$screen = get_current_screen();
+		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+			wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
+		}
 	}
 
 	/**
@@ -85,9 +102,70 @@ class Sunny_Admin {
 		 * The Sunny_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
+		 * 
+		 * Return early if no settings page is registered.
+		 */
+		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+
+			return;
+
+		}
+
+		$screen = get_current_screen();
+		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+
+			wp_enqueue_script( 'postbox' );
+			wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, FALSE );
+
+		}
+
+	}
+
+	/**
+	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
+	 *
+	 * @since    1.4.0
+	 */
+	public function add_plugin_admin_menu() {
+
+		/*
+		 * Add a settings page for this plugin to the Settings menu.
 		 */
 
-		wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, FALSE );
+		$this->plugin_screen_hook_suffix = add_menu_page(
+			__( 'Sunny Settings - Purge CloudFlare Cache', $this->name ),
+			__( 'Sunny', $this->name ),
+			'manage_options',
+			$this->name,
+			array( $this, 'display_plugin_admin_page' )
+			);
+
+	}
+
+	/**
+	 * Render the settings page for this plugin.
+	 *
+	 * @since    1.0.0
+	 */
+	public function display_plugin_admin_page() {
+
+		include_once( 'partials/sunny-admin-display.php' );
+
+	}
+
+	/**
+	 * Add settings action link to the plugins page.
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_action_links( $links ) {
+
+		return array_merge(
+			array(
+				'settings' => '<a href="' . admin_url( 'admin.php?page=' . $this->name ) . '">' . __( 'Settings', $this->name ) . '</a>'
+				),
+			$links
+			);
 
 	}
 
