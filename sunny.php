@@ -1,24 +1,28 @@
 <?php
+
 /**
+ * The plugin bootstrap file
  *
- * @package   Sunny
- * @author    Tang Rufus <tangrufus@gmail.com>
- * @license   GPL-2.0+
- * @link      http://tangrufus.com
- * @copyright 2014 Tang Rufus
+ * This file is read by WordPress to generate the plugin information in the plugin
+ * Dashboard. This file also includes all of the dependencies used by the plugin,
+ * registers the activation and deactivation functions, and defines a function
+ * this starts the plugin.
+ *
+ * @link              http://tangrufus.com
+ * @since             1.0.0
+ * @package           Sunny
  *
  * @wordpress-plugin
  * Plugin Name:       Sunny (Connecting CloudFlare and WordPress)
- * Plugin URI:        http://tangrufus.com/
+ * Plugin URI:        http://tangrufus.com/refer/sunny
  * Description:       Automatically clear CloudFlare cache. And, protect your WordPress site at DNS level.
  * Version:           1.3.0
  * Author:            Tang Rufus
- * Author URI:        http://tangrufus.com
- * Text Domain:       sunny
+ * Author URI:        http://tangrufus.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:       sunny
  * Domain Path:       /languages
- * WordPress-Plugin-Boilerplate: v2.6.1
  */
 
 // If this file is called directly, abort.
@@ -26,75 +30,41 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/*----------------------------------------------------------------------------*
- * Public-Facing Functionality
- *----------------------------------------------------------------------------*/
-
-/*
- * @TODO:
- *
- * - replace `class-plugin-name.php` with the name of the plugin's class file
- *
+/**
+ * The code that runs during plugin activation.
  */
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-sunny.php' );
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny-activator.php';
 
-/*
- * Register hooks that are fired when the plugin is activated or deactivated.
- * When the plugin is deleted, the uninstall.php file is loaded.
- *
- * @TODO:
- *
- * - replace Plugin_Name with the name of the class defined in
- *   `class-plugin-name.php`
+/**
+ * The code that runs during plugin deactivation.
  */
-register_activation_hook( __FILE__, array( 'Sunny', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Sunny', 'deactivate' ) );
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny-deactivator.php';
 
-/*
- * @TODO:
- *
- * - replace Plugin_Name with the name of the class defined in
- *   `class-plugin-name.php`
+/** This action is documented in includes/class-sunny-activator.php */
+register_activation_hook( __FILE__, array( 'Sunny_Activator', 'activate' ) );
+
+/** This action is documented in includes/class-sunny-deactivator.php */
+register_activation_hook( __FILE__, array( 'Sunny_Deactivator', 'deactivate' ) );
+
+/**
+ * The core plugin class that is used to define internationalization,
+ * dashboard-specific hooks, and public-facing site hooks.
  */
-add_action( 'plugins_loaded', array( 'Sunny', 'get_instance' ) );
+require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny.php';
 
-/*----------------------------------------------------------------------------*
- * Dashboard and Administrative Functionality
- *----------------------------------------------------------------------------*/
-
-/*
- * @TODO:
+/**
+ * Begins execution of the plugin.
  *
- * - replace `class-plugin-name-admin.php` with the name of the plugin's admin file
- * - replace Plugin_Name_Admin with the name of the class defined in
- *   `class-plugin-name-admin.php`
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
  *
- * If you don't want to include Ajax within the dashboard, change the following
- * conditional to:
- *
- * if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
- *
- *   ...
- * }
- *
- * The code below is intended to to give the lightest footprint possible.
+ * @since    1.4.0
  */
+function run_plugin_name() {
 
-if ( is_admin() ) {
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-sunny-admin.php' );
-	add_action( 'plugins_loaded', array( 'Sunny_Admin', 'get_instance' ) );
+	$plugin = new Sunny();
+	$plugin->run();
 
 }
-
-/*----------------------------------------------------------------------------*
- * Helper Functionality
- *----------------------------------------------------------------------------*/
-
-// Load helper class in sunny/includes
-add_action( 'plugins_loaded', 'load_dependencies', 5 );
-function load_dependencies() {
-	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-helper.php' );
-	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-cloudflare-api-helper.php' );
-	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-purger.php' );
-	require_once( plugin_dir_path( __FILE__ ) . 'includes/class-sunny-lock.php' );
-}
+run_plugin_name();

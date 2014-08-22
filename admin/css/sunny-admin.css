@@ -1,4 +1,8 @@
-/* This stylesheet is used to style the admin option form of the plugin. */
+/**
+ * All of the CSS for your dashboard-specific functionality should be
+ * included in this file.
+ */
+
 div.inside a {
 	font-family: 'Lucida Grande', Verdana, Arial, 'Bitstream Vera Sans', sans-serif;
 	text-decoration: none;
