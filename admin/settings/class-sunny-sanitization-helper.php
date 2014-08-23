@@ -39,7 +39,8 @@ class Sunny_Sanitization_Helper {
 
 		$this->name = $name;
 		$this->registered_settings = $registered_settings;
-		add_filter( 'sunny_settings_sanitize_text', array( $this, 'sanitize_text_field' ), 10, 2 );
+		add_filter( 'sunny_settings_sanitize_text', array( $this, 'sanitize_text_field' ) );
+		add_filter( 'sunny_settings_sanitize_email', array( $this, 'sanitize_email_field' ) );
 
 	}
 
@@ -111,13 +112,26 @@ class Sunny_Sanitization_Helper {
 	/**
 	 * Sanitize text fields
 	 *
-	 * @since 1.4.0
-	 * @param array $input The field value
-	 * @return string $input Sanitizied value
+	 * @since 	1.4.0
+	 * @param 	array $input The field value
+	 * @return 	string $input Sanitizied value
 	 */
-	public function sanitize_text_field( $input, $key ) {
+	public function sanitize_text_field( $input ) {
 
 		return sanitize_text_field( $input );
+
+	}
+
+	/**
+	 * Sanitize email fields
+	 *
+	 * @since 	1.4.0
+	 * @param 	array $input The field value
+	 * @return 	string $input Sanitizied value
+	 */
+	public function sanitize_email_field( $input ) {
+
+		return sanitize_email( $input );
 
 	}
 

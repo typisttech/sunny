@@ -150,7 +150,7 @@ class Sunny_Settings {
 					'id' => 'cloudflare_email',
 					'name' => __( 'CloudFlare Email', $this->name ),
 					'desc' => __( 'The email address associated with the CloudFlare account.', $this->name ),
-					'type' => 'text'
+					'type' => 'email'
 					),
 				'cloudflare_api_key' => array(
 					'id' => 'cloudflare_api_key',

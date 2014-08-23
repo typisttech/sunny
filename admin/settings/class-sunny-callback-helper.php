@@ -170,6 +170,33 @@ class Sunny_Callback_Helper {
 	}
 
 	/**
+	 * Email Callback
+	 *
+	 * Renders email fields.
+	 *
+	 * @since 	1.4.0
+	 * @param 	array $args Arguments passed by the setting
+	 * @global 	$sunny_options Array of all the Sunny Options
+	 * @return 	void
+	 */
+	public function email_callback( $args ) {
+		global $sunny_options;
+
+		if ( isset( $sunny_options[ $args['id'] ] ) ) {
+			$value = $sunny_options[ $args['id'] ];
+		} else {
+			$value = isset( $args['std'] ) ? $args['std'] : '';
+		}
+
+		$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
+		$html = '<input type="email" class="' . $size . '-text" id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+		$html .= '<label for="sunny_settings[' . $args['id'] . ']"> '  . $args['desc'] . '</label>';
+
+		echo $html;
+
+	}
+
+	/**
 	 * Number Callback
 	 *
 	 * Renders number fields.
