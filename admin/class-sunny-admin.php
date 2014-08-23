@@ -9,7 +9,6 @@
  * @package    Sunny
  * @subpackage Sunny/admin
  * @author     Tang Rufus <tangrufus@gmail.com>
- * @subpackage Sunny/admin
  */
 class Sunny_Admin {
 
@@ -57,7 +56,7 @@ class Sunny_Admin {
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.4.0
+	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 
@@ -81,14 +80,17 @@ class Sunny_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+
 			wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
+		
 		}
+
 	}
 
 	/**
 	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.4.0
+	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
 
@@ -106,9 +108,7 @@ class Sunny_Admin {
 		 * Return early if no settings page is registered.
 		 */
 		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
-
 			return;
-
 		}
 
 		$screen = get_current_screen();
@@ -133,7 +133,7 @@ class Sunny_Admin {
 		 */
 
 		$this->plugin_screen_hook_suffix = add_menu_page(
-			__( 'Sunny Settings - Purge CloudFlare Cache', $this->name ),
+			__( 'Sunny (Connecting CloudFlare and WordPress)', $this->name ),
 			__( 'Sunny', $this->name ),
 			'manage_options',
 			$this->name,
@@ -167,6 +167,26 @@ class Sunny_Admin {
 			$links
 			);
 
+	}
+
+	/**
+	 * Retrieve settings tabs
+	 *
+	 * @since 	1.4.0
+	 * @param 	array $input The field value
+	 * @return 	string $input Sanitizied value
+	 */
+	public function get_options_tabs() {
+
+		// $settings = sunny_get_registered_settings();
+
+		$tabs             = array();
+		$tabs['accounts']  = __( 'Accounts', $this->name );
+		$tabs['general']  = __( 'General', $this->name );
+		$tabs['tools']  = __( 'Tools', $this->name );
+		$tabs['integration']  = __( 'Integration', $this->name );
+
+		return apply_filters( 'sunny_settings_tabs', $tabs );
 	}
 
 }

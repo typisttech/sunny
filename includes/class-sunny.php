@@ -106,6 +106,16 @@ class Sunny {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-public.php';
 
+		/**
+		 * 
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-settings.php';
+
+		/**
+		 * 
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
+
 		$this->loader = new Sunny_Loader();
 
 	}
@@ -150,7 +160,13 @@ class Sunny {
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_name . '.php' );
 		$this->loader->add_action( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
-		
+
+		// Built the option page
+		$plugin_settings = new Sunny_Settings( $this->get_plugin_name() );
+		$this->loader->add_action( 'admin_init' , $plugin_settings, 'register_settings' );
+
+		$plugin_meta_box = new Sunny_Meta_Box( $this->get_plugin_name(), $plugin_admin->get_options_tabs() );
+		$this->loader->add_action( 'admin_init' , $plugin_meta_box, 'add_meta_boxes' );
 
 	}
 
