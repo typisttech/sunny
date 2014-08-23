@@ -12,8 +12,8 @@
 ?>
 
 <form action="options.php" method="POST">
-	<?php settings_fields( 'sunny_settings_' . $active_tab ); ?>
+	<?php settings_fields( 'sunny_settings' ); ?>
 	<?php do_settings_sections( 'sunny_settings_' . $active_tab ); ?>
-	<?php submit_button( $this->button_text, $this->button_type ); ?>
+	<?php submit_button(); ?>
 </form>
 <br class="clear" />

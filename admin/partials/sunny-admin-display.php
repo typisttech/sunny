@@ -20,7 +20,7 @@
  * Options Page
  *
  * Renders the options page contents.
- * 
+ *
  * @since       1.4.0
 */
 
@@ -32,7 +32,10 @@ ob_start();
 ?>
 <div class="wrap">
 	<h2><?php echo esc_html( get_admin_page_title() ); ?> </h2>
-	<em>by WP Human</em> 
+	<em>by WP Human</em>
+
+	<?php settings_errors( 'sunny-notices' ); ?>
+
 	<h2 class="nav-tab-wrapper">
 		<?php
 		foreach( $this->get_options_tabs() as $tab_id => $tab_name ) {
@@ -72,7 +75,7 @@ ob_start();
 
 		</div><!-- .postbox-container.side-->
 
-		
+
 	</div><!-- #tab_container-->
 </div><!-- .wrap -->
 <?php

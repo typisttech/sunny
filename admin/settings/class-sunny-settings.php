@@ -40,6 +40,15 @@ class Sunny_Settings {
 	protected $callback;
 
 	/**
+	 * The sanitization helper to sanitize and validate settings.
+	 *
+	 * @since    1.4.0
+	 * @access   protected
+	 * @var      Sunny_Sanitization_Helper    $sanitization    Sanitize and validate settings.
+	 */
+	protected $sanitization;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -49,13 +58,18 @@ class Sunny_Settings {
 	public function __construct( $name ) {
 
 		$this->name = $name;
+		$this->registered_settings = $this->set_registered_settings();
 
 		if ( ! class_exists( 'Sunny_Callback_Helper' ) ) {
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/class-sunny-callback-helper.php';
 		}
+		$this->callback = new Sunny_Callback_Helper( $this->name );
 
-		$this->callback = new Sunny_Callback_Helper( $name );
-		
+		if ( ! class_exists( 'Sunny_Sanitization_Helper' ) ) {
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/class-sunny-sanitization-helper.php';
+		}
+		$this->sanitization = new Sunny_Sanitization_Helper( $this->name, $this->registered_settings );
+
 	}
 
 	/**
@@ -68,10 +82,6 @@ class Sunny_Settings {
 
 		if ( false == get_option( 'sunny_settings' ) ) {
 			add_option( 'sunny_settings' );
-		}
-
-		if ( empty( $this->registered_settings ) ) {
-			$this->registered_settings = $this->set_registered_settings();
 		}
 
 		foreach( $this->registered_settings as $tab => $settings ) {
@@ -105,17 +115,17 @@ class Sunny_Settings {
 						'std'     => isset( $option['std'] ) ? $option['std'] : ''
 						)
 					);
-			}
+			} // end foreach
 
-		}
+		} // end foreach
 
 		// Creates our settings in the options table
-		register_setting( 'sunny_settings', 'sunny_settings', 'sunny_settings_sanitize' );
+		register_setting( 'sunny_settings', 'sunny_settings', array( $this->sanitization, 'settings_sanitize' ) );
 
 	}
 
 	/**
- 	 * Set the array of plugin settings
+	 * Set the array of plugin settings
 	 *
 	 * @since 	1.4.0
 	 * @return 	array 	$settings
@@ -189,16 +199,15 @@ class Sunny_Settings {
 				'ban_login_with_bad_usernames' => array(
 					'id' => 'ban_login_with_bad_usernames',
 					'name' => __( 'Ban Login with Bad Usernames', $this->name ),
-					'desc' => __( 'Blacklist IP which attempt to login with the username `Admin` or `administrator`.', $this->name ),
+					'desc' => __( 'Blacklist IP which attempt to login with the username <code>Admin</code> or <code>Administrator</code>.', $this->name ),
 					'type' => 'checkbox'
 					)
 				) // end General Settings
 			) // end apply_filters
 		); // end $sunny_settings
-		
+
 		return $settings;
 
 	} // end set_registered_settings
-	
 
 }

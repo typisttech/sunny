@@ -96,6 +96,11 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-i18n.php';
 
 		/**
+		 *
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-option.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
@@ -107,12 +112,12 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-public.php';
 
 		/**
-		 * 
+		 * The class responsible for registerating all settings via Settings API.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-settings.php';
 
 		/**
-		 * 
+		 * The class responsible for defining all options page meta boxes.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
 
@@ -166,7 +171,7 @@ class Sunny {
 		$this->loader->add_action( 'admin_init' , $plugin_settings, 'register_settings' );
 
 		$plugin_meta_box = new Sunny_Meta_Box( $this->get_plugin_name(), $plugin_admin->get_options_tabs() );
-		$this->loader->add_action( 'admin_init' , $plugin_meta_box, 'add_meta_boxes' );
+		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_meta_box, 'add_meta_boxes' );
 
 	}
 
@@ -183,6 +188,8 @@ class Sunny {
 
 		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+		$this->loader->add_action( 'init', 'Sunny_Option', 'set_global_options' );
 
 	}
 

@@ -70,10 +70,10 @@ class Sunny_Admin {
 		 * The Sunny_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
-		 * 
+		 *
 		 * Return early if no settings page is registered.
 		 */
-		
+
 		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
 			return;
 		}
@@ -82,7 +82,7 @@ class Sunny_Admin {
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 
 			wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
-		
+
 		}
 
 	}
@@ -104,7 +104,7 @@ class Sunny_Admin {
 		 * The Sunny_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
-		 * 
+		 *
 		 * Return early if no settings page is registered.
 		 */
 		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {

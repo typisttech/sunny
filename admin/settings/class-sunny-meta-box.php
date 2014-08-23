@@ -38,7 +38,7 @@ class Sunny_Meta_Box {
 	 * @since    1.4.0
 	 * @var      string    $name    The name of this plugin.
 	 */
-	public function __construct( $name, $options_tabs ) {
+	public function __construct( $name, array $options_tabs ) {
 
 		$this->name = $name;
 		$this->options_tabs = $options_tabs;
