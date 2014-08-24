@@ -106,6 +106,11 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-helper.php';
 
 		/**
+		 * The class responsible for making CLoudFlare purge API calls.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-purger.php';
+
+		/**
 		 * The class responsible for making CloudFlare Client API calls.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-cloudflare-api-helper.php';
@@ -119,6 +124,11 @@ class Sunny {
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
+
+		/**
+		 * The class responsible for the purge process.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-post-purger.php';
 
 		/**
 		 * The class responsible for registerating all settings via Settings API.
@@ -198,6 +208,11 @@ class Sunny {
 		$plugin_meta_box = new Sunny_Meta_Box( $this->get_plugin_name(), $plugin_admin->get_options_tabs() );
 		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_meta_box, 'add_meta_boxes' );
 
+		// Hook Post Purger into Hooks
+		$post_purger = new Sunny_Post_Purger( $this->get_plugin_name() );
+		$this->loader->add_action( 'transition_post_status', $post_purger, 'purge_post_on_status_transition', 100, 3 );
+		$this->loader->add_action( 'edit_post', $post_purger, 'purge_post_on_edit', 100 ); // leaving a comment called edit_post
+
 	}
 
 	/**
@@ -223,7 +238,6 @@ class Sunny {
 
 		$admin_bar_hider = new Sunny_Admin_Bar_Hider();
 		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
-
 
 	}
 

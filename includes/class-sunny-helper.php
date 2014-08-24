@@ -30,11 +30,11 @@ class Sunny_Helper {
 	  * @param    string  $url      The test url
 	  * @return   boolean           True if a url is in site's domain
 	  */
-	 // public static function url_match_site_domain( $url ) {
+	 public static function url_match_site_domain( $url ) {
 
-		// return ( self::get_domain( $url ) == Sunny::get_instance()->get_domain() );
+		return ( self::get_domain( $url ) == self::get_domain( get_option( 'home' ) ) );
 
-	 // } // end url_match_site_domain
+	 } // end url_match_site_domain
 
 	 /**
 	 * Get all related links, including tags, categories and all custom taxonomies
@@ -47,51 +47,41 @@ class Sunny_Helper {
 	 *
 	 * @since 	1.1.0
 	 */
-	public static function get_all_terms_links_by_url( $post_url ){
+	 public static function get_all_terms_links_by_url( $post_url ){
 
 		$urls = array();
 
-		if ( '1' == Sunny_Option::get_option( 'purge_homepage' ) ) {
-
-			array_push( $urls, site_url() );
-
-		} // end if
-
-		if ( '1' == Sunny_Option::get_option( 'purge_taxonomies' ) ) {
-
 			// get post id
-			$post_id = url_to_postid( $post_url );
+		$post_id = url_to_postid( $post_url );
 
 			// get post type by post
-			$post_type = get_post_type( $post_id );
+		$post_type = get_post_type( $post_id );
 
 			// get all taxonomies for the post type
-			$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+		$taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
-			foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+		foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
 
 				// get the terms related to post
-				$terms = get_the_terms( $post_id, $taxonomy_slug );
+			$terms = get_the_terms( $post_id, $taxonomy_slug );
 
-				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+			if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
 
-					foreach ( $terms as $term) {
+				foreach ( $terms as $term) {
 
-						$term_link = get_term_link( $term );
+					$term_link = get_term_link( $term );
 
-						if ( ! is_wp_error( $term_link ) ) {
+					if ( ! is_wp_error( $term_link ) ) {
 
-							array_push( $urls, $term_link );
+						array_push( $urls, $term_link );
 
-						} //end if
+					} //end if
 
-					} // end foreach
+				} // end foreach
 
-				} // end if
+			} // end if
 
-			} // end foreach
-
-		} // end if // purge_associated
+		} // end foreach
 
 		return $urls;
 
@@ -225,10 +215,10 @@ class Sunny_Helper {
 
 		$action = $data['a'];
 
-		//@TODO: better handling different requests
-		$target = $data['z'];
-		$target = $data['url'];
-		$target = $data['key'];
+		$target = '';
+		$target .= ( isset( $data['z'] ) && ! isset( $data['url'] ) ) ? $data['z'] : '';
+		$target .= isset( $data['url'] ) ? $data['url']  : '';
+		$target .= isset( $data['key'] ) ? $data['key'] : '';
 
 		if ( is_wp_error( $response ) ) {
 
@@ -327,7 +317,7 @@ class Sunny_Helper {
 
 		$localhost = array(
 			'127.0.0.0',
-			'127.0.0.0',
+			'127.0.0.1',
 			'127.0.0.2',
 			'127.0.0.3',
 			'127.0.0.4',

@@ -16,6 +16,8 @@ class Sunny_Admin_Bar_Hider {
 	 * Hide the admin bar.
 	 *
 	 * @return void
+	 *
+	 * @since  1.4.0
 	 */
 	public function hide() {
 

@@ -73,11 +73,12 @@ Install the offical plugin if you can't see the real IP from visitors.
 = When does Sunny purge my cache? =
 
 Every time a *published* post is updated or commented.
+Or, every time post status change from/to `published`
 
 = What pages does it purge when a post is updated? =
 
 The post itself, homepage and its catories, tags and taxonomies archive.
-Use the URL purger in `Purger` tab to check what will be cleared for a particular URL.
+Use the URL purger in `General` tab to check what will be cleared for a particular URL.
 You can disable this behavior via the `Settings` tab.
 
 = What if Sunny blacklisted my IP? =
@@ -102,6 +103,7 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 = 1.4.0 =
 * Code Rewrite & File Organization
 * Ban IP if Login As `Administrator`
+* Purge when status change from/to `published`
 * Bug Fix: IP being banned twice
 * Bug Fix: Admin bar always been hided
 

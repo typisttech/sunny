@@ -2,9 +2,10 @@
 
 /**
  *
- * @package    Sunny
- * @subpackage Sunny/includes
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @package 	Sunny
+ * @subpackage 	Sunny/includes
+ * @author 		Tang Rufus <tangrufus@gmail.com>
+ * @since 		1.4.0
  */
 
 class Sunny_Option {
