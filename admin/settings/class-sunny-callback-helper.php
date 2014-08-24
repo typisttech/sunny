@@ -154,19 +154,9 @@ class Sunny_Callback_Helper {
 	 * @return 	void
 	 */
 	public function text_callback( $args ) {
-		global $sunny_options;
 
-		if ( isset( $sunny_options[ $args['id'] ] ) ) {
-			$value = $sunny_options[ $args['id'] ];
-		} else {
-			$value = isset( $args['std'] ) ? $args['std'] : '';
-		}
+		$this->input_type_callback( 'text', $args );
 
-		$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-		$html = '<input type="text" class="' . $size . '-text" id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
-		$html .= '<label for="sunny_settings[' . $args['id'] . ']"> '  . $args['desc'] . '</label>';
-
-		echo $html;
 	}
 
 	/**
@@ -180,6 +170,23 @@ class Sunny_Callback_Helper {
 	 * @return 	void
 	 */
 	public function email_callback( $args ) {
+
+		$this->input_type_callback( 'email', $args );
+
+	}
+
+	/**
+	 * Input Type Callback
+	 *
+	 * Renders input type fields.
+	 *
+	 * @since 	1.4.0
+	 * @param 	string $type Input Type
+	 * @param 	array $args Arguments passed by the setting
+	 * @global 	$sunny_options Array of all the Sunny Options
+	 * @return 	void
+	 */
+	private function input_type_callback( $type, $args ) {
 		global $sunny_options;
 
 		if ( isset( $sunny_options[ $args['id'] ] ) ) {
@@ -189,11 +196,10 @@ class Sunny_Callback_Helper {
 		}
 
 		$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-		$html = '<input type="email" class="' . $size . '-text" id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+		$html = '<input type="' . $type . '" class="' . $size . '-text" id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
 		$html .= '<label for="sunny_settings[' . $args['id'] . ']"> '  . $args['desc'] . '</label>';
 
 		echo $html;
-
 	}
 
 	/**

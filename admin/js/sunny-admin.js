@@ -26,7 +26,8 @@
 			jQuery("#sunny_connection_tester_button").attr("disabled", "disabled")
 			var data = {
 				action: 'sunny_test_connection',
-						nonce:  jQuery('#sunny_connection_tester_nonce').val()// The security nonce
+						_nonce:  jQuery("#sunny_connection_tester_form #_wpnonce").val(),// The security nonce
+						_wp_http_referer: jQuery("#sunny_connection_tester_form [name='_wp_http_referer']").val()
 					};
 					jQuery.post( ajaxurl, data, function (response) {
 						var output = "<p>" + response.result + ": " + response.message + "</p>";
@@ -45,7 +46,8 @@
 			jQuery("#sunny_zone_purger_button").attr("disabled", "disabled")
 			var data = {
 				action: 'sunny_purge_zone',
-					nonce:  jQuery('#sunny_zone_purger_nonce').val()// The security nonce
+					_nonce:  jQuery("#sunny_zone_purger_form #_wpnonce").val(),// The security nonce
+					_wp_http_referer: jQuery("#sunny_zone_purger_form [name='_wp_http_referer']").val()
 				};
 				jQuery.post( ajaxurl, data, function (response) {
 					var output = "<p>" + response.result + ": " + response.message + "</p>";
@@ -64,8 +66,9 @@
 			jQuery("#sunny_url_purger_button").attr("disabled", "disabled")
 			var data = {
 				action:     'sunny_purge_url',
-				nonce:      jQuery('#sunny_url_purger_nonce').val(),// The security nonce
-				"post_url": jQuery('#sunny_post_url').val()
+				_nonce:      jQuery("#sunny_url_purger_form #_wpnonce").val(),// The security nonce
+				_wp_http_referer: jQuery("#sunny_url_purger_form [name='_wp_http_referer']").val(),
+				"post_url": jQuery('#sunny_settings\\[post_url\\]').val()
 			};
 			jQuery.post( ajaxurl, data, function (response) {
 				var output = "<p>" + response.message + "</p>";

@@ -54,14 +54,22 @@ class Sunny_Meta_Box {
 
 		foreach ( $this->options_tabs as $tab_id => $tab_name ) {
 
-		add_meta_box(
-				$tab_id,          // Meta box ID
-				$tab_name,           // Meta box Title
-				array( $this, 'render_meta_box' ),  // Callback defining the plugin's innards
-				'sunny_settings_' . $tab_id,                    // Screen to which to add the meta box
-				'normal'         	// Context
-				);
-		}
+			if ( 'tools' == $tab_id ) {
+
+				continue;
+
+			}
+
+			add_meta_box(
+					$tab_id,							// Meta box ID
+					$tab_name,							// Meta box Title
+					array( $this, 'render_meta_box' ),	// Callback defining the plugin's innards
+					'sunny_settings_' . $tab_id,		// Screen to which to add the meta box
+					'normal'							// Context
+					);
+
+			} // end foreach
+
 	}
 
 	/**

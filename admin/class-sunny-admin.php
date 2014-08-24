@@ -178,13 +178,11 @@ class Sunny_Admin {
 	 */
 	public function get_options_tabs() {
 
-		// $settings = sunny_get_registered_settings();
-
-		$tabs             = array();
-		$tabs['accounts']  = __( 'Accounts', $this->name );
-		$tabs['general']  = __( 'General', $this->name );
-		$tabs['tools']  = __( 'Tools', $this->name );
-		$tabs['integration']  = __( 'Integration', $this->name );
+		$tabs 					= array();
+		$tabs['accounts'] 		= __( 'Accounts', $this->name );
+		$tabs['general']  		= __( 'General', $this->name );
+		$tabs['tools']			= __( 'Tools', $this->name );
+		$tabs['integration']	= __( 'Integration', $this->name );
 
 		return apply_filters( 'sunny_settings_tabs', $tabs );
 	}

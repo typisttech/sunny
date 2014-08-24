@@ -141,6 +141,16 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
 
 		/**
+		 * The class responsible for defining ajax toolboxes.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools.php';
+
+		/**
+		 * The class responsible for defining ajax handlers.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-ajax-handler.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
@@ -207,6 +217,14 @@ class Sunny {
 
 		$plugin_meta_box = new Sunny_Meta_Box( $this->get_plugin_name(), $plugin_admin->get_options_tabs() );
 		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_meta_box, 'add_meta_boxes' );
+
+		$plugin_tools = new Sunny_Tools( $this->get_plugin_name() );
+		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_tools, 'add_meta_boxes' );
+
+		$plugin_ajax_handler = new Sunny_Ajax_Handler( $this->get_plugin_name() );
+		$this->loader->add_action( 'wp_ajax_sunny_test_connection' , $plugin_ajax_handler, 'process_connection_test' );
+		$this->loader->add_action( 'wp_ajax_sunny_purge_zone' , $plugin_ajax_handler, 'process_zone_purge' );
+		$this->loader->add_action( 'wp_ajax_sunny_purge_url' , $plugin_ajax_handler, 'process_url_purge' );
 
 		// Hook Post Purger into Hooks
 		$post_purger = new Sunny_Post_Purger( $this->get_plugin_name() );
