@@ -102,7 +102,8 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 = 1.4.0 =
 * Code Rewrite & File Organization
 * Ban IP if Login As `Administrator`
-* Fix IP being banned twice
+* Bug Fix: IP being banned twice
+* Bug Fix: Admin bar always been hided
 
 = 1.3.0 =
 * Ban IP if Login As `Admin`
@@ -111,7 +112,7 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 * Bug Fix
 
 = 1.2.5 =
-* Mailing List Signup Form 
+* Mailing List Signup Form
 
 = 1.2.4 =
 * Improve Performance

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package 	Sunny
- * @subpackage 	Sunny/includes
+ * @subpackage 	Sunny/public
  * @author		Tang Rufus <tangrufus@gmail.com>
  * @link 		http://tangrufus.com
  * @since  		1.3.0

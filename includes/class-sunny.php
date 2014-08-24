@@ -137,9 +137,14 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-public.php';
 
 		/**
-		 * The class responsible for blacklist logins with bad usernames.
+		 * The class responsible for blacklisting logins with bad usernames.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ban-bad-login.php';
+
+		/**
+		 * The class responsible for hiding the admin bar from the public.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-admin-bar-hider.php';
 
 		$this->loader = new Sunny_Loader();
 
@@ -215,6 +220,10 @@ class Sunny {
 
 		$ban_bad_login = new Sunny_Ban_Bad_Login( $this->get_plugin_name() );
 		$this->loader->add_action( 'wp_authenticate', $ban_bad_login, 'ban_login_with_bad_username', -10 );
+
+		$admin_bar_hider = new Sunny_Admin_Bar_Hider();
+		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
+
 
 	}
 
