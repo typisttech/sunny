@@ -40,6 +40,13 @@ class Sunny_Option {
 	static public function get_option( $key = '', $default = false ) {
 
 		global $sunny_options;
+
+		if ( empty( $sunny_options ) ) {
+
+			self::set_global_options();
+
+		}
+
 		$value = ! empty( $sunny_options[ $key ] ) ? $sunny_options[ $key ] : $default;
 		$value = apply_filters( 'sunny_get_option', $value, $key, $default );
 		return apply_filters( 'sunny_get_option_' . $key, $value, $key, $default );

@@ -96,20 +96,29 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-i18n.php';
 
 		/**
-		 *
+		 * The class responsible for reading options/settings from WP database.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-option.php';
+
+		/**
+		 * The class responsible for defining all helper methods.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-helper.php';
+
+		/**
+		 * The class responsible for making CloudFlare Client API calls.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-cloudflare-api-helper.php';
+
+		/**
+		 * The class responsible for making CloudFlare API requests about IP blacklisting.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-lock.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-public.php';
 
 		/**
 		 * The class responsible for registerating all settings via Settings API.
@@ -120,6 +129,17 @@ class Sunny {
 		 * The class responsible for defining all options page meta boxes.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the public-facing
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-public.php';
+
+		/**
+		 * The class responsible for blacklist logins with bad usernames.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ban-bad-login.php';
 
 		$this->loader = new Sunny_Loader();
 
@@ -190,6 +210,11 @@ class Sunny {
 		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'init', 'Sunny_Option', 'set_global_options' );
+
+		$this->loader->add_action( 'sunny_after_cloudflare_api_request', 'Sunny_Helper', 'write_report', 10, 2 );
+
+		$ban_bad_login = new Sunny_Ban_Bad_Login( $this->get_plugin_name() );
+		$this->loader->add_action( 'wp_authenticate', $ban_bad_login, 'ban_login_with_bad_username', -10 );
 
 	}
 

@@ -102,6 +102,7 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 = 1.4.0 =
 * Code Rewrite & File Organization
 * Ban IP if Login As `Administrator`
+* Fix IP being banned twice
 
 = 1.3.0 =
 * Ban IP if Login As `Admin`
