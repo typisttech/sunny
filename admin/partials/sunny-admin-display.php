@@ -69,7 +69,7 @@ ob_start();
 
 			<div class="metabox-holder">
 
-				<?php do_meta_boxes( 'sunny_settings_' . $active_tab, 'side', $active_tab ); ?>
+				<?php do_meta_boxes( 'sunny_settings_side', 'side', $active_tab ); ?>
 
 			</div><!-- .metabox-holder-->
 

@@ -131,6 +131,11 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-post-purger.php';
 
 		/**
+		 * The class responsible for defing the mailing list sign up box.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-mailing-list-box.php';
+
+		/**
 		 * The class responsible for registerating all settings via Settings API.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-settings.php';
@@ -217,6 +222,9 @@ class Sunny {
 
 		$plugin_meta_box = new Sunny_Meta_Box( $this->get_plugin_name(), $plugin_admin->get_options_tabs() );
 		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_meta_box, 'add_meta_boxes' );
+
+		$plugin_mailing_list_box = new Sunny_Mailing_List_Box( $this->get_plugin_name() );
+		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_mailing_list_box, 'add_meta_boxes' );
 
 		$plugin_tools = new Sunny_Tools( $this->get_plugin_name() );
 		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_tools, 'add_meta_boxes' );
