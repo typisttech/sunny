@@ -146,6 +146,16 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
 
 		/**
+		 * The class responsible for sending emails.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/mailer/class-sunny-mailer.php';
+
+		/**
+		 * The class responsible for defining styling emails.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/mailer/class-sunny-email-template.php';
+
+		/**
 		 * The class responsible for defining ajax toolboxes.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools.php';
@@ -238,6 +248,17 @@ class Sunny {
 		$post_purger = new Sunny_Post_Purger( $this->get_plugin_name() );
 		$this->loader->add_action( 'transition_post_status', $post_purger, 'purge_post_on_status_transition', 100, 3 );
 		$this->loader->add_action( 'edit_post', $post_purger, 'purge_post_on_edit', 100 ); // leaving a comment called edit_post
+
+		// Mailer Hooks
+		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
+		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'email_blacklist_notification', 100 );
+
+		// Mailer Templates
+		$email_template = new Sunny_Email_Template( $this->get_plugin_name() );
+		$this->loader->add_filter( 'sunny_blacklist_email_body_content', $email_template, 'email_default_formatting' );
+		$this->loader->add_filter( 'sunny_blacklist_email_body_content', $email_template, 'apply_email_template', 20, 3 );
+		$this->loader->add_action( 'sunny_email_template_default', $email_template, 'default_email_template' );
+		$this->loader->add_filter( 'sunny_email_default', $email_template, 'default_email_styling' );
 
 	}
 

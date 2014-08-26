@@ -334,4 +334,29 @@ class Sunny_Helper {
 
 	} // end is_localhost
 
+	/**
+	 * Check if a API request success
+	 *
+	 * @param  Mixed  	$response 	The CloudFlare API response
+	 * @return boolean           	True if success
+	 *
+	 * @since  1.4.0
+	 */
+	public static function is_api_success( $response ) {
+
+		// WP Error
+		if ( is_wp_error( $response ) ) {
+
+			return false;
+
+		}
+
+		// API Sent to CloudFlare
+		// Check if CloudFlare returns 'success'
+		$response_array = json_decode( $response['body'], true );
+
+		return 'success' == $response_array['result'];
+
+	}
+
 }// end Sunny_Helper class

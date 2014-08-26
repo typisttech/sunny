@@ -81,11 +81,26 @@ class Sunny_Ban_Bad_Login {
 
 		$ip = Sunny_Helper::get_remoteaddr();
 
-		if ( $this->is_enabled() && $this->should_ban( $username, $ip ) ) {
+		if ( ! $this->is_enabled() || ! $this->should_ban( $username, $ip ) ) {
 
-			$response = Sunny_Lock::ban_ip( $ip );
+			return;
 
-		} // end if
+		}
+
+		$response = Sunny_Lock::ban_ip( $ip );
+
+		if ( Sunny_Helper::is_api_success( $response ) ) {
+
+			$notice[] = array(
+							'ip' => $ip,
+							'date' => current_time( 'timestamp' ),
+							'reason' => sprintf( __( 'Tried to login as `%s`', $this->name ), $username )
+							);
+
+			do_action( 'sunny_banned_login_with_bad_username', $notice );
+
+		}
+
 
 	} // end ban_login_with_bad_username
 
