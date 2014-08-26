@@ -253,13 +253,6 @@ class Sunny {
 		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
 		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'email_blacklist_notification', 100 );
 
-		// Mailer Templates
-		$email_template = new Sunny_Email_Template( $this->get_plugin_name() );
-		$this->loader->add_filter( 'sunny_blacklist_email_body_content', $email_template, 'email_default_formatting' );
-		$this->loader->add_filter( 'sunny_blacklist_email_body_content', $email_template, 'apply_email_template', 20, 3 );
-		$this->loader->add_action( 'sunny_email_template_default', $email_template, 'default_email_template' );
-		$this->loader->add_filter( 'sunny_email_default', $email_template, 'default_email_styling' );
-
 	}
 
 	/**

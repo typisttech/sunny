@@ -28,6 +28,12 @@ class Sunny_Email_Template {
 
 		$this->name = $name;
 
+		// Set Default Template
+		add_filter( 'sunny_blacklist_email_body_content', array( $this, 'email_default_formatting' ) );
+		add_filter( 'sunny_blacklist_email_body_content', array( $this, 'apply_email_template' ), 20, 3 );
+		add_action( 'sunny_email_template_default', array( $this, 'default_email_template' ) );
+		add_filter( 'sunny_email_default', array( $this, 'default_email_styling' ) );
+
 	}
 
 	/**
@@ -133,7 +139,7 @@ class Sunny_Email_Template {
 	 * @param  string $to_name            Name of Recipient
 	 * @return string $email              Email template with styling
 	 */
-	public function apply_email_template( $email_body, $notices, $to_name ) {
+	public function apply_email_template( $email_body, array $notices, $to_name ) {
 
 		$template_name = Sunny_Option::get_option( 'email_template' );
 

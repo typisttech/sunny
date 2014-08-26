@@ -203,7 +203,40 @@ class Sunny_Settings {
 					'type' => 'checkbox'
 					)
 				) // end General Settings
-			) // end apply_filters
+			), // end apply_filters
+		/** Emails Settings */
+		'emails' => apply_filters( 'sunny_settings_emails',
+			array(
+				'sender_settings' => array(
+					'id' => 'sender_settings',
+					'name' => '<strong>' . __( 'Sender', $this->name ) . '</strong>',
+					'type' => 'header'
+					),
+				'email_from_name' => array(
+					'id' => 'email_from_name',
+					'name' => __( 'From Email', $this->name ),
+					'desc' => __( 'Name the recipients will see in their email clients.', $this->name ),
+					'type' => 'text'
+					),
+				'email_from_address' => array(
+					'id' => 'email_from_address',
+					'name' => __( 'From Address', $this->name ),
+					'desc' => __( 'This email address will be used as the sender of the outgoing emails.', $this->name ),
+					'type' => 'email'
+					),
+				'blacklist_notification_settings' => array(
+					'id' => 'blacklist_email_settings',
+					'name' => '<strong>' . __( 'Blacklist Notification Settings', $this->name ) . '</strong>',
+					'type' => 'header'
+					),
+				'blacklist_email_subject' => array(
+					'id' => 'blacklist_email_subject',
+					'name' => __( 'Blacklist Notification Subject', $this->name ),
+					'desc' => __( 'This subject will be used in all blacklist notification emails.', $this->name ),
+					'type' => 'text'
+					)
+				) // end Emails Settings
+			), // apply_filters
 		); // end $sunny_settings
 
 		return $settings;

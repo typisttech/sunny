@@ -181,6 +181,7 @@ class Sunny_Admin {
 		$tabs 					= array();
 		$tabs['accounts'] 		= __( 'Accounts', $this->name );
 		$tabs['general']  		= __( 'General', $this->name );
+		$tabs['emails']			= __( 'Emails', $this->name );
 		$tabs['tools']			= __( 'Tools', $this->name );
 		$tabs['integration']	= __( 'Integration', $this->name );
 

@@ -105,6 +105,7 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 * Ban IP if Login As `Administrator`
 * Purge when status change from/to `published`
 * Bug Fix: IP being banned twice
+* Bug Fix: Duplicate blacklist notification email
 * Bug Fix: Admin bar always been hided
 
 = 1.3.0 =
