@@ -196,7 +196,7 @@ class Sunny_Admin {
 	 */
 	public function show_enqueued_admin_notices() {
 
-		if ( $notices = get_option( 'sunny_enqueued_admin_notices' ) ) {
+		if ( $notices = Sunny_Option::get_enqueued_notices() ) {
 
 			foreach ($notices as $notice) {
 
@@ -204,7 +204,7 @@ class Sunny_Admin {
 
 			}
 
-			delete_option( 'sunny_enqueued_admin_notices' );
+			Sunny_Option::dequeue_notices( $notices );
 
 		}
 	}

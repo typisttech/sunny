@@ -33,15 +33,50 @@ class Sunny_Activator {
 		// Upgrade from v1.3.0 or before
 		if ( version_compare( $sunny_version, '1.4.0', '<' ) ) {
 			self::upgrade_to_v140();
-			self::activate();
+			self::enqueue_to_v140_admin_notice();
 		}
 
-		// Bump version number
-		if ( false != get_option( 'sunny_version' ) || '' == get_option( 'sunny_version' ) ) {
-			delete_option( 'sunny_version' );
+		// Upgrade from v1.4.1 or before
+		if ( version_compare( $sunny_version, '1.4.2', '<' ) ) {
+			self::upgrade_to_v142();
+			self::enqueue_to_v142_admin_notice();
 		}
-		$current_version = '1.4.1';
-		add_option( 'sunny_version', $current_version );
+
+		$current_version = '1.4.2';
+		update_option( 'sunny_version', $current_version );
+
+	}
+
+	/**
+	 * Delete old options
+	 *
+	 * @since  1.4.2
+	 * @return void
+	 */
+	private static function upgrade_to_v142() {
+
+		self::upgrade_to_v140();
+
+		// Bump version number to v1.4.2
+		update_option( 'sunny_version', '1.4.2' );
+
+	}
+
+	/**
+	 *
+	 * @since  1.4.2
+	 * @return void
+	 */
+	private static function enqueue_to_v142_admin_notice() {
+
+		$notice = array(
+			'class'  => 'updated',
+			'message' => sprintf( __( '<strong>Important: </strong> If you have previously installed Sunny version v1.3.0 or before, you would lost the Cloudflare credentials and settings. This is because version 1.4.0 is a major upgrade and most of the code is changed. <br /><strong>Good news</strong> Email notifications can been disabled since version 1.4.2. Click <a href="%s"><strong>here</strong></a> to review all necessary settings.', 'sunny' ),
+				admin_url( 'admin.php?page=sunny&tab=accounts' )
+				)
+			);
+
+		self::enqueue_admin_notice( $notice );
 
 	}
 
@@ -77,14 +112,7 @@ class Sunny_Activator {
 			delete_option('sunny_security');
 		}
 
-		// Bump version number to v1.4.0
-		if ( false != get_option( 'sunny_version' ) || '' == get_option( 'sunny_version' ) ) {
-			delete_option( 'sunny_version' );
-		}
-		add_option( 'sunny_version', '1.4.0' );
-
-		// Add admin notice
-		self::enqueue_to_v140_notice();
+		update_option( 'sunny_version', '1.4.0' );
 
 	}
 
@@ -93,7 +121,7 @@ class Sunny_Activator {
 	 * @since  1.4.0
 	 * @return void
 	 */
-	private static function enqueue_to_v140_notice() {
+	private static function enqueue_to_v140_admin_notice() {
 
 		$notice = array(
 			'class'  => 'updated',
@@ -108,13 +136,13 @@ class Sunny_Activator {
 
 	/**
 	 * Enqueue an admin notice to database
-	 * 
+	 *
 	 * @since  1.4.0
-	 * @param  array  $notice 
+	 * @param  array  $notice
 	 * @return void
 	 */
 	private static function enqueue_admin_notice( array $notice ) {
-		
+
 		// Early quit if no notices
 		if ( empty( $notice ) ) {
 			return;

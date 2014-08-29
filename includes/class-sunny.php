@@ -56,7 +56,7 @@ class Sunny {
 	public function __construct() {
 
 		$this->plugin_name = 'sunny';
-		$this->version = '1.4.1';
+		$this->version = '1.4.2';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -269,6 +269,8 @@ class Sunny {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
+
+		$this->loader->add_action( 'wp_loaded', 'Sunny_Activator', 'activate', 15 );
 
 		// $plugin_public = new Sunny_Public( $this->get_plugin_name(), $this->get_version() );
 

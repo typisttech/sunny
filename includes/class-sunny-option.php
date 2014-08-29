@@ -63,9 +63,9 @@ class Sunny_Option {
 	 */
 	static public function get_enqueued_notices( $default = array() ) {
 
-		$notices = get_option( 'sunny_enqueued_notices', $default );
+		$notices = get_option( 'sunny_enqueued_admin_notices', $default );
 
-		return apply_filters( 'sunny_get_enqueued_notices', $notices, $default );
+		return apply_filters( 'sunny_get_enqueued_admin_notices', $notices, $default );
 
 	}
 
@@ -86,10 +86,10 @@ class Sunny_Option {
 
 		$old_notices = self::get_enqueued_notices();
 		$new_notices = array_push( $old_notices, $notice );
-		$new_notices = apply_filters( 'sunny_enqueue_notice', $old_notices, $notice);
+		$new_notices = apply_filters( 'sunny_enqueue_admin_notice', $old_notices, $notice);
 
-		delete_option( 'sunny_enqueued_notices' );
-		add_option( 'sunny_enqueued_notices', $new_notices );
+		delete_option( 'sunny_enqueued_admin_notices' );
+		add_option( 'sunny_enqueued_admin_notices', $new_notices );
 
 	}
 
@@ -112,12 +112,12 @@ class Sunny_Option {
 		if ( !empty( $old_notices ) ) {
 
 			$new_notices = array_diff( $old_notices, $notices );
-			$new_notices = apply_filters( 'sunny_dequeue_notices', $new_notices, $notices );
+			$new_notices = apply_filters( 'sunny_dequeue_admin_notices', $new_notices, $notices );
 
-			delete_option( 'sunny_enqueued_notices' );
+			delete_option( 'sunny_enqueued_admin_notices' );
 
 			if ( !empty( $new_notices ) ) {
-				add_option( 'sunny_enqueued_notices', $new_notices );
+				add_option( 'sunny_enqueued_admin_notices', $new_notices );
 			}
 
 		}
@@ -132,9 +132,9 @@ class Sunny_Option {
 	 */
 	static public function dequeue_all_notice() {
 
-		if ( false != get_option( 'sunny_enqueued_notices' ) || '' == get_option( 'sunny_enqueued_notices' ) ) {
+		if ( false != get_option( 'sunny_enqueued_admin_notices' ) || '' == get_option( 'sunny_enqueued_admin_notices' ) ) {
 
-			delete_option( 'sunny_enqueued_notices' );
+			delete_option( 'sunny_enqueued_admin_notices' );
 
 		}
 

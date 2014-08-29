@@ -207,9 +207,33 @@ class Sunny_Settings {
 		/** Emails Settings */
 		'emails' => apply_filters( 'sunny_settings_emails',
 			array(
+				'notification_settings' => array(
+					'id' => 'notification_settings',
+					'name' => '<strong>' . __( 'Notification Settings', $this->name ) . '</strong>',
+					'type' => 'header'
+					),
+				'notification_frequency' => array(
+					'id' => 'notification_frequency',
+					'name' => __( 'Notification Frequency', $this->name ),
+					'desc' => __( 'How often do you want to receive notification emails?', $this->name ),
+					'type' => 'select',
+					'options' => array(
+						'immediately' => __( 'Immediately', $this->name ),
+						'hourly' => __( 'Hourly', $this->name ),
+						'twicedaily' => __( 'Twice Daily', $this->name ),
+						'daily' => __( 'Daily', $this->name ),
+						'never' => __( 'Never', $this->name )
+						)
+					),
+				'blacklist_email_subject' => array(
+					'id' => 'blacklist_email_subject',
+					'name' => __( 'Blacklist Notification Subject', $this->name ),
+					'desc' => __( 'This subject will be used in all blacklist notification emails.', $this->name ),
+					'type' => 'text'
+					),
 				'sender_settings' => array(
 					'id' => 'sender_settings',
-					'name' => '<strong>' . __( 'Sender', $this->name ) . '</strong>',
+					'name' => '<strong>' . __( 'Sender Settings', $this->name ) . '</strong>',
 					'type' => 'header'
 					),
 				'email_from_name' => array(
@@ -224,34 +248,6 @@ class Sunny_Settings {
 					'desc' => __( 'This email address will be used as the sender of the outgoing emails.', $this->name ),
 					'type' => 'email'
 					),
-				'notification_settings' => array(
-					'id' => 'notification_settings',
-					'name' => '<strong>' . __( 'Blacklist Notification Settings', $this->name ) . '</strong>',
-					'type' => 'header'
-					),
-				'notification_frequency' => array(
-					'id' => 'notification_frequency',
-					'name' => __( 'Notification Frequency', $this->name ),
-					'desc' => __( 'How often do you want to receive notification emails?', $this->name ),
-					'type' => 'select',
-					'options' => array(
-						'immediately' => __( 'Immediately', $this->name ),
-						'hourly' => __( 'Hourly', $this->name ),
-						'twicedaily' => __( 'Twice Daily', $this->name ),
-						'daily' => __( 'Daily', $this->name )
-						)
-					),
-				'blacklist_notification_settings' => array(
-					'id' => 'blacklist_notification_settings',
-					'name' => '<strong>' . __( 'Blacklist Notification Settings', $this->name ) . '</strong>',
-					'type' => 'header'
-					),
-				'blacklist_email_subject' => array(
-					'id' => 'blacklist_email_subject',
-					'name' => __( 'Blacklist Notification Subject', $this->name ),
-					'desc' => __( 'This subject will be used in all blacklist notification emails.', $this->name ),
-					'type' => 'text'
-					)
 				) // end Emails Settings
 			), // apply_filters
 		); // end $sunny_settings
