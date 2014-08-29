@@ -132,7 +132,9 @@ class Sunny_Mailer {
 	 */
 	public function enqueue_blacklist_notification( array $notice ) {
 
-		if ( 'immediately' == Sunny_Option::get_option( 'notification_frequency' ) ) {
+		$frequency = Sunny_Option::get_option( 'notification_frequency', 'immediately' );
+
+		if ( 'immediately' == $frequency ) {
 
 			// Convert 1D array to 2D array
 			$notices = array();
