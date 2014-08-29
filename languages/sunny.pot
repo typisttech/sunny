@@ -2,11 +2,11 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Sunny 1.2.3\n"
+"Project-Id-Version: Sunny 1.4.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-08-29 16:30+0800\n"
-"PO-Revision-Date: 2014-08-29 16:31+0800\n"
-"Last-Translator: FULL NAME <email@example.com>\n"
+"POT-Creation-Date: 2014-08-30 02:37+0800\n"
+"PO-Revision-Date: 2014-08-30 02:37+0800\n"
+"Last-Translator: \n"
 "Language-Team: Tang Rufus <rufus@tangrufus.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -188,60 +188,63 @@ msgid ""
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:212
-msgid "Sender"
+msgid "Notification Settings"
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:217
-msgid "From Email"
-msgstr ""
-
-#: admin/settings/class-sunny-settings.php:218
-msgid "Name the recipients will see in their email clients."
-msgstr ""
-
-#: admin/settings/class-sunny-settings.php:223
-msgid "From Address"
-msgstr ""
-
-#: admin/settings/class-sunny-settings.php:224
-msgid "This email address will be used as the sender of the outgoing emails."
-msgstr ""
-
-#: admin/settings/class-sunny-settings.php:229
-#: admin/settings/class-sunny-settings.php:246
-msgid "Blacklist Notification Settings"
-msgstr ""
-
-#: admin/settings/class-sunny-settings.php:234
 msgid "Notification Frequency"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:235
+#: admin/settings/class-sunny-settings.php:218
 msgid "How often do you want to receive notification emails?"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:238
+#: admin/settings/class-sunny-settings.php:221
 msgid "Immediately"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:239
+#: admin/settings/class-sunny-settings.php:222
 msgid "Hourly"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:240
+#: admin/settings/class-sunny-settings.php:223
 msgid "Twice Daily"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:241
+#: admin/settings/class-sunny-settings.php:224
 msgid "Daily"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:251
+#: admin/settings/class-sunny-settings.php:225
+msgid "Never"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:230
 msgid "Blacklist Notification Subject"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:252
+#: admin/settings/class-sunny-settings.php:231
 msgid "This subject will be used in all blacklist notification emails."
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:236
+msgid "Sender Settings"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:241
+msgid "From Email"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:242
+msgid "Name the recipients will see in their email clients."
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:247
+msgid "From Address"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:248
+msgid "This email address will be used as the sender of the outgoing emails."
 msgstr ""
 
 #: admin/tools/class-sunny-tools.php:82
@@ -293,7 +296,18 @@ msgstr ""
 msgid "The URL you want to purge."
 msgstr ""
 
-#: includes/class-sunny-activator.php:100
+#: includes/class-sunny-activator.php:74
+#, php-format
+msgid ""
+"<strong>Important: </strong> If you have previously installed Sunny version "
+"v1.3.0 or before, you would lost the Cloudflare credentials and settings. "
+"This is because version 1.4.0 is a major upgrade and most of the code is "
+"changed. <br /><strong>Good news</strong> Email notifications can been "
+"disabled since version 1.4.2. Click <a href=\"%s\"><strong>here</strong></a> "
+"to review all necessary settings."
+msgstr ""
+
+#: includes/class-sunny-activator.php:128
 #, php-format
 msgid ""
 "<strong>Action Required: </strong>Sunny has been gone through a major "
