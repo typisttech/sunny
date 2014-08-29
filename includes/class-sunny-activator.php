@@ -40,7 +40,7 @@ class Sunny_Activator {
 		if ( false != get_option( 'sunny_version' ) || '' == get_option( 'sunny_version' ) ) {
 			delete_option( 'sunny_version' );
 		}
-		$current_version = '1.4.0';
+		$current_version = '1.4.1';
 		add_option( 'sunny_version', $current_version );
 
 	}

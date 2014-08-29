@@ -5,10 +5,9 @@ msgstr ""
 "Project-Id-Version: Sunny 1.2.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
 "POT-Creation-Date: 2014-08-29 16:30+0800\n"
-"PO-Revision-Date: 2014-08-29 16:31+0800\n"
-"Last-Translator: FULL NAME <email@example.com>\n"
+"PO-Revision-Date: 2014-08-29 16:48+0800\n"
+"Last-Translator: \n"
 "Language-Team: Tang Rufus <rufus@tangrufus.com>\n"
-"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,8 +15,9 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
 "esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ../\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"Language: zh_TW\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/class-sunny-admin.php:136
@@ -30,27 +30,27 @@ msgstr ""
 
 #: admin/class-sunny-admin.php:165
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 #: admin/class-sunny-admin.php:182
 msgid "Accounts"
-msgstr ""
+msgstr "帳號"
 
 #: admin/class-sunny-admin.php:183
 msgid "General"
-msgstr ""
+msgstr "一般"
 
 #: admin/class-sunny-admin.php:184
 msgid "Emails"
-msgstr ""
+msgstr "電郵"
 
 #: admin/class-sunny-admin.php:185
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 #: admin/class-sunny-mailing-list-box.php:50
 msgid "Sunny Mailing List"
-msgstr ""
+msgstr "Sunny 電子報"
 
 #: admin/mailer/class-sunny-email-template.php:73
 msgid "Howdy "
@@ -58,23 +58,23 @@ msgstr ""
 
 #: admin/mailer/class-sunny-email-template.php:78
 msgid "These IPs have been blacklisted in CloudFlare."
-msgstr ""
+msgstr "以下 IP 已被阻擋。"
 
 #: admin/mailer/class-sunny-email-template.php:78
 msgid "This IP has been blacklisted in CloudFlare."
-msgstr ""
+msgstr "以下 IP 已被阻擋。"
 
 #: admin/mailer/class-sunny-email-template.php:87
 msgid "IP Address"
-msgstr ""
+msgstr "IP"
 
 #: admin/mailer/class-sunny-email-template.php:89
 msgid "Due To"
-msgstr ""
+msgstr "原因"
 
 #: admin/mailer/class-sunny-email-template.php:94
 msgid "Date/Time"
-msgstr ""
+msgstr "日期 / 時間"
 
 #: admin/mailer/class-sunny-email-template.php:102
 msgid ""
@@ -82,6 +82,9 @@ msgid ""
 "unlist this IP please vist your <a href=\"https://www.cloudflare.com/threat-"
 "control/\">CloudFlare Dashboard</a>."
 msgstr ""
+"上述 IP 會<strong>永久<／strong>紀錄在黑名單中。如欲取消黑名單紀錄，需登入你"
+"的 <a href=\"https://www.cloudflare.com/threat-control/\">CloudFlare "
+"Dashboard</a> 設定。"
 
 #: admin/mailer/class-sunny-email-template.php:102
 msgid ""
@@ -89,6 +92,9 @@ msgid ""
 "unlist this IP please vist your <a href=\"https://www.cloudflare.com/threat-"
 "control/\">CloudFlare Dashboard</a>."
 msgstr ""
+"上述 IP 會<strong>永久<／strong>紀錄在黑名單中。如欲取消黑名單紀錄，需登入你"
+"的 <a href=\"https://www.cloudflare.com/threat-control/\">CloudFlare "
+"Dashboard</a> 設定。"
 
 #: admin/mailer/class-sunny-email-template.php:107
 #, php-format
@@ -97,10 +103,13 @@ msgid ""
 "plugins/sunny/\">Sunny(Connecting CloudFlare &amp; WordPress)</a>. To change "
 "your email preferences please visit the <a href=\"%s\">plugin settings</a>."
 msgstr ""
+"* 此郵件由 <a href=\"http://wordpress.org/plugins/sunny/\">Sunny(Connecting "
+"CloudFlare &amp; WordPress)</a> 自動發出。更改電郵設定，請登入 Sunny 的 <a "
+"href=\"%s\">電郵設定頁</a>。"
 
 #: admin/mailer/class-sunny-mailer.php:78
 msgid "Blacklist Notification"
-msgstr ""
+msgstr "黑名單通知"
 
 #: admin/settings/class-sunny-callback-helper.php:45
 #, php-format
@@ -114,11 +123,11 @@ msgstr ""
 
 #: admin/settings/class-sunny-sanitization-helper.php:118
 msgid "Settings updated."
-msgstr ""
+msgstr "設定已更新"
 
 #: admin/settings/class-sunny-settings.php:145
 msgid "CloudFlare Accounts"
-msgstr ""
+msgstr "CloudFlare 帳號"
 
 #: admin/settings/class-sunny-settings.php:146
 msgid "This free version of Sunny only support a signle CloudFlare Account."
@@ -126,40 +135,42 @@ msgstr ""
 
 #: admin/settings/class-sunny-settings.php:151
 msgid "CloudFlare Email"
-msgstr ""
+msgstr "CloudFlare 電郵"
 
 #: admin/settings/class-sunny-settings.php:152
 msgid "The email address associated with the CloudFlare account."
-msgstr ""
+msgstr "CloudFlare 登入電郵"
 
 #: admin/settings/class-sunny-settings.php:157
 #: admin/settings/class-sunny-settings.php:179
 msgid "CloudFlare API Key"
-msgstr ""
+msgstr "CloudFlare API 密鑰"
 
 #: admin/settings/class-sunny-settings.php:158
 msgid ""
 "This is the API key made available on your <a href=\"https://www.cloudflare."
 "com/my-account.html\">CloudFlare Account</a> page."
 msgstr ""
+"CloudFlare API 密鑰可於 <a href=\"https://www.cloudflare.com/my-account.html"
+"\">CloudFlare Account</a> 頁找到"
 
 #: admin/settings/class-sunny-settings.php:168
 msgid "Purger Settings"
-msgstr ""
+msgstr "快取清除設定"
 
 #: admin/settings/class-sunny-settings.php:173
 msgid "Homepage"
-msgstr ""
+msgstr "主頁"
 
 #: admin/settings/class-sunny-settings.php:174
 msgid "Purge homepage whenever post updated.."
-msgstr ""
+msgstr "當文章更新，清除主頁快取"
 
 #: admin/settings/class-sunny-settings.php:180
 msgid ""
 "Purge associated pages(e.g.: tags, categories and custom taxonomies) "
 "whenever post updated."
-msgstr ""
+msgstr "當文章更新，清除分類、標簽及自定義標簽快取"
 
 #: admin/settings/class-sunny-settings.php:185
 msgid "Admin Bar Settings"
