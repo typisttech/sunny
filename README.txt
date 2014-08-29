@@ -103,8 +103,9 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 == Changelog ==
 
 = 1.4.2 =
-* Security Fix
+* Add Option to Disable Email Notifications
 * Set Default Email Frequency to Immediately
+* Security Fix
 
 = 1.4.1 =
 * Add zh_TW Translation

@@ -134,6 +134,11 @@ class Sunny_Mailer {
 
 		$frequency = Sunny_Option::get_option( 'notification_frequency', 'immediately' );
 
+		if ( 'never' == $frequency ) {
+			// Quit now without sending email / saving notice
+			return;
+		}
+
 		if ( 'immediately' == $frequency ) {
 
 			// Convert 1D array to 2D array
