@@ -183,9 +183,30 @@ class Sunny_Admin {
 		$tabs['general']  		= __( 'General', $this->name );
 		$tabs['emails']			= __( 'Emails', $this->name );
 		$tabs['tools']			= __( 'Tools', $this->name );
-		$tabs['integration']	= __( 'Integration', $this->name );
+		// $tabs['integration']	= __( 'Integration', $this->name );
 
 		return apply_filters( 'sunny_settings_tabs', $tabs );
+	}
+
+	/**
+	 * Show defered admin notices
+	 *
+	 * @since  1.4.0
+	 * @see  http://stackoverflow.com/questions/9807064/wordpress-how-to-display-notice-in-admin-panel-on-plugin-activation
+	 */
+	public function show_enqueued_admin_notices() {
+
+		if ( $notices = get_option( 'sunny_enqueued_admin_notices' ) ) {
+
+			foreach ($notices as $notice) {
+
+				echo "<div class='$notice[class]'><p>$notice[message]</p></div>";
+
+			}
+
+			delete_option( 'sunny_enqueued_admin_notices' );
+
+		}
 	}
 
 }

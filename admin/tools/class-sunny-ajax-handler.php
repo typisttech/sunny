@@ -44,7 +44,7 @@ class Sunny_Ajax_Handler {
 		header('Content-Type: application/json');
 
 		// Check that user has proper secuity level && Check the nonce field && Check refer from Tools tab
-		if ( current_user_can( 'manage_options') && check_ajax_referer( 'sunny_tools_' . $id . '-options', '_nonce', false ) && ! empty( $_POST['_wp_http_referer'] ) && isset( $_POST['_wp_http_referer'] ) ) {
+		if ( current_user_can( 'manage_options') && check_ajax_referer( 'sunny_tools_' . $id . '-options', '_nonce', false ) && !empty( $_POST['_wp_http_referer'] ) && isset( $_POST['_wp_http_referer'] ) ) {
 
 			parse_str( $_POST['_wp_http_referer'], $referrer );
 

@@ -121,6 +121,11 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-lock.php';
 
 		/**
+		 * The class responsible for defining cron job hooks.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-cron.php';
+
+		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
@@ -218,9 +223,11 @@ class Sunny {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		// Show defered admin notices
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'show_enqueued_admin_notices' );
+
 		// Add the options page and menu item.
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-
 
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_name . '.php' );
@@ -244,14 +251,13 @@ class Sunny {
 		$this->loader->add_action( 'wp_ajax_sunny_purge_zone' , $plugin_ajax_handler, 'process_zone_purge' );
 		$this->loader->add_action( 'wp_ajax_sunny_purge_url' , $plugin_ajax_handler, 'process_url_purge' );
 
+		$this->loader->add_action( 'sunny_settings_on_change_notification_frequency', 'Sunny_Cron', 'update_schedule' );
+
 		// Hook Post Purger into Hooks
 		$post_purger = new Sunny_Post_Purger( $this->get_plugin_name() );
 		$this->loader->add_action( 'transition_post_status', $post_purger, 'purge_post_on_status_transition', 100, 3 );
 		$this->loader->add_action( 'edit_post', $post_purger, 'purge_post_on_edit', 100 ); // leaving a comment called edit_post
-
-		// Mailer Hooks
-		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
-		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'email_blacklist_notification', 100 );
+		$this->loader->add_action( 'edit_attachment', $post_purger, 'purge_attachment_on_edit', 100 );
 
 	}
 
@@ -270,14 +276,23 @@ class Sunny {
 		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'init', 'Sunny_Option', 'set_global_options' );
-
-		$this->loader->add_action( 'sunny_after_cloudflare_api_request', 'Sunny_Helper', 'write_report', 10, 2 );
+		$this->loader->add_action( 'sunny_after_cloudflare_api_request', 'Sunny_Helper', 'write_api_report', 10, 2 );
 
 		$ban_bad_login = new Sunny_Ban_Bad_Login( $this->get_plugin_name() );
 		$this->loader->add_action( 'wp_authenticate', $ban_bad_login, 'ban_login_with_bad_username', -10 );
 
 		$admin_bar_hider = new Sunny_Admin_Bar_Hider();
 		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
+
+		// Mailer Hooks
+		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
+		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'enqueue_blacklist_notification' );
+
+		$this->loader->add_action( 'sunny_after_email_sent', 'Sunny_Helper', 'write_email_report', 10, 2 );
+
+		// Cron Jobs
+		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_schedule' );
+		$this->loader->add_action( 'sunny_cron_send_notification', $mailer, 'email_blacklist_notification_digest' );
 
 	}
 

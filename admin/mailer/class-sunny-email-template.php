@@ -72,12 +72,15 @@ class Sunny_Email_Template {
 		$name = is_email( $to_name ) ? 'Site Admin' : $to_name;
 		$default_email_body = __( 'Howdy ', $this->name ) . $name . ",\n\n";
 
-		$is_plural = count( $notice ) > 1;
+		// Check if more than one notice
+		$is_plural = ( count( $notices ) > 1 );
+
 		$default_email_body .= $is_plural ? __( 'These IPs have been blacklisted in CloudFlare.', $this->name ) : __( 'This IP has been blacklisted in CloudFlare.', $this->name );
 		$default_email_body .= "\n\n";
 
 		$default_email_body .= $is_plural ? '<ul>' : null;
-		foreach ( $notices as $notice) {
+
+		foreach ( $notices as $notice ) {
 
 			$default_email_body .= '<ul>';
 

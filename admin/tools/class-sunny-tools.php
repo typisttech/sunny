@@ -78,7 +78,8 @@ class Sunny_Tools {
 				'default',							// $priority
 				array(
 					'id' 	=> $tool['id'],
-					'desc' 	=> $tool['desc']
+					'desc' 	=> $tool['desc'],
+					'btn_text' => isset( $tool['btn_text'] ) ? $tool['btn_text'] : __( 'Go', $this->name ),
 					)
 				);
 
@@ -111,7 +112,7 @@ class Sunny_Tools {
 					'sunny_tools_' . $tool['id'],
 					array(
 						'id'      => isset( $option['id'] ) ? $option['id'] : null,
-						'desc'    => ! empty( $option['desc'] ) ? $option['desc'] : '',
+						'desc'    => !empty( $option['desc'] ) ? $option['desc'] : '',
 						'name'    => isset( $option['name'] ) ? $option['name'] : null,
 						'size'    => isset( $option['size'] ) ? $option['size'] : null,
 						'options' => isset( $option['options'] ) ? $option['options'] : '',
@@ -140,18 +141,21 @@ class Sunny_Tools {
 		$tools[] = array(
 			'id' 	=> 'connection_tester',
 			'title' => __( 'Test Connection', $this->name ),
+			'btn_text' => __( 'Test Connection', $this->name ),
 			'desc'	=> __( "To check if <code>Sunny</code> can connect to CloudFlare's server", $this->name )
 			);
 
 		$tools[] = array(
 			'id' 	=> 'zone_purger',
 			'title' => __( 'Zone Purger', $this->name ),
+			'btn_text' => __( 'Clear all cache', $this->name ),
 			'desc'	=> __( "Clear CloudFlare's cache.<br />This function will purge CloudFlare of any cached files. It may take up to 48 hours for the cache to rebuild and optimum performance to be achieved so this function should be used sparingly.", $this->name )
 			);
 
 		$tools[] = array(
 			'id' 	=> 'url_purger',
 			'title' => __( 'URL Purger', $this->name ),
+			'btn_text' => __( 'Clear cache', $this->name ),
 			'desc'	=> __( 'Purge a post by URL and (if enabled) its associated pages(e.g: categories, tags and archives).', $this->name ),
 			'settings' => array(
 					'post_url' => array(

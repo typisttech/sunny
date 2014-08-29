@@ -311,6 +311,7 @@ class Sunny_Callback_Helper {
 		}
 
 		$html .= '</select>';
+		$html .= '<br />';
 		$html .= '<label for="sunny_settings[' . $args['id'] . ']"> '  . $args['desc'] . '</label>';
 
 		echo $html;

@@ -91,7 +91,7 @@ class Sunny_Ban_Bad_Login {
 
 		if ( Sunny_Helper::is_api_success( $response ) ) {
 
-			$notice[] = array(
+			$notice = array(
 							'ip' => $ip,
 							'date' => current_time( 'timestamp' ),
 							'reason' => sprintf( __( 'Tried to login as `%s`', $this->name ), $username )

@@ -32,13 +32,18 @@ class Sunny_Mailer {
 
 	/**
 	 * Send blacklist notification
-	 * 
+	 *
 	 * @since  1.4.0
-	 * 
+	 *
 	 * @param  array  $notices Blacklisted IP details
 	 * @return void
 	 */
-	public function email_blacklist_notification( array $notices ) {
+	private function email_blacklist_notification( array $notices ) {
+
+		// Early quit if no notices
+		if ( empty( $notices ) ) {
+			return;
+		}
 
 		// Set To Email Address
 		$to_address = Sunny_Option::get_option( 'cloudflare_email' );
@@ -70,7 +75,7 @@ class Sunny_Mailer {
 
 		// Subject
 		$option_blacklist_email_subject = Sunny_Option::get_option( 'blacklist_email_subject' );
-		$subject = ( ! empty( $option_blacklist_email_subject ) ) ? wp_strip_all_tags( $option_blacklist_email_subject, true ) : __( 'Blacklist Notification', $this->name );
+		$subject = ( !empty( $option_blacklist_email_subject ) ) ? wp_strip_all_tags( $option_blacklist_email_subject, true ) : __( 'Blacklist Notification', $this->name );
 		$subject = apply_filters( 'sunny_blacklist_email_subject', $subject, $from_address, $from_name, $to_address, $to_name, $notices );
 
 		// Combine Email Headers
@@ -83,7 +88,63 @@ class Sunny_Mailer {
 		// Send Email
 		if ( apply_filters( 'sunny_email_blacklist_notification', true ) ) {
 
-			wp_mail( $to_address, $subject, $message, $headers );
+			$is_sent = wp_mail( $to_address, $subject, $message, $headers );
+
+			if ( $is_sent ) {
+
+				do_action( 'sunny_after_email_sent', 'Blacklist Notification', $to_address, $subject, $message, $headers, $notices );
+				Sunny_Option::dequeue_notices( $notices );
+
+			}
+
+		}
+	}
+
+	/**
+	 * Send blacklist notification digest.
+	 * Hooked in cron jobs.
+	 *
+	 * @since  1.4.0
+	 *
+	 * @return void
+	 */
+	public function email_blacklist_notification_digest() {
+
+		// Get logged notices
+		$notices = Sunny_Option::get_enqueued_notices();
+
+		// Early quit if no notices
+		if ( empty( $notices ) ) {
+			return;
+		}
+
+		// Sent email
+		$this->email_blacklist_notification( $notices );
+
+	}
+
+	/**
+	 * Send notification immediately. Or, add it to the notice queue.
+	 *
+	 * @since  1.4.0
+	 * @param  array  $notice The details of the notice
+	 * @return void
+	 */
+	public function enqueue_blacklist_notification( array $notice ) {
+
+		if ( 'immediately' == Sunny_Option::get_option( 'notification_frequency' ) ) {
+
+			// Convert 1D array to 2D array
+			$notices = array();
+			array_push( $notices, $notice );
+
+			// Send notification email immediately
+			$this->email_blacklist_notification( $notices );
+
+		} else {
+
+			// Log the $notice
+			Sunny_Option::enqueue_notice( $notice );
 
 		}
 	}

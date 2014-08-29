@@ -88,7 +88,7 @@ class Sunny_Post_Purger {
 	 */
 	public function purge_post_on_status_transition( $new_status, $old_status, $post ) {
 
-		if( 'publish' == $new_status || 'publish' == $old_status ) {
+		if( $new_status != $old_status && ( 'publish' == $new_status || 'publish' == $old_status ) ) {
 
 			$this->purge_post( $post->ID );
 
@@ -108,6 +108,23 @@ class Sunny_Post_Purger {
 		if ( $this->should_purge( $post_id ) ) {
 
 			$this->purge_post( $post_id );
+
+		}
+
+	}
+
+	/**
+	 * Purge when attachment edited
+	 *
+	 * @param    integer    $attachment_id    The attachment being edited
+	 *
+	 * @since 	 1.0.0
+	 */
+	public function purge_attachment_on_edit( $attachment_id ) {
+
+		if ( $this->should_purge( $attachment_id ) ) {
+
+			$this->purge_post( $attachment_id );
 
 		}
 

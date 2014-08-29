@@ -12,6 +12,7 @@
 
 <?php $id = $metabox['args']['id']; ?>
 <?php $desc = $metabox['args']['desc']; ?>
+<?php $btn_text = $metabox['args']['btn_text']; ?>
 
 <div id="<?php echo $id; ?>" class="wrap">
 	<form id="sunny_<?php echo $id; ?>_form" method="POST">
@@ -19,7 +20,7 @@
 		<br />
 		<?php settings_fields( 'sunny_tools_' . $id ); ?>
 		<?php do_settings_sections( 'sunny_tools_' . $id ); ?>
-		<?php submit_button( 'testing', 'primary', $id . '_button' ); ?>
+		<?php submit_button( $btn_text, 'primary', $id . '_button' ); ?>
 	</form>
 	<br class="clear">
 	<div id="sunny_<?php echo $id; ?>_result" style="display: none">

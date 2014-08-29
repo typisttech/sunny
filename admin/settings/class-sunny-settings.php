@@ -107,7 +107,7 @@ class Sunny_Settings {
 					'sunny_settings_' . $tab,
 					array(
 						'id'      => isset( $option['id'] ) ? $option['id'] : null,
-						'desc'    => ! empty( $option['desc'] ) ? $option['desc'] : '',
+						'desc'    => !empty( $option['desc'] ) ? $option['desc'] : '',
 						'name'    => isset( $option['name'] ) ? $option['name'] : null,
 						'section' => $tab,
 						'size'    => isset( $option['size'] ) ? $option['size'] : null,
@@ -224,8 +224,25 @@ class Sunny_Settings {
 					'desc' => __( 'This email address will be used as the sender of the outgoing emails.', $this->name ),
 					'type' => 'email'
 					),
+				'notification_settings' => array(
+					'id' => 'notification_settings',
+					'name' => '<strong>' . __( 'Blacklist Notification Settings', $this->name ) . '</strong>',
+					'type' => 'header'
+					),
+				'notification_frequency' => array(
+					'id' => 'notification_frequency',
+					'name' => __( 'Notification Frequency', $this->name ),
+					'desc' => __( 'How often do you want to receive notification emails?', $this->name ),
+					'type' => 'select',
+					'options' => array(
+						'immediately' => __( 'Immediately', $this->name ),
+						'hourly' => __( 'Hourly', $this->name ),
+						'twicedaily' => __( 'Twice Daily', $this->name ),
+						'daily' => __( 'Daily', $this->name )
+						)
+					),
 				'blacklist_notification_settings' => array(
-					'id' => 'blacklist_email_settings',
+					'id' => 'blacklist_notification_settings',
 					'name' => '<strong>' . __( 'Blacklist Notification Settings', $this->name ) . '</strong>',
 					'type' => 'header'
 					),

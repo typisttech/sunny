@@ -86,16 +86,27 @@ class Sunny_Sanitization_Helper {
 			}
 
 			// General filter
-			$input[$key] = apply_filters( 'sunny_settings_sanitize', $value, $key );
+			$value = apply_filters( 'sunny_settings_sanitize', $value, $key );
+
+			// Key specific on change hook
+			if ( $sunny_options[$key] !== $value ) {
+
+				do_action( 'sunny_settings_on_change_' . $key, $value, $sunny_options[$key] );
+
+			}
 
 		}
 
 		// Loop through the whitelist and unset any that are empty for the tab being saved
-		if ( ! empty( $settings[$tab] ) ) {
+		if ( !empty( $settings[$tab] ) ) {
 			foreach ( $settings[$tab] as $key => $value ) {
 
 				if ( empty( $input[$key] ) ) {
+
+					// Key specific on change hook
+					do_action( 'sunny_settings_on_change_' . $key, null, $sunny_options[$key] );
 					unset( $sunny_options[$key] );
+
 				}
 
 			}

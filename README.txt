@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 3.9.2
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ Sunny automatically clears CloudFlare cache. And, protect your WordPress site at
 = Features =
 
 * Blacklist IP if attempt to login with bad username, e.g.: `Admin` & `Administrator`
-* Automatically clears corresponding CloudFlare caches whenever a post is updated, commented or trashed.
+* Automatically clears corresponding CloudFlare caches whenever a post/page/media attachment is updated, commented or trashed.
 * Purge your entire CloudFlare cache manually
 * Purge your a URL cache manually
 * Test your CloudFlare API key
@@ -38,6 +38,8 @@ At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plu
 = How others talking about Sunny? =
 
 * [Sunny: A Plugin to Automatically Clear CloudFlare Cache and Manage Settings in WordPress](http://wptavern.com/sunny-a-plugin-to-automatically-clear-cloudflare-cache-and-manage-settings-in-wordpress)
+
+If you have written an article about `Sunny`, do [let me know](http://tangrufus.com/hire-rufus/).
 
 
 = Who make this plugin? =
@@ -78,8 +80,8 @@ Or, every time post status change from/to `published`
 = What pages does it purge when a post is updated? =
 
 The post itself, homepage and its catories, tags and taxonomies archive.
-Use the URL purger in `General` tab to check what will be cleared for a particular URL.
-You can disable this behavior via the `Settings` tab.
+Use the URL purger on `Tools` tab to check what will be cleared for a particular URL.
+You can disable this behavior via the `General` tab.
 
 = What if Sunny blacklisted my IP? =
 
@@ -102,6 +104,7 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 
 = 1.4.0 =
 * Code Rewrite & File Organization
+* Defer noticifcation emails
 * Ban IP if Login As `Administrator`
 * Purge when status change from/to `published`
 * Bug Fix: IP being banned twice

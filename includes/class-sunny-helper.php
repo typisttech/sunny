@@ -65,7 +65,7 @@ class Sunny_Helper {
 				// get the terms related to post
 			$terms = get_the_terms( $post_id, $taxonomy_slug );
 
-			if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+			if ( !empty( $terms ) && ! is_wp_error( $terms ) ) {
 
 				foreach ( $terms as $term) {
 
@@ -195,17 +195,32 @@ class Sunny_Helper {
 	} // end get_domain( $domain )
 
 	/**
-	 * Log debug messages in php error log.
+	 * Log debug messages in php error log after email sent
+	 *
+	 * @since 	1.4.0
+	 *
+	 * @param 	$reason
+	 * @param 	$to_address
+	 *
+	 * @return  void 		No return
+	 */
+	public static function write_email_report( $reason, $to_address ) {
+
+		error_log( "Sunny: sent $reason to $to_address" );
+
+	}
+
+	/**
+	 * Log debug messages in php error log after CloudFlare API calls
 	 *
 	 * @since 	1.0.0
 	 *
 	 * @param 	$response 	The response after api call, could be WP Error object or HTTP return object
-	 * @param 	$action 	The API action
-	 * @param 	$target 	The Url/IP that API calls
+	 * @param 	$data 		The JSON response from CloudFlare
 	 *
-	 * @return    void      No return
+	 * @return  void 		No return
 	 */
-	public static function write_report( $response, $data ) {
+	public static function write_api_report( $response, $data ) {
 
 		if ( ! defined( 'WP_DEBUG' ) || WP_DEBUG == false || 'false' === WP_DEBUG || '0' === WP_DEBUG ) {
 
@@ -241,7 +256,7 @@ class Sunny_Helper {
 
 		}
 
-	} // end write_report
+	} // end write_api_report
 
 	/**
 	 * Retrieve the real ip address of the user in the current request.
