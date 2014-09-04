@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 3.9.2
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,10 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 
 
 == Changelog ==
+
+
+= 1.4.3 =
+* Fixed deactivation hook
 
 = 1.4.2 =
 * Add Option to Disable Email Notifications
