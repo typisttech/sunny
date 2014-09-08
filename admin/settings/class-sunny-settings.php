@@ -199,8 +199,14 @@ class Sunny_Settings {
 				'ban_login_with_bad_usernames' => array(
 					'id' => 'ban_login_with_bad_usernames',
 					'name' => __( 'Ban Login with Bad Usernames', $this->name ),
-					'desc' => __( 'Blacklist IP which attempt to login with the username <code>Admin</code> or <code>Administrator</code>.', $this->name ),
+					'desc' => __( 'Blacklist IP which attempt to login with bad usernames.', $this->name ),
 					'type' => 'checkbox'
+					),
+				'bad_usernames' => array(
+					'id' => 'bad_usernames',
+					'name' => __( 'Customize Bad Usernames', $this->name ),
+					'desc' => __( 'Sunny bans <code>Admin</code> and <code>Administrator</code> by default. You can define your own bad usernames here, separated by commas.<br />Example: <code>root, test, wordpress</code>', $this->name ),
+					'type' => 'text'
 					)
 				) // end General Settings
 			), // end apply_filters
@@ -248,9 +254,9 @@ class Sunny_Settings {
 					'desc' => __( 'This email address will be used as the sender of the outgoing emails.', $this->name ),
 					'type' => 'email'
 					),
-				) // end Emails Settings
-			), // apply_filters
-		); // end $sunny_settings
+						) // end Emails Settings
+					), // apply_filters
+				); // end $sunny_settings
 
 		return $settings;
 
