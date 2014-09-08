@@ -140,4 +140,19 @@ class Sunny_Tools_Handler {
 
 	} // end process_zone_purge
 
+	/**
+	 * @since     1.4.4
+	 */
+	public function process_url_purge() {
+
+		$this->secuity_check( 'url_purger' );
+
+		$url_purger = new Sunny_Url_Purger( $this->name );
+		$return_args = $url_purger->get_result();
+
+		$this->send_GET_response( $return_args );
+		die;
+
+	} // end process_url_purge
+
 }

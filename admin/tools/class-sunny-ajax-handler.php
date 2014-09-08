@@ -77,7 +77,7 @@ class Sunny_Ajax_Handler {
 		echo $_response;
 		die;
 
-	}
+	} // end send_JSON_response
 
 	/**
 	 * @since     1.2.0
@@ -92,7 +92,7 @@ class Sunny_Ajax_Handler {
 		$this->send_JSON_response( $return_args );
 		die;
 
-	} // end process_test_connection
+	} // end process_connection_test
 
 	/**
 	 * @since     1.2.0
@@ -107,7 +107,7 @@ class Sunny_Ajax_Handler {
 		$this->send_JSON_response( $return_args );
 		die;
 
-	} // end process_purge_zone
+	} // end process_zone_purge
 
 	/**
 	 * @since     1.2.0
@@ -116,84 +116,12 @@ class Sunny_Ajax_Handler {
 
 		$this->secuity_check( 'url_purger' );
 
-		// It's safe to carry on
-		// Prepare return message
-		$message = '';
-		$links = array();
+		$url_purger = new Sunny_Url_Purger( $this->name );
+		$return_args = $url_purger->get_result();
 
-		$post_url = esc_url_raw( $_REQUEST['post_url'], array( 'http', 'https' ) );
-
-		if ( '' == $post_url || $_REQUEST['post_url'] != $post_url ) {
-
-			$message = 'Error: Invalid URL.';
-
-		} elseif ( '' != $post_url && ! Sunny_Helper::url_match_site_domain( $post_url ) ) {
-
-			$message = 'Error: This URL does not live in your domain.';
-
-		} elseif ( '' != $post_url  ) {
-
-			$links = Sunny_Helper::get_all_terms_links_by_url( $post_url );
-
-			// Add the input url at front
-			array_unshift( $links, $post_url );
-
-			foreach ( $links as $link ) {
-
-				$_response = Sunny_Purger::purge_cloudflare_cache_by_url( $link );
-				$message .= $this->check_url_purge_response( $_response ) . ' - ' . esc_url( $link ) . '<br />';
-
-			} // end foreach
-
-		} // end elseif
-
-		$return_args = array(
-			'message' => $message,
-			);
-		$response = json_encode( $return_args );
-		echo $response;
-
+		$this->send_JSON_response( $return_args );
 		die;
 
-	} // end process_purge_url
+	} // end process_url_purge
 
-	/**
-	 *
-	 * @since  1.3.0
-	 */
-	private function check_url_purge_response( $_response ) {
-
-		$message = '';
-
-		if ( is_wp_error( $_response ) ) {
-
-			$message .= 'WP Error: ' . $_response->get_error_message();
-
-		} // end wp error
-		else {
-
-			// API made
-			$_response_array = json_decode( $_response['body'], true );
-
-			if ( 'error' == $_response_array['result'] ) {
-
-				$message .= 'API Error: ' . $_response_array['msg'];
-
-			} // end api returns error
-			elseif ( 'success' == $_response_array['result'] ) {
-
-				$message .= 'Success: ';
-
-			} // end api success //end elseif
-
-		} // end else
-
-		return $message;
-
-	}
-
-
-
-
-
-} //end Sunny_URL_Purger_Ajax_Handler
+} //end Sunny_Ajax_Handler

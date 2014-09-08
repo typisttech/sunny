@@ -167,7 +167,7 @@ class Sunny_Tools {
 				'name' 	=> __( 'Post URL', $this->name ),
 				'desc' 	=> __( 'The URL you want to purge.', $this->name ),
 				'type' 	=> 'text',
-				'std'  	=> 'http://example.com/hello/',
+				'std'  	=> get_option( 'home' ),
 				)
 			)
 		);

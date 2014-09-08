@@ -30,8 +30,6 @@ class Sunny_Zone_Purger {
 
 	}
 	/**
-	 * Perform connection test
-	 *
 	 * @since     1.4.4
 	 *
 	 * @return    $return_arg      array of arguments for making json response / $_GET response
