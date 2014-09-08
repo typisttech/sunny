@@ -90,7 +90,7 @@ You can disable this behavior via the `General` tab.
 
 = Dose it support mulitsite? =
 
-Confirmed that it doesn't work network wide. While this version of `Sunny` does not intended to support mulitsite, you might want to try activating `Sunny` on a per site basis (WPMU DEV has a step-by-step [tutorial](http://premium.wpmudev.org/manuals/wpmu-manual-2/activating-and-deactivating-plugins-on-a-per-site-basis/)). Please report your foundings.
+Confirmed that it doesn't work network wide. While this version of `Sunny` does not intended to support mulitsite, you might want to try activating `Sunny` on a per site basis (WPMU DEV has a step-by-step [tutorial](http://premium.wpmudev.org/manuals/wpmu-manual-2/activating-and-deactivating-plugins-on-a-per-site-basis/)). Please report your findings.
 
 Moreover, I am planning to write a mulitsite version. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
 
