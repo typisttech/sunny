@@ -23,7 +23,6 @@ class Sunny_Ajax_Handler {
 	 *
 	 * @since    1.4.0
 	 * @var      string    $name       The name of this plugin.
-	 * @var      string    $version    The version of this plugin.
 	 */
 	public function __construct( $name ) {
 
