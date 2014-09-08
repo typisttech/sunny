@@ -44,7 +44,10 @@ class Sunny_Tools_Handler {
 		// Check that user has proper secuity level && Check the nonce field && Check refer from Tools tab
 		if ( current_user_can( 'manage_options') && check_admin_referer( 'sunny_tools_' . $id . '-options' ) && !empty( $_POST['_wp_http_referer'] ) && isset( $_POST['_wp_http_referer'] ) ) {
 
-			parse_str( $_POST['_wp_http_referer'], $referrer );
+			$_wp_http_referer = $_POST['_wp_http_referer'];
+			$_wp_http_referer = strstr( $_wp_http_referer, '?');
+			$_wp_http_referer = str_replace( '?', '', $_wp_http_referer );
+			parse_str( $_wp_http_referer, $referrer );
 
 			if ( isset( $referrer['tab'] ) && 'tools' == $referrer['tab'] && isset( $referrer['page'] ) && 'sunny' == $referrer['page']) {
 

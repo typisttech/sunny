@@ -104,6 +104,13 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 == Changelog ==
 
+= 1.4.5 =
+* Performance: Not loading plugin css
+* Security: Checking page=sunny as referral
+* Fix: `check wp_http_referer` bugged with question marks
+* Fix: Empty customized bad usernames issue
+
+
 = 1.4.4 =
 * New: Customize bad usernames
 * New: Non-ajax support to `Tools` Ttb
