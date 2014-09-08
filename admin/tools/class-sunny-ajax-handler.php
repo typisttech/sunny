@@ -92,9 +92,22 @@ class Sunny_Ajax_Handler {
 		$this->send_JSON_response( $return_args );
 		die;
 
-	} // process_connection_test
+	} // end process_test_connection
 
+	/**
+	 * @since     1.2.0
+	 */
+	public function process_zone_purge() {
 
+		$this->secuity_check( 'zone_purger' );
+
+		$zone_purger = new Sunny_Zone_Purger( $this->name );
+		$return_args = $zone_purger->get_result();
+
+		$this->send_JSON_response( $return_args );
+		die;
+
+	} // end process_purge_zone
 
 	/**
 	 * @since     1.2.0
@@ -142,7 +155,7 @@ class Sunny_Ajax_Handler {
 
 		die;
 
-	} // end process_ajax
+	} // end process_purge_url
 
 	/**
 	 *
@@ -180,61 +193,7 @@ class Sunny_Ajax_Handler {
 	}
 
 
-	/**
-	 * @since     1.2.0
-	 */
-	public function process_zone_purge() {
 
-		$this->secuity_check( 'zone_purger' );
-
-		$cf_response = Sunny_Purger::purge_cloudflare_cache_all();
-		$return_args = $this->check_zone_purge_response( $cf_response );
-		$response = json_encode( $return_args  );
-
-		// return json response
-		echo $response;
-
-		die;
-
-	} // end process_ajax
-
-	/**
-	 * @since     1.2.0
-	 *
-	 * @param     $_response        The response after api call, could be WP Error object or HTTP return object.
-	 *
-	 * @return    $_return_arg      array of arguments for making json response
-	 */
-	private function check_zone_purge_response( $_response ) {
-
-		$_return_arg['zone_purge_result'] = '1';
-
-		if ( is_wp_error( $_response ) ) {
-
-			$_return_arg['message'] = 'WP Error' . $_response->get_error_messages();
-
-		} // end wp error
-		else {
-
-			// API made
-			$_response_array = json_decode( $_response['body'], true );
-
-			if ( 'error' == $_response_array['result'] ) {
-
-				$_return_arg['message'] = 'API Error' . $_response_array['msg'];
-
-			} // end api returns error
-			elseif ( 'success' == $_response_array['result'] ) {
-
-				$_return_arg['message'] = 'Success: All cache has been purged.';
-
-			} // end api success
-
-		} // end connection success
-
-		return $_return_arg;
-
-	} // end check_response
 
 
 } //end Sunny_URL_Purger_Ajax_Handler

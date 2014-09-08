@@ -100,6 +100,7 @@ class Sunny_Tools_Handler {
 	 */
 	private function send_GET_response( $_return_args ) {
 
+		// $_return_arg['result'] 		= $_return_arg['result'];
 		$_return_args['message']	= $this->prepare_result_message( $_return_args );
 		$_return_args['page']		= $this->name;
 		$_return_args['tab']		= 'tools';
@@ -123,5 +124,20 @@ class Sunny_Tools_Handler {
 		die;
 
 	} // process_connection_test
+
+	/**
+	 * @since     1.4.4
+	 */
+	public function process_zone_purge() {
+
+		$this->secuity_check( 'zone_purger' );
+
+		$zone_purger = new Sunny_Zone_Purger( $this->name );
+		$return_args = $zone_purger->get_result();
+
+		$this->send_GET_response( $return_args );
+		die;
+
+	} // end process_zone_purge
 
 }

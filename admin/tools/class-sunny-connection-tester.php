@@ -73,7 +73,7 @@ class Sunny_Connection_Tester {
 	 */
 	private function check_connection_test_response( $_cf_response ) {
 
-		$return_arg['connection_tester_result'] = '1';
+		$return_arg['result'] = 'connection_tester';
 
 		if ( is_wp_error( $_cf_response ) ) {
 

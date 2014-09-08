@@ -16,7 +16,7 @@ $desc 		= $metabox['args']['desc'];
 $action		= $metabox['args']['action'];
 $btn_text 	= $metabox['args']['btn_text'];
 
-$has_result = !empty( $_GET[ $id . '_result' ] ) && '1' == $_GET[ $id . '_result' ];
+$has_result = !empty( $_GET[ 'result' ] ) && $_GET[ 'result'] == $id;
 $message	= !empty( $_GET['message'] ) ? $_GET['message'] : '';
 // We turned line breaks into !!!!! at sunny-class-tools-handler.php
 $message	=  str_replace( '!!!!!', '<br />', $message );
@@ -35,7 +35,7 @@ $message	=  str_replace( '!!!!!', '<br />', $message );
 		?>
 
 		<?php do_settings_sections( 'sunny_tools_' . $id ); ?>
-		<?php submit_button( $btn_text, 'primary', $id . '_button' ); ?>
+		<?php submit_button( $btn_text, 'primary', 'sunny_' . $id . '_button' ); ?>
 	</form>
 	<br class="clear">
 
