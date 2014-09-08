@@ -3,7 +3,7 @@ Contributors: tangrufus
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%40gmail%2ecom&lc=HK&item_name=Sunny%20%28CloudFlare%20Management%29%20Plugin%20Donation&item_number=sunny%2edonation%2ewp%2eorg&amount=10%2e00&currency_code=USD&button_subtype=products&no_note=0&add=1&bn=PP%2dShopCartBF%3abtn_cart_LG%2egif%3aNonHostedGuest
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
-Tested up to: 3.9.2
+Tested up to: 4.0.0
 Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -90,7 +90,9 @@ You can disable this behavior via the `General` tab.
 
 = Dose it support mulitsite? =
 
-Never tested. However, I am planning to written one. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
+Confirmed that it doesn't work network wide. While this version of `Sunny` does not intended to support mulitsite, you might want to try activating `Sunny` on a per site basis (WPMU DEV has a step-by-step [tutorial](http://premium.wpmudev.org/manuals/wpmu-manual-2/activating-and-deactivating-plugins-on-a-per-site-basis/))
+
+Moreover, I am planning to written one. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
 
 
 == Screenshots ==
@@ -102,6 +104,8 @@ Never tested. However, I am planning to written one. [Drop me a note](http://tan
 
 == Changelog ==
 
+= 1.4.4 =
+* Prevent network wide activation
 
 = 1.4.3 =
 * Fixed deactivation hook
