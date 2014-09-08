@@ -32,9 +32,9 @@ class Sunny_Connection_Tester {
 
 	/**
 	 * Perform connection test
-	 * 
+	 *
 	 * @since     1.4.4
-	 * 
+	 *
 	 * @return    $_return_arg      array of arguments for making json response / $_GET response
 	 */
 	public function get_result() {
@@ -46,9 +46,9 @@ class Sunny_Connection_Tester {
 
 	/**
 	 * Perform rec_load_all api call
-	 * 
+	 *
 	 * @since  1.4.4
-	 * 
+	 *
 	 * @return $_cf_response     The response after rec_load_all api call, could be WP Error object or HTTP return object.
 	 */
 	private function perform_api_request() {
@@ -73,12 +73,11 @@ class Sunny_Connection_Tester {
 	 */
 	private function check_connection_test_response( $_cf_response ) {
 
-		$return_arg['connection_test_result'] = '1';
+		$return_arg['connection_tester_result'] = '1';
 
 		if ( is_wp_error( $_cf_response ) ) {
 
-			$return_arg['result'] = 'WP Error';
-			$return_arg['message'] = $_cf_response->get_error_messages();
+			$return_arg['message'] = 'WP Error: ' . $_cf_response->get_error_message();
 
 		}// end if //WP Error
 
@@ -88,12 +87,11 @@ class Sunny_Connection_Tester {
 
 			if ( 'error' == $_cf_response_array['result'] ) {
 
-				$return_arg['result'] = 'Error';
-				$return_arg['message'] = $_cf_response_array['msg'];
+				$return_arg['message'] = 'Error: ' . $_cf_response_array['msg'];
 
 			} else {
 
-				$return_arg['result'] = 'Success';
+				$return_arg['message'] = 'Success';
 
 				$domain = parse_url( get_option( 'home' ), PHP_URL_HOST );
 
@@ -118,7 +116,7 @@ class Sunny_Connection_Tester {
 				$str_message = '<br />';
 				$str_message .= 'DNS record for ' . $domain . ' found: ' . $dns_record_found . '<br />';
 				$str_message .= 'Service mode turned on: ' . $service_mode_on . '<br />';
-				$return_arg['message'] = $str_message;
+				$return_arg['message'] .= $str_message;
 
 			} // end else // apiconnection success
 

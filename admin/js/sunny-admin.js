@@ -26,11 +26,11 @@
 			jQuery("#sunny_connection_tester_button").attr("disabled", "disabled")
 			var data = {
 				action: jQuery("#sunny_connection_tester_form [name='action']").val(),
-						_nonce:  jQuery("#sunny_connection_tester_form #_wpnonce").val(),// The security nonce
+						_wpnonce:  jQuery("#sunny_connection_tester_form #_wpnonce").val(),// The security nonce
 						_wp_http_referer: jQuery("#sunny_connection_tester_form [name='_wp_http_referer']").val()
 					};
 					jQuery.post( ajaxurl, data, function (response) {
-						var output = "<p>" + response.result + ": " + response.message + "</p>";
+						var output = "<p>" + response.message + "</p>";
 						jQuery("#sunny_connection_tester_result").append(jQuery(output).fadeIn('slow'));
 						jQuery("#sunny_connection_tester_form_spinner").hide();
 						jQuery("#sunny_connection_tester_button").removeAttr("disabled");
@@ -46,11 +46,11 @@
 			jQuery("#sunny_zone_purger_button").attr("disabled", "disabled")
 			var data = {
 				action: jQuery("#sunny_zone_purger_form [name='action']").val(),
-					_nonce:  jQuery("#sunny_zone_purger_form #_wpnonce").val(),// The security nonce
+					_wpnonce:  jQuery("#sunny_zone_purger_form #_wpnonce").val(),// The security nonce
 					_wp_http_referer: jQuery("#sunny_zone_purger_form [name='_wp_http_referer']").val()
 				};
 				jQuery.post( ajaxurl, data, function (response) {
-					var output = "<p>" + response.result + ": " + response.message + "</p>";
+					var output = "<p>" + response.message + "</p>";
 					jQuery("#sunny_zone_purger_result").append(jQuery(output).fadeIn('slow'));
 					jQuery("#sunny_zone_purger_form_spinner").hide();
 					jQuery("#sunny_zone_purger_button").removeAttr("disabled");
@@ -66,7 +66,7 @@
 			jQuery("#sunny_url_purger_button").attr("disabled", "disabled")
 			var data = {
 				action: jQuery("#sunny_url_purger_form [name='action']").val(),
-				_nonce:      jQuery("#sunny_url_purger_form #_wpnonce").val(),// The security nonce
+				_wpnonce:      jQuery("#sunny_url_purger_form #_wpnonce").val(),// The security nonce
 				_wp_http_referer: jQuery("#sunny_url_purger_form [name='_wp_http_referer']").val(),
 				"post_url": jQuery('#sunny_settings\\[post_url\\]').val()
 			};

@@ -38,10 +38,10 @@ class Sunny_Ajax_Handler {
 	 *
 	 * @since  1.4.0
 	 */
-	private function ajax_secuity_check( $id ) {
+	private function secuity_check( $id ) {
 
 		// Check that user has proper secuity level && Check the nonce field && Check refer from Tools tab
-		if ( current_user_can( 'manage_options') && check_ajax_referer( 'sunny_tools_' . $id . '-options', '_nonce', false ) && !empty( $_POST['_wp_http_referer'] ) && isset( $_POST['_wp_http_referer'] ) ) {
+		if ( current_user_can( 'manage_options') && check_ajax_referer( 'sunny_tools_' . $id . '-options', '_wpnonce', false ) && !empty( $_POST['_wp_http_referer'] ) && isset( $_POST['_wp_http_referer'] ) ) {
 
 			parse_str( $_POST['_wp_http_referer'], $referrer );
 
@@ -61,7 +61,7 @@ class Sunny_Ajax_Handler {
 		$this->send_JSON_response( $return_args );
 		die;
 
-	} // end ajax_secuity_check
+	} // end secuity_check
 
 	/**
 	 * Send JSON response back to browser
@@ -82,9 +82,9 @@ class Sunny_Ajax_Handler {
 	/**
 	 * @since     1.2.0
 	 */
-	public function process_ajax_connection_test() {
+	public function process_connection_test() {
 
-		$this->ajax_secuity_check( 'connection_tester' );
+		$this->secuity_check( 'connection_tester' );
 
 		$connection_tester = new Sunny_Connection_Tester( $this->name );
 		$return_args = $connection_tester->get_result();
@@ -92,16 +92,16 @@ class Sunny_Ajax_Handler {
 		$this->send_JSON_response( $return_args );
 		die;
 
-	} // process_ajax_connection_test
+	} // process_connection_test
 
 
 
 	/**
 	 * @since     1.2.0
 	 */
-	public function process_ajax_url_purge() {
+	public function process_url_purge() {
 
-		$this->ajax_secuity_check( 'url_purger' );
+		$this->secuity_check( 'url_purger' );
 
 		// It's safe to carry on
 		// Prepare return message
@@ -142,7 +142,7 @@ class Sunny_Ajax_Handler {
 
 		die;
 
-	} // end process_ajax_ajax
+	} // end process_ajax
 
 	/**
 	 *
@@ -183,9 +183,9 @@ class Sunny_Ajax_Handler {
 	/**
 	 * @since     1.2.0
 	 */
-	public function process_ajax_zone_purge() {
+	public function process_zone_purge() {
 
-		$this->ajax_secuity_check( 'zone_purger' );
+		$this->secuity_check( 'zone_purger' );
 
 		$cf_response = Sunny_Purger::purge_cloudflare_cache_all();
 		$return_args = $this->check_zone_purge_response( $cf_response );
@@ -196,7 +196,7 @@ class Sunny_Ajax_Handler {
 
 		die;
 
-	} // end process_ajax_ajax
+	} // end process_ajax
 
 	/**
 	 * @since     1.2.0
@@ -211,8 +211,7 @@ class Sunny_Ajax_Handler {
 
 		if ( is_wp_error( $_response ) ) {
 
-			$_return_arg['result'] = 'WP Error';
-			$_return_arg['message'] = $_response->get_error_messages();
+			$_return_arg['message'] = 'WP Error' . $_response->get_error_messages();
 
 		} // end wp error
 		else {
@@ -222,14 +221,12 @@ class Sunny_Ajax_Handler {
 
 			if ( 'error' == $_response_array['result'] ) {
 
-				$_return_arg['result'] = 'API Error';
-				$_return_arg['message'] = $_response_array['msg'];
+				$_return_arg['message'] = 'API Error' . $_response_array['msg'];
 
 			} // end api returns error
 			elseif ( 'success' == $_response_array['result'] ) {
 
-				$_return_arg['result'] = 'Success';
-				$_return_arg['message'] = 'All cache has been purged.';
+				$_return_arg['message'] = 'Success: All cache has been purged.';
 
 			} // end api success
 
