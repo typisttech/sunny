@@ -65,11 +65,15 @@ class Sunny_Ban_Bad_Login {
 			'administrator' );
 
 		$customized_bad_usernames = Sunny_Option::get_option( 'bad_usernames' );
-		$customized_bad_usernames = explode( ',', $customized_bad_usernames );
 
-		foreach( $customized_bad_usernames as $username ) {
-			$bad_usernames[] = strtolower( trim( sanitize_user( $username, true ) ) );
-		}
+		if ( !empty( $customized_bad_usernames ) ) {
+			$customized_bad_usernames = explode( ',', $customized_bad_usernames );
+
+			foreach( $customized_bad_usernames as $username ) {
+				$bad_usernames[] = strtolower( trim( sanitize_user( $username, true ) ) );
+			} //end foreach
+
+		} //end if
 
 		return in_array( $_username, $bad_usernames );
 
