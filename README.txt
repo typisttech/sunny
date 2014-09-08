@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -90,9 +90,9 @@ You can disable this behavior via the `General` tab.
 
 = Dose it support mulitsite? =
 
-Confirmed that it doesn't work network wide. While this version of `Sunny` does not intended to support mulitsite, you might want to try activating `Sunny` on a per site basis (WPMU DEV has a step-by-step [tutorial](http://premium.wpmudev.org/manuals/wpmu-manual-2/activating-and-deactivating-plugins-on-a-per-site-basis/))
+Confirmed that it doesn't work network wide. While this version of `Sunny` does not intended to support mulitsite, you might want to try activating `Sunny` on a per site basis (WPMU DEV has a step-by-step [tutorial](http://premium.wpmudev.org/manuals/wpmu-manual-2/activating-and-deactivating-plugins-on-a-per-site-basis/)). Please report your foundings.
 
-Moreover, I am planning to written one. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
+Moreover, I am planning to write a mulitsite version. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
 
 
 == Screenshots ==
@@ -105,74 +105,76 @@ Moreover, I am planning to written one. [Drop me a note](http://tangrufus.com/hi
 == Changelog ==
 
 = 1.4.4 =
-* Prevent network wide activation
+* New: Customize bad usernames
+* New: Non-ajax support to `Tools` Ttb
+* New: Prevent network wide activation
 
 = 1.4.3 =
-* Fixed deactivation hook
+* Fix: Deactivation hook typo
 
 = 1.4.2 =
-* Add Option to Disable Email Notifications
-* Set Default Email Frequency to Immediately
+* New: Option to disable email notifications
+* Fix: Set default email frequency to immediately
 * Security Fix
 
 = 1.4.1 =
-* Add zh_TW Translation
+* New: zh_TW Translation
 
 = 1.4.0 =
 * Code Rewrite & File Organization
-* Defer noticifcation emails
-* Ban IP if Login As `Administrator`
-* Purge when status change from/to `published`
-* Bug Fix: IP being banned twice
-* Bug Fix: Duplicate blacklist notification email
-* Bug Fix: Admin bar always been hided
+* New: Defer noticifcation emails
+* New: Ban IP if Login As `Administrator`
+* New :Purge when status change from/to `published`
+* Fix: IP being banned twice
+* Fix: Duplicate blacklist notification email
+* Fix: Admin bar always been hided
 
 = 1.3.0 =
-* Ban IP if Login As `Admin`
+* New:Ban IP if Login As `Admin`
 
 = 1.2.6 =
 * Bug Fix
 
 = 1.2.5 =
-* Mailing List Signup Form
+* New: Mailing List Signup Form
 
 = 1.2.4 =
 * Improve Performance
 
 = 1.2.3 =
-* Support Special Type Top Level Domains
+* New: Support special type top level domains
 
 
 = 1.2.2 =
-* Ready for Localization
-* Resovle Class 'Parent' Not Found Fatal Error
+* New: Ready for localization
+* Fix: Class 'Parent' not found fatal error
 
 = 1.2.1 =
 * Bug Fix
 
 = 1.2.0 =
-* Admin Bar Hider
+* New: Admin bar hider
 * Code Rewrite
 * UI Improvement
 * Performance Improvement
-* Remove GitHub Updater
+* Remove: GitHub Updater
 
 = 1.1.1 =
-* Fix Wrong Version Number
+* Fix: Wrong version number
 
 = 1.1.0 =
-* Add URL Purger
-* Purge Related URLs during Post Update
+* New: URL purger
+* New: Purge related URLs during post update
 * Better Description and Documents
 
 = 1.0.4 =
-* Tidy Up Source Code According to WordPress Coding Standard
+* Tidy up source code according to WordPress coding standard
 
 = 1.0.3 =
 * Tidy ReadMe
 
 = 1.0.2 =
-* Add PayPal Donation Link
+* New: PayPal Donation Link
 
 = 1.0.1 =
 * Submit to WordPress Plugin Directory
@@ -180,16 +182,16 @@ Moreover, I am planning to written one. [Drop me a note](http://tangrufus.com/hi
 = 1.0.0 =
 Initial Release
 
-* Add Readme.txt
-* Add Screenshots
+* New: Readme.txt
+* New: Screenshots
 
 = 0.0.2 =
-* Support GitHub Updater
+* New: GitHub Updater
 
 = 0.0.1 =
 * Initial Alpha Test
 
 == Upgrade Notice ==
 
-= 1.3.0 =
-You can ban an IP with Sunny now!
+= 1.4.4 =
+You can define your own bad usernames with Sunny now!

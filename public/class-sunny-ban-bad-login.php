@@ -52,6 +52,30 @@ class Sunny_Ban_Bad_Login {
 	} // end is_enabled
 
 	/**
+	 * Check if username is bad
+	 *
+	 * @return 	boolean 	True if bad
+	 *
+	 * @since 	1.4.4
+	 */
+	private function is_bad_username( $_username ) {
+
+		$bad_usernames = array(
+			'admin',
+			'administrator' );
+
+		$customized_bad_usernames = Sunny_Option::get_option( 'bad_usernames' );
+		$customized_bad_usernames = explode( ',', $customized_bad_usernames );
+
+		foreach( $customized_bad_usernames as $username ) {
+			$bad_usernames[] = strtolower( trim( sanitize_user( $username, true ) ) );
+		}
+
+		return in_array( $_username, $bad_usernames );
+
+	} // end is_bad_username
+
+	/**
 	 * Check if user aptemp to login as Admin and his ip address
 	 *
 	 * @param 	string 	$username
@@ -61,14 +85,11 @@ class Sunny_Ban_Bad_Login {
 	 */
 	private function should_ban( $username, $ip ) {
 
-		$_username 		= strtolower( trim( sanitize_text_field( $username ) ) );
-		$bad_usernames 	= array( 'admin',
-								'administrator' );
-		$is_bad_username = in_array( $_username, $bad_usernames );
+		$username = strtolower( trim( sanitize_user( $username, true ) ) );
 
-		return $is_bad_username
-				&& Sunny_Helper::is_valid_ipv4( $ip )
-				&& ! Sunny_Helper::is_localhost( $ip );
+		return $this->is_bad_username( $username )
+		&& Sunny_Helper::is_valid_ipv4( $ip )
+		&& ! Sunny_Helper::is_localhost( $ip );
 
 	} // end should_ban
 
@@ -92,10 +113,10 @@ class Sunny_Ban_Bad_Login {
 		if ( Sunny_Helper::is_api_success( $response ) ) {
 
 			$notice = array(
-							'ip' => $ip,
-							'date' => current_time( 'timestamp' ),
-							'reason' => sprintf( __( 'Tried to login as `%s`', $this->name ), $username )
-							);
+				'ip' => $ip,
+				'date' => current_time( 'timestamp' ),
+				'reason' => sprintf( __( 'Tried to login as `%s`', $this->name ), $username )
+				);
 
 			do_action( 'sunny_banned_login_with_bad_username', $notice );
 
