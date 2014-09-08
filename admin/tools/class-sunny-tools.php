@@ -3,7 +3,7 @@
 /**
  *
  * @package    Sunny
- * @subpackage Sunny/admin/settings
+ * @subpackage Sunny/admin/tools
  * @author     Tang Rufus <tangrufus@gmail.com>
  * @since  	   1.4.0
  */

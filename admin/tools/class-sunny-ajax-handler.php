@@ -3,7 +3,7 @@
 /**
  *
  * @package    Sunny
- * @subpackage Sunny/admin/settings
+ * @subpackage Sunny/admin/tools
  * @author     Tang Rufus <tangrufus@gmail.com>
  * @since  	   1.4.0
  */
@@ -39,9 +39,7 @@ class Sunny_Ajax_Handler {
 	 *
 	 * @since  1.4.0
 	 */
-	private function secuity_check( $id ) {
-
-		header('Content-Type: application/json');
+	private function ajax_secuity_check( $id ) {
 
 		// Check that user has proper secuity level && Check the nonce field && Check refer from Tools tab
 		if ( current_user_can( 'manage_options') && check_ajax_referer( 'sunny_tools_' . $id . '-options', '_nonce', false ) && !empty( $_POST['_wp_http_referer'] ) && isset( $_POST['_wp_http_referer'] ) ) {
@@ -61,111 +59,50 @@ class Sunny_Ajax_Handler {
 			"result" => "Error",
 			"message" => "403 Forbidden",
 			);
-		$response = json_encode( $return_args );
-		echo $response;
-
+		$this->send_JSON_response( $return_args );
 		die;
 
-	} // end secuity_check
+	} // end ajax_secuity_check
+
+	/**
+	 * Send JSON response back to browser
+	 *
+	 * @since  1.4.4
+	 *
+	 * @param  array 	$_return_args
+	 */
+	private function send_JSON_response( $_return_args ) {
+
+		header('Content-Type: application/json');
+		$_response = json_encode( $_return_args  );
+		echo $_response;
+		die;
+
+	}
 
 	/**
 	 * @since     1.2.0
 	 */
-	public function process_connection_test() {
+	public function process_ajax_connection_test() {
 
-		if ( ! $this->secuity_check( 'connection_tester' ) ) {
+		$this->ajax_secuity_check( 'connection_tester' );
 
-			die;
+		$connection_tester = new Sunny_Connection_Tester( $this->name );
+		$return_args = $connection_tester->get_result();
 
-		}
-
-		$email = Sunny_Option::get_option( 'cloudflare_email' );
-		$api_key = Sunny_Option::get_option( 'cloudflare_api_key' );
-		$cf_api_helper = new Sunny_CloudFlare_API_Helper( $email, $api_key );
-
-		$domain = Sunny_Helper::get_domain( get_option( 'home' ) );
-		$cf_response = $cf_api_helper->rec_load_all( $domain );
-
-		$return_args = $this->check_connection_test_response( $cf_response );
-		$response = json_encode( $return_args  );
-
-		// return json response
-		echo $response;
-
+		$this->send_JSON_response( $return_args );
 		die;
 
-	} // process_connection_test
+	} // process_ajax_connection_test
 
-	 /**
-	 * @since     1.2.0
-	 *
-	 * @param     $_response        The response after api call, could be WP Error object or HTTP return object.
-	 *
-	 * @return    $_return_arg      array of arguments for making json response
-	 */
-	 private function check_connection_test_response( $_response ) {
 
-		$return_arg['connection_test_result'] = '1';
-
-		if ( is_wp_error( $_response ) ) {
-
-			$return_arg['result'] = 'WP Error';
-			$return_arg['message'] = $_response->get_error_messages();
-
-		}// end if //WP Error
-
-		else {
-			// API call made
-			$_response_array = json_decode( $_response['body'], true );
-
-			if ( 'error' == $_response_array['result'] ) {
-
-				$return_arg['result'] = 'Error';
-				$return_arg['message'] = $_response_array['msg'];
-
-			} else {
-
-				$return_arg['result'] = 'Success';
-
-				$domain = parse_url( get_option( 'home' ), PHP_URL_HOST );
-
-				$dns_record_found = 'No';
-				$service_mode_on = 'No';
-
-				foreach( $_response_array['response']['recs']['objs'] as $obj ){
-
-					if ( $obj['name'] == $domain ) {
-
-						$dns_match = true;
-						$dns_record_found = ( 'A' == $obj['type'] || 'AAAA' == $obj['type'] || 'CNAME' == $obj['type'] ) ? 'Yes' : 'No';
-						$service_mode_on = ( '1' == $obj['service_mode'] ) ? 'Yes' : 'No';
-						break;
-
-					} // end if
-
-				} // end foreach
-
-				$dns_match = ( true === $dns_match ) ? 'Yes' : 'No';
-
-				$str_message = '<br />';
-				$str_message .= 'DNS record for ' . $domain . ' found: ' . $dns_record_found . '<br />';
-				$str_message .= 'Service mode turned on: ' . $service_mode_on . '<br />';
-				$return_arg['message'] = $str_message;
-
-			} // end else // apiconnection success
-
-		}// end else // api connection
-
-		return $return_arg;
-
-	} // end check_connection_test_response
 
 	/**
 	 * @since     1.2.0
 	 */
-	public function process_url_purge() {
+	public function process_ajax_url_purge() {
 
-		$this->secuity_check( 'url_purger' );
+		$this->ajax_secuity_check( 'url_purger' );
 
 		// It's safe to carry on
 		// Prepare return message
@@ -206,7 +143,7 @@ class Sunny_Ajax_Handler {
 
 		die;
 
-	} // end process_ajax
+	} // end process_ajax_ajax
 
 	/**
 	 *
@@ -247,9 +184,9 @@ class Sunny_Ajax_Handler {
 	/**
 	 * @since     1.2.0
 	 */
-	public function process_zone_purge() {
+	public function process_ajax_zone_purge() {
 
-		$this->secuity_check( 'zone_purger' );
+		$this->ajax_secuity_check( 'zone_purger' );
 
 		$cf_response = Sunny_Purger::purge_cloudflare_cache_all();
 		$return_args = $this->check_zone_purge_response( $cf_response );
@@ -260,7 +197,7 @@ class Sunny_Ajax_Handler {
 
 		die;
 
-	} // end process_ajax
+	} // end process_ajax_ajax
 
 	/**
 	 * @since     1.2.0
