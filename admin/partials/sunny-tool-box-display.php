@@ -35,6 +35,7 @@ $message	=  str_replace( '!!!!!', '<br />', $message );
 		?>
 
 		<?php do_settings_sections( 'sunny_tools_' . $id ); ?>
+		<br class="clear">
 		<?php submit_button( $btn_text, 'primary', 'sunny_' . $id . '_button' ); ?>
 	</form>
 	<br class="clear">
