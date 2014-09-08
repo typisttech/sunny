@@ -161,14 +161,22 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/mailer/class-sunny-email-template.php';
 
 		/**
-		 * The class responsible for defining ajax toolboxes.
+		 * The class responsible for defining toolboxes.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools.php';
 
 		/**
-		 * The class responsible for defining ajax handlers.
+		 * These classes responsible for defining tools handlers (ajax & non-ajax).
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-ajax-handler.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools-handler.php';
+
+		/**
+		 * These classes responsible for defining the tools.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-connection-tester.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-zone-purger.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-url-purger.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -246,10 +254,17 @@ class Sunny {
 		$plugin_tools = new Sunny_Tools( $this->get_plugin_name() );
 		$this->loader->add_action( 'load-toplevel_page_sunny' , $plugin_tools, 'add_meta_boxes' );
 
+		// Ajax Tools
 		$plugin_ajax_handler = new Sunny_Ajax_Handler( $this->get_plugin_name() );
-		$this->loader->add_action( 'wp_ajax_sunny_test_connection' , $plugin_ajax_handler, 'process_connection_test' );
-		$this->loader->add_action( 'wp_ajax_sunny_purge_zone' , $plugin_ajax_handler, 'process_zone_purge' );
-		$this->loader->add_action( 'wp_ajax_sunny_purge_url' , $plugin_ajax_handler, 'process_url_purge' );
+		$this->loader->add_action( 'wp_ajax_sunny_connection_test' , $plugin_ajax_handler, 'process_connection_test' );
+		$this->loader->add_action( 'wp_ajax_sunny_zone_purge' , $plugin_ajax_handler, 'process_zone_purge' );
+		$this->loader->add_action( 'wp_ajax_sunny_url_purge' , $plugin_ajax_handler, 'process_url_purge' );
+
+		// Non-Ajax Tools
+		$plugin_tools_handler = new Sunny_Tools_Handler( $this->get_plugin_name() );
+		$this->loader->add_action( 'admin_post_sunny_connection_test' , $plugin_tools_handler, 'process_connection_test' );
+		$this->loader->add_action( 'admin_post_sunny_zone_purge' , $plugin_tools_handler, 'process_zone_purge' );
+		$this->loader->add_action( 'admin_post_sunny_url_purge' , $plugin_tools_handler, 'process_url_purge' );
 
 		$this->loader->add_action( 'sunny_settings_on_change_notification_frequency', 'Sunny_Cron', 'update_schedule' );
 
