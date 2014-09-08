@@ -46,7 +46,7 @@ class Sunny_Tools_Handler {
 
 			parse_str( $_POST['_wp_http_referer'], $referrer );
 
-			if ( isset( $referrer['tab'] ) && 'tools' == $referrer['tab'] ) {
+			if ( isset( $referrer['tab'] ) && 'tools' == $referrer['tab'] && isset( $referrer['page'] ) && 'sunny' == $referrer['page']) {
 
 				return true;
 
