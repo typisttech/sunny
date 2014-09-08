@@ -77,9 +77,10 @@ class Sunny_Tools {
 				'normal',							// Context
 				'default',							// $priority
 				array(
-					'id' 	=> $tool['id'],
-					'desc' 	=> $tool['desc'],
-					'btn_text' => isset( $tool['btn_text'] ) ? $tool['btn_text'] : __( 'Go', $this->name ),
+					'id' 		=> $tool['id'],
+					'action' 	=> $tool['action'],
+					'desc' 		=> $tool['desc'],
+					'btn_text' 	=> isset( $tool['btn_text'] ) ? $tool['btn_text'] : __( 'Go', $this->name ),
 					)
 				);
 
@@ -138,37 +139,40 @@ class Sunny_Tools {
 	 * 'Whitelisted' Sunny settings, filters are provided for each settings
 	 * section to allow extensions and other plugins to add their own settings
 	 */
-		$tools[] = array(
-			'id' 	=> 'connection_tester',
-			'title' => __( 'Test Connection', $this->name ),
-			'btn_text' => __( 'Test Connection', $this->name ),
-			'desc'	=> __( "To check if <code>Sunny</code> can connect to CloudFlare's server", $this->name )
-			);
+	$tools[] = array(
+		'id' 		=> 'connection_tester',
+		'title' 	=> __( 'Test Connection', $this->name ),
+		'action' 	=> 'sunny_test_connection',
+		'btn_text' 	=> __( 'Test Connection', $this->name ),
+		'desc'		=> __( "To check if <code>Sunny</code> can connect to CloudFlare's server", $this->name )
+		);
 
-		$tools[] = array(
-			'id' 	=> 'zone_purger',
-			'title' => __( 'Zone Purger', $this->name ),
-			'btn_text' => __( 'Clear all cache', $this->name ),
-			'desc'	=> __( "Clear CloudFlare's cache.<br />This function will purge CloudFlare of any cached files. It may take up to 48 hours for the cache to rebuild and optimum performance to be achieved so this function should be used sparingly.", $this->name )
-			);
+	$tools[] = array(
+		'id' 		=> 'zone_purger',
+		'title' 	=> __( 'Zone Purger', $this->name ),
+		'action' 	=> 'sunny_purge_zone',
+		'btn_text' 	=> __( 'Clear all cache', $this->name ),
+		'desc'		=> __( "Clear CloudFlare's cache.<br />This function will purge CloudFlare of any cached files. It may take up to 48 hours for the cache to rebuild and optimum performance to be achieved so this function should be used sparingly.", $this->name )
+		);
 
-		$tools[] = array(
-			'id' 	=> 'url_purger',
-			'title' => __( 'URL Purger', $this->name ),
-			'btn_text' => __( 'Clear cache', $this->name ),
-			'desc'	=> __( 'Purge a post by URL and (if enabled) its associated pages(e.g: categories, tags and archives).', $this->name ),
-			'settings' => array(
-					'post_url' => array(
-						'id'   => 'post_url',
-						'name' => __( 'Post URL', $this->name ),
-						'desc' => __( 'The URL you want to purge.', $this->name ),
-						'type' => 'text',
-						'std'  => 'http://example.com/hello/',
-						)
-					)
-			);
+	$tools[] = array(
+		'id' 		=> 'url_purger',
+		'title' 	=> __( 'URL Purger', $this->name ),
+		'action' 	=> 'sunny_purge_url',
+		'btn_text' 	=> __( 'Clear cache', $this->name ),
+		'desc'		=> __( 'Purge a post by URL and (if enabled) its associated pages(e.g: categories, tags and archives).', $this->name ),
+		'settings' 	=> array(
+			'post_url' 	=> array(
+				'id'   	=> 'post_url',
+				'name' 	=> __( 'Post URL', $this->name ),
+				'desc' 	=> __( 'The URL you want to purge.', $this->name ),
+				'type' 	=> 'text',
+				'std'  	=> 'http://example.com/hello/',
+				)
+			)
+		);
 
-		return $tools;
+	return $tools;
 
 	} // end set_registered_tools
 
@@ -179,7 +183,7 @@ class Sunny_Tools {
 	 */
 	public function render_meta_box( $post, $metabox ) {
 
-		require( plugin_dir_path( dirname( __FILE__ ) ) . 'partials/sunny-ajax-box-display.php' );
+		require( plugin_dir_path( dirname( __FILE__ ) ) . 'partials/sunny-tool-box-display.php' );
 
 	} // end render_meta_box
 

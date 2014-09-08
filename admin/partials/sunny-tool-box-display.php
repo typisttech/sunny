@@ -12,13 +12,21 @@
 
 <?php $id = $metabox['args']['id']; ?>
 <?php $desc = $metabox['args']['desc']; ?>
+<?php $action = $metabox['args']['action']; ?>
 <?php $btn_text = $metabox['args']['btn_text']; ?>
 
 <div id="<?php echo $id; ?>" class="wrap">
-	<form id="sunny_<?php echo $id; ?>_form" method="POST">
+	<form id="sunny_<?php echo $id; ?>_form" method="POST" action="/wp-admin/admin-post.php">
 		<?php echo $desc ?>
 		<br />
-		<?php settings_fields( 'sunny_tools_' . $id ); ?>
+		<?php
+		// settings_fields($option_group)
+		$option_group = 'sunny_tools_' . $id;
+		echo "<input type='hidden' name='option_page' value='" . esc_attr($option_group) . "' />";
+		echo "<input type='hidden' name='action' value='$action' />";
+		wp_nonce_field("$option_group-options");
+		?>
+
 		<?php do_settings_sections( 'sunny_tools_' . $id ); ?>
 		<?php submit_button( $btn_text, 'primary', $id . '_button' ); ?>
 	</form>
