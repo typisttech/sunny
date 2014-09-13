@@ -106,6 +106,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 = 1.4.6 =
 * Fix: Separating admin notices and email notification
+* Fix: Log email notification into php error log only if `WP_DEBUG` is true
 
 = 1.4.5 =
 * Performance: Not loading plugin css
