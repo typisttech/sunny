@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Sunny automatically clears CloudFlare cache. And, protect your WordPress site at
 
 = Features =
 
-* Blacklist IP if attempt to login with bad username, e.g.: `Admin` & `Administrator`
+* Blacklist IP if attempt to login with bad username
 * Automatically clears corresponding CloudFlare caches whenever a post/page/media attachment is updated, commented or trashed.
 * Purge your entire CloudFlare cache manually
 * Purge your a URL cache manually
@@ -103,6 +103,10 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 
 == Changelog ==
+
+= 1.4.6 =
+* Fix: Separating admin notices and email notification
+* Fix: Log email notification into php error log only if `WP_DEBUG` is true
 
 = 1.4.5 =
 * Performance: Not loading plugin css

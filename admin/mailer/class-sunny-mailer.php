@@ -31,17 +31,17 @@ class Sunny_Mailer {
 	}
 
 	/**
-	 * Send blacklist notification
+	 * Send blacklist notifications
 	 *
 	 * @since  1.4.0
 	 *
-	 * @param  array  $notices Blacklisted IP details
+	 * @param  array  $notifications Blacklisted IP details
 	 * @return void
 	 */
-	private function email_blacklist_notification( array $notices ) {
+	private function email_blacklist_notifications( array $notifications ) {
 
-		// Early quit if no notices
-		if ( empty( $notices ) ) {
+		// Early quit if no notifications
+		if ( empty( $notifications ) ) {
 			return;
 		}
 
@@ -59,41 +59,41 @@ class Sunny_Mailer {
 		// Set Body Content
 		$template = new Sunny_Email_Template( $this->name );
 		$message = $template->get_email_body_header();
-		$message .= $template->get_blacklist_email_body_content( $notices, $to_name );
+		$message .= $template->get_blacklist_email_body_content( $notifications, $to_name );
 		$message .= $template->get_email_body_footer();
 
 		// Set Email Headers
 		// From Name
 		$option_email_from_name = Sunny_Option::get_option( 'email_from_name' );
 		$from_name = ( !empty( $option_email_from_name ) ) ? $option_email_from_name : get_bloginfo('name');
-		$from_name = apply_filters( 'sunny_blacklist_email_from_name', $from_name, $to_address, $to_name, $notices );
+		$from_name = apply_filters( 'sunny_blacklist_email_from_name', $from_name, $to_address, $to_name, $notifications );
 
 		// From Email Address
 		$option_email_from_address = Sunny_Option::get_option( 'email_from_address' );
 		$from_address = ( !empty( $option_email_from_address ) ) ? $option_email_from_address : get_option('admin_email');
-		$from_address = apply_filters( 'sunny_blacklist_email_from_address', $from_address, $from_name, $to_address, $to_name, $notices );
+		$from_address = apply_filters( 'sunny_blacklist_email_from_address', $from_address, $from_name, $to_address, $to_name, $notifications );
 
 		// Subject
 		$option_blacklist_email_subject = Sunny_Option::get_option( 'blacklist_email_subject' );
 		$subject = ( !empty( $option_blacklist_email_subject ) ) ? wp_strip_all_tags( $option_blacklist_email_subject, true ) : __( 'Blacklist Notification', $this->name );
-		$subject = apply_filters( 'sunny_blacklist_email_subject', $subject, $from_address, $from_name, $to_address, $to_name, $notices );
+		$subject = apply_filters( 'sunny_blacklist_email_subject', $subject, $from_address, $from_name, $to_address, $to_name, $notifications );
 
 		// Combine Email Headers
 		$headers = 'From: ' . stripslashes_deep( html_entity_decode( $from_name, ENT_COMPAT, 'UTF-8' ) ) . " <" . $from_address . ">\r\n";
 		$headers .= 'Reply-To: ' . $from_address . "\r\n";
 		$headers .= "Content-Type: text/html; charset=utf-8\r\n";
 
-		$headers = apply_filters( 'sunny_blacklist_email_headers', $headers, $subject, $from_address, $from_name, $to_address, $to_name, $notices );
+		$headers = apply_filters( 'sunny_blacklist_email_headers', $headers, $subject, $from_address, $from_name, $to_address, $to_name, $notifications );
 
 		// Send Email
-		if ( apply_filters( 'sunny_email_blacklist_notification', true ) ) {
+		if ( apply_filters( 'sunny_email_blacklist_notifications', true ) ) {
 
 			$is_sent = wp_mail( $to_address, $subject, $message, $headers );
 
 			if ( $is_sent ) {
 
-				do_action( 'sunny_after_email_sent', 'Blacklist Notification', $to_address, $subject, $message, $headers, $notices );
-				Sunny_Option::dequeue_notices( $notices );
+				do_action( 'sunny_after_email_sent', 'Blacklist Notification', $to_address, $subject, $message, $headers, $notifications );
+				Sunny_Option::dequeue_notifications( $notifications );
 
 			}
 
@@ -111,15 +111,15 @@ class Sunny_Mailer {
 	public function email_blacklist_notification_digest() {
 
 		// Get logged notices
-		$notices = Sunny_Option::get_enqueued_notices();
+		$notifications = Sunny_Option::get_enqueued_notifications();
 
 		// Early quit if no notices
-		if ( empty( $notices ) ) {
+		if ( empty( $notifications ) ) {
 			return;
 		}
 
 		// Sent email
-		$this->email_blacklist_notification( $notices );
+		$this->email_blacklist_notifications( $notifications );
 
 	}
 
@@ -130,28 +130,28 @@ class Sunny_Mailer {
 	 * @param  array  $notice The details of the notice
 	 * @return void
 	 */
-	public function enqueue_blacklist_notification( array $notice ) {
+	public function enqueue_blacklist_notification( array $notification ) {
 
 		$frequency = Sunny_Option::get_option( 'notification_frequency', 'immediately' );
 
 		if ( 'never' == $frequency ) {
-			// Quit now without sending email / saving notice
+			// Quit now without sending email / saving notifications
 			return;
 		}
 
 		if ( 'immediately' == $frequency ) {
 
 			// Convert 1D array to 2D array
-			$notices = array();
-			array_push( $notices, $notice );
+			$notifications = array();
+			array_push( $notifications, $notification );
 
 			// Send notification email immediately
-			$this->email_blacklist_notification( $notices );
+			$this->email_blacklist_notifications( $notifications );
 
 		} else {
 
-			// Log the $notice
-			Sunny_Option::enqueue_notice( $notice );
+			// Log the $notification
+			Sunny_Option::enqueue_notification( $notification );
 
 		}
 	}
