@@ -67,7 +67,7 @@ class Sunny_Option {
 
 		if ( empty( $notices ) ) {
 			$notices = $default;
-		} 
+		}
 
 		return apply_filters( 'sunny_get_enqueued_admin_notices', $notices, $default );
 
@@ -142,6 +142,77 @@ class Sunny_Option {
 		if ( false != get_option( 'sunny_enqueued_admin_notices' ) || '' == get_option( 'sunny_enqueued_admin_notices' ) ) {
 
 			delete_option( 'sunny_enqueued_admin_notices' );
+
+		}
+
+	}
+
+	/**
+	 * Enqueue notifications
+	 *
+	 * @since 	1.4.6
+	 *
+	 * @param   array 	$notifications 	notifications to be enqueued
+	 * @return 	void
+	 */
+	static public function enqueue_notification( array $notification ) {
+
+		// Early quit if no notifications
+		if ( empty( $notification ) ) {
+			return;
+		}
+
+		$old_notifications = self::get_enqueued_notifications();
+		array_push( $old_notifications, $notification );
+		$new_notifications = apply_filters( 'sunny_enqueue_notification', $old_notifications, $notification);
+
+		delete_option( 'sunny_enqueue_notifications' );
+		add_option( 'sunny_enqueue_notifications', $new_notifications );
+
+	}
+
+	/**
+	 * Get enqueued notifications
+	 *
+	 * Looks to see if notifications exists, returns default if not.
+	 *
+	 * @since 	1.4.6
+	 * @return 	array
+	 */
+	static public function get_enqueued_notifications( $default = array() ) {
+
+		$notifications = get_option( 'sunny_enqueue_notifications', $default );
+
+		return apply_filters( 'sunny_get_enqueued_notifications', $notifications, $default );
+
+	}
+
+	/**
+	 * Delete enqueued notifications
+	 *
+	 * @since  1.4.6
+	 * @param  array  	$notifications 		notifications to be dequeued
+	 * @return void
+	 */
+	static public function dequeue_notifications( array $notifications ) {
+
+		// Early quit if no notifications
+		if ( empty( $notifications ) ) {
+			return;
+		}
+
+		$old_notifications = self::get_enqueued_notifications();
+
+		if ( !empty( $old_notifications ) ) {
+
+			$new_notifications = array_diff( $old_notifications, $notifications );
+			$new_notifications = apply_filters( 'sunny_dequeue_notifications', $new_notifications, $notifications, $old_notifications );
+
+			delete_option( 'sunny_enqueue_notifications' );
+
+			if ( !empty( $new_notifications ) ) {
+				add_option( 'sunny_enqueue_notifications', $new_notifications );
+			}
 
 		}
 

@@ -104,6 +104,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 == Changelog ==
 
+= 1.4.6 =
+* Fix: Separating admin notices and email notification
+
 = 1.4.5 =
 * Performance: Not loading plugin css
 * Security: Checking page=sunny as referral

@@ -63,6 +63,11 @@ if ( ! current_user_can( 'activate_plugins' ) ) {
 check_admin_referer( 'bulk-plugins' );
 
 // Safe to carry on
+//  Options on v1.4.6
+if ( false != get_option( 'sunny_enqueue_notifications' ) || '' == get_option( 'sunny_enqueue_notifications' ) ) {
+	delete_option( 'sunny_enqueue_notifications' );
+}
+
 // Options on v1.4.0
 if ( false != get_option( 'sunny_settings' ) || '' == get_option( 'sunny_settings' ) ) {
 	delete_option( 'sunny_settings' );
