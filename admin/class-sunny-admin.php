@@ -196,17 +196,18 @@ class Sunny_Admin {
 	 */
 	public function show_enqueued_admin_notices() {
 
-		if ( $notices = Sunny_Option::get_enqueued_notices() ) {
+		$notices = Sunny_Option::get_enqueued_admin_notices();
 
-			foreach( $notices as $notice ) {
-
-				echo "<div class='$notice[class]'><p>$notice[message]</p></div>";
-
-			}
-
-			Sunny_Option::dequeue_notices( $notices );
-
+		// Quit early if nosaved  admin notices
+		if ( empty( $notices ) ) {
+			return;
 		}
-	}
 
+		foreach( $notices as $notice ) {
+			echo "<div class='$notice[class]'><p>$notice[message]</p></div>";
+		}
+
+		Sunny_Option::dequeue_admin_notices( $notices );
+
+	} // end show_enqueued_admin_notices
 }

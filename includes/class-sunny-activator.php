@@ -154,12 +154,8 @@ class Sunny_Activator {
 			return;
 		}
 
-		$old_notices = get_option( 'sunny_enqueued_admin_notices', array() );
-		$new_notices = array_push( $old_notices, $notice );
-		$new_notices = apply_filters( 'sunny_enqueued_admin_notices', $old_notices, $notice);
-
-		delete_option( 'sunny_enqueued_admin_notices' );
-		add_option( 'sunny_enqueued_admin_notices', $new_notices );
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-option.php';
+		Sunny_Option::enqueue_admin_notice( $notice );
 
 	}
 
