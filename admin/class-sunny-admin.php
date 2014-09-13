@@ -198,7 +198,7 @@ class Sunny_Admin {
 
 		if ( $notices = Sunny_Option::get_enqueued_notices() ) {
 
-			foreach ($notices as $notice) {
+			foreach( $notices as $notice ) {
 
 				echo "<div class='$notice[class]'><p>$notice[message]</p></div>";
 
