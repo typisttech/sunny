@@ -293,7 +293,6 @@ class Sunny {
 		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		$this->loader->add_action( 'init', 'Sunny_Option', 'set_global_options' );
-		$this->loader->add_action( 'sunny_after_cloudflare_api_request', 'Sunny_Helper', 'write_api_report', 10, 2 );
 
 		$ban_bad_login = new Sunny_Ban_Bad_Login( $this->get_plugin_name() );
 		$this->loader->add_action( 'wp_authenticate', $ban_bad_login, 'ban_login_with_bad_username', -10 );
@@ -305,11 +304,13 @@ class Sunny {
 		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
 		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'enqueue_blacklist_notification' );
 
-		$this->loader->add_action( 'sunny_after_email_sent', 'Sunny_Helper', 'write_email_report', 10, 2 );
-
 		// Cron Jobs
 		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_schedule' );
 		$this->loader->add_action( 'sunny_cron_send_notification', $mailer, 'email_blacklist_notification_digest' );
+
+		// Logging
+		$this->loader->add_action( 'sunny_after_cloudflare_api_request', 'Sunny_Helper', 'write_api_report', 10, 2 );
+		$this->loader->add_action( 'sunny_after_email_sent', 'Sunny_Helper', 'write_email_report', 10, 2 );
 
 	}
 
