@@ -31,9 +31,9 @@ class Sunny_i18n {
 
 		load_plugin_textdomain(
 			$this->domain,
-			FALSE,
+			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+			);
 
 	}
 

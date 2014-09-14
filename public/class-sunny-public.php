@@ -86,7 +86,7 @@ class Sunny_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/sunny-public.js', array( 'jquery' ), $this->version, FALSE );
+		wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/sunny-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

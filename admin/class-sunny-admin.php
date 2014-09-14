@@ -115,7 +115,7 @@ class Sunny_Admin {
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 
 			wp_enqueue_script( 'postbox' );
-			wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, FALSE );
+			wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, true );
 
 		}
 
