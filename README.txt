@@ -104,6 +104,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 == Changelog ==
 
+= 1.4.7 =
+* Fix: `127.0.0.1` is localhost
+
 = 1.4.6 =
 * Fix: Separating admin notices and email notification
 * Fix: Log email notification into php error log only if `WP_DEBUG` is true
