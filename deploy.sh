@@ -7,6 +7,8 @@
 PLUGINSLUG=${PWD##*/} # returns basename of current directory
 CURRENTDIR=`pwd`
 MAINFILE="sunny.php" # this should be the name of your main php file in the wordpress plugin
+ACTIVATOR="includes/class-sunny-activator.php"
+MAINCLASS="includes/class-sunny.php"
 
 # git config
 GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
@@ -31,7 +33,16 @@ echo "readme version: $NEWVERSION1"
 NEWVERSION2=`grep "Version" $GITPATH/$MAINFILE | awk -F' ' '{print $3}' | sed 's/[[:space:]]//g'`
 echo "$MAINFILE version: $NEWVERSION2"
 
+NEWVERSION3=`grep "current_version = '" $GITPATH/$ACTIVATOR | awk -F' ' '{print $3}' | sed 's/'\''//' | sed 's/'\'';//'`
+echo "$ACTIVATOR version: $NEWVERSION3"
+
+NEWVERSION4=`grep "this->version = " $GITPATH/$MAINCLASS | awk -F' ' '{print $3}' | sed 's/'\''//' | sed 's/'\'';//'`
+echo "$MAINCLASS version: $NEWVERSION4"
+
 if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Versions don't match. Exiting...."; exit 1; fi
+if [ "$NEWVERSION2" != "$NEWVERSION3" ]; then echo "Versions don't match. Exiting...."; exit 1; fi
+if [ "$NEWVERSION3" != "$NEWVERSION4" ]; then echo "Versions don't match. Exiting...."; exit 1; fi
+if [ "$NEWVERSION4" != "$NEWVERSION1" ]; then echo "Versions don't match. Exiting...."; exit 1; fi
 
 echo "Versions match in readme.txt and PHP file. Let's proceed..."
 
