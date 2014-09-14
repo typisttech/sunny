@@ -2,17 +2,17 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Sunny 1.2.3\n"
+"Project-Id-Version: Sunny 1.4.7\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-08-30 02:39+0800\n"
-"PO-Revision-Date: 2014-08-30 02:39+0800\n"
+"POT-Creation-Date: 2014-09-15 00:42+0800\n"
+"PO-Revision-Date: 2014-09-15 00:42+0800\n"
 "Last-Translator: \n"
 "Language-Team: Tang Rufus <rufus@tangrufus.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.8\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
 "esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ../\n"
@@ -131,7 +131,7 @@ msgstr "CloudFlare 帳號"
 
 #: admin/settings/class-sunny-settings.php:146
 msgid "This free version of Sunny only support a signle CloudFlare Account."
-msgstr ""
+msgstr "免費版 Sunny 只支援單一 CloudFlare 帳號"
 
 #: admin/settings/class-sunny-settings.php:151
 msgid "CloudFlare Email"
@@ -186,128 +186,137 @@ msgstr ""
 
 #: admin/settings/class-sunny-settings.php:196
 msgid "Security Settings"
-msgstr ""
+msgstr "保安設定"
 
 #: admin/settings/class-sunny-settings.php:201
 msgid "Ban Login with Bad Usernames"
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:202
+msgid "Blacklist IP which attempt to login with bad usernames."
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:207
+msgid "Customize Bad Usernames"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:208
 msgid ""
-"Blacklist IP which attempt to login with the username <code>Admin</code> or "
-"<code>Administrator</code>."
-msgstr ""
-
-#: admin/settings/class-sunny-settings.php:212
-msgid "Notification Settings"
-msgstr ""
-
-#: admin/settings/class-sunny-settings.php:217
-msgid "Notification Frequency"
+"Sunny bans <code>Admin</code> and <code>Administrator</code> by default. You "
+"can define your own bad usernames here, separated by commas.<br />Example: "
+"<code>root, test, wordpress</code>"
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:218
+msgid "Notification Settings"
+msgstr "通知設定"
+
+#: admin/settings/class-sunny-settings.php:223
+msgid "Notification Frequency"
+msgstr "通知頻率"
+
+#: admin/settings/class-sunny-settings.php:224
 msgid "How often do you want to receive notification emails?"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:221
+#: admin/settings/class-sunny-settings.php:227
 msgid "Immediately"
 msgstr "即時"
 
-#: admin/settings/class-sunny-settings.php:222
+#: admin/settings/class-sunny-settings.php:228
 msgid "Hourly"
 msgstr "每小時一次"
 
-#: admin/settings/class-sunny-settings.php:223
+#: admin/settings/class-sunny-settings.php:229
 msgid "Twice Daily"
 msgstr "每天兩次"
 
-#: admin/settings/class-sunny-settings.php:224
+#: admin/settings/class-sunny-settings.php:230
 msgid "Daily"
 msgstr "每天一次"
 
-#: admin/settings/class-sunny-settings.php:225
+#: admin/settings/class-sunny-settings.php:231
 msgid "Never"
 msgstr "永不"
 
-#: admin/settings/class-sunny-settings.php:230
+#: admin/settings/class-sunny-settings.php:236
 msgid "Blacklist Notification Subject"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:231
+#: admin/settings/class-sunny-settings.php:237
 msgid "This subject will be used in all blacklist notification emails."
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:236
+#: admin/settings/class-sunny-settings.php:242
 msgid "Sender Settings"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:241
+#: admin/settings/class-sunny-settings.php:247
 msgid "From Email"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:242
+#: admin/settings/class-sunny-settings.php:248
 msgid "Name the recipients will see in their email clients."
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:247
+#: admin/settings/class-sunny-settings.php:253
 msgid "From Address"
 msgstr ""
 
-#: admin/settings/class-sunny-settings.php:248
+#: admin/settings/class-sunny-settings.php:254
 msgid "This email address will be used as the sender of the outgoing emails."
 msgstr ""
 
-#: admin/tools/class-sunny-tools.php:82
+#: admin/tools/class-sunny-tools.php:83
 msgid "Go"
 msgstr "執行"
 
-#: admin/tools/class-sunny-tools.php:143 admin/tools/class-sunny-tools.php:144
+#: admin/tools/class-sunny-tools.php:144 admin/tools/class-sunny-tools.php:146
 msgid "Test Connection"
 msgstr "連線測試"
 
-#: admin/tools/class-sunny-tools.php:145
+#: admin/tools/class-sunny-tools.php:147
 msgid "To check if <code>Sunny</code> can connect to CloudFlare's server"
 msgstr ""
 
-#: admin/tools/class-sunny-tools.php:150
+#: admin/tools/class-sunny-tools.php:152
 msgid "Zone Purger"
 msgstr ""
 
-#: admin/tools/class-sunny-tools.php:151
+#: admin/tools/class-sunny-tools.php:154
 msgid "Clear all cache"
 msgstr "清除所有快取"
 
-#: admin/tools/class-sunny-tools.php:152
+#: admin/tools/class-sunny-tools.php:155
 msgid ""
 "Clear CloudFlare's cache.<br />This function will purge CloudFlare of any "
 "cached files. It may take up to 48 hours for the cache to rebuild and "
 "optimum performance to be achieved so this function should be used sparingly."
 msgstr ""
 
-#: admin/tools/class-sunny-tools.php:157
+#: admin/tools/class-sunny-tools.php:160
 msgid "URL Purger"
 msgstr ""
 
-#: admin/tools/class-sunny-tools.php:158
+#: admin/tools/class-sunny-tools.php:162
 msgid "Clear cache"
 msgstr "清除快取"
 
-#: admin/tools/class-sunny-tools.php:159
+#: admin/tools/class-sunny-tools.php:163
 msgid ""
 "Purge a post by URL and (if enabled) its associated pages(e.g: categories, "
 "tags and archives)."
 msgstr ""
 
-#: admin/tools/class-sunny-tools.php:163
+#: admin/tools/class-sunny-tools.php:167
 msgid "Post URL"
 msgstr ""
 
-#: admin/tools/class-sunny-tools.php:164
+#: admin/tools/class-sunny-tools.php:168
 msgid "The URL you want to purge."
 msgstr ""
 
-#: includes/class-sunny-activator.php:74
+#: includes/class-sunny-activator.php:82
 #, php-format
 msgid ""
 "<strong>Important: </strong> If you have previously installed Sunny version "
@@ -318,7 +327,7 @@ msgid ""
 "to review all necessary settings."
 msgstr ""
 
-#: includes/class-sunny-activator.php:128
+#: includes/class-sunny-activator.php:136
 #, php-format
 msgid ""
 "<strong>Action Required: </strong>Sunny has been gone through a major "
@@ -326,7 +335,7 @@ msgid ""
 "necessary settings."
 msgstr ""
 
-#: public/class-sunny-ban-bad-login.php:97
+#: public/class-sunny-ban-bad-login.php:122
 #, php-format
 msgid "Tried to login as `%s`"
 msgstr "欲以 `%s` 登入"
