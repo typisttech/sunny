@@ -104,26 +104,6 @@ class Sunny_CloudFlare_API_Helper {
 	}
 
 	/**
-	 * 3.5 - Pull Recent IPs Visiting Your Site
-	 * This function returns a list of IP address which hit your site classified by type.
-	 * $zoneid = ID of the zone you would like to check.
-	 * $hours = Number of hours to go back. Default is 24, max is 48.
-	 * $class = Restrict the result set to a given class. Currently r|s|t, for regular, crawler, threat resp.
-	 * $geo = Optional token. Add to add longitude and latitude information to the response. 0,0 means no data.
-	 */
-	public function zone_ips( $domain, $hours, $class, $geo = '0,0' )
-	{
-		$data = array(
-			'a'     => 'zone_ips',
-			'z'     => $domain,
-			'hours' => $hours,
-			'class' => $class,
-			'geo'   => $geo
-		);
-		return $this->http_post( $data );
-	}
-
-	/**
 	 * 3.6 - Check The Threat Score For A Given IP
 	 * This function retrieves the current threat score for a given IP.
 	 * Note that scores are on a logarithmic scale, where a higher score indicates a higher threat.
