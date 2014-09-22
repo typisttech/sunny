@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 == Changelog ==
 
 = 1.4.8 =
+* Tweak: Use WP Human newletter signup form
 * Deprecated: zone_ips, Pull recent IPs visiting site
 
 = 1.4.7 =

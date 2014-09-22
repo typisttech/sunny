@@ -47,7 +47,7 @@ class Sunny_Mailing_List_Box {
 
 		add_meta_box(
 				'mailing_list_box',							// Meta box ID
-				__( 'Sunny Mailing List', $this->name ), 	// Meta box Title
+				__( 'WP Human Mailing List', $this->name ), 	// Meta box Title
 				array( $this, 'render_meta_box' ),			// Callback defining the plugin's innards
 				'sunny_settings_side',						// Screen to which to add the meta box
 				'side'									// Context
