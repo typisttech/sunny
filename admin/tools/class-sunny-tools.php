@@ -144,7 +144,7 @@ class Sunny_Tools {
 		'title' 	=> __( 'Test Connection', $this->name ),
 		'action' 	=> 'sunny_connection_test',
 		'btn_text' 	=> __( 'Test Connection', $this->name ),
-		'desc'		=> __( "To check if <code>Sunny</code> can connect to CloudFlare's server", $this->name )
+		'desc'		=> __( "To check if <code>Sunny</code> can connect to CloudFlare's server. <a href='https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/#test-connection'>Here</a> is a successful example.", $this->name )
 		);
 
 	$tools[] = array(

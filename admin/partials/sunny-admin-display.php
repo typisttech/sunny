@@ -32,6 +32,7 @@ ob_start();
 ?>
 <div class="wrap">
 	<h2><?php echo esc_html( get_admin_page_title() ); ?> </h2>
+	<em>by <a href="https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/#sunny">WP Human</a></em>
 
 	<?php settings_errors( 'sunny-notices' ); ?>
 

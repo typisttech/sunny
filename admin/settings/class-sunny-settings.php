@@ -155,7 +155,7 @@ class Sunny_Settings {
 				'cloudflare_api_key' => array(
 					'id' => 'cloudflare_api_key',
 					'name' => __( 'CloudFlare API Key', $this->name ),
-					'desc' => __( 'This is the API key made available on your <a href="https://www.cloudflare.com/my-account.html">CloudFlare Account</a> page.', $this->name ),
+					'desc' => __( "This is the API key made available on your <a href='https://www.cloudflare.com/my-account.html'>CloudFlare Account</a> page. Read <a href='https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/#api-key'>this tutorial</a> for detailed instruction", $this->name ),
 					'type' => 'text'
 					)
 				) // end Accounts Settings
@@ -176,7 +176,7 @@ class Sunny_Settings {
 					),
 				'purge_taxonomies' => array(
 					'id' => 'purge_taxonomies',
-					'name' => __( 'CloudFlare API Key', $this->name ),
+					'name' => __( 'Purge Taxonomies', $this->name ),
 					'desc' => __( 'Purge associated pages(e.g.: tags, categories and custom taxonomies) whenever post updated.', $this->name ),
 					'type' => 'checkbox'
 					),
