@@ -197,6 +197,7 @@ class Sunny_Callback_Helper {
 
 		$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
 		$html = '<input type="' . $type . '" class="' . $size . '-text" id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+		$html .= '<br />';
 		$html .= '<label for="sunny_settings[' . $args['id'] . ']"> '  . $args['desc'] . '</label>';
 
 		echo $html;
