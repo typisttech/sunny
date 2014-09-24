@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.9
+Stable tag: 1.4.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,12 +97,16 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 == Screenshots ==
 
-1. CloudFlare Account Settings & Connection Tester
-1. More Settings
-1. Purgers
+1. Account Settings
+1. General Settings
+1. Email Settings
+1. Tools
 
 
 == Changelog ==
+
+= 1.4.10 =
+* Update screenshots
 
 = 1.4.9 =
 * Add: WP Human [tutorial](https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/)
