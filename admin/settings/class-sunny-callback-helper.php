@@ -176,6 +176,22 @@ class Sunny_Callback_Helper {
 	}
 
 	/**
+	 * Url Callback
+	 *
+	 * Renders url fields.
+	 *
+	 * @since 	1.4.0
+	 * @param 	array $args Arguments passed by the setting
+	 * @global 	$sunny_options Array of all the Sunny Options
+	 * @return 	void
+	 */
+	public function url_callback( $args ) {
+
+		$this->input_type_callback( 'url', $args );
+
+	}
+
+	/**
 	 * Input Type Callback
 	 *
 	 * Renders input type fields.
