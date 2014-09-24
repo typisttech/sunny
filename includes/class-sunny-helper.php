@@ -32,7 +32,7 @@ class Sunny_Helper {
 	  */
 	 public static function url_match_site_domain( $url ) {
 
-		return ( self::get_domain( $url ) == self::get_domain( get_option( 'home' ) ) );
+	 	return ( self::get_domain( $url ) == self::get_domain( get_option( 'home' ) ) );
 
 	 } // end url_match_site_domain
 
@@ -49,31 +49,31 @@ class Sunny_Helper {
 	 */
 	 public static function get_all_terms_links_by_url( $post_url ){
 
-		$urls = array();
+	 	$urls = array();
 
 			// get post id
-		$post_id = url_to_postid( $post_url );
+	 	$post_id = url_to_postid( $post_url );
 
 			// get post type by post
-		$post_type = get_post_type( $post_id );
+	 	$post_type = get_post_type( $post_id );
 
 			// get all taxonomies for the post type
-		$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+	 	$taxonomies = get_object_taxonomies( $post_type, 'objects' );
 
-		foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+	 	foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
 
 				// get the terms related to post
-			$terms = get_the_terms( $post_id, $taxonomy_slug );
+	 		$terms = get_the_terms( $post_id, $taxonomy_slug );
 
-			if ( !empty( $terms ) && ! is_wp_error( $terms ) ) {
+	 		if ( !empty( $terms ) && ! is_wp_error( $terms ) ) {
 
-				foreach ( $terms as $term) {
+	 			foreach ( $terms as $term) {
 
-					$term_link = get_term_link( $term );
+	 				$term_link = get_term_link( $term );
 
-					if ( ! is_wp_error( $term_link ) ) {
+	 				if ( ! is_wp_error( $term_link ) ) {
 
-						array_push( $urls, $term_link );
+	 					array_push( $urls, $term_link );
 
 					} //end if
 
@@ -313,34 +313,18 @@ class Sunny_Helper {
 	} // get_remoteaddr
 
 	/**
-	 * Check whether the IP address specified is a valid IPv4 format.
+	 * Check whether the IP address specified is a valid format, both IPv4 and IPv6.
 	 *
 	 * @param  string  $remote_addr The host IP address.
-	 * @return boolean              true if the address specified is a valid IPv4 format, false otherwise.
+	 * @return boolean              true if the address specified is a valid format(both IPv4 and IPv6), false otherwise.
 	 *
-	 * @since  1.3.0
-	 * @see  sucuri-scanner.php sucuriscan_is_valid_ipv4
+	 * @since  1.4.9
 	 */
-	public static function is_valid_ipv4( $remote_addr = '' ){
+	public static function is_valid_ip( $remote_addr = '' ){
 
-		if( preg_match('/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/', $remote_addr, $match) ){
+		return false === ! filter_var( $remote_addr, FILTER_VALIDATE_IP );
 
-			for( $i=0; $i<4; $i++ ){
-
-				if( $match[$i] > 255 ) {
-
-					return false;
-
-				}
-
-			}
-
-			return true;
-		}
-
-		return false;
-
-	} // end is_valid_ipv4
+	} // end is_valid_ip
 
 	/**
 	 * Check whether the IP address is a localhost ip.
@@ -352,22 +336,12 @@ class Sunny_Helper {
 	 */
 	public static function is_localhost( $remote_addr = '' ){
 
-		$localhost = array(
-			'127.0.0.0',
-			'127.0.0.1',
-			'127.0.0.2',
-			'127.0.0.3',
-			'127.0.0.4',
-			'127.0.0.5',
-			'127.0.0.6',
-			'127.0.0.7',
-			'127.0.0.8',
-			'127.0.0.9',
-			'127.0.1.0',
-			'::1'
-			);
+		$is_private = ( false === filter_var( $remote_addr, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE ) );
 
-		return in_array( $remote_addr, $localhost );
+		$remote_addr_head =  strstr( $remote_addr, '.', true );
+		$is_127 = in_array( $remote_addr_head, array( '127' ) );
+
+		return $is_private || $is_127;
 
 	} // end is_localhost
 

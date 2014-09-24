@@ -92,7 +92,7 @@ class Sunny_Ban_Bad_Login {
 		$username = strtolower( trim( sanitize_user( $username, true ) ) );
 
 		return $this->is_bad_username( $username )
-		&& Sunny_Helper::is_valid_ipv4( $ip )
+		&& Sunny_Helper::is_valid_ip( $ip )
 		&& ! Sunny_Helper::is_localhost( $ip );
 
 	} // end should_ban

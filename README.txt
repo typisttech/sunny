@@ -106,6 +106,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 = 1.4.9 =
 * Add: WP Human [tutorial](https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/)
+* Add: URL input fields
+* Tweak: Use PHP `filter_var` to validate IPs and check localhost IPs
+* Tweak: Line breaks between input fields and labels
 * Fix: Typo
 
 = 1.4.8 =
