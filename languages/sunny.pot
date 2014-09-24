@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Sunny 1.4.7\n"
+"Project-Id-Version: Sunny 1.4.9\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-09-15 00:38+0800\n"
-"PO-Revision-Date: 2014-09-15 00:38+0800\n"
+"POT-Creation-Date: 2014-09-24 18:11+0800\n"
+"PO-Revision-Date: 2014-09-24 18:12+0800\n"
 "Last-Translator: \n"
-"Language-Team: Tang Rufus <rufus@tangrufus.com>\n"
+"Language-Team: Tang Rufus @WP Human <rufus@wphuman.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgid "Tools"
 msgstr ""
 
 #: admin/class-sunny-mailing-list-box.php:50
-msgid "Sunny Mailing List"
+msgid "WP Human Mailing List"
 msgstr ""
 
 #: admin/mailer/class-sunny-email-template.php:73
@@ -108,7 +108,7 @@ msgid ""
 "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 
-#: admin/settings/class-sunny-callback-helper.php:373
+#: admin/settings/class-sunny-callback-helper.php:390
 msgid "Upload File"
 msgstr ""
 
@@ -133,14 +133,15 @@ msgid "The email address associated with the CloudFlare account."
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:157
-#: admin/settings/class-sunny-settings.php:179
 msgid "CloudFlare API Key"
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:158
 msgid ""
-"This is the API key made available on your <a href=\"https://www.cloudflare."
-"com/my-account.html\">CloudFlare Account</a> page."
+"This is the API key made available on your <a href='https://www.cloudflare."
+"com/my-account.html'>CloudFlare Account</a> page. Read <a href='https://"
+"wphuman.com/make-cloudflare-supercharge-wordpress-sites/#api-key'>this "
+"tutorial</a> for detailed instruction"
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:168
@@ -153,6 +154,10 @@ msgstr ""
 
 #: admin/settings/class-sunny-settings.php:174
 msgid "Purge homepage whenever post updated.."
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:179
+msgid "Purge Taxonomies"
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:180
@@ -265,7 +270,10 @@ msgid "Test Connection"
 msgstr ""
 
 #: admin/tools/class-sunny-tools.php:147
-msgid "To check if <code>Sunny</code> can connect to CloudFlare's server"
+msgid ""
+"To check if <code>Sunny</code> can connect to CloudFlare's server. <a "
+"href='https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/#test-"
+"connection'>Here</a> is a successful example."
 msgstr ""
 
 #: admin/tools/class-sunny-tools.php:152
@@ -302,7 +310,9 @@ msgid "Post URL"
 msgstr ""
 
 #: admin/tools/class-sunny-tools.php:168
-msgid "The URL you want to purge."
+msgid ""
+"The URL you want to purge. Start with <code>http://</code> or <code>https://"
+"</code>"
 msgstr ""
 
 #: includes/class-sunny-activator.php:82

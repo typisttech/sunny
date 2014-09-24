@@ -50,7 +50,7 @@ class Sunny_Activator {
 			self::enqueue_to_v142_admin_notice();
 		}
 
-		$current_version = '1.4.8';
+		$current_version = '1.4.9';
 		update_option( 'sunny_version', $current_version );
 
 	}
