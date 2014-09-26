@@ -41,7 +41,6 @@ class Sunny_Activator {
 		// Upgrade from v1.3.0 or before
 		if ( version_compare( $sunny_version, '1.4.0', '<' ) ) {
 			self::upgrade_to_v140();
-			self::enqueue_to_v140_admin_notice();
 		}
 
 		// Upgrade from v1.4.1 or before
@@ -50,8 +49,46 @@ class Sunny_Activator {
 			self::enqueue_to_v142_admin_notice();
 		}
 
-		$current_version = '1.4.10';
+		// Upgrade from v1.4.10 or before
+		if ( version_compare( $sunny_version, '1.4.11', '<' ) ) {
+			self::upgrade_to_v1411();
+			self::enqueue_to_v1411_admin_notice();
+		}
+
+		$current_version = '1.4.11';
 		update_option( 'sunny_version', $current_version );
+
+	}
+
+	/**
+	 * Delete old options
+	 *
+	 * @since  1.4.11
+	 * @return void
+	 */
+	private static function upgrade_to_v1411() {
+
+		// Bump version number to v1.4.2
+		update_option( 'sunny_version', '1.4.11' );
+
+	}
+
+	/**
+	 *
+	 * @since  1.4.2
+	 * @return void
+	 */
+	private static function enqueue_to_v1411_admin_notice() {
+
+		$notice = array(
+			'class'  => 'updated',
+			'message' => sprintf( __( '<strong>News: </strong> WP Human has published a <a href="%s">tutorial</a> about using CloudFlare on WordPress. Be sure to <a href="%s">check it out</a>.', 'sunny' ),
+				'https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/',
+				'https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/'
+				)
+			);
+
+		self::enqueue_admin_notice( $notice );
 
 	}
 
@@ -62,8 +99,6 @@ class Sunny_Activator {
 	 * @return void
 	 */
 	private static function upgrade_to_v142() {
-
-		self::upgrade_to_v140();
 
 		// Bump version number to v1.4.2
 		update_option( 'sunny_version', '1.4.2' );
@@ -121,24 +156,6 @@ class Sunny_Activator {
 		}
 
 		update_option( 'sunny_version', '1.4.0' );
-
-	}
-
-	/**
-	 *
-	 * @since  1.4.0
-	 * @return void
-	 */
-	private static function enqueue_to_v140_admin_notice() {
-
-		$notice = array(
-			'class'  => 'updated',
-			'message' => sprintf( __( '<strong>Action Required: </strong>Sunny has been gone through a major upgrade, click <a href="%s"><strong>here</strong></a> to reset all necessary settings.', 'sunny' ),
-				admin_url( 'admin.php?page=sunny&tab=accounts' )
-				)
-			);
-
-		self::enqueue_admin_notice( $notice );
 
 	}
 

@@ -1,5 +1,5 @@
 === Sunny (Connecting CloudFlare and WordPress) ===
-Contributors: tangrufus
+Contributors: tangrufus, wphuman
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%40gmail%2ecom&lc=HK&item_name=Sunny%20%28CloudFlare%20Management%29%20Plugin%20Donation&item_number=sunny%2edonation%2ewp%2eorg&amount=10%2e00&currency_code=USD&button_subtype=products&no_note=0&add=1&bn=PP%2dShopCartBF%3abtn_cart_LG%2egif%3aNonHostedGuest
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
@@ -104,6 +104,10 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 
 == Changelog ==
+
+= 1.4.11 =
+* Add: WP Human as contributor
+* Add: WP Human [tutorial](https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/) admin notice
 
 = 1.4.10 =
 * Update screenshots
