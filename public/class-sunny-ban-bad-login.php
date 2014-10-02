@@ -106,10 +106,9 @@ class Sunny_Ban_Bad_Login {
 
 		$ip = Sunny_Helper::get_remoteaddr();
 
+		// Quit early if not enabled OR should not ban
 		if ( ! $this->is_enabled() || ! $this->should_ban( $username, $ip ) ) {
-
 			return;
-
 		}
 
 		$response = Sunny_Lock::ban_ip( $ip );
@@ -126,7 +125,6 @@ class Sunny_Ban_Bad_Login {
 
 		}
 
-
 	} // end ban_login_with_bad_username
 
-} // end Sunny_Admin_Bar_Hider
+} // end Sunny_Ban_Bad_Login
