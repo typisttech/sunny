@@ -56,7 +56,7 @@ class Sunny {
 	public function __construct() {
 
 		$this->plugin_name = 'sunny';
-		$this->version = '1.4.10';
+		$this->version = '1.4.11';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -194,6 +194,11 @@ class Sunny {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-admin-bar-hider.php';
 
+		/**
+		 * The class responsible for intergating with WordPress Zero Spam plugin.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-zero-spam.php';
+
 		$this->loader = new Sunny_Loader();
 
 	}
@@ -300,9 +305,15 @@ class Sunny {
 		$admin_bar_hider = new Sunny_Admin_Bar_Hider();
 		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
 
+		$zero_spam = new Sunny_Zero_Spam( $this->get_plugin_name() );
+		$this->loader->add_action( 'zero_spam_found_spam_comment', $zero_spam, 'ban_spam_comment' );
+		$this->loader->add_action( 'zero_spam_found_spam_registration', $zero_spam, 'ban_spam_registration' );
+
 		// Mailer Hooks
 		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
 		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'enqueue_blacklist_notification' );
+		$this->loader->add_action( 'sunny_banned_zero_spam_comment', $mailer, 'enqueue_blacklist_notification' );
+		$this->loader->add_action( 'sunny_banned_zero_spam_registration', $mailer, 'enqueue_blacklist_notification' );
 
 		// Cron Jobs
 		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_schedule' );
