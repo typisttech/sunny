@@ -256,6 +256,22 @@ class Sunny_Settings {
 					),
 						) // end Emails Settings
 					), // apply_filters
+		/** Integration Settings */
+		'integration' => apply_filters( 'sunny_settings_integration',
+			array(
+				'integration_settings' => array(
+					'id' => 'integration_settings',
+					'name' => '<strong>' . __( 'Integration Settings', $this->name ) . '</strong>',
+					'type' => 'header'
+					),
+				'zero-spam' => array(
+					'id' => 'zero-spam',
+					'name' => __( 'Zero Spam', $this->name ),
+					'desc' => __( 'When <a href="https://wordpress.org/plugins/zero-spam/">WordPress Zero Spam</a> blocks registration spam and spam in comments, ban its IP as well.', $this->name ),
+					'type' => 'checkbox'
+					),
+						) // end Integration Settings
+					), // apply_filters
 				); // end $sunny_settings
 
 		return $settings;

@@ -73,6 +73,7 @@ class Sunny_Callback_Helper {
 
 		$checked = isset( $sunny_options[ $args[ 'id' ] ] ) ? checked( 1, $sunny_options[ $args[ 'id' ] ], false ) : '';
 		$html = '<input type="checkbox" id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']" value="1" ' . $checked . '/>';
+		$html .= '<br />';
 		$html .= '<label for="sunny_settings[' . $args['id'] . ']"> '  . $args['desc'] . '</label>';
 
 		echo $html;

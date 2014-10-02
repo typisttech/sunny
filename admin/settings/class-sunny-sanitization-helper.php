@@ -41,6 +41,8 @@ class Sunny_Sanitization_Helper {
 		$this->registered_settings = $registered_settings;
 		add_filter( 'sunny_settings_sanitize_text', array( $this, 'sanitize_text_field' ) );
 		add_filter( 'sunny_settings_sanitize_email', array( $this, 'sanitize_email_field' ) );
+		add_filter( 'sunny_settings_sanitize_checkbox', array( $this, 'sanitize_checkbox_field' ) );
+		add_filter( 'sunny_settings_sanitize_url', array( $this, 'sanitize_url_field' ) );
 
 	}
 
@@ -95,7 +97,12 @@ class Sunny_Sanitization_Helper {
 
 			}
 
+			$input[$key] = $value;
+
 		}
+
+		// Remove empty elements
+		$input = array_filter( $input );
 
 		// Loop through the whitelist and unset any that are empty for the tab being saved
 		if ( !empty( $settings[$tab] ) ) {
@@ -146,5 +153,77 @@ class Sunny_Sanitization_Helper {
 
 	}
 
+	/**
+	 * Sanitize checkbox fields
+	 * From WordPress SEO by Yoast class-wpsep-options.php
+	 *
+	 * @since 	1.4.11
+	 * @param 	array $input The field value
+	 * @return 	string $input Sanitizied value, '1' if true, empty string otherwise
+	 */
+	public function sanitize_checkbox_field( $input ) {
+
+		$true  = array(
+			'1',
+			'true',
+			'True',
+			'TRUE',
+			'y',
+			'Y',
+			'yes',
+			'Yes',
+			'YES',
+			'on',
+			'On',
+			'ON',
+
+			);
+
+		// Boolean
+		if ( is_bool( $input ) && $input ) {
+			return '1';
+		}
+
+		// Integer
+		if ( is_int( $input ) && 1 === $input ) {
+			return '1';
+		}
+
+		// Float
+		if ( is_float( $input ) && ! is_nan( $input ) && (float) 1 === $input ) {
+			return '1';
+		}
+
+		// String
+		if ( is_string( $input ) ) {
+
+			$input = trim( $input );
+
+			if ( in_array( $input, $true, true ) ) {
+				return '1';
+			}
+		}
+
+		return __return_empty_string();
+
+	}
+
+	/**
+	 * Sanitize a url for saving to the database
+	 * Not to be confused with the old native WP function
+	 * From WordPress SEO by Yoast class-wpsep-options.php
+	 *
+	 * @since  1.4.11
+	 *
+	 * @param  string $input
+	 * @param  array  $allowed_protocols
+	 *
+	 * @return  string
+	 */
+	public function sanitize_url_field( $input, $allowed_protocols = array( 'http', 'https' ) ) {
+
+		return esc_url_raw( sanitize_text_field( rawurldecode( $input ) ), $allowed_protocols );
+
+	}
 
 }

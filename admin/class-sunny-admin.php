@@ -183,7 +183,7 @@ class Sunny_Admin {
 		$tabs['general']  		= __( 'General', $this->name );
 		$tabs['emails']			= __( 'Emails', $this->name );
 		$tabs['tools']			= __( 'Tools', $this->name );
-		// $tabs['integration']	= __( 'Integration', $this->name );
+		$tabs['integration']	= __( 'Integration', $this->name );
 
 		return apply_filters( 'sunny_settings_tabs', $tabs );
 	}
