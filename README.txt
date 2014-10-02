@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.10
+Stable tag: 1.4.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,11 +101,13 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 1. General Settings
 1. Email Settings
 1. Tools
+1. Integration
 
 
 == Changelog ==
 
 = 1.4.11 =
+* New Feature: Integrate with [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam)
 * Add: WP Human as contributor
 * Add: WP Human [tutorial](https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/) admin notice
 
