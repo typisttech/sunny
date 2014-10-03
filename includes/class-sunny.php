@@ -179,12 +179,6 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-url-purger.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-public.php';
-
-		/**
 		 * The class responsible for blacklisting logins with bad usernames.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ban-bad-login.php';
@@ -198,6 +192,11 @@ class Sunny {
 		 * The class responsible for intergating with WordPress Zero Spam plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-zero-spam.php';
+
+		/**
+		 * The class responsible for intergating with iThemes Security.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ithemes-security.php';
 
 		$this->loader = new Sunny_Loader();
 
@@ -271,7 +270,7 @@ class Sunny {
 		$this->loader->add_action( 'admin_post_sunny_zone_purge' , $plugin_tools_handler, 'process_zone_purge' );
 		$this->loader->add_action( 'admin_post_sunny_url_purge' , $plugin_tools_handler, 'process_url_purge' );
 
-		$this->loader->add_action( 'sunny_settings_on_change_notification_frequency', 'Sunny_Cron', 'update_schedule' );
+		$this->loader->add_action( 'sunny_settings_on_change_notification_frequency', 'Sunny_Cron', 'update_notification_schedule' );
 
 		// Hook Post Purger into Hooks
 		$post_purger = new Sunny_Post_Purger( $this->get_plugin_name() );
@@ -292,11 +291,6 @@ class Sunny {
 
 		$this->loader->add_action( 'wp_loaded', 'Sunny_Activator', 'activate', 15 );
 
-		// $plugin_public = new Sunny_Public( $this->get_plugin_name(), $this->get_version() );
-
-		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		// $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 		$this->loader->add_action( 'init', 'Sunny_Option', 'set_global_options' );
 
 		$ban_bad_login = new Sunny_Ban_Bad_Login( $this->get_plugin_name() );
@@ -314,10 +308,18 @@ class Sunny {
 		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_zero_spam_comment', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_zero_spam_registration', $mailer, 'enqueue_blacklist_notification' );
+		$this->loader->add_action( 'sunny_banned_ithemes_security', $mailer, 'enqueue_blacklist_notification' );
 
 		// Cron Jobs
-		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_schedule' );
+		// Add intervals
+		$this->loader->add_filter( 'cron_schedules', 'Sunny_Cron', 'add_intervals' );
+		// Set schedules
+		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_notification_schedule' );
+		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_ithemes_security_schedule' );
+		// Set callbacks
 		$this->loader->add_action( 'sunny_cron_send_notification', $mailer, 'email_blacklist_notification_digest' );
+		$ithemes_security = new Sunny_iThemes_Security( $this->get_plugin_name() );
+		$this->loader->add_action( 'sunny_cron_check_ithemes_security_lockouts', $ithemes_security, 'maybe_new_lockout' );
 
 		// Logging
 		$this->loader->add_action( 'sunny_after_cloudflare_api_request', 'Sunny_Helper', 'write_api_report', 10, 2 );

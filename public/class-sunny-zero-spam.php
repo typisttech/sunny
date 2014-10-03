@@ -49,7 +49,7 @@ class Sunny_Zero_Spam {
 	 */
 	private function is_enabled() {
 
-		$enabled = Sunny_Option::get_option( 'zero-spam' );
+		$enabled = Sunny_Option::get_option( 'zero_spam' );
 		return ( isset( $enabled ) && '1' == $enabled );
 
 	} // end is_enabled
@@ -72,15 +72,16 @@ class Sunny_Zero_Spam {
 	/**
 	 * Ban IP if Zero Spam marks it as a spam comment
 	 *
+	 * @since 	1.4.11
 	 */
 	public function ban_spam_comment() {
-
-		$ip = Sunny_Helper::get_remoteaddr();
 
 		// Quit early if not enabled OR not a ban-able IP
 		if ( ! $this->is_enabled() || ! $this->should_ban( $ip ) ) {
 			return;
 		}
+
+		$ip = Sunny_Helper::get_remoteaddr();
 
 		$response = Sunny_Lock::ban_ip( $ip );
 
@@ -89,7 +90,7 @@ class Sunny_Zero_Spam {
 			$notice = array(
 				'ip' => $ip,
 				'date' => current_time( 'timestamp' ),
-				'reason' => sprintf( __( 'Zero Spam marks it as a spam comment', $this->name ), $username )
+				'reason' => __( 'Zero Spam marks it as a spam comment', $this->name )
 				);
 
 			do_action( 'sunny_banned_zero_spam_comment', $notice );
@@ -101,15 +102,16 @@ class Sunny_Zero_Spam {
 	/**
 	 * Ban IP if Zero Spam marks it as a spam registration
 	 *
+	 * @since  1.4.11
 	 */
 	public function ban_spam_registration() {
-
-		$ip = Sunny_Helper::get_remoteaddr();
 
 		// Quit early if not enabled OR not a ban-able IP
 		if ( ! $this->is_enabled() || ! $this->should_ban( $ip ) ) {
 			return;
 		}
+
+		$ip = Sunny_Helper::get_remoteaddr();
 
 		$response = Sunny_Lock::ban_ip( $ip );
 
@@ -118,7 +120,7 @@ class Sunny_Zero_Spam {
 			$notice = array(
 				'ip' => $ip,
 				'date' => current_time( 'timestamp' ),
-				'reason' => sprintf( __( 'Zero Spam marks it as a spam registration', $this->name ), $username )
+				'reason' => __( 'Zero Spam marks it as a spam registration', $this->name )
 				);
 
 			do_action( 'sunny_banned_zero_spam_comment', $notice );

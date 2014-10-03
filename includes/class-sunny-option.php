@@ -139,7 +139,7 @@ class Sunny_Option {
 	 */
 	static public function dequeue_all_admin_notices() {
 
-		if ( false != get_option( 'sunny_enqueued_admin_notices' ) || '' == get_option( 'sunny_enqueued_admin_notices' ) ) {
+		if ( false !== get_option( 'sunny_enqueued_admin_notices' ) ) {
 
 			delete_option( 'sunny_enqueued_admin_notices' );
 

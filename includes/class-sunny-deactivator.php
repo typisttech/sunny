@@ -22,8 +22,9 @@ class Sunny_Deactivator {
 	public static function deactivate() {
 
 		wp_clear_scheduled_hook( 'sunny_cron_send_notification' );
+		wp_clear_scheduled_hook( 'sunny_cron_check_ithemes_security_lockouts' );
 
-		if ( false != get_option( 'sunny_enqueued_notices' ) || '' == get_option( 'sunny_enqueued_notices' ) ) {
+		if ( false !== get_option( 'sunny_enqueued_notices' ) ) {
 			delete_option( 'sunny_enqueued_notices' );
 		}
 
