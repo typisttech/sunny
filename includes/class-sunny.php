@@ -300,14 +300,12 @@ class Sunny {
 		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
 
 		$zero_spam = new Sunny_Zero_Spam( $this->get_plugin_name() );
-		$this->loader->add_action( 'zero_spam_found_spam_comment', $zero_spam, 'ban_spam_comment' );
-		$this->loader->add_action( 'zero_spam_found_spam_registration', $zero_spam, 'ban_spam_registration' );
+		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
 
 		// Mailer Hooks
 		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
 		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'enqueue_blacklist_notification' );
-		$this->loader->add_action( 'sunny_banned_zero_spam_comment', $mailer, 'enqueue_blacklist_notification' );
-		$this->loader->add_action( 'sunny_banned_zero_spam_registration', $mailer, 'enqueue_blacklist_notification' );
+		$this->loader->add_action( 'sunny_banned_zero_spam', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_ithemes_security', $mailer, 'enqueue_blacklist_notification' );
 
 		// Cron Jobs

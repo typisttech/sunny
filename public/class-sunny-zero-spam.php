@@ -72,9 +72,9 @@ class Sunny_Zero_Spam {
 	/**
 	 * Ban IP if Zero Spam marks it as a spam comment
 	 *
-	 * @since 	1.4.11
+	 * @since 	1.4.13
 	 */
-	public function ban_spam_comment() {
+	public function ban_spam() {
 
 		// Quit early if not enabled OR not a ban-able IP
 		if ( ! $this->is_enabled() || ! $this->should_ban( $ip ) ) {
@@ -90,43 +90,13 @@ class Sunny_Zero_Spam {
 			$notice = array(
 				'ip' => $ip,
 				'date' => current_time( 'timestamp' ),
-				'reason' => __( 'Zero Spam marks it as a spam comment', $this->name )
+				'reason' => __( 'Zero Spam marks it as a spam', $this->name )
 				);
 
-			do_action( 'sunny_banned_zero_spam_comment', $notice );
+			do_action( 'sunny_banned_zero_spam', $notice );
 
 		}
 
 	} // end ban_spam_comment
-
-	/**
-	 * Ban IP if Zero Spam marks it as a spam registration
-	 *
-	 * @since  1.4.11
-	 */
-	public function ban_spam_registration() {
-
-		// Quit early if not enabled OR not a ban-able IP
-		if ( ! $this->is_enabled() || ! $this->should_ban( $ip ) ) {
-			return;
-		}
-
-		$ip = Sunny_Helper::get_remoteaddr();
-
-		$response = Sunny_Lock::ban_ip( $ip );
-
-		if ( Sunny_Helper::is_api_success( $response ) ) {
-
-			$notice = array(
-				'ip' => $ip,
-				'date' => current_time( 'timestamp' ),
-				'reason' => __( 'Zero Spam marks it as a spam registration', $this->name )
-				);
-
-			do_action( 'sunny_banned_zero_spam_comment', $notice );
-
-		}
-
-	} // end ban_spam_registration
 
 } // end Sunny_Zero_Spam

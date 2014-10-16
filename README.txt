@@ -111,6 +111,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 == Changelog ==
 
 = 1.4.13 =
+* Tweak: Use `zero_spam_ip_blocked` instead of `zero_spam_found_spam_registration` and `zero_spam_found_spam_comment`
 * Tweak: Sanitize in [Easy Digital Downloads way](https://github.com/easydigitaldownloads/Easy-Digital-Downloads/pull/2533)
 
 = 1.4.12 =

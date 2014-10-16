@@ -273,7 +273,7 @@ class Sunny_Settings {
 				'zero_spam' => array(
 					'id' => 'zero_spam',
 					'name' => __( 'Zero Spam', $this->name ),
-					'desc' => __( 'When <a href="https://wordpress.org/plugins/zero-spam/">WordPress Zero Spam</a> blocks registration spam and spam in comments, ban its IP as well.', $this->name ),
+					'desc' => __( 'When <a href="https://wordpress.org/plugins/zero-spam/">WordPress Zero Spam</a> blocks an access, ban its IP as well.', $this->name ),
 					'type' => 'checkbox'
 					),
 						) // end Integration Settings
