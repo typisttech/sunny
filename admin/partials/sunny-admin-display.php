@@ -53,30 +53,29 @@ ob_start();
 		}
 		?>
 	</h2>
-	<div id="tab_container">
+	<div id="poststuff">
 
-		<div class="postbox-container" style="width: 60%;">
+		<div id="post-body" class="metabox-holder columns-2">
 
-			<div class="metabox-holder">
+		<div class="postbox-container columns-2">
+
+			<div id="postbox-container-2" class="postbox-container">
 
 				<?php do_meta_boxes( 'sunny_settings_' . $active_tab, 'normal', $active_tab ); ?>
 
-			</div><!-- .metabox-holder-->
+			</div><!-- .postbox-container-2-->
 
-		</div><!-- .postbox-container-->
+		</div><!-- .postbox-container.columns-2-->
 
-		<div class="postbox-container side" style="width: 261px;">
-
-			<div class="metabox-holder">
+			<div id="postbox-container-1" class="postbox-container">
 
 				<?php do_meta_boxes( 'sunny_settings_side', 'side', $active_tab ); ?>
 
-			</div><!-- .metabox-holder-->
+			</div><!-- .postbox-container-1-->
 
-		</div><!-- .postbox-container.side-->
+		</div><!-- #post-body-->
 
-
-	</div><!-- #tab_container-->
+	</div><!-- #poststuff-->
 </div><!-- .wrap -->
 <?php
 	echo ob_get_clean();

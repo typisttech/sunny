@@ -11,18 +11,3 @@ div.inside a {
 div.inside a:hover {
 	text-decoration: underline;
 }
-
-.text, .select {
-	width: 250px;
-}
-
-.postbox .inside {
-	text-align: left;
-	margin: 0 10px 10px 10px;
-	font-size: 13px;
-	line-height: 150%;
-}
-
-.postbox {
-	margin: 10px
-}
