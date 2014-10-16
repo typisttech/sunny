@@ -264,8 +264,14 @@ class Sunny_Settings {
 					'name' => '<strong>' . __( 'Integration Settings', $this->name ) . '</strong>',
 					'type' => 'header'
 					),
-				'zero-spam' => array(
-					'id' => 'zero-spam',
+				'ithemes_security' => array(
+					'id' => 'ithemes_security',
+					'name' => __( 'iThemes Security', $this->name ),
+					'desc' => __( 'When <a href="http://ithemes.com/security/">iThemes Security</a> blocks an IP, tell CloudFlare to blacklist it also.', $this->name ),
+					'type' => 'checkbox'
+					),
+				'zero_spam' => array(
+					'id' => 'zero_spam',
 					'name' => __( 'Zero Spam', $this->name ),
 					'desc' => __( 'When <a href="https://wordpress.org/plugins/zero-spam/">WordPress Zero Spam</a> blocks registration spam and spam in comments, ban its IP as well.', $this->name ),
 					'type' => 'checkbox'

@@ -18,12 +18,11 @@ class Sunny_Cron {
 	/**
 	 * Schedule WP cron job (create hooks) for notification sending.
 	 *
-	 * @param 	string 	$frequency 	The frequency of notification sending
-	 *
 	 * @since  	1.4.0
 	 */
-	public static function set_schedule() {
+	public static function set_notification_schedule() {
 
+		// The frequency of notification sending
 		$frequency = Sunny_Option::get_option( 'notification_frequency' );
 		$frequency = ( 'immediately' == $frequency ) ? null : $frequency;
 
@@ -39,7 +38,7 @@ class Sunny_Cron {
 
 		}
 
-	} // end of set_schedule
+	} // end of set_notification_schedule
 
 
 	/**
@@ -49,7 +48,7 @@ class Sunny_Cron {
 	 *
 	 * @since  	1.4.0
 	 */
-	public static function update_schedule( $frequency ) {
+	public static function update_notification_schedule( $frequency ) {
 
 		$frequency = ( 'immediately' == $frequency ) ? null : $frequency;
 
@@ -70,6 +69,46 @@ class Sunny_Cron {
 
 		}
 
-	}
+	} // end update_notification_schedule
+
+	/**
+	 * Schedule WP cron job (create hooks) for checking iThemes Security lockouts.
+	 *
+	 * @since  	1.4.12
+	 */
+	public static function set_ithemes_security_schedule() {
+
+		$is_enabled = (bool) ( '1' == Sunny_Option::get_option( 'ithemes_security' ) );
+		$due = wp_next_scheduled( 'sunny_cron_check_ithemes_security_lockouts' );
+
+		if ( $is_enabled && empty( $due ) ) {
+
+			wp_schedule_event( time() + 30, 'every_ten_min', 'sunny_cron_check_ithemes_security_lockouts' );
+
+		} elseif ( ! $is_enabled && !empty( $due ) ) {
+
+			wp_clear_scheduled_hook( 'sunny_cron_check_ithemes_security_lockouts' );
+
+		}
+
+	} // end of set_ithemes_security_schedule
+
+	/**
+	 * Define WP corn interval
+	 * @param [type] $schedules [description]
+	 *
+	 * @since  1.4.12
+	 */
+	public static function add_intervals( $schedules ) {
+
+		// Adds once weekly to the existing schedules.
+		$schedules['every_ten_min'] = array(
+			'interval' => 600,
+			'display' => __( 'Every 10 mins', 'sunny' )
+		);
+
+		return $schedules;
+
+	} // end add_every_ten_min
 
 }

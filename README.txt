@@ -16,19 +16,18 @@ Sunny automatically clears CloudFlare cache. And, protect your WordPress site at
 
 = Features =
 
+* Integrate with [iThemes Security](https://wordpress.org/plugins/better-wp-security/) and [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam)
 * Blacklist IP if attempt to login with bad username
 * Automatically clears corresponding CloudFlare caches whenever a post/page/media attachment is updated, commented or trashed.
-* Purge your entire CloudFlare cache manually
-* Purge your a URL cache manually
+* Purge CloudFlare cache from WordPress admin dashboard
 * Test your CloudFlare API key
+
+= Guide =
+* Step-by-step [tutorial](https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/)
 
 = How does Sunny different from CloudFlare's offical plugin? =
 
 At the time of writting, CloudFlare's [offical plugin](https://wordpress.org/plugins/cloudflare/) doesn't purge anything for WordPress. It provides the real IP of your visitors and notify CloudFlare when you marking an IP as SPAM. However, it does not include a way to clear the cache or make adjustments to how it works. Here comes Sunny! Sunny focus on cache purging.
-
-= Planned features =
-
-* Blacklist an IP when WP Better Secuity lockdown it
 
 = Things you need to know =
 
@@ -45,6 +44,7 @@ If you have written an article about `Sunny`, do [let me know](http://tangrufus.
 = Who make this plugin? =
 
 [Tang Rufus](http://tangrufus.com), a freelance developer for hire.
+I make [WP Human](https://wphuman.com) also.
 
 == Installation ==
 
@@ -55,8 +55,12 @@ If you have written an article about `Sunny`, do [let me know](http://tangrufus.
 1. Test it with Connection Tester (via Settings Page)
 1. That's it!
 
+Check out this [step-by-step guide](https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/) for detail instructions.
+
 
 == Frequently Asked Questions ==
+
+Check out this [step-by-step tutorial](https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/).
 
 = Is this plugin written by CloudFlare, Inc.? =
 
@@ -92,7 +96,7 @@ You can disable this behavior via the `General` tab.
 
 Confirmed that it doesn't work network wide. While this version of `Sunny` does not intended to support mulitsite, you might want to try activating `Sunny` on a per site basis (WPMU DEV has a step-by-step [tutorial](http://premium.wpmudev.org/manuals/wpmu-manual-2/activating-and-deactivating-plugins-on-a-per-site-basis/)). Please report your findings.
 
-Moreover, I am planning to write a mulitsite version. [Drop me a note](http://tangrufus.com/hire-rufus/) if you want early asscess.
+Moreover, I am planning to write a mulitsite version. [Drop me a note](https://wphuman.com/contact/) if you want early asscess.
 
 
 == Screenshots ==
@@ -105,6 +109,11 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 
 == Changelog ==
+
+= 1.4.12 =
+* New Feature: Integrate with [iThemes Security](https://wordpress.org/plugins/better-wp-security/)
+* Performance boost: Early quit if unnecessary
+* Fix: Unable to send [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam) blacklist notification emails
 
 = 1.4.11 =
 * New Feature: Integrate with [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam)
@@ -134,7 +143,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](http://ta
 
 = 1.4.5 =
 * Performance: Not loading plugin css
-* Security: Checking page=sunny as referral
+* Security: Checking `page=sunny` as referral
 * Fix: `check wp_http_referer` bugged with question marks
 * Fix: Empty customized bad usernames issue
 
@@ -227,6 +236,9 @@ Initial Release
 * Initial Alpha Test
 
 == Upgrade Notice ==
+
+= 1.4.12 =
+Sunny now works with iThemes Security!
 
 = 1.4.4 =
 You can define your own bad usernames with Sunny now!
