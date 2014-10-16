@@ -83,21 +83,19 @@ class Sunny_Sanitization_Helper {
 
 			if ( $type ) {
 				// Field type specific filter
-				$value = apply_filters( 'sunny_settings_sanitize_' . $type, $value, $key );
+				$input[$key] = apply_filters( 'sunny_settings_sanitize_' . $type, $input[$key], $key );
 
 			}
 
 			// General filter
-			$value = apply_filters( 'sunny_settings_sanitize', $value, $key );
+			$input[$key] = apply_filters( 'sunny_settings_sanitize', $input[$key], $key );
 
 			// Key specific on change hook
-			if ( $sunny_options[$key] !== $value ) {
+			if ( $sunny_options[$key] !== $input[$key] ) {
 
 				do_action( 'sunny_settings_on_change_' . $key, $value, $sunny_options[$key] );
 
 			}
-
-			$input[$key] = $value;
 
 		}
 

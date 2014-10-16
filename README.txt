@@ -110,6 +110,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 == Changelog ==
 
+= 1.4.13 =
+* Tweak: Sanitize in [Easy Digital Downloads way](https://github.com/easydigitaldownloads/Easy-Digital-Downloads/pull/2533)
+
 = 1.4.12 =
 * New Feature: Integrate with [iThemes Security](https://wordpress.org/plugins/better-wp-security/)
 * Performance boost: Early quit if unnecessary
