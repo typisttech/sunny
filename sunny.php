@@ -16,7 +16,7 @@
  * Plugin Name:       Sunny (Connecting CloudFlare and WordPress)
  * Plugin URI:        http://tangrufus.com/refer/sunny
  * Description:       Automatically clear CloudFlare cache. And, protect your WordPress site at DNS level.
- * Version:           1.4.11
+ * Version:           1.4.12
  * Author:            Tang Rufus
  * Author URI:        http://tangrufus.com/
  * License:           GPL-2.0+

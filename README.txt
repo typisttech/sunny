@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.11
+Stable tag: 1.4.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -113,6 +113,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 = 1.4.12 =
 * New Feature: Integrate with [iThemes Security](https://wordpress.org/plugins/better-wp-security/)
 * Performance boost: Early quit if unnecessary
+* Tweak: Use jQuery UI style on setting pages
 * Fix: Unable to send [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam) blacklist notification emails
 
 = 1.4.11 =
