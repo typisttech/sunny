@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Sunny 1.4.9\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-09-24 18:11+0800\n"
-"PO-Revision-Date: 2014-09-24 18:12+0800\n"
+"POT-Creation-Date: 2014-10-17 07:55+0800\n"
+"PO-Revision-Date: 2014-10-17 07:55+0800\n"
 "Last-Translator: \n"
 "Language-Team: Tang Rufus @WP Human <rufus@wphuman.com>\n"
 "Language: en_US\n"
@@ -46,6 +46,10 @@ msgstr ""
 
 #: admin/class-sunny-admin.php:185
 msgid "Tools"
+msgstr ""
+
+#: admin/class-sunny-admin.php:186
+msgid "Integration"
 msgstr ""
 
 #: admin/class-sunny-mailing-list-box.php:50
@@ -108,11 +112,11 @@ msgid ""
 "The callback function used for the <strong>%s</strong> setting is missing."
 msgstr ""
 
-#: admin/settings/class-sunny-callback-helper.php:390
+#: admin/settings/class-sunny-callback-helper.php:391
 msgid "Upload File"
 msgstr ""
 
-#: admin/settings/class-sunny-sanitization-helper.php:118
+#: admin/settings/class-sunny-sanitization-helper.php:123
 msgid "Settings updated."
 msgstr ""
 
@@ -261,6 +265,30 @@ msgstr ""
 msgid "This email address will be used as the sender of the outgoing emails."
 msgstr ""
 
+#: admin/settings/class-sunny-settings.php:264
+msgid "Integration Settings"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:269
+msgid "iThemes Security"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:270
+msgid ""
+"When <a href=\"http://ithemes.com/security/\">iThemes Security</a> blocks an "
+"IP, tell CloudFlare to blacklist it also."
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:275
+msgid "Zero Spam"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:276
+msgid ""
+"When <a href=\"https://wordpress.org/plugins/zero-spam/\">WordPress Zero "
+"Spam</a> blocks an access, ban its IP as well."
+msgstr ""
+
 #: admin/tools/class-sunny-tools.php:83
 msgid "Go"
 msgstr ""
@@ -315,7 +343,15 @@ msgid ""
 "</code>"
 msgstr ""
 
-#: includes/class-sunny-activator.php:82
+#: includes/class-sunny-activator.php:85
+#, php-format
+msgid ""
+"<strong>News: </strong> WP Human has published a <a href=\"%s\">tutorial</a> "
+"about using CloudFlare on WordPress. Be sure to <a href=\"%s\">check it out</"
+"a>."
+msgstr ""
+
+#: includes/class-sunny-activator.php:117
 #, php-format
 msgid ""
 "<strong>Important: </strong> If you have previously installed Sunny version "
@@ -326,15 +362,20 @@ msgid ""
 "to review all necessary settings."
 msgstr ""
 
-#: includes/class-sunny-activator.php:136
-#, php-format
-msgid ""
-"<strong>Action Required: </strong>Sunny has been gone through a major "
-"upgrade, click <a href=\"%s\"><strong>here</strong></a> to reset all "
-"necessary settings."
+#: includes/class-sunny-cron.php:107
+msgid "Every 10 mins"
 msgstr ""
 
-#: public/class-sunny-ban-bad-login.php:122
+#: public/class-sunny-ban-bad-login.php:121
 #, php-format
 msgid "Tried to login as `%s`"
+msgstr ""
+
+#: public/class-sunny-ithemes-security.php:135
+#, php-format
+msgid "iThemes Security lockout because of %s"
+msgstr ""
+
+#: public/class-sunny-zero-spam.php:93
+msgid "Zero Spam marks it as a spam"
 msgstr ""
