@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.13
+Stable tag: 1.4.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,6 +109,10 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 
 == Changelog ==
+
+= 1.4.14 =
+* Allow CLI scripts access, see [https://wordpress.org/support/topic/plugin-blocks-cli](https://wordpress.org/support/topic/plugin-blocks-cli)
+* Add [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam) hooks
 
 = 1.4.13 =
 * Tweak: Use `zero_spam_ip_blocked` instead of `zero_spam_found_spam_registration` and `zero_spam_found_spam_comment`

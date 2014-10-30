@@ -56,7 +56,7 @@ class Sunny {
 	public function __construct() {
 
 		$this->plugin_name = 'sunny';
-		$this->version = '1.4.13';
+		$this->version = '1.4.14';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -301,6 +301,12 @@ class Sunny {
 
 		$zero_spam = new Sunny_Zero_Spam( $this->get_plugin_name() );
 		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_found_spam_registration', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_found_spam_comment', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_found_spam_cf7_form_submission', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_found_spam_gf_form_submission', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_found_spam_buddypress_registration', $zero_spam, 'ban_spam' );
 
 		// Mailer Hooks
 		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
