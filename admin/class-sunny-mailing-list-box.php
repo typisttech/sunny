@@ -10,11 +10,6 @@
  * @since 		1.2.5
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
 class Sunny_Mailing_List_Box {
 
 	/**

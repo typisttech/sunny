@@ -7,11 +7,6 @@
  * @since  		1.3.0
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
 Class Sunny_Lock {
 	/**
 	 * Request CloudFlare to blacklist an IP.

@@ -11,11 +11,6 @@
  * @link       https://www.cloudflare.com/docs/client-api.html
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
 class Sunny_CloudFlare_API_Helper {
 
 	//The URL of the API

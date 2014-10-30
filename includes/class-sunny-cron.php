@@ -8,11 +8,6 @@
  * @since      1.4.0
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
 class Sunny_Cron {
 
 	/**

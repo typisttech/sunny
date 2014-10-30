@@ -7,11 +7,6 @@
  * @author     Tang Rufus <tangrufus@gmail.com>
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
-}
-
 class Sunny_Meta_Box {
 
 	/**
