@@ -196,6 +196,7 @@ class Sunny {
 		/**
 		 * The classes responsible for intergating with other plugins.
 		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-abstract-spam-module.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-zero-spam.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ithemes-security.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-contact-form-7.php';
@@ -304,13 +305,12 @@ class Sunny {
 		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
 
 		$zero_spam = new Sunny_Zero_Spam( $this->get_plugin_name() );
-		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
 		$this->loader->add_action( 'zero_spam_found_spam_registration', $zero_spam, 'ban_spam' );
 		$this->loader->add_action( 'zero_spam_found_spam_comment', $zero_spam, 'ban_spam' );
 		$this->loader->add_action( 'zero_spam_found_spam_cf7_form_submission', $zero_spam, 'ban_spam' );
 		$this->loader->add_action( 'zero_spam_found_spam_gf_form_submission', $zero_spam, 'ban_spam' );
-		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
 		$this->loader->add_action( 'zero_spam_found_spam_buddypress_registration', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
 
 		$contact_form_7 = new Sunny_Contact_Form_7( $this->get_plugin_name() );
 		$this->loader->add_filter( 'wpcf7_spam', $contact_form_7, 'ban_spam', 99999 );
