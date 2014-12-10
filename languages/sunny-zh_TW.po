@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Sunny 1.4.16\n"
+"Project-Id-Version: Sunny 1.5.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-12-10 10:05+0800\n"
-"PO-Revision-Date: 2014-12-10 10:06+0800\n"
+"POT-Creation-Date: 2014-12-10 16:07+0800\n"
+"PO-Revision-Date: 2014-12-10 16:07+0800\n"
 "Last-Translator: \n"
 "Language-Team: Tang Rufus @WP Human <rufus@wphuman.com>\n"
 "Language: zh_TW\n"
@@ -52,9 +52,28 @@ msgstr "工具"
 msgid "Integration"
 msgstr "整合"
 
-#: admin/class-sunny-mailing-list-box.php:45
+#: admin/class-sunny-mailing-list-box.php:41
 msgid "WP Human Mailing List"
 msgstr "WP Human 電子報"
+
+#: admin/class-sunny-updater.php:84
+#, php-format
+msgid ""
+"<strong>News: </strong> WP Human has published a <a href=\"%s\">tutorial</a> "
+"about using CloudFlare on WordPress. Be sure to <a href=\"%s\">check it out</"
+"a>."
+msgstr ""
+
+#: admin/class-sunny-updater.php:103
+#, php-format
+msgid ""
+"<strong>Important: </strong> If you have previously installed Sunny version "
+"v1.3.0 or before, you would lost the Cloudflare credentials and settings. "
+"This is because version 1.5.0 is a major upgrade and most of the code is "
+"changed. <br /><strong>Good news</strong> Email notifications can been "
+"disabled since version 1.4.2. Click <a href=\"%s\"><strong>here</strong></a> "
+"to review all necessary settings."
+msgstr ""
 
 #: admin/mailer/class-sunny-email-template.php:73
 msgid "Howdy "
@@ -362,43 +381,24 @@ msgid ""
 "</code>"
 msgstr ""
 
-#: includes/class-sunny-activator.php:85
-#, php-format
-msgid ""
-"<strong>News: </strong> WP Human has published a <a href=\"%s\">tutorial</a> "
-"about using CloudFlare on WordPress. Be sure to <a href=\"%s\">check it out</"
-"a>."
-msgstr ""
-
-#: includes/class-sunny-activator.php:117
-#, php-format
-msgid ""
-"<strong>Important: </strong> If you have previously installed Sunny version "
-"v1.3.0 or before, you would lost the Cloudflare credentials and settings. "
-"This is because version 1.4.0 is a major upgrade and most of the code is "
-"changed. <br /><strong>Good news</strong> Email notifications can been "
-"disabled since version 1.4.2. Click <a href=\"%s\"><strong>here</strong></a> "
-"to review all necessary settings."
-msgstr ""
-
 #: includes/class-sunny-cron.php:102
 msgid "Every 10 mins"
 msgstr "每十分鐘"
 
-#: public/class-sunny-ban-bad-login.php:116
+#: public/class-sunny-ban-bad-login.php:115
 #, php-format
 msgid "Tried to login as `%s`"
 msgstr "欲以 `%s` 登入"
 
-#: public/class-sunny-contact-form-7.php:93
+#: public/class-sunny-contact-form-7.php:92
 msgid "Contact Form 7 marks it as a spam"
 msgstr ""
 
-#: public/class-sunny-ithemes-security.php:130
+#: public/class-sunny-ithemes-security.php:129
 #, php-format
 msgid "iThemes Security lockout because of %s"
 msgstr ""
 
-#: public/class-sunny-zero-spam.php:88
+#: public/class-sunny-zero-spam.php:87
 msgid "Zero Spam marks it as a spam"
 msgstr ""

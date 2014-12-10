@@ -112,8 +112,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 = 1.5.0 =
 * Developer: Fix update notice not showing
-* Developer: Better documentation
-TODO: * Developer: Reorganising file structure
+* Developer: Better file headers
 TODO: * Developer: Introduce abstract spam class
 
 = 1.4.16 =
