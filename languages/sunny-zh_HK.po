@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Sunny 1.5.0\n"
+"Project-Id-Version: Sunny 1.5.1.beta1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-12-10 16:06+0800\n"
-"PO-Revision-Date: 2014-12-10 16:07+0800\n"
+"POT-Creation-Date: 2014-12-11 01:28+0800\n"
+"PO-Revision-Date: 2014-12-11 01:28+0800\n"
 "Last-Translator: \n"
 "Language-Team: Tang Rufus @WP Human <rufus@wphuman.com>\n"
 "Language: zh_HK\n"
@@ -385,6 +385,10 @@ msgstr ""
 msgid "Every 10 mins"
 msgstr "每十分鐘"
 
+#: public/class-sunny-abstract-spam-module.php:105
+msgid " marks it as a spam"
+msgstr ""
+
 #: public/class-sunny-ban-bad-login.php:115
 #, php-format
 msgid "Tried to login as `%s`"
@@ -394,11 +398,7 @@ msgstr "欲以 `%s` 登入"
 msgid "Contact Form 7 marks it as a spam"
 msgstr ""
 
-#: public/class-sunny-ithemes-security.php:129
+#: public/class-sunny-ithemes-security.php:95
 #, php-format
-msgid "iThemes Security lockout because of %s"
-msgstr ""
-
-#: public/class-sunny-zero-spam.php:87
-msgid "Zero Spam marks it as a spam"
+msgid "iThemes Security lock this ip out because of %s"
 msgstr ""

@@ -305,12 +305,12 @@ class Sunny {
 		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
 
 		$zero_spam = new Sunny_Zero_Spam( $this->get_plugin_name() );
-		$this->loader->add_action( 'zero_spam_found_spam_registration', $zero_spam, 'ban_spam' );
-		$this->loader->add_action( 'zero_spam_found_spam_comment', $zero_spam, 'ban_spam' );
-		$this->loader->add_action( 'zero_spam_found_spam_cf7_form_submission', $zero_spam, 'ban_spam' );
-		$this->loader->add_action( 'zero_spam_found_spam_gf_form_submission', $zero_spam, 'ban_spam' );
-		$this->loader->add_action( 'zero_spam_found_spam_buddypress_registration', $zero_spam, 'ban_spam' );
-		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
+		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban', 10, 0 );
+		$this->loader->add_action( 'zero_spam_found_spam_registration', $zero_spam, 'ban', 10, 0 );
+		$this->loader->add_action( 'zero_spam_found_spam_comment', $zero_spam, 'ban', 10, 0 );
+		$this->loader->add_action( 'zero_spam_found_spam_cf7_form_submission', $zero_spam, 'ban', 10, 0 );
+		$this->loader->add_action( 'zero_spam_found_spam_gf_form_submission', $zero_spam, 'ban', 10, 0 );
+		$this->loader->add_action( 'zero_spam_found_spam_buddypress_registration', $zero_spam, 'ban', 10, 0 );
 
 		$contact_form_7 = new Sunny_Contact_Form_7( $this->get_plugin_name() );
 		$this->loader->add_filter( 'wpcf7_spam', $contact_form_7, 'ban_spam', 99999 );
@@ -331,7 +331,7 @@ class Sunny {
 		// Set callbacks
 		$this->loader->add_action( 'sunny_cron_send_notification', $mailer, 'email_blacklist_notification_digest' );
 		$ithemes_security = new Sunny_iThemes_Security( $this->get_plugin_name() );
-		$this->loader->add_action( 'sunny_cron_check_ithemes_security_lockouts', $ithemes_security, 'maybe_new_lockout' );
+		$this->loader->add_action( 'sunny_cron_check_ithemes_security_lockouts', $ithemes_security, 'ban' );
 
 		// Logging
 		$this->loader->add_action( 'sunny_after_cloudflare_api_request', 'Sunny_Helper', 'write_api_report', 10, 2 );

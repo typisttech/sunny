@@ -16,9 +16,8 @@ class Sunny_Zero_Spam extends Sunny_Abstract_Spam_Module {
 	 * Set intergrated plugin name during class initialization
 	 *
 	 * @since 		1.5.0
-	 *
 	 */
-	public function set_intergrated_plugin_name() {
+	protected function set_intergrated_plugin_name() {
 		$this->intergrated_plugin_name = 'zero_spam';
 	}
 

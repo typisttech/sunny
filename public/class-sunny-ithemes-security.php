@@ -10,128 +10,107 @@
 /**
  * This class intergates with iThemes Security plugin.
  */
-class Sunny_iThemes_Security {
+class Sunny_iThemes_Security extends Sunny_Abstract_Spam_Module {
 
 	/**
-	 * The ID of this plugin.
+	 * Set intergrated plugin name during class initialization
 	 *
-	 * @since    1.4.12
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
-
-	/**
-	 * Initialize the class and purge after post saved
-	 *
-	 * @since     1.4.12
+	 * @since 		1.5.0
 	 *
 	 */
-	public function __construct( $plugin_name ) {
-
-		$this->plugin_name = $plugin_name;
-
-	} // end __construct
+	protected function set_intergrated_plugin_name() {
+		$this->intergrated_plugin_name = 'ithemes_security';
+	}
 
 	/**
 	 * Check if site admin enabled this function and iThemes_Security is activated
 	 *
-	 * @return 	boolean 	True if enabled and activated
-	 *
+	 * @return 	boolean 	True if enabled and iThemes_Security is activated
 	 * @since 	1.4.12
 	 *
 	 */
-	private function is_enabled() {
-
-		$enabled = Sunny_Option::get_option( 'ithemes_security' );
+	protected function is_enabled() {
 
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$is_activated = is_plugin_active( 'better-wp-security/better-wp-security.php' );
 
-		return ( true === $is_activated && !empty( $enabled ) && '1' == $enabled );
+		return ( true === $is_activated && parent::is_enabled() );
 
 	} // end is_enabled
-
-	/**
-	 * Check if an extenal ip address
-	 *
-	 * @param 	string 	$ip
-	 * @return 	boolean 			True if ip is ban-able
-	 *
-	 * @since 	1.4.12
-	 *
-	 */
-	private function should_ban( $ip ) {
-
-		return Sunny_Helper::is_valid_ip( $ip ) && ! Sunny_Helper::is_localhost( $ip );
-
-	} // end should_ban
 
 	/**
 	 * Ban IPs if iThemes Security locks them.
 	 * This is a wp cron job callback.
 	 *
-	 * @since 	1.4.12
+	 * @since 	1.5.0
 	 */
-	public function maybe_new_lockout() {
+	public function ban( $_ip = '', $_early_quit_arg = false, $_reason = '' ) {
 
-		// Early quit if not enabled or class ITSEC_Lockout doesn't exist
-		if ( ! $this->is_enabled() && ! class_exists( 'ITSEC_Lockout' ) ) {
+		// Early quit if not enabled or
+		if ( ! $this->is_enabled() ) {
 			return;
 		}
 
-		// Get current host lockouts
+		// Early quit if class ITSEC_Lockout doesn't exist
+		if ( ! class_exists( 'ITSEC_Lockout' ) ) {
+			return;
+		}
+
+		// Get current host (ip) lockouts
 		$itsec_lockout = new ITSEC_Lockout();
 		$lockouts = $itsec_lockout->get_lockouts( 'host', false );
-
-		// Early quit if no lockouts
-		if ( empty( $lockouts ) ) {
-			return;
-		}
 
 		foreach ( $lockouts as $lockout ) {
 			$this->ban_lockout( $lockout );
 		}
 
-	} // end maybe_new_lockout
+	} // end ban
 
 	/**
-	 * [ban_lockout description]
+	 * Check if an loackout is too old
 	 *
-	 * @since  1.4.12
+	 * @param   string  	$start_gmt
+	 * @return  boolean 					True if lockout is older than 600 seconds
+	 * @since   1.5.0
 	 *
-	 * @param  [type]	$lockout
+	 */
+	protected function should_early_quit_banning( $start_gmt = false ) {
+		if ( false === $start_gmt ) {
+			return parent::should_early_quit_banning();
+		} else {
+			return ( strtotime( 'now GMT' ) - strtotime( $start_gmt ) > 600 );
+		}
+	}
+
+
+	/**
+	 * @param   string  $reason
+	 * @return  string 				Reason of banning
+	 * @since   1.5.0
+	 */
+	protected function get_reason( $reason = '' ) {
+		if ( empty( $reason ) ) {
+			return parent::get_reason();
+		} else {
+			return sprintf( __( 'iThemes Security lock this ip out because of %s', $this->plugin_name ), $reason );
+		}
+
+	}
+
+	/**
+	 * Ban a lockout
+	 *
+	 * @param  array	$lockout
 	 * @return void
+	 * @since  1.4.12
 	 */
 	private function ban_lockout( $lockout ) {
 
-		$ip = $lockout['lockout_host'];
-		$reason = $lockout['lockout_type'];
-		$start_gmt = $lockout['lockout_start_gmt'] . 'GMT';
+		$ip 					= $lockout['lockout_host'];
+		$reason_lockout_type 	= (String) $lockout['lockout_type'];
+		$start_gmt 				= $lockout['lockout_start_gmt'] . 'GMT';
 
-		// Quit early if $ip is not ban-able
-		if ( ! $this->should_ban( $ip ) ) {
-			return;
-		}
-
-		// Quit early if $lockout older than 10 mins(600 seconds)
-		if ( strtotime( 'now GMT' ) - strtotime( $start_gmt ) > 600 ) {
-			return;
-		}
-
-		$response = Sunny_Lock::ban_ip( $ip );
-
-		if ( Sunny_Helper::is_api_success( $response ) ) {
-
-			$notice = array(
-				'ip' => $ip,
-				'date' => current_time( 'timestamp' ),
-				'reason' => sprintf( __( 'iThemes Security lockout because of %s', $this->plugin_name ), $reason )
-				);
-
-			do_action( 'sunny_banned_ithemes_security', $notice, $reason );
-
-		} // end if api success
+		parent::ban( $ip, $start_gmt, $reason_lockout_type );
 
 	} // end ban_lockout
 

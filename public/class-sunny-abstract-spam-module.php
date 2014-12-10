@@ -46,15 +46,15 @@ abstract class Sunny_Abstract_Spam_Module {
 	 * @since     1.5.0
 	 *
 	 */
-	abstract public function set_intergrated_plugin_name();
+	abstract protected function set_intergrated_plugin_name();
 
 	/**
-	 * Get intergrated plugin
-	 *
-	 * @since     1.5.0
+	 * Get intergrated plugin name
+	 * @return 		string   	Intergrated plugin name
+	 * @since 		1.5.0
 	 *
 	 */
-	public function get_intergrated_plugin_name() {
+	protected function get_intergrated_plugin_name() {
 		return $this->intergrated_plugin_name;
 	}
 
@@ -62,7 +62,6 @@ abstract class Sunny_Abstract_Spam_Module {
 	 * Check if site admin enabled this function or not
 	 *
 	 * @return  boolean   True if enabled
-	 *
 	 * @since   1.5.0
 	 *
 	 */
@@ -74,33 +73,61 @@ abstract class Sunny_Abstract_Spam_Module {
 	} // end is_enabled
 
 	/**
-	 * Check if an extenal ip address
+	 * Check if an valid extenal ip address
 	 *
-	 * @param   string  $ip
-	 * @return  boolean       True if ip is ban-able
-	 *
+	 * @param   string  $target_ip
+	 * @return  boolean       		True if ip is ban-able
 	 * @since   1.5.0
 	 *
 	 */
-	protected function should_ban( $ip ) {
-
-		// return Sunny_Helper::is_valid_ip( $ip ) && ! Sunny_Helper::is_localhost( $ip );
-		return Sunny_Helper::is_valid_ip( $ip );
-
+	protected function should_ban( $target_ip ) {
+		return Sunny_Helper::is_valid_ip( $target_ip ) && ! Sunny_Helper::is_localhost( $target_ip );
 	} // end should_ban
+
+	/**
+	 * Check if early quit needed during banning
+	 *
+	 * @param   mixed  	$_early_quit_arg
+	 * @return  boolean 					True if should early quit banning
+	 * @since   1.5.0
+	 *
+	 */
+	protected function should_early_quit_banning( $_early_quit_arg = false ) {
+		return false;
+	}
+
+	/**
+	 * @param   string  $_reason
+	 * @return  string 				Reason of banning
+	 * @since   1.5.0
+	 */
+	protected function get_reason( $_reason = '' ) {
+		return ( $this->get_intergrated_plugin_name() . __( ' marks it as a spam', $this->plugin_name ) );
+	}
 
 	/**
 	 * Ban IP
 	 *
+	 * @param   string  $ip
+	 * @param   mixed  	$early_quit_arg
+	 * @param   string  $reason
 	 * @since   1.5.0
 	 */
-	public function ban_spam() {
-
-		$ip = Sunny_Helper::get_remoteaddr();
+	public function ban( $ip = '', $early_quit_arg = false, $reason = '' ) {
 
 		// Quit early if not enabled OR not a ban-able IP
-		if ( ! $this->is_enabled() || ! $this->should_ban( $ip ) ) {
-			return $is_spam;
+		if ( ! $this->is_enabled() ) {
+			return;
+		}
+
+		if ( $this->should_early_quit_banning( $early_quit_arg ) ) {
+			return;
+		}
+
+		$ip = ( empty($ip) ) ? Sunny_Helper::get_remoteaddr() : $ip;
+
+		if ( ! $this->should_ban( $ip ) ) {
+			return;
 		}
 
 		$response = Sunny_Lock::ban_ip( $ip );
@@ -110,13 +137,13 @@ abstract class Sunny_Abstract_Spam_Module {
 			$notice = array(
 				'ip' => $ip,
 				'date' => current_time( 'timestamp' ),
-				'reason' => $this->get_intergrated_plugin_name() . __( ' marks it as a spam', $this->plugin_name )
+				'reason' => $this->get_reason( $reason )
 				);
 
 			do_action( 'sunny_banned_' . $this->get_intergrated_plugin_name(), $notice );
 
 		}
 
-	} // end ban_spam
+	} // end ban
 
 } // end Sunny_Abstract_Spam_Module

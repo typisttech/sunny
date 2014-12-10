@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -115,6 +115,10 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 
 == Changelog ==
+
+= 1.5.1 =
+* Developer: Introduce `Sunny_Abstract_Spam_Module`
+* Developer: Modularize `Sunny_iThemes_Security` and `Sunny_Zero_Spam`
 
 = 1.5.0 =
 * Developer: Fix update notice not showing
