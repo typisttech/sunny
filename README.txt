@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.15
+Stable tag: 1.4.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,6 +109,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 
 == Changelog ==
+
+= 1.4.16 =
+* New Translation: zh_HK
 
 = 1.4.15 =
 * New Feature: Integrate with [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
@@ -252,6 +255,9 @@ Initial Release
 * Initial Alpha Test
 
 == Upgrade Notice ==
+
+= 1.4.16 =
+Sunny now works with Contact Form 7! And, zh_HK translation available!
 
 = 1.4.15 =
 Sunny now works with Contact Form 7!

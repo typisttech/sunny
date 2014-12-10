@@ -2,17 +2,17 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Sunny 1.4.9\n"
+"Project-Id-Version: Sunny 1.4.16\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2014-10-17 07:56+0800\n"
-"PO-Revision-Date: 2014-10-17 07:58+0800\n"
+"POT-Creation-Date: 2014-12-10 10:05+0800\n"
+"PO-Revision-Date: 2014-12-10 10:07+0800\n"
 "Last-Translator: \n"
 "Language-Team: Tang Rufus @WP Human <rufus@wphuman.com>\n"
-"Language: zh_TW\n"
+"Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.7.1\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
 "esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ../\n"
@@ -52,7 +52,7 @@ msgstr "工具"
 msgid "Integration"
 msgstr "整合"
 
-#: admin/class-sunny-mailing-list-box.php:50
+#: admin/class-sunny-mailing-list-box.php:45
 msgid "WP Human Mailing List"
 msgstr "WP Human 電子報"
 
@@ -289,10 +289,20 @@ msgid ""
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:275
-msgid "Zero Spam"
+msgid "Contact Form 7"
 msgstr ""
 
 #: admin/settings/class-sunny-settings.php:276
+msgid ""
+"When <a href=\"https://wordpress.org/plugins/contact-form-7/\">Contact Form "
+"7</a> marks a spam, tell CloudFlare to blacklist its IP."
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:281
+msgid "Zero Spam"
+msgstr ""
+
+#: admin/settings/class-sunny-settings.php:282
 msgid ""
 "When <a href=\"https://wordpress.org/plugins/zero-spam/\">WordPress Zero "
 "Spam</a> blocks an access, ban its IP as well."
@@ -371,20 +381,24 @@ msgid ""
 "to review all necessary settings."
 msgstr ""
 
-#: includes/class-sunny-cron.php:107
+#: includes/class-sunny-cron.php:102
 msgid "Every 10 mins"
 msgstr "每十分鐘"
 
-#: public/class-sunny-ban-bad-login.php:121
+#: public/class-sunny-ban-bad-login.php:116
 #, php-format
 msgid "Tried to login as `%s`"
 msgstr "欲以 `%s` 登入"
 
-#: public/class-sunny-ithemes-security.php:135
+#: public/class-sunny-contact-form-7.php:93
+msgid "Contact Form 7 marks it as a spam"
+msgstr ""
+
+#: public/class-sunny-ithemes-security.php:130
 #, php-format
 msgid "iThemes Security lockout because of %s"
 msgstr ""
 
-#: public/class-sunny-zero-spam.php:93
+#: public/class-sunny-zero-spam.php:88
 msgid "Zero Spam marks it as a spam"
 msgstr ""
