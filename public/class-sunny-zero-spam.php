@@ -71,12 +71,12 @@ class Sunny_Zero_Spam {
 	 */
 	public function ban_spam() {
 
+		$ip = Sunny_Helper::get_remoteaddr();
+
 		// Quit early if not enabled OR not a ban-able IP
 		if ( ! $this->is_enabled() || ! $this->should_ban( $ip ) ) {
 			return;
 		}
-
-		$ip = Sunny_Helper::get_remoteaddr();
 
 		$response = Sunny_Lock::ban_ip( $ip );
 
