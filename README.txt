@@ -46,6 +46,9 @@ If you have written an article about `Sunny`, do [let me know](http://tangrufus.
 [Tang Rufus](http://tangrufus.com), a freelance developer for hire.
 I make [WP Human](https://wphuman.com) also.
 
+= Requirement =
+* PHP 5.3 or later
+
 == Installation ==
 
 1. Download the plugin.
@@ -91,6 +94,9 @@ You can disable this behavior via the `General` tab.
 
 1. Login [CloudFlare](http://cloudflare.com).
 2. Release you IP on the threat control dashborad.
+
+= Parse error: syntax error, unexpected T_FUNCTION in ... =
+If you come across this error, make sure that you have PHP 5.3 or later installed.
 
 = Dose it support mulitsite? =
 
