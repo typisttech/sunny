@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_cart&business=tangrufus%
 Tags: cloudflare, cache, CDN, performance, security, spam
 Requires at least: 3.6.0
 Tested up to: 4.0.0
-Stable tag: 1.4.14
+Stable tag: 1.4.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -252,6 +252,9 @@ Initial Release
 * Initial Alpha Test
 
 == Upgrade Notice ==
+
+= 1.4.15 =
+Sunny now works with Contact Form 7!
 
 = 1.4.12 =
 Sunny now works with iThemes Security!

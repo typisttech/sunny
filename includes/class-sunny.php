@@ -56,7 +56,7 @@ class Sunny {
 	public function __construct() {
 
 		$this->plugin_name = 'sunny';
-		$this->version = '1.4.14';
+		$this->version = '1.4.15';
 
 		$this->load_dependencies();
 		$this->set_locale();
