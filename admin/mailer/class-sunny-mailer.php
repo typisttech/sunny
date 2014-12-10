@@ -14,19 +14,19 @@ class Sunny_Mailer {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    	$name    The ID of this plugin.
+	 * @var      string    	$plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and set its propertie.
 	 *
 	 * @since 	1.4.0
-	 * @param 	string 		$name    The ID of this plugin.
+	 * @param 	string 		$plugin_name    The ID of this plugin.
 	 */
-	public function __construct( $to_name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $to_name;
+		$this->plugin_name = $plugin_name;
 
 	}
 
@@ -57,7 +57,7 @@ class Sunny_Mailer {
 		}
 
 		// Set Body Content
-		$template = new Sunny_Email_Template( $this->name );
+		$template = new Sunny_Email_Template( $this->plugin_name );
 		$message = $template->get_email_body_header();
 		$message .= $template->get_blacklist_email_body_content( $notifications, $to_name );
 		$message .= $template->get_email_body_footer();
@@ -75,7 +75,7 @@ class Sunny_Mailer {
 
 		// Subject
 		$option_blacklist_email_subject = Sunny_Option::get_option( 'blacklist_email_subject' );
-		$subject = ( !empty( $option_blacklist_email_subject ) ) ? wp_strip_all_tags( $option_blacklist_email_subject, true ) : __( 'Blacklist Notification', $this->name );
+		$subject = ( !empty( $option_blacklist_email_subject ) ) ? wp_strip_all_tags( $option_blacklist_email_subject, true ) : __( 'Blacklist Notification', $this->plugin_name );
 		$subject = apply_filters( 'sunny_blacklist_email_subject', $subject, $from_address, $from_name, $to_address, $to_name, $notifications );
 
 		// Combine Email Headers

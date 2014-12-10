@@ -17,18 +17,18 @@ class Sunny_Ban_Bad_Login {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and purge after post saved
 	 *
 	 * @since     1.3.0
 	 */
-	public function __construct( $name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 
 	} // end __construct
 
@@ -113,7 +113,7 @@ class Sunny_Ban_Bad_Login {
 			$notice = array(
 				'ip' => $ip,
 				'date' => current_time( 'timestamp' ),
-				'reason' => sprintf( __( 'Tried to login as `%s`', $this->name ), $username )
+				'reason' => sprintf( __( 'Tried to login as `%s`', $this->plugin_name ), $username )
 				);
 
 			do_action( 'sunny_banned_login_with_bad_username', $notice );

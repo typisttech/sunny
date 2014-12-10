@@ -14,9 +14,9 @@ class Sunny_Meta_Box {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * The araay of settings tabs
@@ -31,11 +31,11 @@ class Sunny_Meta_Box {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.4.0
-	 * @var      string    $name    The name of this plugin.
+	 * @var      string    $plugin_name    The name of this plugin.
 	 */
-	public function __construct( $name, array $options_tabs ) {
+	public function __construct( $plugin_name, array $options_tabs ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 		$this->options_tabs = $options_tabs;
 
 	}

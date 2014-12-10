@@ -14,9 +14,9 @@ class Sunny_Tools {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * The array of plugin settings.
@@ -40,18 +40,18 @@ class Sunny_Tools {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.4.0
-	 * @var      string    $name       The name of this plugin.
+	 * @var      string    $plugin_name       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
-	public function __construct( $name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 		$this->registered_tools = $this->set_registered_tools();
 
 		if ( ! class_exists( 'Sunny_Callback_Helper' ) ) {
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/class-sunny-callback-helper.php';
 		}
-		$this->callback = new Sunny_Callback_Helper( $this->name );
+		$this->callback = new Sunny_Callback_Helper( $this->plugin_name );
 
 	}
 
@@ -80,7 +80,7 @@ class Sunny_Tools {
 					'id' 		=> $tool['id'],
 					'action' 	=> $tool['action'],
 					'desc' 		=> $tool['desc'],
-					'btn_text' 	=> isset( $tool['btn_text'] ) ? $tool['btn_text'] : __( 'Go', $this->name ),
+					'btn_text' 	=> isset( $tool['btn_text'] ) ? $tool['btn_text'] : __( 'Go', $this->plugin_name ),
 					)
 				);
 
@@ -141,31 +141,31 @@ class Sunny_Tools {
 	 */
 	$tools[] = array(
 		'id' 		=> 'connection_tester',
-		'title' 	=> __( 'Test Connection', $this->name ),
+		'title' 	=> __( 'Test Connection', $this->plugin_name ),
 		'action' 	=> 'sunny_connection_test',
-		'btn_text' 	=> __( 'Test Connection', $this->name ),
-		'desc'		=> __( "To check if <code>Sunny</code> can connect to CloudFlare's server. <a href='https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/#test-connection'>Here</a> is a successful example.", $this->name )
+		'btn_text' 	=> __( 'Test Connection', $this->plugin_name ),
+		'desc'		=> __( "To check if <code>Sunny</code> can connect to CloudFlare's server. <a href='https://wphuman.com/make-cloudflare-supercharge-wordpress-sites/#test-connection'>Here</a> is a successful example.", $this->plugin_name )
 		);
 
 	$tools[] = array(
 		'id' 		=> 'zone_purger',
-		'title' 	=> __( 'Zone Purger', $this->name ),
+		'title' 	=> __( 'Zone Purger', $this->plugin_name ),
 		'action' 	=> 'sunny_zone_purge',
-		'btn_text' 	=> __( 'Clear all cache', $this->name ),
-		'desc'		=> __( "Clear CloudFlare's cache.<br />This function will purge CloudFlare of any cached files. It may take up to 48 hours for the cache to rebuild and optimum performance to be achieved so this function should be used sparingly.", $this->name )
+		'btn_text' 	=> __( 'Clear all cache', $this->plugin_name ),
+		'desc'		=> __( "Clear CloudFlare's cache.<br />This function will purge CloudFlare of any cached files. It may take up to 48 hours for the cache to rebuild and optimum performance to be achieved so this function should be used sparingly.", $this->plugin_name )
 		);
 
 	$tools[] = array(
 		'id' 		=> 'url_purger',
-		'title' 	=> __( 'URL Purger', $this->name ),
+		'title' 	=> __( 'URL Purger', $this->plugin_name ),
 		'action' 	=> 'sunny_url_purge',
-		'btn_text' 	=> __( 'Clear cache', $this->name ),
-		'desc'		=> __( 'Purge a post by URL and (if enabled) its associated pages(e.g: categories, tags and archives).', $this->name ),
+		'btn_text' 	=> __( 'Clear cache', $this->plugin_name ),
+		'desc'		=> __( 'Purge a post by URL and (if enabled) its associated pages(e.g: categories, tags and archives).', $this->plugin_name ),
 		'settings' 	=> array(
 			'post_url' 	=> array(
 				'id'   	=> 'post_url',
-				'name' 	=> __( 'Post URL', $this->name ),
-				'desc' 	=> __( 'The URL you want to purge. Start with <code>http://</code> or <code>https://</code>', $this->name ),
+				'name' 	=> __( 'Post URL', $this->plugin_name ),
+				'desc' 	=> __( 'The URL you want to purge. Start with <code>http://</code> or <code>https://</code>', $this->plugin_name ),
 				'type' 	=> 'url',
 				'std'  	=> get_option( 'home' ),
 				)

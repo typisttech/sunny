@@ -17,9 +17,9 @@ class Sunny_Admin {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * The version of this plugin.
@@ -43,12 +43,12 @@ class Sunny_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @var      string    $name       The name of this plugin.
+	 * @var      string    $plugin_name       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
-	public function __construct( $name, $version ) {
+	public function __construct( $plugin_name, $version ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
 	}
@@ -81,7 +81,7 @@ class Sunny_Admin {
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 
-			wp_enqueue_style( $this->name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
 
 		}
 
@@ -115,7 +115,7 @@ class Sunny_Admin {
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
 
 			wp_enqueue_script( 'postbox' );
-			wp_enqueue_script( $this->name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, true );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, true );
 
 		}
 
@@ -133,10 +133,10 @@ class Sunny_Admin {
 		 */
 
 		$this->plugin_screen_hook_suffix = add_menu_page(
-			__( 'Sunny (Connecting CloudFlare and WordPress)', $this->name ),
-			__( 'Sunny', $this->name ),
+			__( 'Sunny (Connecting CloudFlare and WordPress)', $this->plugin_name ),
+			__( 'Sunny', $this->plugin_name ),
 			'manage_options',
-			$this->name,
+			$this->plugin_name,
 			array( $this, 'display_plugin_admin_page' )
 			);
 
@@ -162,7 +162,7 @@ class Sunny_Admin {
 
 		return array_merge(
 			array(
-				'settings' => '<a href="' . admin_url( 'admin.php?page=' . $this->name ) . '">' . __( 'Settings', $this->name ) . '</a>'
+				'settings' => '<a href="' . admin_url( 'admin.php?page=' . $this->plugin_name ) . '">' . __( 'Settings', $this->plugin_name ) . '</a>'
 				),
 			$links
 			);
@@ -179,11 +179,11 @@ class Sunny_Admin {
 	public function get_options_tabs() {
 
 		$tabs 					= array();
-		$tabs['accounts'] 		= __( 'Accounts', $this->name );
-		$tabs['general']  		= __( 'General', $this->name );
-		$tabs['emails']			= __( 'Emails', $this->name );
-		$tabs['tools']			= __( 'Tools', $this->name );
-		$tabs['integration']	= __( 'Integration', $this->name );
+		$tabs['accounts'] 		= __( 'Accounts', $this->plugin_name );
+		$tabs['general']  		= __( 'General', $this->plugin_name );
+		$tabs['emails']			= __( 'Emails', $this->plugin_name );
+		$tabs['tools']			= __( 'Tools', $this->plugin_name );
+		$tabs['integration']	= __( 'Integration', $this->plugin_name );
 
 		return apply_filters( 'sunny_settings_tabs', $tabs );
 	}

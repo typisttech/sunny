@@ -18,9 +18,9 @@ class Sunny_iThemes_Security {
 	 *
 	 * @since    1.4.12
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and purge after post saved
@@ -28,9 +28,9 @@ class Sunny_iThemes_Security {
 	 * @since     1.4.12
 	 *
 	 */
-	public function __construct( $name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 
 	} // end __construct
 
@@ -127,7 +127,7 @@ class Sunny_iThemes_Security {
 			$notice = array(
 				'ip' => $ip,
 				'date' => current_time( 'timestamp' ),
-				'reason' => sprintf( __( 'iThemes Security lockout because of %s', $this->name ), $reason )
+				'reason' => sprintf( __( 'iThemes Security lockout because of %s', $this->plugin_name ), $reason )
 				);
 
 			do_action( 'sunny_banned_ithemes_security', $notice, $reason );

@@ -18,9 +18,9 @@ class Sunny_Zero_Spam {
 	 *
 	 * @since    1.4.11
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and purge after post saved
@@ -28,9 +28,9 @@ class Sunny_Zero_Spam {
 	 * @since     1.4.11
 	 *
 	 */
-	public function __construct( $name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 
 	} // end __construct
 
@@ -85,7 +85,7 @@ class Sunny_Zero_Spam {
 			$notice = array(
 				'ip' => $ip,
 				'date' => current_time( 'timestamp' ),
-				'reason' => __( 'Zero Spam marks it as a spam', $this->name )
+				'reason' => __( 'Zero Spam marks it as a spam', $this->plugin_name )
 				);
 
 			do_action( 'sunny_banned_zero_spam', $notice );

@@ -14,19 +14,19 @@ class Sunny_Tools_Handler {
 	 *
 	 * @since    1.4.4
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.4.4
-	 * @var      string    $name       The name of this plugin.
+	 * @var      string    $plugin_name       The name of this plugin.
 	 */
-	public function __construct( $name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 
 	}
 
@@ -105,7 +105,7 @@ class Sunny_Tools_Handler {
 
 		// $_return_arg['result'] 		= $_return_arg['result'];
 		$_return_args['message']	= $this->prepare_result_message( $_return_args );
-		$_return_args['page']		= $this->name;
+		$_return_args['page']		= $this->plugin_name;
 		$_return_args['tab']		= 'tools';
 
 		wp_redirect( add_query_arg( $_return_args, admin_url( 'admin.php' ) ) );
@@ -120,7 +120,7 @@ class Sunny_Tools_Handler {
 
 		$this->secuity_check( 'connection_tester' );
 
-		$connection_tester = new Sunny_Connection_Tester( $this->name );
+		$connection_tester = new Sunny_Connection_Tester( $this->plugin_name );
 		$return_args = $connection_tester->get_result();
 
 		$this->send_GET_response( $return_args );
@@ -135,7 +135,7 @@ class Sunny_Tools_Handler {
 
 		$this->secuity_check( 'zone_purger' );
 
-		$zone_purger = new Sunny_Zone_Purger( $this->name );
+		$zone_purger = new Sunny_Zone_Purger( $this->plugin_name );
 		$return_args = $zone_purger->get_result();
 
 		$this->send_GET_response( $return_args );
@@ -150,7 +150,7 @@ class Sunny_Tools_Handler {
 
 		$this->secuity_check( 'url_purger' );
 
-		$url_purger = new Sunny_Url_Purger( $this->name );
+		$url_purger = new Sunny_Url_Purger( $this->plugin_name );
 		$return_args = $url_purger->get_result();
 
 		$this->send_GET_response( $return_args );

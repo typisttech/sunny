@@ -14,19 +14,19 @@ class Sunny_Email_Template {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and set its propertie.
 	 *
 	 * @since    1.4.0
-	 * @var      string    $name       The name of this plugin.
+	 * @var      string    $plugin_name       The name of this plugin.
 	 */
-	public function __construct( $name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 
 		// Set Default Template
 		add_filter( 'sunny_blacklist_email_body_content', array( $this, 'email_default_formatting' ) );
@@ -69,13 +69,13 @@ class Sunny_Email_Template {
 	 */
 	public function get_blacklist_email_body_content( array $notices, $to_name ) {
 
-		$name = is_email( $to_name ) ? 'Site Admin' : $to_name;
-		$default_email_body = __( 'Howdy ', $this->name ) . $name . ",\n\n";
+		$recipient_name = is_email( $to_name ) ? 'Site Admin' : $to_name;
+		$default_email_body = __( 'Howdy ', $this->plugin_name ) . $recipient_name . ",\n\n";
 
 		// Check if more than one notice
 		$is_plural = ( count( $notices ) > 1 );
 
-		$default_email_body .= $is_plural ? __( 'These IPs have been blacklisted in CloudFlare.', $this->name ) : __( 'This IP has been blacklisted in CloudFlare.', $this->name );
+		$default_email_body .= $is_plural ? __( 'These IPs have been blacklisted in CloudFlare.', $this->plugin_name ) : __( 'This IP has been blacklisted in CloudFlare.', $this->plugin_name );
 		$default_email_body .= "\n\n";
 
 		$default_email_body .= $is_plural ? '<ul>' : null;
@@ -84,14 +84,14 @@ class Sunny_Email_Template {
 
 			$default_email_body .= '<ul>';
 
-				$default_email_body .= '<li>' . __( 'IP Address', $this->name ) . ': ' . $notice['ip'] . '</li>';
+				$default_email_body .= '<li>' . __( 'IP Address', $this->plugin_name ) . ': ' . $notice['ip'] . '</li>';
 
-				$default_email_body .= '<li>' . __( 'Due To', $this->name ) . ': ' . $notice['reason'] . '</li>';
+				$default_email_body .= '<li>' . __( 'Due To', $this->plugin_name ) . ': ' . $notice['reason'] . '</li>';
 
 				$date_format = get_option( 'date_format' );
 				$time_format = get_option( 'time_format' );
 				$date_time = date( "{$date_format} {$time_format}", $notice['date'] );
-				$default_email_body .= '<li>' . __( 'Date/Time', $this->name ) . ': ' . $date_time . '</li>';
+				$default_email_body .= '<li>' . __( 'Date/Time', $this->plugin_name ) . ': ' . $date_time . '</li>';
 
 			$default_email_body .= '</ul>';
 
@@ -99,12 +99,12 @@ class Sunny_Email_Template {
 		$default_email_body .= $is_plural ? '</ul>' : null;
 		$default_email_body .= "\n\n";
 
-		$default_email_body .= $is_plural ? __( 'These IPs would be locked out from your site <strong>forever</strong>. To unlist this IP please vist your <a href="https://www.cloudflare.com/threat-control/">CloudFlare Dashboard</a>.', $this->name ) : __( 'This IP would be locked out from your site <strong>forever</strong>. To unlist this IP please vist your <a href="https://www.cloudflare.com/threat-control/">CloudFlare Dashboard</a>.', $this->name );
+		$default_email_body .= $is_plural ? __( 'These IPs would be locked out from your site <strong>forever</strong>. To unlist this IP please vist your <a href="https://www.cloudflare.com/threat-control/">CloudFlare Dashboard</a>.', $this->plugin_name ) : __( 'This IP would be locked out from your site <strong>forever</strong>. To unlist this IP please vist your <a href="https://www.cloudflare.com/threat-control/">CloudFlare Dashboard</a>.', $this->plugin_name );
 		$default_email_body .= "\n\n";
 
 
 		$plugin_settings_url = admin_url( 'admin.php?page=sunny&tab=emails' );
-		$default_email_body .= sprintf( __( '*This email was generated automatically by <a href="http://wordpress.org/plugins/sunny/">Sunny(Connecting CloudFlare &amp; WordPress)</a>. To change your email preferences please visit the <a href="%s">plugin settings</a>.', $this->name ), $plugin_settings_url );
+		$default_email_body .= sprintf( __( '*This email was generated automatically by <a href="http://wordpress.org/plugins/sunny/">Sunny(Connecting CloudFlare &amp; WordPress)</a>. To change your email preferences please visit the <a href="%s">plugin settings</a>.', $this->plugin_name ), $plugin_settings_url );
 		$default_email_body .= "\n\n";
 
 		return apply_filters( 'sunny_blacklist_email_body_content', $default_email_body, $notices, $to_name );

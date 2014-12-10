@@ -16,9 +16,9 @@ class Sunny_Sanitization_Helper {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * The array of plugin settings.
@@ -33,11 +33,11 @@ class Sunny_Sanitization_Helper {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.4.0
-	 * @var      string    $name       The name of this plugin.
+	 * @var      string    $plugin_name       The name of this plugin.
 	 */
-	public function __construct( $name, array $registered_settings ) {
+	public function __construct( $plugin_name, array $registered_settings ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 		$this->registered_settings = $registered_settings;
 		add_filter( 'sunny_settings_sanitize_text', array( $this, 'sanitize_text_field' ) );
 		add_filter( 'sunny_settings_sanitize_email', array( $this, 'sanitize_email_field' ) );
@@ -120,7 +120,7 @@ class Sunny_Sanitization_Helper {
 		// Merge our new settings with the existing
 		$output = array_merge( $sunny_options, $input );
 
-		add_settings_error( 'sunny-notices', '', __( 'Settings updated.', $this->name ), 'updated' );
+		add_settings_error( 'sunny-notices', '', __( 'Settings updated.', $this->plugin_name ), 'updated' );
 
 		return $output;
 	}

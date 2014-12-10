@@ -16,19 +16,19 @@ class Sunny_Callback_Helper {
 	 *
 	 * @since    1.4.0
 	 * @access   private
-	 * @var      string    $name    The ID of this plugin.
+	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
-	private $name;
+	private $plugin_name;
 
 	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @var      string    $name       The name of this plugin.
+	 * @var      string    $plugin_name       The name of this plugin.
 	 */
-	public function __construct( $name ) {
+	public function __construct( $plugin_name ) {
 
-		$this->name = $name;
+		$this->plugin_name = $plugin_name;
 
 	}
 
@@ -42,7 +42,7 @@ class Sunny_Callback_Helper {
 	 * @return 	void
 	 */
 	public function missing_callback( $args ) {
-		printf( __( 'The callback function used for the <strong>%s</strong> setting is missing.', $this->name ), $args['id'] );
+		printf( __( 'The callback function used for the <strong>%s</strong> setting is missing.', $this->plugin_name ), $args['id'] );
 	}
 
 	/**
@@ -323,9 +323,9 @@ class Sunny_Callback_Helper {
 
 		$html = '<select id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']"/>';
 
-		foreach ( $args['options'] as $option => $name ) {
+		foreach ( $args['options'] as $option => $option_name ) {
 			$selected = selected( $option, $value, false );
-			$html .= '<option value="' . $option . '" ' . $selected . '>' . $name . '</option>';
+			$html .= '<option value="' . $option . '" ' . $selected . '>' . $option_name . '</option>';
 		}
 
 		$html .= '</select>';
@@ -388,7 +388,7 @@ class Sunny_Callback_Helper {
 
 		$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
 		$html = '<input type="text" class="' . $size . '-text sunny_upload_field" id="sunny_settings[' . $args['id'] . ']" name="sunny_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
-		$html .= '<span>&nbsp;<input type="button" class="sunny_settings_upload_button button-secondary" value="' . __( 'Upload File', $this->name ) . '"/></span>';
+		$html .= '<span>&nbsp;<input type="button" class="sunny_settings_upload_button button-secondary" value="' . __( 'Upload File', $this->plugin_name ) . '"/></span>';
 		$html .= '<label for="sunny_settings[' . $args['id'] . ']"> '  . $args['desc'] . '</label>';
 
 		echo $html;
