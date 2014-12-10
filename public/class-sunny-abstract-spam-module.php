@@ -68,8 +68,6 @@ abstract class Sunny_Abstract_Spam_Module {
 	 */
 	protected function is_enabled() {
 
-		error_log( $this->get_intergrated_plugin_name());
-
 		$enabled = Sunny_Option::get_option( $this->get_intergrated_plugin_name() );
 		return ( isset( $enabled ) && '1' == $enabled );
 
@@ -100,15 +98,10 @@ abstract class Sunny_Abstract_Spam_Module {
 
 		$ip = Sunny_Helper::get_remoteaddr();
 
-		error_log('b4 going to ban');
-
-
 		// Quit early if not enabled OR not a ban-able IP
 		if ( ! $this->is_enabled() || ! $this->should_ban( $ip ) ) {
 			return $is_spam;
 		}
-
-		error_log('going to ban');
 
 		$response = Sunny_Lock::ban_ip( $ip );
 
