@@ -9,10 +9,10 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
  * @package    Sunny
  * @subpackage Sunny/includes
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.0.0
  */
 class Sunny {
 

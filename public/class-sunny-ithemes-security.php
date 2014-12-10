@@ -1,10 +1,9 @@
 <?php
 /**
- * @package 	Sunny
- * @subpackage 	Sunny/public
- * @author		Tang Rufus <tangrufus@gmail.com>
- * @link 		http://tangrufus.com
- * @since  		1.4.12
+ * @package    Sunny
+ * @subpackage Sunny/public
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.4.12
  *
  */
 

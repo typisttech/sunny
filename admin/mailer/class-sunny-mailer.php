@@ -2,10 +2,10 @@
 
 /**
  *
- * @package    Sunny
- * @subpackage Sunny/admin/mailer
- * @author     Tang Rufus <tangrufus@gmail.com>
- * @since  	   1.4.0
+ * @package 		Sunny
+ * @subpackage 		Sunny/admin/mailer
+ * @author 			Tang Rufus <rufus@wphuman.com>
+ * @since 			1.4.0
  */
 class Sunny_Mailer {
 

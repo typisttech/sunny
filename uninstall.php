@@ -19,12 +19,9 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @package   	Sunny
- * @author    	Tang Rufus <tangrufus@gmail.com>
- * @license   	GPL-2.0+
- * @link      	http://tangrufus.com
- * @copyright 	2014 Tang Rufus
- * @since 		1.0.0
+ * @package    Sunny
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.0.0
  */
 
 

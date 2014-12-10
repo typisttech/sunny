@@ -4,7 +4,7 @@
  *
  * @package    Sunny
  * @subpackage Sunny/includes
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
  * @since      1.4.0
  */
 

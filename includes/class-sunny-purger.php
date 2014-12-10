@@ -3,12 +3,10 @@
 /**
  * This class makes CLoudFlare purge API calls.
  *
- * @link       http://tangrufus.com
- * @since      1.0.0
- *
  * @package    Sunny
  * @subpackage Sunny/includes
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.0.0
  */
 
 Class Sunny_Purger {

@@ -2,11 +2,10 @@
 /**
  * Represents the URL Purger view for the administration dashboard.
  *
- * @link       http://tangrufus.com
- * @since      1.1.0
- *
  * @package    Sunny
  * @subpackage Sunny/admin/partials
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since  	   1.1.0
  */
 ?>
 

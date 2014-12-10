@@ -5,10 +5,10 @@
  *
  * This class defines all code necessary to run during the plugin's update.
  *
- * @since      1.5.0
  * @package    Sunny
- * @subpackage Sunny/admin
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @subpackage Sunny/admin/tools
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.5.0
  */
 class Sunny_Updater {
 

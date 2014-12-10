@@ -112,7 +112,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 = 1.5.0 =
 * Developer: Fix update notice not showing
-TODO: * Developer: Better documentation
+* Developer: Better documentation
 TODO: * Developer: Reorganising file structure
 TODO: * Developer: Introduce abstract spam class
 

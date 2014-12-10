@@ -2,11 +2,10 @@
 
 /**
  *
- * @link       http://tangrufus.com
- * @since      1.2.5
- *
  * @package    Sunny
  * @subpackage Sunny/admin/partials
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since  	   1.2.5
  */
 ?>
 

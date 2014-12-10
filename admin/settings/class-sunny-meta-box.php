@@ -4,7 +4,7 @@
  *
  * @package    Sunny
  * @subpackage Sunny/admin/settings
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
  */
 
 class Sunny_Meta_Box {

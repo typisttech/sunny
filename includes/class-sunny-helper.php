@@ -4,12 +4,10 @@
  * Helper methods.
  * All methods are static.
  *
- * @link       http://tangrufus.com
- * @since      1.4.0
- *
  * @package    Sunny
  * @subpackage Sunny/includes
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.4.0
  */
 
 /**

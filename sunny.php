@@ -8,7 +8,7 @@
  * registers the activation and deactivation functions, and defines a function
  * this starts the plugin.
  *
- * @link              http://tangrufus.com
+ * @link              https://wphuman.com
  * @since             1.0.0
  * @package           Sunny
  *
@@ -18,7 +18,7 @@
  * Description:       Automatically clear CloudFlare cache. And, protect your WordPress site at DNS level.
  * Version:           1.4.16
  * Author:            Tang Rufus
- * Author URI:        http://tangrufus.com/
+ * Author URI:        https://wphuman.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       sunny

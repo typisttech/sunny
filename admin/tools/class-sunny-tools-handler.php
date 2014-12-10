@@ -4,7 +4,7 @@
  *
  * @package    Sunny
  * @subpackage Sunny/admin/tools
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
  * @since  	   1.4.4
  */
 class Sunny_Tools_Handler {

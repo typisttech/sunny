@@ -7,12 +7,10 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @link       http://tangrufus.com
- * @since      1.4.0
- *
  * @package    Sunny
  * @subpackage Sunny/includes
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.4.0
  */
 
 class Sunny_Loader {

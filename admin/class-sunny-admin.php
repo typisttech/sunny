@@ -6,9 +6,9 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package    Sunny
- * @subpackage Sunny/admin
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @package    	Sunny
+ * @subpackage 	Sunny/admin/tools
+ * @author     	Tang Rufus <rufus@wphuman.com>
  */
 class Sunny_Admin {
 

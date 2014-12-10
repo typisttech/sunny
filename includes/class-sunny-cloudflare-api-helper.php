@@ -5,7 +5,7 @@
  *
  * @package    Sunny
  * @subpackage Sunny/includes
- * @author     Tang Rufus <tangrufus@gmail.com>
+ * @author     Tang Rufus <rufus@wphuman.com>
  * @since      1.0.0
  * @link       https://github.com/vexxhost/CloudFlare-API
  * @link       https://www.cloudflare.com/docs/client-api.html

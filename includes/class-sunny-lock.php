@@ -1,10 +1,9 @@
 <?php
 /**
- * @package 	Sunny
- * @subpackage 	Sunny/includes
- * @author 		Tang Rufus <tangrufus@gmail.com>
- * @link  		http://tangrufus.com
- * @since  		1.3.0
+ * @package    Sunny
+ * @subpackage Sunny/includes
+ * @author     Tang Rufus <rufus@wphuman.com>
+ * @since      1.3.0
  */
 
 Class Sunny_Lock {
