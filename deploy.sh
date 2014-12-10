@@ -7,11 +7,11 @@
 PLUGINSLUG=${PWD##*/} # returns basename of current directory
 CURRENTDIR=`pwd`
 MAINFILE="sunny.php" # this should be the name of your main php file in the wordpress plugin
-ACTIVATOR="includes/class-sunny-activator.php"
+UPDATER="admin/class-sunny-updater.php"
 MAINCLASS="includes/class-sunny.php"
 
 # git config
-GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
+GITPATH="$CURRENTDIR" # this file should be in the base of your git repository
 
 # svn config
 SVNPATH="/tmp/$PLUGINSLUG" # path to a temp SVN repo. No trailing slash required and don't add trunk.
@@ -33,7 +33,7 @@ echo "readme version: $NEWVERSION1"
 NEWVERSION2=`grep "Version" $GITPATH/$MAINFILE | awk -F' ' '{print $3}' | sed 's/[[:space:]]//g'`
 echo "$MAINFILE version: $NEWVERSION2"
 
-NEWVERSION3=`grep "current_version = '" $GITPATH/$ACTIVATOR | awk -F' ' '{print $3}' | sed 's/'\''//' | sed 's/'\'';//'`
+NEWVERSION3=`grep "lastest_version = '" $GITPATH/$UPDATER | awk -F' ' '{print $3}' | sed 's/'\''//' | sed 's/'\'';//'`
 echo "$ACTIVATOR version: $NEWVERSION3"
 
 NEWVERSION4=`grep "this->version = " $GITPATH/$MAINCLASS | awk -F' ' '{print $3}' | sed 's/'\''//' | sed 's/'\'';//'`
