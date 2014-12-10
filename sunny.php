@@ -29,9 +29,9 @@
  * The code that runs during plugin activation.
  * This action is documented in includes/class-plugin-name-activator.php
 */
-function activate_sunny() {
+function activate_sunny( $network_wide ) {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny-activator.php';
-	Sunny_Activator::activate();
+	Sunny_Activator::activate( $network_wide );
 }
 
 /**

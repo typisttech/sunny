@@ -128,6 +128,11 @@ class Sunny {
 		/**
 		 * The class responsible for defining all actions that occur in the Dashboard.
 		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-updater.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the Dashboard.
+		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
 
 		/**
@@ -242,6 +247,10 @@ class Sunny {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_name . '.php' );
 		$this->loader->add_action( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
 
+		// Run update scripts
+		$plugin_updater = new Sunny_Updater( $this->get_plugin_name() );
+		$this->loader->add_action( 'admin_init', $plugin_updater, 'update' );
+
 		// Built the option page
 		$plugin_settings = new Sunny_Settings( $this->get_plugin_name() );
 		$this->loader->add_action( 'admin_init' , $plugin_settings, 'register_settings' );
@@ -285,8 +294,6 @@ class Sunny {
 	 * @access   private
 	 */
 	private function define_public_hooks() {
-
-		$this->loader->add_action( 'wp_loaded', 'Sunny_Activator', 'activate', 15 );
 
 		$this->loader->add_action( 'init', 'Sunny_Option', 'set_global_options' );
 

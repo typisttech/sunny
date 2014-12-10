@@ -110,6 +110,12 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 == Changelog ==
 
+= 1.5.0 =
+* Developer: Fix update notice not showing
+TODO: * Developer: Better documentation
+TODO: * Developer: Reorganising file structure
+TODO: * Developer: Introduce abstract spam class
+
 = 1.4.16 =
 * New Translation: zh_HK
 
