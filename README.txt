@@ -115,6 +115,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 * Fix: Zero Spam module early quit before getting IPs
 * Developer: WP Plugin Boilerplate: Change name -> plugin_name for consistency. See [this PR](https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/commit/025d61efee426aadda743d09fcbcaa9db83d76f4)
 * Developer: WP Plugin Boilerplate: Fixing require() -> require_once(). See [this PR](https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/commit/2960b6c1c875d52f625d862b6e1a28dd4e6f4110)
+* Deverloper: WP Plugin Boilerplate:  Create functions for activation and deactivation hooks. See [this PR](https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/commit/e015b9cd7c402167aa526c20be9c53e2aa17845d)
 
 = 1.4.14 =
 * Allow CLI scripts access, see [https://wordpress.org/support/topic/plugin-blocks-cli](https://wordpress.org/support/topic/plugin-blocks-cli)

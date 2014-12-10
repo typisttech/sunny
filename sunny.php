@@ -27,19 +27,25 @@
 
 /**
  * The code that runs during plugin activation.
- */
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny-activator.php';
+ * This action is documented in includes/class-plugin-name-activator.php
+*/
+function activate_sunny() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny-activator.php';
+	Sunny_Activator::activate();
+}
 
 /**
  * The code that runs during plugin deactivation.
+ * This action is documented in includes/class-plugin-name-deactivator.php
  */
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny-deactivator.php';
+function deactivate_sunny() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-sunny-deactivator.php';
+	Sunny_Deactivator::deactivate();
+}
 
-/** This action is documented in includes/class-sunny-activator.php */
-register_activation_hook( __FILE__, array( 'Sunny_Activator', 'activate' ) );
+register_activation_hook( __FILE__, 'activate_sunny' );
 
-/** This action is documented in includes/class-sunny-deactivator.php */
-register_deactivation_hook( __FILE__, array( 'Sunny_Deactivator', 'deactivate' ) );
+register_deactivation_hook( __FILE__, 'deactivate_sunny' );
 
 /**
  * The core plugin class that is used to define internationalization,
