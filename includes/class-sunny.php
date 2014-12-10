@@ -189,14 +189,11 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-admin-bar-hider.php';
 
 		/**
-		 * The class responsible for intergating with WordPress Zero Spam plugin.
+		 * The classes responsible for intergating with other plugins.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-zero-spam.php';
-
-		/**
-		 * The class responsible for intergating with iThemes Security.
-		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ithemes-security.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-contact-form-7.php';
 
 		$this->loader = new Sunny_Loader();
 
@@ -308,11 +305,15 @@ class Sunny {
 		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban_spam' );
 		$this->loader->add_action( 'zero_spam_found_spam_buddypress_registration', $zero_spam, 'ban_spam' );
 
+		$contact_form_7 = new Sunny_Contact_Form_7( $this->get_plugin_name() );
+		$this->loader->add_filter( 'wpcf7_spam', $contact_form_7, 'ban_spam', 99999 );
+
 		// Mailer Hooks
 		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
 		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_zero_spam', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_ithemes_security', $mailer, 'enqueue_blacklist_notification' );
+		$this->loader->add_action( 'sunny_banned_contact_form_7', $mailer, 'enqueue_blacklist_notification' );
 
 		// Cron Jobs
 		// Add intervals

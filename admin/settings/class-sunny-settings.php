@@ -270,6 +270,12 @@ class Sunny_Settings {
 					'desc' => __( 'When <a href="http://ithemes.com/security/">iThemes Security</a> blocks an IP, tell CloudFlare to blacklist it also.', $this->name ),
 					'type' => 'checkbox'
 					),
+				'contact_form_7' => array(
+					'id' => 'contact_form_7',
+					'name' => __( 'Contact Form 7', $this->name ),
+					'desc' => __( 'When <a href="https://wordpress.org/plugins/contact-form-7/">Contact Form 7</a> marks a spam, tell CloudFlare to blacklist its IP.', $this->name ),
+					'type' => 'checkbox'
+					),
 				'zero_spam' => array(
 					'id' => 'zero_spam',
 					'name' => __( 'Zero Spam', $this->name ),

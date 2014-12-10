@@ -16,7 +16,7 @@ Sunny automatically clears CloudFlare cache. And, protect your WordPress site at
 
 = Features =
 
-* Integrate with [iThemes Security](https://wordpress.org/plugins/better-wp-security/) and [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam)
+* Integrate with [iThemes Security](https://wordpress.org/plugins/better-wp-security/), [Contact Form 7](https://wordpress.org/plugins/contact-form-7/) and [WordPress Zero Spam](https://wordpress.org/plugins/zero-spam)
 * Blacklist IP if attempt to login with bad username
 * Automatically clears corresponding CloudFlare caches whenever a post/page/media attachment is updated, commented or trashed.
 * Purge CloudFlare cache from WordPress admin dashboard
@@ -109,6 +109,10 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 
 == Changelog ==
+
+= 1.4.15 =
+* New Feature: Integrate with [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
+* Fix: Zero Spam module early quit before getting IPs
 
 = 1.4.14 =
 * Allow CLI scripts access, see [https://wordpress.org/support/topic/plugin-blocks-cli](https://wordpress.org/support/topic/plugin-blocks-cli)
