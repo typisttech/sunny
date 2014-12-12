@@ -19,13 +19,13 @@ abstract class Sunny_Abstract_Spam_Module {
 	protected $plugin_name;
 
 	/**
-	 * The name of the intergrated plugin.
+	 * The slug of the intergrated plugin.
 	 *
 	 * @since 		1.5.0
 	 * @access   	protected
-	 * @var      	string    $intergrated_plugin_name    The name of the intergrated plugin.
+	 * @var      	string    $intergrated_plugin_slug    The slug of the intergrated plugin.
 	 */
-	protected $intergrated_plugin_name;
+	protected $intergrated_plugin_slug;
 
 	/**
 	 * Initialize the class and purge after post saved
@@ -36,26 +36,26 @@ abstract class Sunny_Abstract_Spam_Module {
 	public function __construct( $plugin_name ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->set_intergrated_plugin_name();
+		$this->set_intergrated_plugin_slug();
 
 	} // end __construct
 
 	/**
-	 * Set intergrated plugin name during class initialization
+	 * Set intergrated plugin slug during class initialization
 	 *
 	 * @since     1.5.0
 	 *
 	 */
-	abstract protected function set_intergrated_plugin_name();
+	abstract protected function set_intergrated_plugin_slug();
 
 	/**
-	 * Get intergrated plugin name
-	 * @return 		string   	Intergrated plugin name
+	 * Get intergrated plugin slug
+	 * @return 		string   	Intergrated plugin slug
 	 * @since 		1.5.0
 	 *
 	 */
-	protected function get_intergrated_plugin_name() {
-		return $this->intergrated_plugin_name;
+	protected function get_intergrated_plugin_slug() {
+		return $this->intergrated_plugin_slug;
 	}
 
 	/**
@@ -67,7 +67,7 @@ abstract class Sunny_Abstract_Spam_Module {
 	 */
 	protected function is_enabled() {
 
-		$enabled = Sunny_Option::get_option( $this->get_intergrated_plugin_name() );
+		$enabled = Sunny_Option::get_option( $this->get_intergrated_plugin_slug() );
 		return ( isset( $enabled ) && '1' == $enabled );
 
 	} // end is_enabled
@@ -102,7 +102,7 @@ abstract class Sunny_Abstract_Spam_Module {
 	 * @since   1.5.0
 	 */
 	protected function get_reason( $_reason = '' ) {
-		return ( $this->get_intergrated_plugin_name() . __( ' marks it as a spam', $this->plugin_name ) );
+		return ( $this->get_intergrated_plugin_slug() . __( ' marks it as a spam', $this->plugin_name ) );
 	}
 
 	/**
@@ -140,7 +140,7 @@ abstract class Sunny_Abstract_Spam_Module {
 				'reason' => $this->get_reason( $reason )
 				);
 
-			do_action( 'sunny_banned_' . $this->get_intergrated_plugin_name(), $notice );
+			do_action( 'sunny_banned_' . $this->get_intergrated_plugin_slug(), $notice );
 
 		}
 

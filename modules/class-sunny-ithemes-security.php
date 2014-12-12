@@ -13,13 +13,13 @@
 class Sunny_iThemes_Security extends Sunny_Abstract_Spam_Module {
 
 	/**
-	 * Set intergrated plugin name during class initialization
+	 * Set intergrated plugin slug during class initialization
 	 *
 	 * @since 		1.5.0
 	 *
 	 */
-	protected function set_intergrated_plugin_name() {
-		$this->intergrated_plugin_name = 'ithemes_security';
+	protected function set_intergrated_plugin_slug() {
+		$this->intergrated_plugin_slug = 'ithemes_security';
 	}
 
 	/**
