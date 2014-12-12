@@ -8,6 +8,8 @@
  * @since      1.4.0
  */
 
+// TODO: This class needs refactoring
+
 class Sunny_Option {
 
 	/**
@@ -26,6 +28,7 @@ class Sunny_Option {
 		if ( empty( $sunny_options ) ) {
 			$sunny_options = array();
 		}
+
 		$sunny_options = apply_filters( 'sunny_get_settings', $sunny_options );
 
 	}
@@ -43,7 +46,6 @@ class Sunny_Option {
 		global $sunny_options;
 
 		if ( empty( $sunny_options ) ) {
-
 			self::set_global_options();
 		}
 
@@ -62,15 +64,8 @@ class Sunny_Option {
 	 * @return 	array
 	 */
 	static public function get_enqueued_admin_notices( $default = array() ) {
-
-		$notices = get_option( 'sunny_enqueued_admin_notices' );
-
-		if ( empty( $notices ) ) {
-			$notices = $default;
-		}
-
+		$notices = get_option( 'sunny_enqueued_admin_notices', $default );
 		return apply_filters( 'sunny_get_enqueued_admin_notices', $notices, $default );
-
 	}
 
 	/**
@@ -120,7 +115,6 @@ class Sunny_Option {
 
 		// @TODO Fix: multidimentional array_diff throws `Array to string conversion` notice
 		$new_notices = array_diff( $old_notices, $notices );
-
 		$new_notices = apply_filters( 'sunny_dequeue_admin_notices', $new_notices, $notices, $old_notices );
 
 		delete_option( 'sunny_enqueued_admin_notices' );
@@ -139,12 +133,7 @@ class Sunny_Option {
 	 */
 	static public function dequeue_all_admin_notices() {
 
-		if ( false !== get_option( 'sunny_enqueued_admin_notices' ) ) {
-
-			delete_option( 'sunny_enqueued_admin_notices' );
-
-		}
-
+		delete_option( 'sunny_enqueued_admin_notices' );
 	}
 
 	/**
@@ -182,7 +171,6 @@ class Sunny_Option {
 	static public function get_enqueued_notifications( $default = array() ) {
 
 		$notifications = get_option( 'sunny_enqueue_notifications', $default );
-
 		return apply_filters( 'sunny_get_enqueued_notifications', $notifications, $default );
 
 	}
@@ -203,17 +191,17 @@ class Sunny_Option {
 
 		$old_notifications = self::get_enqueued_notifications();
 
-		if ( !empty( $old_notifications ) ) {
+		if ( empty( $old_notifications ) ) {
+			return;
+		}
 
-			$new_notifications = array_diff( $old_notifications, $notifications );
-			$new_notifications = apply_filters( 'sunny_dequeue_notifications', $new_notifications, $notifications, $old_notifications );
+		$remaining_notifications = array_diff( $old_notifications, $notifications );
+		$remaining_notifications = apply_filters( 'sunny_dequeue_notifications', $remaining_notifications, $notifications, $old_notifications );
 
-			delete_option( 'sunny_enqueue_notifications' );
+		delete_option( 'sunny_enqueue_notifications' );
 
-			if ( !empty( $new_notifications ) ) {
-				add_option( 'sunny_enqueue_notifications', $new_notifications );
-			}
-
+		if ( !empty( $remaining_notifications ) ) {
+			add_option( 'sunny_enqueue_notifications', $remaining_notifications );
 		}
 
 	}
