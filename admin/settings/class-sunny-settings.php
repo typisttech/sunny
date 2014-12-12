@@ -51,25 +51,20 @@ class Sunny_Settings {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
-	 * @var      string    $plugin_name       The name of this plugin.
-	 * @var      string    $version    The version of this plugin.
+	 * @since 	1.0.0
+	 * @param 	string    					$plugin_name 			The name of this plugin.
+	 * @param 	Sunny_Callback_Helper 		$settings_callback
+	 * @param 	Sunny_Sanitization_Helper 	$settings_sanitization
 	 */
-	public function __construct( $plugin_name ) {
+	public function __construct( $plugin_name, $settings_callback, $settings_sanitization ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->registered_settings = $this->set_registered_settings();
 
-		if ( ! class_exists( 'Sunny_Callback_Helper' ) ) {
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/class-sunny-callback-helper.php';
-		}
-		$this->callback = new Sunny_Callback_Helper( $this->plugin_name );
+		$this->callback = $settings_callback;
+		$this->sanitization = $settings_sanitization;
 
-		if ( ! class_exists( 'Sunny_Sanitization_Helper' ) ) {
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'settings/class-sunny-sanitization-helper.php';
-		}
-		$this->sanitization = new Sunny_Sanitization_Helper( $this->plugin_name, $this->registered_settings );
-
+		$this->sanitization->set_registered_settings( $this->registered_settings );
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    Sunny
- * @subpackage Sunny/public
+ * @subpackage Sunny/modules
  * @author     Tang Rufus <rufus@wphuman.com>
  * @since      1.4.12
  *
@@ -21,22 +21,6 @@ class Sunny_iThemes_Security extends Sunny_Abstract_Spam_Module {
 	protected function set_intergrated_plugin_name() {
 		$this->intergrated_plugin_name = 'ithemes_security';
 	}
-
-	/**
-	 * Check if site admin enabled this function and iThemes_Security is activated
-	 *
-	 * @return 	boolean 	True if enabled and iThemes_Security is activated
-	 * @since 	1.4.12
-	 *
-	 */
-	protected function is_enabled() {
-
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		$is_activated = is_plugin_active( 'better-wp-security/better-wp-security.php' );
-
-		return ( true === $is_activated && parent::is_enabled() );
-
-	} // end is_enabled
 
 	/**
 	 * Ban IPs if iThemes Security locks them.
@@ -94,7 +78,6 @@ class Sunny_iThemes_Security extends Sunny_Abstract_Spam_Module {
 		} else {
 			return sprintf( __( 'iThemes Security lock this ip out because of %s', $this->plugin_name ), $reason );
 		}
-
 	}
 
 	/**

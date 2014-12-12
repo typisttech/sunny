@@ -61,7 +61,9 @@ class Sunny {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
-		$this->define_public_hooks();
+		$this->define_module_hooks();
+		$this->define_mailer_hooks();
+		$this->define_cron_hooks();
 
 	}
 
@@ -73,7 +75,6 @@ class Sunny {
 	 * - Sunny_Loader. Orchestrates the hooks of the plugin.
 	 * - Sunny_i18n. Defines internationalization functionality.
 	 * - Sunny_Admin. Defines all hooks for the dashboard.
-	 * - Sunny_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -136,11 +137,6 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
 
 		/**
-		 * The class responsible for the purge process.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-post-purger.php';
-
-		/**
 		 * The class responsible for defing the mailing list sign up box.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-mailing-list-box.php';
@@ -148,6 +144,8 @@ class Sunny {
 		/**
 		 * The class responsible for registerating all settings via Settings API.
 		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-callback-helper.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-sanitization-helper.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-settings.php';
 
 		/**
@@ -156,50 +154,52 @@ class Sunny {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
 
 		/**
-		 * The class responsible for sending emails.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/mailer/class-sunny-mailer.php';
-
-		/**
-		 * The class responsible for defining styling emails.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/mailer/class-sunny-email-template.php';
-
-		/**
 		 * The class responsible for defining toolboxes.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools.php';
 
 		/**
-		 * These classes responsible for defining tools handlers (ajax & non-ajax).
+		 * The classes responsible for defining tools handlers (ajax & non-ajax).
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-ajax-handler.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools-handler.php';
 
 		/**
-		 * These classes responsible for defining the tools.
+		 * The classes responsible for defining the tools.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-connection-tester.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-zone-purger.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-url-purger.php';
 
 		/**
-		 * The class responsible for blacklisting logins with bad usernames.
+		 * The class responsible for sending emails.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ban-bad-login.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'mailer/class-sunny-mailer.php';
+
+		/**
+		 * The class responsible for defining styling emails.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'mailer/class-sunny-email-template.php';
 
 		/**
 		 * The class responsible for hiding the admin bar from the public.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-admin-bar-hider.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-admin-bar-hider.php';
+
+		/**
+		 * The class responsible for blacklisting logins with bad usernames.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-ban-bad-login.php';
 
 		/**
 		 * The classes responsible for intergating with other plugins.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-abstract-spam-module.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-zero-spam.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-ithemes-security.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-sunny-contact-form-7.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-post-purger.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-abstract-spam-module.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-zero-spam.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-ithemes-security.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-contact-form-7.php';
 
 		$this->loader = new Sunny_Loader();
 
@@ -253,7 +253,9 @@ class Sunny {
 		$this->loader->add_action( 'admin_init', $plugin_updater, 'update' );
 
 		// Built the option page
-		$plugin_settings = new Sunny_Settings( $this->get_plugin_name() );
+		$settings_callback = new Sunny_Callback_Helper( $this->plugin_name );
+		$settings_sanitization = new Sunny_Sanitization_Helper( $this->plugin_name );
+		$plugin_settings = new Sunny_Settings( $this->get_plugin_name(), $settings_callback, $settings_sanitization);
 		$this->loader->add_action( 'admin_init' , $plugin_settings, 'register_settings' );
 
 		$plugin_meta_box = new Sunny_Meta_Box( $this->get_plugin_name(), $plugin_admin->get_options_tabs() );
@@ -277,32 +279,29 @@ class Sunny {
 		$this->loader->add_action( 'admin_post_sunny_zone_purge' , $plugin_tools_handler, 'process_zone_purge' );
 		$this->loader->add_action( 'admin_post_sunny_url_purge' , $plugin_tools_handler, 'process_url_purge' );
 
-		$this->loader->add_action( 'sunny_settings_on_change_notification_frequency', 'Sunny_Cron', 'update_notification_schedule' );
-
-		// Hook Post Purger into Hooks
-		$post_purger = new Sunny_Post_Purger( $this->get_plugin_name() );
-		$this->loader->add_action( 'transition_post_status', $post_purger, 'purge_post_on_status_transition', 100, 3 );
-		$this->loader->add_action( 'edit_post', $post_purger, 'purge_post_on_edit', 100 ); // leaving a comment called edit_post
-		$this->loader->add_action( 'edit_attachment', $post_purger, 'purge_attachment_on_edit', 100 );
-
 	}
 
 	/**
-	 * Register all of the hooks related to the public-facing functionality
+	 * Register all of the hooks related to the modular functionality
 	 * of the plugin.
 	 *
 	 * @since    1.4.0
 	 * @access   private
 	 */
-	private function define_public_hooks() {
+	private function define_module_hooks() {
 
 		$this->loader->add_action( 'init', 'Sunny_Option', 'set_global_options' );
 
-		$ban_bad_login = new Sunny_Ban_Bad_Login( $this->get_plugin_name() );
-		$this->loader->add_action( 'wp_authenticate', $ban_bad_login, 'ban_login_with_bad_username', -10 );
+		$post_purger = new Sunny_Post_Purger( $this->get_plugin_name() );
+		$this->loader->add_action( 'transition_post_status', $post_purger, 'purge_post_on_status_transition', 100, 3 );
+		$this->loader->add_action( 'edit_post', $post_purger, 'purge_post_on_edit', 100 ); // leaving a comment called edit_post
+		$this->loader->add_action( 'edit_attachment', $post_purger, 'purge_attachment_on_edit', 100 );
 
 		$admin_bar_hider = new Sunny_Admin_Bar_Hider();
 		$this->loader->add_filter( 'show_admin_bar', $admin_bar_hider, 'hide' );
+
+		$ban_bad_login = new Sunny_Ban_Bad_Login( $this->get_plugin_name() );
+		$this->loader->add_action( 'wp_authenticate', $ban_bad_login, 'ban_login_with_bad_username', -10 );
 
 		$zero_spam = new Sunny_Zero_Spam( $this->get_plugin_name() );
 		$this->loader->add_action( 'zero_spam_ip_blocked', $zero_spam, 'ban', 10, 0 );
@@ -315,21 +314,50 @@ class Sunny {
 		$contact_form_7 = new Sunny_Contact_Form_7( $this->get_plugin_name() );
 		$this->loader->add_filter( 'wpcf7_spam', $contact_form_7, 'ban_spam', 99999 );
 
-		// Mailer Hooks
+	}
+
+	/**
+	 * Register all of the hooks related to the mailing functionality
+	 * of the plugin.
+	 *
+	 * @since    1.5.1
+	 * @access   private
+	 */
+	private function define_mailer_hooks() {
+
 		$mailer = new Sunny_Mailer( $this->get_plugin_name() );
+
+		// Mailer corn
+		$this->loader->add_action( 'sunny_cron_send_notification', $mailer, 'email_blacklist_notification_digest' );
+
 		$this->loader->add_action( 'sunny_banned_login_with_bad_username', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_zero_spam', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_ithemes_security', $mailer, 'enqueue_blacklist_notification' );
 		$this->loader->add_action( 'sunny_banned_contact_form_7', $mailer, 'enqueue_blacklist_notification' );
 
+	}
+
+	/**
+	 * Register all of the hooks related to the cron job functionality
+	 * of the plugin.
+	 *
+	 * @since    1.5.1
+	 * @access   private
+	 */
+	private function define_cron_hooks() {
+
 		// Cron Jobs
 		// Add intervals
 		$this->loader->add_filter( 'cron_schedules', 'Sunny_Cron', 'add_intervals' );
+
 		// Set schedules
 		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_notification_schedule' );
 		$this->loader->add_action( 'init', 'Sunny_Cron', 'set_ithemes_security_schedule' );
+
+		// Update schedules
+		$this->loader->add_action( 'sunny_settings_on_change_notification_frequency', 'Sunny_Cron', 'update_notification_schedule' );
+
 		// Set callbacks
-		$this->loader->add_action( 'sunny_cron_send_notification', $mailer, 'email_blacklist_notification_digest' );
 		$ithemes_security = new Sunny_iThemes_Security( $this->get_plugin_name() );
 		$this->loader->add_action( 'sunny_cron_check_ithemes_security_lockouts', $ithemes_security, 'ban' );
 

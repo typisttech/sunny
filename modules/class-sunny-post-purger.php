@@ -1,7 +1,7 @@
 <?php
 /**
  * @package 	Sunny
- * @subpackage 	Sunny/admin/tools
+ * @subpackage 	Sunny/modules
  * @author 		Tang Rufus <rufus@wphuman.com>
  */
 

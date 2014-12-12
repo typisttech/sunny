@@ -6,7 +6,7 @@
  * This class defines all code necessary to run during the plugin's update.
  *
  * @package    Sunny
- * @subpackage Sunny/admin/tools
+ * @subpackage Sunny/admin
  * @author     Tang Rufus <rufus@wphuman.com>
  * @since      1.5.0
  */

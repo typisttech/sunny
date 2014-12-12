@@ -35,15 +35,22 @@ class Sunny_Sanitization_Helper {
 	 * @since    1.4.0
 	 * @var      string    $plugin_name       The name of this plugin.
 	 */
-	public function __construct( $plugin_name, array $registered_settings ) {
+	public function __construct( $plugin_name ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->registered_settings = $registered_settings;
 		add_filter( 'sunny_settings_sanitize_text', array( $this, 'sanitize_text_field' ) );
 		add_filter( 'sunny_settings_sanitize_email', array( $this, 'sanitize_email_field' ) );
 		add_filter( 'sunny_settings_sanitize_checkbox', array( $this, 'sanitize_checkbox_field' ) );
 		add_filter( 'sunny_settings_sanitize_url', array( $this, 'sanitize_url_field' ) );
 
+	}
+
+	/**
+	 * @param array $registered_settings
+	 * @since  1.5.1
+	 */
+	public function set_registered_settings( array $registered_settings ) {
+		$this->registered_settings = $registered_settings;
 	}
 
 	/**
