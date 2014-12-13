@@ -31,15 +31,6 @@ class Sunny_Admin {
 	private $version;
 
 	/**
-	 * Slug of the plugin screen.
-	 *
-	 * @since    1.0.0
-	 *
-	 * @var      string
-	 */
-	protected $plugin_screen_hook_suffix = null;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -60,30 +51,7 @@ class Sunny_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Sunny_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Sunny_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 *
-		 * Return early if no settings page is registered.
-		 */
-
-		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
-			return;
-		}
-
-		$screen = get_current_screen();
-		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
-
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
-
-		}
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -94,30 +62,8 @@ class Sunny_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Sunny_Admin_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Sunny_Admin_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 *
-		 * Return early if no settings page is registered.
-		 */
-		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
-			return;
-		}
-
-		$screen = get_current_screen();
-		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
-
-			wp_enqueue_script( 'postbox' );
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, true );
-
-		}
+		wp_enqueue_script( 'postbox' );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, true );
 
 	}
 
@@ -132,7 +78,7 @@ class Sunny_Admin {
 		 * Add a settings page for this plugin to the Settings menu.
 		 */
 
-		$this->plugin_screen_hook_suffix = add_menu_page(
+		add_menu_page(
 			__( 'Sunny (Connecting CloudFlare and WordPress)', $this->plugin_name ),
 			__( 'Sunny', $this->plugin_name ),
 			'manage_options',

@@ -3,11 +3,11 @@
  * included in this file.
  */
 
-div.inside a {
+ .toplevel_page_sunny div.inside a {
 	font-family: 'Lucida Grande', Verdana, Arial, 'Bitstream Vera Sans', sans-serif;
 	text-decoration: none;
 }
 
-div.inside a:hover {
+ .toplevel_page_sunny div.inside a:hover {
 	text-decoration: underline;
 }

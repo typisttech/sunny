@@ -129,6 +129,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 * Fix: update notice not showing
 * Developer: Better file headers
 * Developer: Introduce abstract spam module
+* Deprecated: plugin_screen_hook_suffix
 
 = 1.4.16 =
 * New Translation: zh_HK
