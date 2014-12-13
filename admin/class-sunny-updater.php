@@ -22,14 +22,24 @@ class Sunny_Updater {
 	private $plugin_name;
 
 	/**
+	 * The current version of the plugin.
+	 *
+	 * @since    1.5.1
+	 * @access   protected
+	 * @var      string    $version    The current version of the plugin.
+	 */
+	protected $version;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.5.0
 	 * @var      string    $plugin_name       The name of this plugin.
 	 */
-	public function __construct( $plugin_name ) {
+	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
+		$this->version = $version;
 
 	}
 
@@ -40,14 +50,14 @@ class Sunny_Updater {
 	public function update() {
 
 		$sunny_version = get_option( 'sunny_version' );
-		$lastest_version = '1.5.0';
+		$this->version = '1.5.1';
 
 		if ( ! $sunny_version ) {
 		// 1.3.0 is the last version didn't use this option so we must add it
 			$sunny_version = '1.3.0';
 		}
 
-		if ( $sunny_version == $lastest_version) {
+		if ( $sunny_version == $this->version) {
 			return;
 		}
 
@@ -68,7 +78,7 @@ class Sunny_Updater {
 			$this->enqueue_to_v1_4_11_admin_notice();
 		}
 
-		update_option( 'sunny_version', $lastest_version );
+		update_option( 'sunny_version', $this->version );
 
 	}
 

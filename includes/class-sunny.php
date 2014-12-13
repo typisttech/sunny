@@ -56,7 +56,7 @@ class Sunny {
 	public function __construct() {
 
 		$this->plugin_name = 'sunny';
-		$this->version = '1.5.0';
+		$this->version = '1.5.1';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -177,7 +177,7 @@ class Sunny {
 		$this->loader->add_action( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
 
 		// Run update scripts
-		$plugin_updater = new Sunny_Updater( $this->get_plugin_name() );
+		$plugin_updater = new Sunny_Updater( $this->get_plugin_name(), $this->get_version() );
 		$this->loader->add_action( 'admin_init', $plugin_updater, 'update' );
 
 		// Built the option page
