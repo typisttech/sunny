@@ -118,6 +118,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 = 1.5.1 =
 * Fix: Activator incorrect message
+* Fix: `ITSEC_Lockout` constructor missing argument
 * Security: Add black index files
 * Developer: Rename `intergrated_plugin_name` --> `intergrated_plugin_slug`
 * Developer: Remove views files in `public` folder

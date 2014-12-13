@@ -35,14 +35,13 @@ class Sunny_iThemes_Security extends Sunny_Abstract_Spam_Module {
 			return;
 		}
 
-		// Early quit if class ITSEC_Lockout doesn't exist
-		if ( ! class_exists( 'ITSEC_Lockout' ) ) {
+		// Early quit if class ITSEC_Core doesn't exist
+		if ( ! class_exists( 'ITSEC_Core' ) ) {
 			return;
 		}
 
 		// Get current host (ip) lockouts
-		$itsec_lockout = new ITSEC_Lockout();
-		$lockouts = $itsec_lockout->get_lockouts( 'host', false );
+		$lockouts = $this->get_lockouts( 'host', false );
 
 		foreach ( $lockouts as $lockout ) {
 			$this->ban_lockout( $lockout );
@@ -96,5 +95,64 @@ class Sunny_iThemes_Security extends Sunny_Abstract_Spam_Module {
 		parent::ban( $ip, $start_gmt, $reason_lockout_type );
 
 	} // end ban_lockout
+
+	/**
+	 * Shows all lockouts currently in the database.
+	 *
+	 * @see better-wp-security/core/class-itsec-lockout.php
+	 *
+	 * @since 1.5.1
+	 *
+	 * @param string $type    'all', 'host', or 'user'
+	 * @param bool   $current true for all lockouts, false for current lockouts
+	 *
+	 * @return array all lockouts in the system
+	 */
+	private function get_lockouts( $type = 'all', $current = false ) {
+
+		global $wpdb, $itsec_globals;
+
+		if ( $type !== 'all' || $current === true ) {
+			$where = " WHERE ";
+		} else {
+			$where = '';
+		}
+
+		switch ( $type ) {
+
+			case 'host':
+				$type_statement = "`lockout_host` IS NOT NULL && `lockout_host` != ''";
+				break;
+			case 'user':
+				$type_statement = "`lockout_user` != 0";
+				break;
+			case 'username':
+				$type_statement = "`lockout_username` IS NOT NULL && `lockout_username` != ''";
+				break;
+			default:
+				$type_statement = '';
+				break;
+
+		}
+
+		if ( $current === true ) {
+
+			if ( $type_statement !== '' ) {
+				$and = ' AND ';
+			} else {
+				$and = '';
+			}
+
+			$active = $and . " `lockout_active`=1 AND `lockout_expire_gmt` > '" . date( 'Y-m-d H:i:s', $itsec_globals['current_time_gmt'] ) . "'";
+
+		} else {
+
+			$active = '';
+
+		}
+
+		return $wpdb->get_results( "SELECT * FROM `" . $wpdb->base_prefix . "itsec_lockouts`" . $where . $type_statement . $active . ";", ARRAY_A );
+
+	}
 
 } // end Sunny_iThemes_Security
