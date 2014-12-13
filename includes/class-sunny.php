@@ -84,122 +84,50 @@ class Sunny {
 	 */
 	private function load_dependencies() {
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-loader.php';
-
-		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-i18n.php';
-
-		/**
-		 * The class responsible for reading options/settings from WP database.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-option.php';
-
-		/**
-		 * The class responsible for defining all helper methods.
-		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-cloudflare-api-helper.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-cron.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-helper.php';
-
-		/**
-		 * The class responsible for making CLoudFlare purge API calls.
-		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-lock.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-option.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-purger.php';
 
-		/**
-		 * The class responsible for making CloudFlare Client API calls.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-cloudflare-api-helper.php';
 
-		/**
-		 * The class responsible for making CloudFlare API requests about IP blacklisting.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-lock.php';
 
-		/**
-		 * The class responsible for defining cron job hooks.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-sunny-cron.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the Dashboard.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-updater.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the Dashboard.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
-
-		/**
-		 * The class responsible for defing the mailing list sign up box.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-mailing-list-box.php';
-
-		/**
-		 * The class responsible for registerating all settings via Settings API.
-		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-callback-helper.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-sanitization-helper.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-settings.php';
 
-		/**
-		 * The class responsible for defining all options page meta boxes.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/settings/class-sunny-meta-box.php';
-
-		/**
-		 * The class responsible for defining toolboxes.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools.php';
-
-		/**
-		 * The classes responsible for defining tools handlers (ajax & non-ajax).
-		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-ajax-handler.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools-handler.php';
 
-		/**
-		 * The classes responsible for defining the tools.
-		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-connection-tester.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-zone-purger.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools-handler.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-tools.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-url-purger.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/tools/class-sunny-zone-purger.php';
 
-		/**
-		 * The class responsible for sending emails.
-		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-mailing-list-box.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-sunny-updater.php';
+
+
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'mailer/class-sunny-email-template.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'mailer/class-sunny-mailer.php';
 
-		/**
-		 * The class responsible for defining styling emails.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'mailer/class-sunny-email-template.php';
 
-		/**
-		 * The class responsible for hiding the admin bar from the public.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-admin-bar-hider.php';
 
-		/**
-		 * The class responsible for blacklisting logins with bad usernames.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-ban-bad-login.php';
-
-		/**
-		 * The classes responsible for intergating with other plugins.
-		 */
-
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-post-purger.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-abstract-spam-module.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-zero-spam.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-ithemes-security.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-admin-bar-hider.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-ban-bad-login.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-contact-form-7.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-ithemes-security.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-post-purger.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'modules/class-sunny-zero-spam.php';
+
+
 
 		$this->loader = new Sunny_Loader();
 
