@@ -125,6 +125,7 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 * Developer: Refactor `Sunny_Settings` & `Sunny_Sanitization_Helper` with dependency inversion principle
 * Developer: Rename folder `plublic` to `modules`\
 * Developer: Modularize `Sunny_iThemes_Security` and `Sunny_Zero_Spam`
+* Developer: `Sunny_Updater` constructor takes version number
 
 = 1.5.0 =
 * Fix: update notice not showing
