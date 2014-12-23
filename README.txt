@@ -116,6 +116,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 == Changelog ==
 
+= 1.5.2 =
+* Fix Firefox force reloading `Tools` tab
+
 = 1.5.1 =
 * Fix: Activator incorrect message
 * Fix: `ITSEC_Lockout` constructor missing argument

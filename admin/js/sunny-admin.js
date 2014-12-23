@@ -19,7 +19,7 @@
 		postboxes.add_postbox_toggles(pagenow);
 
 		// Ajax
-		jQuery("#sunny_connection_tester_form").submit(function(){
+		jQuery("#sunny_connection_tester_form").submit(function(event){
 			event.preventDefault();
 			jQuery("#sunny_connection_tester_result").show();
 			jQuery("#sunny_connection_tester_form_spinner").show();
@@ -39,7 +39,7 @@
 			return false;
 		}); // end #connection_tester_form submit
 
-		jQuery("#sunny_zone_purger_form").submit(function(){
+		jQuery("#sunny_zone_purger_form").submit(function(event){
 			event.preventDefault();
 			jQuery("#sunny_zone_purger_result").show();
 			jQuery("#sunny_zone_purger_form_spinner").show();
@@ -59,7 +59,7 @@
 			return false;
 		}); // end #sunny_zone_purger_form submit
 
-		jQuery("#sunny_url_purger_form").submit(function(){
+		jQuery("#sunny_url_purger_form").submit(function(event){
 			event.preventDefault();
 			jQuery("#sunny_url_purger_result").show();
 			jQuery("#sunny_url_purger_form_spinner").show();
