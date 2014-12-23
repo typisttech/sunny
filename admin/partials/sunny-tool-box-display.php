@@ -22,7 +22,7 @@ $message	=  str_replace( '!!!!!', '<br />', $message );
 ?>
 
 <div id="<?php echo $id; ?>" class="wrap">
-	<form id="sunny_<?php echo $id; ?>_form" method="POST" action="/wp-admin/admin-post.php">
+	<form id="sunny_<?php echo $id; ?>_form" method="POST" action="<?php echo admin_url( 'admin-post.php' ); ?>">
 		<?php echo $desc ?>
 		<br />
 		<?php

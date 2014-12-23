@@ -57,7 +57,7 @@ class Sunny_Connection_Tester {
 		$api_key = Sunny_Option::get_option( 'cloudflare_api_key' );
 		$cf_api_helper = new Sunny_CloudFlare_API_Helper( $email, $api_key );
 
-		$domain = Sunny_Helper::get_domain( get_option( 'home' ) );
+		$domain = Sunny_Helper::get_domain( get_option( 'siteurl' ) );
 		$_cf_response = $cf_api_helper->rec_load_all( $domain );
 
 		return $_cf_response;
@@ -93,7 +93,7 @@ class Sunny_Connection_Tester {
 
 				$return_arg['message'] = 'Success';
 
-				$domain = parse_url( get_option( 'home' ), PHP_URL_HOST );
+				$domain = Sunny_Helper::get_domain( get_option( 'siteurl' ) );
 
 				$dns_record_found = 'No';
 				$service_mode_on = 'No';

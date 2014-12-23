@@ -23,7 +23,7 @@ Class Sunny_Purger {
 		$api_key = Sunny_Option::get_option( 'cloudflare_api_key' );
 		$cf_api_helper = new Sunny_CloudFlare_API_Helper( $email, $api_key );
 
-		$domain = Sunny_Helper::get_domain( get_option( 'home' ) );
+		$domain = Sunny_Helper::get_domain( get_option( 'siteurl' ) );
 
 		return $cf_api_helper->fpurge_ts( $domain );
 	}
@@ -41,7 +41,7 @@ Class Sunny_Purger {
 		$api_key = Sunny_Option::get_option( 'cloudflare_api_key' );
 		$cf_api_helper = new Sunny_CloudFlare_API_Helper( $email, $api_key );
 
-		$domain = Sunny_Helper::get_domain( get_option( 'home' ) );
+		$domain = Sunny_Helper::get_domain( get_option( 'siteurl' ) );
 
 		$response = $cf_api_helper->zone_file_purge( $domain, $url );
 
