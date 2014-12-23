@@ -50,7 +50,7 @@ class Sunny_Updater {
 	public function update() {
 
 		$sunny_version = get_option( 'sunny_version' );
-		$this->version = '1.5.1';
+		$this->version = '1.5.2';
 
 		if ( ! $sunny_version ) {
 		// 1.3.0 is the last version didn't use this option so we must add it
