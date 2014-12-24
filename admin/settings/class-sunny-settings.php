@@ -183,7 +183,7 @@ class Sunny_Settings {
 				'hide_admin_bar' => array(
 					'id' => 'hide_admin_bar',
 					'name' => __( 'Hide Admin Bar', $this->plugin_name ),
-					'desc' => __( 'Hide admin bar on public-facing pages.', $this->plugin_name ),
+					'desc' => __( 'Hide admin bar on public-facing pages(for logged in users only).', $this->plugin_name ),
 					'type' => 'checkbox'
 					),
 				'security_settings' => array(

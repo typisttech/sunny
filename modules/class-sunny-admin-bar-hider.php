@@ -14,14 +14,13 @@ class Sunny_Admin_Bar_Hider {
 	/**
 	 * Hide the admin bar.
 	 *
-	 * @return void
+	 * @return bool 	true if should show admin bar
 	 *
 	 * @since  1.4.0
 	 */
-	public function hide() {
+	public function hide( $should_show ) {
 
-		$enabled = Sunny_Option::get_option( 'hide_admin_bar' );
-		return ! ( isset( $enabled ) && '1' == $enabled );
+		return ( $should_show && ! Sunny_Option::get_option( 'hide_admin_bar' ) );
 
 	} // end hide
 

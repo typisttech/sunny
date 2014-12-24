@@ -116,6 +116,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 == Changelog ==
 
+= 1.5.3 =
+* Fix: Showing empty admin bar for non-logged in users
+
 = 1.5.2 =
 * Tweak: Support WordPress installations on their own directories
 * Fix Firefox force reloading `Tools` tab
