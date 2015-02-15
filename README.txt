@@ -116,6 +116,9 @@ Moreover, I am planning to write a mulitsite version. [Drop me a note](https://w
 
 == Changelog ==
 
+= 2.0.0 =
+* Fix: Postboxes not expanding or collapsing on click outside of `Sunny`
+
 = 1.5.3 =
 * Fix: Showing empty admin bar for non-logged in users
 

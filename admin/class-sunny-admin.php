@@ -30,6 +30,16 @@ class Sunny_Admin {
 	 */
 	private $version;
 
+
+	/**
+	 * Slug of the plugin screen.
+	 *
+	 * @since    2.0.0
+	 *
+	 * @var      string
+	 */
+	protected $plugin_screen_hook_suffix = null;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,6 +61,15 @@ class Sunny_Admin {
 	 */
 	public function enqueue_styles() {
 
+		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+		if ( $this->plugin_screen_hook_suffix != $screen->id ) {
+			return;
+		}
+
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sunny-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -61,6 +80,15 @@ class Sunny_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
+
+		if ( ! isset( $this->plugin_screen_hook_suffix ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+		if ( $this->plugin_screen_hook_suffix != $screen->id ) {
+			return;
+		}
 
 		wp_enqueue_script( 'postbox' );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sunny-admin.js', array( 'jquery' ), $this->version, true );
@@ -78,7 +106,7 @@ class Sunny_Admin {
 		 * Add a settings page for this plugin to the Settings menu.
 		 */
 
-		add_menu_page(
+		$this->plugin_screen_hook_suffix = add_menu_page(
 			__( 'Sunny (Connecting CloudFlare and WordPress)', $this->plugin_name ),
 			__( 'Sunny', $this->plugin_name ),
 			'manage_options',
