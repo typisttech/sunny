@@ -43,9 +43,9 @@ if ( 'sunny/sunny.php' !== WP_UNINSTALL_PLUGIN )  {
 }
 
 // Check if the $_REQUEST content actually is the plugin name
-if ( ! in_array( 'sunny/sunny.php', $_REQUEST['checked'] ) ) {
-	exit;
-}
+//if ( ! in_array( 'sunny/sunny.php', $_REQUEST['checked'] ) ) {
+//	exit;
+//}
 
 if ( 'delete-selected' !== $_REQUEST['action'] ) {
 	exit;
