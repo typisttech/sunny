@@ -54,6 +54,12 @@ class Sunny_Post_Purger {
 
 		} // end if
 
+		if ( ( 'page' == get_option('show_on_front') ) && get_option( 'page_for_posts' ) ) {
+			
+			array_push( $urls, get_permalink( get_option( 'page_for_posts' ) ) );
+			
+		}
+
 		if ( '1' == Sunny_Option::get_option( 'purge_taxonomies' ) ) {
 
 			$terms_links = Sunny_Helper::get_all_terms_links_by_url( $post_url );
