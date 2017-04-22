@@ -1,4 +1,18 @@
 <?php
+/**
+ * Sunny
+ *
+ * Automatically purge CloudFlare cache, including cache everything rules.
+ *
+ * @package   Sunny
+ *
+ * @author    Typist Tech <sunny@typist.tech>
+ * @copyright 2017 Typist Tech
+ * @license   GPL-2.0+
+ *
+ * @see       https://www.typist.tech/projects/sunny
+ * @see       https://wordpress.org/plugins/sunny/
+ */
 
 /**
  * Fired when the plugin is uninstalled.
@@ -18,91 +32,30 @@
  *
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
- *
- * @package    Sunny
- * @author     Tang Rufus <rufus@wphuman.com>
- * @since      1.0.0
  */
 
-
-
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	exit;
-}
+declare(strict_types=1);
 
 // If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-	exit;
+if (! defined('WP_UNINSTALL_PLUGIN')) {
+    exit;
 }
 
-// Important: Check if the file is the one
-// that was registered during the uninstall hook.
-if ( 'sunny/sunny.php' !== WP_UNINSTALL_PLUGIN )  {
-	exit;
-}
+$keys = [
+    'sunny_admin_bar',
+    'sunny_cloudflare_account',
+    'sunny_cloudflare_api_key',
+    'sunny_cloudflare_email',
+    'sunny_cloudflare_zone_id',
+    'sunny_enqueue_notifications',
+    'sunny_enqueued_admin_notices',
+    'sunny_enqueued_notices',
+    'sunny_purger_settings',
+    'sunny_security',
+    'sunny_settings',
+    'sunny_version',
+];
 
-// Check if the $_REQUEST content actually is the plugin name
-if ( ! in_array( 'sunny/sunny.php', $_REQUEST['checked'] ) ) {
-	exit;
-}
-
-if ( 'delete-selected' !== $_REQUEST['action'] ) {
-	exit;
-}
-
-// Check user roles.
-if ( ! current_user_can( 'activate_plugins' ) ) {
-	exit;
-}
-
-// Run an admin referrer check to make sure it goes through authentication
-check_admin_referer( 'bulk-plugins' );
-
-// Safe to carry on
-//  Options on v1.4.6
-if ( false !== get_option( 'sunny_enqueue_notifications' ) ) {
-	delete_option( 'sunny_enqueue_notifications' );
-}
-
-// Options on v1.4.0
-if ( false !== get_option( 'sunny_settings' ) ) {
-	delete_option( 'sunny_settings' );
-}
-
-if ( false !== get_option( 'sunny_enqueued_notices' ) ) {
-	delete_option( 'sunny_enqueued_notices' );
-}
-
-if ( false !== get_option( 'sunny_version' ) ) {
-	delete_option( 'sunny_version' );
-}
-
-if ( false !== get_option( 'sunny_enqueued_admin_notices' ) ) {
-	delete_option( 'sunny_enqueued_admin_notices' );
-}
-
-// Options on or before v1.3.0
-if ( false !== get_option( 'sunny_cloudflare_email' ) ) {
-	delete_option( 'sunny_cloudflare_email' );
-}
-
-if ( false !== get_option( 'sunny_cloudflare_api_key' ) ) {
-	delete_option( 'sunny_cloudflare_api_key' );
-}
-
-if ( false !== get_option( 'sunny_cloudflare_account' ) ) {
-	delete_option( 'sunny_cloudflare_account' );
-}
-
-if ( false !== get_option( 'sunny_purger_settings' ) ) {
-	delete_option( 'sunny_purger_settings' );
-}
-
-if ( false !== get_option( 'sunny_admin_bar' ) ) {
-	delete_option( 'sunny_admin_bar' );
-}
-
-if ( false !== get_option( 'sunny_security' ) ) {
-	delete_option( 'sunny_security' );
+foreach ($keys as $key) {
+    delete_option($key);
 }

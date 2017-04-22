@@ -1,0 +1,14 @@
+# Codeception Test Suite Configuration
+
+# Suite for WordPress functional tests.
+# Emulate web requests and make the WordPress application process them.
+
+
+class_name: FunctionalTester
+modules:
+    enabled:
+        - \TypistTech\Sunny\Helper\Functional
+        - Asserts
+        - Filesystem
+        - WPDb
+        - WordPress

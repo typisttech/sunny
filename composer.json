@@ -1,0 +1,118 @@
+{
+    "name": "typisttech/sunny",
+    "description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
+    "keywords": [
+        "wordpress",
+        "wp",
+        "cloudflare",
+        "firewall",
+        "security"
+    ],
+    "homepage": "https://github.com/TypistTech/sunny",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Typist Tech",
+            "email": "sunny@typist.tech",
+            "homepage": "https://www.typist.tech/"
+        },
+        {
+            "name": "Tang Rufus",
+            "email": "tangrufus@gmail.com",
+            "homepage": "https://www.typist.tech/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "sunny@typist.tech",
+        "issues": "https://github.com/TypistTech/sunny/issues",
+        "forum": "https://wordpress.org/support/plugin/sunny",
+        "source": "https://github.com/TypistTech/sunny"
+    },
+    "require": {
+        "php": "^7.0",
+        "league/container": "^2.4",
+        "typisttech/cloudflare-wp-api": "^0.3.0",
+        "typisttech/imposter-plugin": "^0.2.5",
+        "typisttech/wp-better-settings": "^0.11.0",
+        "typisttech/wp-contained-hook": "^0.1.1"
+    },
+    "require-dev": {
+        "codeception/aspect-mock": "^2.0",
+        "jakoch/phantomjs-installer": "^2.1",
+        "lucatume/wp-browser": "^1.19",
+        "neronmoon/scriptsdev": "^0.1.1",
+        "site5/phantoman": "^1.1",
+        "wp-coding-standards/wpcs": "^0.11.0"
+    },
+    "autoload": {
+        "classmap": [
+            "lib/"
+        ],
+        "psr-4": {
+            "TypistTech\\Sunny\\": "src/"
+        }
+    },
+    "scripts": {
+        "build": [
+            "rm -fr vendor",
+            "composer install --no-dev --prefer-dist --optimize-autoloader --no-suggest",
+            "yarn grunt clean",
+            "yarn grunt addtextdomain",
+            "yarn grunt makepot",
+            "yarn grunt cleanempty",
+            "composer archive --format=zip --dir=release --file=sunny"
+        ],
+        "pre-tag": [
+            "composer update --no-suggest",
+            "yarn upgrade",
+            "yarn grunt version",
+            "yarn doctoc README.md",
+            "github_changelog_generator --no-verbose"
+        ],
+        "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
+        "fix-style": "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
+        "install-dev-extra": [
+            "PhantomInstaller\\Installer::installPhantomJS",
+            "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
+        ],
+        "post-install-cmd": "@transform-vendor",
+        "post-update-cmd": "@transform-vendor",
+        "test": "codecept run",
+        "test-acceptance": "codecept run acceptance",
+        "test-functional": "codecept run functional",
+        "test-integration": "codecept run integration",
+        "test-unit": "codecept run unit",
+        "test-with-coverage": "codecept run --coverage --coverage-xml --coverage-html",
+        "transform-vendor": [
+            "yarn install",
+            "yarn grunt clean:install",
+            "cfwp build"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "imposter": {
+            "namespace": "TypistTech\\Sunny\\Vendor"
+        },
+        "scripts-dev": {
+            "post-install-cmd": "@install-dev-extra",
+            "post-update-cmd": "@install-dev-extra"
+        }
+    },
+    "archive": {
+        "exclude": [
+            "/*",
+            ".*",
+            "!/languages",
+            "!/lib",
+            "!/src",
+            "!/vendor",
+            "!/LICENSE",
+            "!/README.txt",
+            "!/*.php"
+        ]
+    }
+}
