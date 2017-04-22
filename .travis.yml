@@ -1,0 +1,124 @@
+language: php
+
+dist: trusty
+
+# Wait until travis bug fixes
+sudo: require
+
+branches:
+  only:
+    - master
+    - /^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/
+
+services:
+  - mysql
+
+cache:
+  apt: true
+  yarn: true
+  directories:
+    - $HOME/.composer/cache/files
+
+addons:
+  apt:
+    packages:
+      - nginx
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+php:
+  - 7.0
+  - 7.1
+  - nightly
+
+env:
+  global:
+    - COMPOSER_NO_INTERACTION=1
+  matrix:
+    - WP_VERSION=nightly
+    - WP_VERSION=latest WITH_COVERAGE=true
+    - WP_VERSION=4.7.3
+
+matrix:
+  allow_failures:
+    - php: nightly
+    - env: WP_VERSION=nightly
+  fast_finish: true
+
+before_install:
+  # Set environment variables
+  - if [[ $(phpenv version-name) == "nightly" ]]; then export WITH_COVERAGE=false; fi
+
+  # Disable xDebug to speed up the build unless test coverage is needed
+  - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then phpenv config-rm xdebug.ini; fi
+
+  # Install helper scripts
+  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress
+  - export PATH=$HOME/.composer/vendor/bin:$PATH
+  - tnw-install-nginx
+  - tnw-install-wordpress
+  - tnw-prepare-codeception
+
+  # Build the production plugin
+  - travis_retry composer build
+  # Activate the plugin
+  - wp plugin install ./release/sunny.zip --force --activate --path=/tmp/wordpress
+  # Export a dump of plugin-activated database to the _data folder
+  - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql --path=/tmp/wordpress
+
+install:
+  - travis_retry composer install --prefer-dist --no-suggest
+
+script:
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run --coverage --coverage-xml; fi
+  - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run; fi
+
+after_script:
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
+
+before_deploy:
+  - unzip -qo release/sunny.zip -d build
+
+deploy:
+  - provider: releases
+    api_key:
+      secure: tly7bTISmzfHEfn2UEGZKwZNZ+Ofz8b3si5Zw8WneIQfo6HhiTesMZUY1YcaOZDAxDZ7B4BqW20BsYhkUOIkBn3KlRImvxR2sZj+Ri8YtLeeJ85KholcioorgtYSdorRTf+cNNNV/31VfHk7y9eHXjmxBVeGsq+dTG/hl9TdNxT5NkYtMqgkC3wuB9fojDWTUzJFT0hKmG8w8VakhIGq7kg0/YRIEc9KsfmQ3Pkh7AxuzwzKcEN8M0AQBUj/OWu09ErHeJm2OAa/wYxjeuPh+HpKazsMJngzonV6hFp5brNiQXDGCEtx+Nxvo4m88yh+e8irGQKAgntRkUIZmBdw1O+9lwYx+HKsJdFqr8eaBRL+ce1qOAAGHqpFjxjKbdb/Y8gji18nE7N4QAjLke6ney46qL+S8WJfs8JUFdEpgpN3yz1FRMQzx5GLxICgFCqhh1kW64Bg7zHfEcJ7eup7SCOwhG2PlF24HcBaYPsQwDdHaX3CgVRG3VAY2FAA0klJwA46E0eYZb9IWgoadW2R3b1FMq3bTInQO9kJp2t/7PeLbFb+n6dxuX/QtabLW264bzxZcsg4KP2P6V0s77MMoHptsMnmjvbjg4SSVputXbAEj53ai/hYaIKpE+GWQhPtQ3lUxkomyjSeV32qV+CGqxC9sC0zgjfOMihb7ntt6zA=
+    file: release/sunny.zip
+    skip_cleanup: true
+    on:
+      condition: "$WP_VERSION = latest"
+      php: 7.0
+      tags: true
+      repo: TypistTech/sunny
+  - provider: wordpress-plugin
+    edge:
+      source: TypistTech/dpl
+      branch: add-wordpress-plugin-deployment
+    slug: sunny
+    username: tangrufus
+    build_dir: build
+    assets_dir: assets
+    skip_cleanup: true
+    on:
+      condition: "$WP_VERSION = latest"
+      php: 7.1
+      tags: true
+      repo: TypistTech/sunny
+  - provider: build-branch
+    edge:
+      source: TypistTech/dpl
+      branch: add-build-branch
+    skip_cleanup: true
+    github_token: $GITHUB_ACCESS_TOKEN
+    local_dir: build
+    target_branch: nightly
+    project_name: "Sunny"
+    on:
+      branch: master
+      condition: "$WP_VERSION = latest"
+      php: 7.0
+      repo: TypistTech/sunny
