@@ -23,6 +23,8 @@ use TypistTech\Sunny\Vendor\Cloudflare\Zone\Cache as CloudflareCache;
 
 /**
  * Final class Cache
+ *
+ * Api adopter
  */
 final class Cache
 {

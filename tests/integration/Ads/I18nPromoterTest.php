@@ -61,11 +61,9 @@ class I18nPromoterTest extends WPTestCase
      */
     public function testHookedIntoAdminMenu()
     {
-        $actual = I18nPromoter::getHooks();
-
-        $expected = [ new Action('admin_menu', I18nPromoter::class, 'run', 20) ];
-
-        $this->assertEquals($expected, $actual);
+        $this->tester->assertHooked(
+            new Action('admin_menu', I18nPromoter::class, 'run', 20)
+        );
     }
 
     /**
