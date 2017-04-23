@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Purge;
 
+use Codeception\Test\Unit;
+
 /**
- * @coverDefaultClass \TypistTech\Sunny\Purge\Event
+ * @coversDefaultClass \TypistTech\Sunny\Purge\Event
  */
-class EventTest extends \Codeception\Test\Unit
+class EventTest extends Unit
 {
     /**
      * @covers ::getReason
