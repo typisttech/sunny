@@ -89,7 +89,7 @@ module.exports = function (grunt) {
                 'vendor/jamesryanbell/cloudflare/src/**/*.*',
                 '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Exception/**',
                 '!vendor/jamesryanbell/cloudflare/src/CloudFlare/*Api.php',
-                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Zone/Firewall/AccessRules.php'
+                '!vendor/jamesryanbell/cloudflare/src/CloudFlare/Zone/Cache.php'
             ],
             "container-interop": [
                 'vendor/container-interop/container-interop/docs/**'
