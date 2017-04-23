@@ -20,6 +20,8 @@ namespace TypistTech\Sunny\Purge;
 
 /**
  * Final class Event
+ *
+ * Immutable data transfer object that holds necessary information about this action.
  */
 final class Event
 {
