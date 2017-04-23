@@ -81,7 +81,7 @@ The `master` branch is not installable. Use the `nightly` branch instead. See [b
 
 ## Developing
 
-Before start hacking, you need `composer ` and `yarn` installed. See:
+Before start hacking, you need both `composer ` and `yarn` installed. See:
 
 - [getcomposer.org](https://getcomposer.org/doc/00-intro.md)
 - [yarnpkg.com](https://yarnpkg.com/en/docs/install)
@@ -100,10 +100,13 @@ $ composer install
 
 ## Build from Source
 
-These commands build the plugin into `release/sunny.zip`.
+This command build the plugin into `release/sunny.zip`.
 
-1. `$ composer build`
-2. `release/sunny.zip`
+```bash
+$ composer build
+```
+
+Note: You need both `composer ` and `yarn` installed.
 
 
 

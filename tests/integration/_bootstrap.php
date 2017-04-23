@@ -12,5 +12,6 @@ $kernel->init([
     'includePaths' => [
         codecept_root_dir('lib/'),
         codecept_root_dir('src/'),
+        codecept_root_dir('vendor/jamesryanbell/cloudflare/src/'),
     ],
 ]);

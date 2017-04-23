@@ -21,6 +21,7 @@ namespace TypistTech\Sunny;
 use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\ReviewNotice;
 use TypistTech\Sunny\Cloudflare\Admin as CloudflareAdmin;
+use TypistTech\Sunny\Cloudflare\Cache;
 use TypistTech\Sunny\Vendor\League\Container\Container as LeagueContainer;
 use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
 
@@ -45,6 +46,7 @@ final class Container extends LeagueContainer
         $this->add('\\' . Admin::class, $admin);
 
         $keys = [
+            Cache::class,
             CloudflareAdmin::class,
             I18n::class,
             I18nPromoter::class,
