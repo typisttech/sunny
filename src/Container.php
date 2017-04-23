@@ -18,10 +18,6 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny;
 
-use TypistTech\Sunny\Ads\I18nPromoter;
-use TypistTech\Sunny\Ads\ReviewNotice;
-use TypistTech\Sunny\Cloudflare\Admin as CloudflareAdmin;
-use TypistTech\Sunny\Cloudflare\Cache;
 use TypistTech\Sunny\Vendor\League\Container\Container as LeagueContainer;
 use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
 

@@ -37,7 +37,7 @@ final class Handler implements LoadableInterface
     /**
      * Handler constructor.
      *
-     * @param Cache $cache
+     * @param Cache $cache The api adopter.
      */
     public function __construct(Cache $cache)
     {
