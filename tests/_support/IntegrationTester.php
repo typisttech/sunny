@@ -25,14 +25,4 @@ use Codeception\Actor;
 class IntegrationTester extends Actor
 {
     use _generated\IntegrationTesterActions;
-
-    public function getContainer(): Container
-    {
-        $sunny = new Sunny();
-        $sunny->run();
-
-        $this->container = $sunny->getContainer();
-
-        return $this->container;
-    }
 }

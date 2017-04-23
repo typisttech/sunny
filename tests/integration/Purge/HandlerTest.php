@@ -56,19 +56,6 @@ class HandlerTest extends WPTestCase
     }
 
     /**
-     * @covers ::getHooks
-     */
-    public function testHookedIntoSunnyPurge()
-    {
-        $action = new Action('sunny_handle_purge', Handler::class, 'handle');
-        $id = $action->getId();
-
-        $isHooked = $this->tester->getContainer()->has($id);
-
-        $this->assertTrue($isHooked);
-    }
-
-    /**
      * @covers ::handle
      */
     public function testHandlePurgeEvent()
@@ -83,5 +70,15 @@ class HandlerTest extends WPTestCase
 
         $this->cache->verifyInvokedMultipleTimes('purge', 1);
         $this->cache->verifyInvokedOnce('purge', [ $urls ]);
+    }
+
+    /**
+     * @covers ::getHooks
+     */
+    public function testHookedIntoSunnyPurge()
+    {
+        $this->tester->assertHooked(
+            new Action('sunny_handle_purge', Handler::class, 'handle')
+        );
     }
 }

@@ -46,11 +46,9 @@ class ReviewNoticeTest extends \Codeception\TestCase\WPTestCase
      */
     public function testHookedIntoAdminInit()
     {
-        $actual = ReviewNotice::getHooks();
-
-        $expected = [ new Action('admin_init', ReviewNotice::class, 'run') ];
-
-        $this->assertEquals($expected, $actual);
+        $this->tester->assertHooked(
+            new Action('admin_init', ReviewNotice::class, 'run')
+        );
     }
 
     /**
