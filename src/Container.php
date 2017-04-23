@@ -44,16 +44,5 @@ final class Container extends LeagueContainer
         $admin = new Admin($optionStore);
         $this->add('\\' . OptionStore::class, $optionStore);
         $this->add('\\' . Admin::class, $admin);
-
-        $keys = [
-            Cache::class,
-            CloudflareAdmin::class,
-            I18n::class,
-            I18nPromoter::class,
-            ReviewNotice::class,
-        ];
-        foreach ($keys as $key) {
-            $this->add('\\' . $key);
-        }
     }
 }
