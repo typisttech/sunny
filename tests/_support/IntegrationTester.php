@@ -28,8 +28,10 @@ class IntegrationTester extends Actor
 
     public function getContainer(): Container
     {
-        $this->container = new Container;
-        $this->container->initialize();
+        $sunny = new Sunny();
+        $sunny->run();
+
+        $this->container = $sunny->getContainer();
 
         return $this->container;
     }

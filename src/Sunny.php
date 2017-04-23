@@ -88,7 +88,17 @@ final class Sunny implements LoadableInterface
      */
     public function giveContainer()
     {
-        do_action('sunny_get_container', $this->container);
+        do_action('sunny_get_container', $this->getContainer());
+    }
+
+    /**
+     * Container getter.
+     *
+     * @return Container
+     */
+    public function getContainer(): Container
+    {
+        return $this->container;
     }
 
     /**
