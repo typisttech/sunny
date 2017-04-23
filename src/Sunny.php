@@ -21,6 +21,7 @@ namespace TypistTech\Sunny;
 use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\ReviewNotice;
 use TypistTech\Sunny\Cloudflare\Admin as CloudflareAdmin;
+use TypistTech\Sunny\Purge\Handler;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
 
@@ -60,6 +61,7 @@ final class Sunny implements LoadableInterface
             __CLASS__,
             Admin::class,
             CloudflareAdmin::class,
+            Handler::class,
             I18n::class,
             I18nPromoter::class,
             ReviewNotice::class,
