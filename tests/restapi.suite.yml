@@ -1,0 +1,7 @@
+class_name: RestapiTester
+modules:
+    enabled:
+        - \TypistTech\Sunny\Helper\Restapi
+        - WPDb
+        - WPBrowser
+        - REST

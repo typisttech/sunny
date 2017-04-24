@@ -1,5 +1,7 @@
 modules:
     config:
+        REST:
+            url: 'http://sunny-tester.dev/wp-json'
         WPDb:
             dsn: 'mysql:host=vvv.dev;dbname=sunny-tester'
             user: external

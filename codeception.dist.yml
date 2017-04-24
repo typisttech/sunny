@@ -16,6 +16,9 @@ coverage:
         - src/*
 modules:
     config:
+        REST:
+            depends: WPBrowser
+            url: 'http://wp.dev:8080/wp-json'
         WPDb:
             dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
             user: root
