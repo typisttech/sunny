@@ -49,17 +49,17 @@ final class Handler implements LoadableInterface
      */
     public static function getHooks(): array
     {
-        return [ new Action('sunny_handle_purge', __CLASS__, 'handle') ];
+        return [ new Action('sunny_do_purge', __CLASS__, 'handle') ];
     }
 
     /**
-     * Handle purge event
+     * Handle purge command
      *
-     * @param Event $event Immutable data transfer object that holds necessary information about this action.
+     * @param Command $event Immutable data transfer object that holds necessary information about this action.
      *
      * @return void
      */
-    public function handle(Event $event)
+    public function handle(Command $event)
     {
         $this->cache->purge(
             ...$event->getUrls()

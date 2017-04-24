@@ -19,11 +19,11 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Purge;
 
 /**
- * Final class Event
+ * Final class Command
  *
  * Immutable data transfer object that holds necessary information about this action.
  */
-final class Event
+final class Command
 {
     /**
      * Reason to trigger a purge
@@ -40,7 +40,7 @@ final class Event
     private $urls;
 
     /**
-     * Event constructor.
+     * Command constructor.
      *
      * @param string          $reason  Reason to trigger a purge.
      * @param string|string[] ...$urls Urls to be purged.
