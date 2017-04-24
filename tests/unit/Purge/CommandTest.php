@@ -7,16 +7,16 @@ namespace TypistTech\Sunny\Purge;
 use Codeception\Test\Unit;
 
 /**
- * @coversDefaultClass \TypistTech\Sunny\Purge\Event
+ * @coversDefaultClass \TypistTech\Sunny\Purge\Command
  */
-class EventTest extends Unit
+class CommandTest extends Unit
 {
     /**
      * @covers ::getReason
      */
     public function testGetReason()
     {
-        $event = new Event('Post 123 updated', 'https://www.example.com/1');
+        $event = new Command('Post 123 updated', 'https://www.example.com/1');
         $actual = $event->getReason();
         $this->assertSame('Post 123 updated', $actual);
     }
@@ -26,7 +26,7 @@ class EventTest extends Unit
      */
     public function testGetSingleUrl()
     {
-        $event = new Event('Post 123 updated', 'https://www.example.com/1');
+        $event = new Command('Post 123 updated', 'https://www.example.com/1');
         $actual = $event->getUrls();
         $this->assertSame([ 'https://www.example.com/1' ], $actual);
     }
@@ -41,7 +41,7 @@ class EventTest extends Unit
             'https://www.example.com/2',
         ];
 
-        $event = new Event('Post 123 updated', ...$urls);
+        $event = new Command('Post 123 updated', ...$urls);
         $actual = $event->getUrls();
         $this->assertSame($urls, $actual);
     }

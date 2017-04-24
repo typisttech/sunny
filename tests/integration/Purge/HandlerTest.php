@@ -64,7 +64,7 @@ class HandlerTest extends WPTestCase
             'https://www.example.com/1',
             'https://www.example.com/2',
         ];
-        $event = new Event('Post 123 updated', ...$urls);
+        $event = new Command('Post 123 updated', ...$urls);
 
         $this->handler->handle($event);
 
@@ -78,7 +78,7 @@ class HandlerTest extends WPTestCase
     public function testHookedIntoSunnyPurge()
     {
         $this->tester->assertHooked(
-            new Action('sunny_handle_purge', Handler::class, 'handle')
+            new Action('sunny_do_purge', Handler::class, 'handle')
         );
     }
 }
