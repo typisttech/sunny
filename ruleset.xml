@@ -89,6 +89,10 @@
         <exclude-pattern>*/_bootstrap.php</exclude-pattern>
     </rule>
 
+    <rule ref="Squiz.Commenting.ClassComment.Missing">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
     <rule ref="Generic.Commenting.DocComment.MissingShort">
         <exclude-pattern>/tests/*</exclude-pattern>
     </rule>

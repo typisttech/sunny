@@ -30,8 +30,6 @@ use WP_Post;
  * WP_Post object. This makes all of the other methods much simpler in that they can operate on a WP_Post object
  * instead of various inputs.
  *
- * @todo Test me.
- *
  * @see  https://github.com/CondeNast/purgely/blob/master/src/classes/related-urls.php
  */
 final class RelatedUrls
@@ -53,8 +51,7 @@ final class RelatedUrls
     /**
      * RelatedUrls constructor.
      *
-     * @param WP_Post|int|string $identifiers You can send a post ID, a post object or a URL to the class and it will
-     *                                        find related URLs.
+     * @param WP_Post $post You can send a post ID, a post object or a URL to the class and it will find related URLs.
      */
     public function __construct(WP_Post $post)
     {
@@ -109,7 +106,10 @@ final class RelatedUrls
 
         $related = [];
         foreach ($terms as $term) {
+            // @codingStandardsIgnoreStart
             $link = get_term_link($term, $taxonomy);
+            // @codingStandardsIgnoreEnd
+
             if (is_wp_error($link)) {
                 continue;
             }

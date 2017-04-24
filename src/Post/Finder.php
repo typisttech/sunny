@@ -23,23 +23,39 @@ namespace TypistTech\Sunny\Post;
  */
 final class Finder
 {
+    /**
+     * Find WP_Post by its Url.
+     *
+     * @param string $url Url of the targeted post.
+     *
+     * @return \WP_Post|null
+     */
     public static function getWpPostByUrl(string $url)
     {
         $cleanUrl = esc_url_raw($url);
 
         if (empty($cleanUrl)) {
-            return null;
+            return;
         }
 
+        // @codingStandardsIgnoreStart
         $postId = url_to_postid($cleanUrl);
+        // @codingStandardsIgnoreEnd
 
         return self::getWpPostById($postId);
     }
 
+    /**
+     * Find WP_Post by its id.
+     *
+     * @param int $postId Id of the targeted post.
+     *
+     * @return \WP_Post|null
+     */
     public static function getWpPostById(int $postId)
     {
         if ($postId < 1) {
-            return null;
+            return;
         }
 
         return get_post(absint($postId));
