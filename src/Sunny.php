@@ -22,6 +22,7 @@ use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\ReviewNotice;
 use TypistTech\Sunny\Cloudflare\Admin as CloudflareAdmin;
 use TypistTech\Sunny\Purge\Handler;
+use TypistTech\Sunny\REST\RelatedUrls\ShowController as RelatedUrlsShowController;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
 
@@ -65,6 +66,7 @@ final class Sunny implements LoadableInterface
             I18n::class,
             I18nPromoter::class,
             ReviewNotice::class,
+            RelatedUrlsShowController::class,
         ];
 
         foreach ($loadables as $loadable) {
