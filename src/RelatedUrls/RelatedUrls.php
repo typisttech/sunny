@@ -6,17 +6,17 @@
  *
  * @package   Sunny
  *
- * @author    Typist Tech <sunny@typist.tech>
+ * @author Typist Tech <sunny@typist.tech>
  * @copyright 2017 Typist Tech
- * @license   GPL-2.0+
+ * @license GPL-2.0+
  *
- * @see       https://www.typist.tech/projects/sunny
- * @see       https://wordpress.org/plugins/sunny/
+ * @see https://www.typist.tech/projects/sunny
+ * @see https://wordpress.org/plugins/sunny/
  */
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Post;
+namespace TypistTech\Sunny\RelatedUrls;
 
 use WP_Post;
 
