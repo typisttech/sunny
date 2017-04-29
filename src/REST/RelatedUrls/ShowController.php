@@ -6,12 +6,12 @@
  *
  * @package   Sunny
  *
- * @author Typist Tech <sunny@typist.tech>
+ * @author    Typist Tech <sunny@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
+ * @license   GPL-2.0+
  *
- * @see https://www.typist.tech/projects/sunny
- * @see https://wordpress.org/plugins/sunny/
+ * @see       https://www.typist.tech/projects/sunny
+ * @see       https://wordpress.org/plugins/sunny/
  */
 
 declare(strict_types=1);
@@ -20,9 +20,10 @@ namespace TypistTech\Sunny\REST\RelatedUrls;
 
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Post\Finder;
-use TypistTech\Sunny\Post\RelatedUrls;
+use TypistTech\Sunny\RelatedUrls\RelatedUrls;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use WP_Error;
+use WP_Post;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
@@ -45,20 +46,9 @@ final class ShowController implements LoadableInterface
     }
 
     /**
-     * Check if a given request has access to get a specific item
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     *
-     * @return bool
-     */
-    public function doPermissionsCheck(WP_REST_Request $request): bool
-    {
-        // TODO: Check current_user_can manage_options.
-        return true;
-    }
-
-    /**
      * Register the routes for the objects of the controller.
+     *
+     * @todo Permission Check
      */
     public function registerRoutes()
     {
@@ -66,7 +56,6 @@ final class ShowController implements LoadableInterface
             [
                 'methods' => WP_REST_Server::READABLE,
                 'callback' => [ $this, 'show' ],
-                'permission_callback' => [ $this, 'doPermissionsCheck' ],
                 'args' => [
                     'url' => [
                         'type' => 'string',
@@ -91,14 +80,14 @@ final class ShowController implements LoadableInterface
     {
         $params = $request->get_params();
 
-        $wpPost = Finder::getWpPostByUrl($params['url']);
+        $wpPost = Finder::findWpPostByUrl($params['url']);
 
-        if (null === $wpPost) {
+        if (! $wpPost instanceof WP_Post) {
             return new WP_Error(
-                'sunny_related_urls_non_queryable',
-                __("The given url doesn't match any post", 'sunny'),
+                'sunny_rest_related_urls_not_found',
+                __('Post not found for the given url', 'sunny'),
                 [
-                    'status' => 422,
+                    'status' => 404,
                     'sanitized-url' => $params['url'],
                 ]
             );
@@ -106,6 +95,6 @@ final class ShowController implements LoadableInterface
 
         $relatedUrls = new RelatedUrls($wpPost);
 
-        return new WP_REST_Response($relatedUrls->locateAll());
+        return new WP_REST_Response($relatedUrls->locate());
     }
 }

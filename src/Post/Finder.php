@@ -30,7 +30,7 @@ final class Finder
      *
      * @return \WP_Post|null
      */
-    public static function getWpPostByUrl(string $url)
+    public static function findWpPostByUrl(string $url)
     {
         $cleanUrl = esc_url_raw($url);
 
@@ -40,9 +40,10 @@ final class Finder
 
         // @codingStandardsIgnoreStart
         $postId = url_to_postid($cleanUrl);
+
         // @codingStandardsIgnoreEnd
 
-        return self::getWpPostById($postId);
+        return self::findWpPostById($postId);
     }
 
     /**
@@ -52,7 +53,7 @@ final class Finder
      *
      * @return \WP_Post|null
      */
-    public static function getWpPostById(int $postId)
+    public static function findWpPostById(int $postId)
     {
         if ($postId < 1) {
             return;
