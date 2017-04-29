@@ -29,10 +29,10 @@ class ShowCest
         ]);
 
         $I->seeResponseIsJson();
-        $I->seeResponseCodeIs(422);
+        $I->seeResponseCodeIs(404);
         $I->seeResponseContainsJson([
-            'code' => 'sunny_related_urls_non_queryable',
-            'message' => "The given url doesn't match any post",
+            'code' => 'sunny_rest_related_urls_not_found',
+            'message' => 'Post not found for the given url',
             'data' => [
                 'sanitized-url' => $siteUrl . '/not/exist',
             ],
@@ -48,7 +48,6 @@ class ShowCest
         ]);
 
         $I->seeResponseCodeIs(200);
-
         $I->seeResponseContainsJson([
             'category' => [
                 $siteUrl . '/category/uncategorized/',
