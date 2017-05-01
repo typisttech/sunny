@@ -6,7 +6,6 @@ namespace TypistTech\Sunny\Cloudflare;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\Sunny\Container;
 use TypistTech\Sunny\OptionStore;
 use TypistTech\Sunny\Vendor\Cloudflare\Zone\Cache as CloudflareCache;
 
@@ -21,19 +20,14 @@ class CacheTest extends WPTestCase
     protected $tester;
 
     /**
-     * @var \AspectMock\Proxy\InstanceProxy
-     */
-    private $cloudflareCache;
-
-    /**
-     * @var Container
-     */
-    private $container;
-
-    /**
      * @var Cache
      */
     private $cache;
+
+    /**
+     * @var \AspectMock\Proxy\InstanceProxy
+     */
+    private $cloudflareCache;
 
     public function setUp()
     {
@@ -41,19 +35,19 @@ class CacheTest extends WPTestCase
         $this->cloudflareCache = Test::double(
             new CloudflareCache,
             [
-                'purge_files' => [ true ],
+                'purgeFiles' => [ true ],
             ]
         );
-        $this->container = $this->tester->getContainer();
+        $container = $this->tester->getContainer();
         $optionStore = Test::double(
-            $this->container->get(OptionStore::class),
+            $container->get(OptionStore::class),
             [
                 'getApiKey' => 'my-api-key',
                 'getEmail' => 'me@example.com',
                 'getZoneId' => 'my-zone',
             ]
         )->getObject();
-        $this->container->add(OptionStore::class, $optionStore);
+        $container->add(OptionStore::class, $optionStore);
         $this->cache = new Cache(
             $optionStore,
             $this->cloudflareCache->getObject()
@@ -61,7 +55,7 @@ class CacheTest extends WPTestCase
     }
 
     /**
-     * @covers ::purge
+     * @covers ::purgeFiles
      */
     public function testPurgeUrls()
     {
@@ -70,7 +64,7 @@ class CacheTest extends WPTestCase
             'https://www.example.com/2',
         ];
 
-        $this->cache->purge(...$urls);
+        $this->cache->purgeFiles(...$urls);
 
         $this->cloudflareCache->verifyInvokedMultipleTimes('setEmail', 1);
         $this->cloudflareCache->verifyInvokedOnce('setEmail', [ 'me@example.com' ]);

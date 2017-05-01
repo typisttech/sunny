@@ -12,6 +12,7 @@ disabled:
   - no_spaces_inside_offset
   - phpdoc_no_package
   - phpdoc_summary
+  - simplified_null_return
   - trim_array_spaces
 
 enabled:

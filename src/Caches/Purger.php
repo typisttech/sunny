@@ -16,16 +16,14 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Purge;
+namespace TypistTech\Sunny\Caches;
 
 use TypistTech\Sunny\Cloudflare\Cache;
-use TypistTech\Sunny\LoadableInterface;
-use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
- * Final class Handler
+ * Final class Purger
  */
-final class Handler implements LoadableInterface
+final class Purger
 {
     /**
      * Api adopter
@@ -45,24 +43,19 @@ final class Handler implements LoadableInterface
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public static function getHooks(): array
-    {
-        return [ new Action('sunny_do_purge', __CLASS__, 'handle') ];
-    }
-
-    /**
-     * Handle purge command
+     * Purge urls from Cloudflare cache.
      *
-     * @param Command $event Immutable data transfer object that holds necessary information about this action.
+     * @todo Process in 30 urls at a time.
+     * @todo Check has at least one url.
      *
-     * @return void
+     * @param PurgeCommand $command Purge command.
+     *
+     * @return array|\WP_Error
      */
-    public function handle(Command $event)
+    public function execute(PurgeCommand $command)
     {
-        $this->cache->purge(
-            ...$event->getUrls()
+        return $this->cache->purgeFiles(
+            ...$command->getUrls()
         );
     }
 }

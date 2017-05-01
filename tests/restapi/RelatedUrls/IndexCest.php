@@ -6,46 +6,14 @@ namespace TypistTech\Sunny\REST\RelatedUrls;
 
 use TypistTech\Sunny\RestapiTester;
 
-class ShowCest
+class IndexCest
 {
-    public function testMissingParams(RestapiTester $I)
-    {
-        $I->sendGET('/sunny/v2/related-urls');
-
-        $I->seeResponseIsJson();
-        $I->seeResponseCodeIs(400);
-        $I->seeResponseContainsJson([
-            'code' => 'rest_missing_callback_param',
-            'message' => 'Missing parameter(s): url',
-        ]);
-    }
-
-    public function testNonQueryable(RestapiTester $I)
+    public function testIndex(RestapiTester $I)
     {
         $siteUrl = $I->grabSiteUrl();
+        $id = 167;
 
-        $I->sendGET('/sunny/v2/related-urls', [
-            'url' => $siteUrl . '/not/exist',
-        ]);
-
-        $I->seeResponseIsJson();
-        $I->seeResponseCodeIs(404);
-        $I->seeResponseContainsJson([
-            'code' => 'sunny_rest_related_urls_not_found',
-            'message' => 'Post not found for the given url',
-            'data' => [
-                'sanitized-url' => $siteUrl . '/not/exist',
-            ],
-        ]);
-    }
-
-    public function testShow(RestapiTester $I)
-    {
-        $siteUrl = $I->grabSiteUrl();
-
-        $I->sendGET('/sunny/v2/related-urls', [
-            'url' => $siteUrl . '/2012/11/01/many-tags',
-        ]);
+        $I->sendGET('/sunny/v2/posts/' . $id . '/related-urls');
 
         $I->seeResponseCodeIs(200);
         $I->seeResponseContainsJson([
@@ -85,6 +53,23 @@ class ShowCest
                 $siteUrl . '/feed/atom/',
                 $siteUrl . '/comments/feed/',
                 $siteUrl . '/2012/11/01/many-tags/feed/',
+            ],
+        ]);
+    }
+
+    public function testNonFound(RestapiTester $I)
+    {
+        $id = 9999999999999;
+
+        $I->sendGET('/sunny/v2/posts/' . $id . '/related-urls');
+
+        $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(404);
+        $I->seeResponseContainsJson([
+            'code' => 'sunny_not_found',
+            'message' => 'Post not found for the given id',
+            'data' => [
+                'id' => $id,
             ],
         ]);
     }

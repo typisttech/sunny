@@ -7,8 +7,8 @@ namespace TypistTech\Sunny\Helper;
 use AspectMock\Test;
 use Codeception\Module;
 use Codeception\TestInterface;
-use TypistTech\Sunny\Container;
 use TypistTech\Sunny\Sunny;
+use TypistTech\Sunny\Vendor\League\Container\Container;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\AbstractHook;
 
 /**

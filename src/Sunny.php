@@ -21,8 +21,10 @@ namespace TypistTech\Sunny;
 use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\ReviewNotice;
 use TypistTech\Sunny\Cloudflare\Admin as CloudflareAdmin;
-use TypistTech\Sunny\Purge\Handler;
-use TypistTech\Sunny\REST\RelatedUrls\ShowController as RelatedUrlsShowController;
+use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
+use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
+use TypistTech\Sunny\Vendor\League\Container\Container;
+use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
 
@@ -41,10 +43,10 @@ final class Sunny implements LoadableInterface
     private $container;
 
     /**
-     * The loader that's responsible for maintaining and registering all hooks that power
+     * The loader that's responsible for maintaining and registering allByPost hooks that power
      * the plugin.
      *
-     * @var Loader Maintains and registers all hooks for the plugin.
+     * @var Loader Maintains and registers allByPost hooks for the plugin.
      */
     private $loader;
 
@@ -56,17 +58,21 @@ final class Sunny implements LoadableInterface
         $this->container = new Container;
         $this->loader = new Loader($this->container);
 
-        $this->container->initialize();
+        $optionStore = new OptionStore;
+        $admin = new Admin($optionStore);
+        $this->container->delegate(new ReflectionContainer);
+        $this->container->add('\\' . OptionStore::class, $optionStore);
+        $this->container->add('\\' . Admin::class, $admin);
 
         $loadables = [
             __CLASS__,
             Admin::class,
             CloudflareAdmin::class,
-            Handler::class,
             I18n::class,
             I18nPromoter::class,
+            PostsCachesDeleteController::class,
+            PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
-            RelatedUrlsShowController::class,
         ];
 
         foreach ($loadables as $loadable) {
@@ -106,7 +112,7 @@ final class Sunny implements LoadableInterface
     }
 
     /**
-     * Run the loader to execute all of the hooks with WordPress.
+     * Run the loader to add all the hooks to WordPress.
      *
      * @return void
      */

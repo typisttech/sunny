@@ -16,14 +16,12 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Purge;
+namespace TypistTech\Sunny\Caches;
 
 /**
- * Final class Command
- *
- * Immutable data transfer object that holds necessary information about this action.
+ * Final class PurgeCommand
  */
-final class Command
+final class PurgeCommand
 {
     /**
      * Reason to trigger a purge
@@ -37,18 +35,36 @@ final class Command
      *
      * @var string[]
      */
-    private $urls;
+    private $urls = [];
 
     /**
      * Command constructor.
      *
-     * @param string          $reason  Reason to trigger a purge.
-     * @param string|string[] ...$urls Urls to be purged.
+     * @param string   $reason Reason to trigger a purge.
+     * @param string[] $urls   Urls to be purged.
      */
-    public function __construct(string $reason, string ...$urls)
+    public function __construct(string $reason, array $urls)
     {
         $this->reason = $reason;
-        $this->urls = $urls;
+        $this->setUrls($urls);
+    }
+
+    /**
+     * Urls setter.
+     *
+     * @param string[] $urls Urls to be purged. Maybe multidimensional.
+     *
+     * @return void
+     */
+    private function setUrls(array $urls)
+    {
+        array_map(function ($item) {
+            if (is_array($item)) {
+                $this->setUrls($item);
+            } elseif (is_string($item)) {
+                $this->urls[] = $item;
+            }
+        }, $urls);
     }
 
     /**
