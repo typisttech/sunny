@@ -21,6 +21,11 @@ class CacheTest extends WPTestCase
     protected $tester;
 
     /**
+     * @var Cache
+     */
+    private $cache;
+
+    /**
      * @var \AspectMock\Proxy\InstanceProxy
      */
     private $cloudflareCache;
@@ -30,18 +35,13 @@ class CacheTest extends WPTestCase
      */
     private $container;
 
-    /**
-     * @var Cache
-     */
-    private $cache;
-
     public function setUp()
     {
         parent::setUp();
         $this->cloudflareCache = Test::double(
             new CloudflareCache,
             [
-                'purge_files' => [ true ],
+                'purgeFiles' => [ true ],
             ]
         );
         $this->container = $this->tester->getContainer();
@@ -61,7 +61,7 @@ class CacheTest extends WPTestCase
     }
 
     /**
-     * @covers ::purge
+     * @covers ::purgeFiles
      */
     public function testPurgeUrls()
     {
@@ -70,7 +70,7 @@ class CacheTest extends WPTestCase
             'https://www.example.com/2',
         ];
 
-        $this->cache->purge(...$urls);
+        $this->cache->purgeFiles(...$urls);
 
         $this->cloudflareCache->verifyInvokedMultipleTimes('setEmail', 1);
         $this->cloudflareCache->verifyInvokedOnce('setEmail', [ 'me@example.com' ]);

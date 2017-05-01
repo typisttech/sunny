@@ -28,20 +28,12 @@ use WP_Post;
 /**
  * Collects URLs related to a WP_Post object.
  *
- * Attempts to find all URLs that are related to an individual post URL. This is helpful when purging a group of URLs
- * based on an individual URL.
+ * Attempts to find URLs that are related to an individual post.
  *
  * @see  https://github.com/CondeNast/purgely/blob/master/src/classes/related-urls.php
  */
 final class RelatedUrls
 {
-    /**
-     * The WP_Post object from which relationships are determined.
-     *
-     * @var WP_Post The WP_Post object from which relationships are determined.
-     */
-    private $post;
-
     /**
      * Strategies
      *
@@ -50,25 +42,21 @@ final class RelatedUrls
     private $strategies;
 
     /**
-     * RelatedUrls constructor.
+     * Post constructor.
      *
-     * @param WP_Post             $post          You can send a post ID, a post object or a URL to the class and it
-     *                                           will find related URLs.
-     * @param StrategyInterface[] ...$strategies Strategies to get related urls.
+     * @param StrategyInterface[] $strategies Strategies to get related urls.
      */
-    public function __construct(WP_Post $post, StrategyInterface ...$strategies)
+    public function __construct(array $strategies = null)
     {
-        $this->post = $post;
+        $strategies = $strategies ?? [
+                new TermsUrls('category'),
+                new TermsUrls('post_tag'),
+                new AuthorUrls,
+                new PostTypeArchiveUrls,
+                new FeedUrls,
+            ];
 
-        $strategies = count($strategies) > 0 ? $strategies : [
-            new TermsUrls('category'),
-            new TermsUrls('post_tag'),
-            new AuthorUrls,
-            new PostTypeArchiveUrls,
-            new FeedUrls,
-        ];
-
-        $filteredStrategies = apply_filters('sunny_related_urls_strategies', $strategies, $post);
+        $filteredStrategies = apply_filters('sunny_related_urls_strategies', $strategies);
 
         $this->setStrategies(...$filteredStrategies);
     }
@@ -88,12 +76,14 @@ final class RelatedUrls
     /**
      * Locate all related URLs.
      *
+     * @param WP_Post $post The WP_Post object from which relationships are determined.
+     *
      * @return array The related URLs.
      */
-    public function locate(): array
+    public function allByPost(WP_Post $post): array
     {
-        $related = array_reduce($this->strategies, function (array $carry, StrategyInterface $strategy) {
-            $carry[ $strategy->getKey() ] = $strategy->locate($this->post);
+        $related = array_reduce($this->strategies, function (array $carry, StrategyInterface $strategy) use ($post) {
+            $carry[ $strategy->getKey() ] = $strategy->locate($post);
 
             return $carry;
         }, []);
@@ -101,7 +91,7 @@ final class RelatedUrls
         return apply_filters(
             'sunny_related_urls_for_post',
             array_filter($related),
-            $this->post
+            $post
         );
     }
 }

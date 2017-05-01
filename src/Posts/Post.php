@@ -16,12 +16,12 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Post;
+namespace TypistTech\Sunny\Posts;
 
 /**
- * Final class Finder
+ * Final class Post
  */
-final class Finder
+final class Post
 {
     /**
      * Find WP_Post by its Url.
@@ -30,20 +30,16 @@ final class Finder
      *
      * @return \WP_Post|null
      */
-    public static function findWpPostByUrl(string $url)
+    public static function findByUrl(string $url)
     {
         $cleanUrl = esc_url_raw($url);
-
-        if (empty($cleanUrl)) {
-            return;
-        }
 
         // @codingStandardsIgnoreStart
         $postId = url_to_postid($cleanUrl);
 
         // @codingStandardsIgnoreEnd
 
-        return self::findWpPostById($postId);
+        return self::findById($postId);
     }
 
     /**
@@ -53,12 +49,12 @@ final class Finder
      *
      * @return \WP_Post|null
      */
-    public static function findWpPostById(int $postId)
+    public static function findById(int $postId)
     {
         if ($postId < 1) {
-            return;
+            return null;
         }
 
-        return get_post(absint($postId));
+        return get_post($postId);
     }
 }

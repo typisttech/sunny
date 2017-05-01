@@ -58,13 +58,11 @@ final class Cache
      * Purge individual files (permission needed: #zone:edit).
      * Remove one or more files from CloudFlare's cache.
      *
-     * @todo Warn if more than 30 urls given.
-     *
      * @param string|string[] ...$urls URLs that should be removed from cache. Maximum: 30 urls.
      *
      * @return array|\WP_Error
      */
-    public function purge(string ...$urls)
+    public function purgeFiles(string ...$urls)
     {
         $this->setUpClient();
 
