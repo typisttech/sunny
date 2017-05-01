@@ -6,7 +6,6 @@ namespace TypistTech\Sunny\Cloudflare;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\Sunny\Container;
 use TypistTech\Sunny\OptionStore;
 use TypistTech\Sunny\Vendor\Cloudflare\Zone\Cache as CloudflareCache;
 
@@ -30,11 +29,6 @@ class CacheTest extends WPTestCase
      */
     private $cloudflareCache;
 
-    /**
-     * @var Container
-     */
-    private $container;
-
     public function setUp()
     {
         parent::setUp();
@@ -44,16 +38,16 @@ class CacheTest extends WPTestCase
                 'purgeFiles' => [ true ],
             ]
         );
-        $this->container = $this->tester->getContainer();
+        $container = $this->tester->getContainer();
         $optionStore = Test::double(
-            $this->container->get(OptionStore::class),
+            $container->get(OptionStore::class),
             [
                 'getApiKey' => 'my-api-key',
                 'getEmail' => 'me@example.com',
                 'getZoneId' => 'my-zone',
             ]
         )->getObject();
-        $this->container->add(OptionStore::class, $optionStore);
+        $container->add(OptionStore::class, $optionStore);
         $this->cache = new Cache(
             $optionStore,
             $this->cloudflareCache->getObject()

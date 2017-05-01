@@ -23,6 +23,8 @@ use TypistTech\Sunny\Ads\ReviewNotice;
 use TypistTech\Sunny\Cloudflare\Admin as CloudflareAdmin;
 use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
+use TypistTech\Sunny\Vendor\League\Container\Container;
+use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
 
@@ -56,7 +58,11 @@ final class Sunny implements LoadableInterface
         $this->container = new Container;
         $this->loader = new Loader($this->container);
 
-        $this->container->initialize();
+        $optionStore = new OptionStore;
+        $admin = new Admin($optionStore);
+        $this->container->delegate(new ReflectionContainer);
+        $this->container->add('\\' . OptionStore::class, $optionStore);
+        $this->container->add('\\' . Admin::class, $admin);
 
         $loadables = [
             __CLASS__,
@@ -106,7 +112,7 @@ final class Sunny implements LoadableInterface
     }
 
     /**
-     * Run the loader to execute allByPost of the hooks with WordPress.
+     * Run the loader to add all the hooks to WordPress.
      *
      * @return void
      */
