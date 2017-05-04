@@ -22,6 +22,7 @@ use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\ReviewNotice;
 use TypistTech\Sunny\Api\Admin as ApiAdmin;
+use TypistTech\Sunny\Posts\Listener as PostsListener;
 use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
 use TypistTech\Sunny\Vendor\League\Container\Container;
@@ -73,6 +74,7 @@ final class Sunny implements LoadableInterface
             I18nPromoter::class,
             Notifier::class,
             PostsCachesDeleteController::class,
+            PostsListener::class,
             PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
         ];
