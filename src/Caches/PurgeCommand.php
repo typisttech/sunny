@@ -18,6 +18,8 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Caches;
 
+use InvalidArgumentException;
+
 /**
  * Final class PurgeCommand
  */
@@ -54,6 +56,8 @@ final class PurgeCommand
      *
      * @param string[] $urls Urls to be purged. Maybe multidimensional.
      *
+     * @throws InvalidArgumentException If no url is given.
+     *
      * @return void
      */
     private function setUrls(array $urls)
@@ -65,6 +69,10 @@ final class PurgeCommand
                 $this->urls[] = $item;
             }
         }, $urls);
+
+        if (count($this->urls) < 1) {
+            throw new InvalidArgumentException('You must provide at least one url');
+        }
     }
 
     /**

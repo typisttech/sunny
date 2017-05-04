@@ -43,19 +43,23 @@ final class Purger
     }
 
     /**
-     * Purge urls from Cloudflare cache.
-     *
-     * @todo Process in 30 urls at a time.
-     * @todo Check has at least one url.
+     * Purge urls from Cloudflare cache, 30 urls per batch.
      *
      * @param PurgeCommand $command Purge command.
      *
-     * @return array|\WP_Error
+     * @return void
      */
     public function execute(PurgeCommand $command)
     {
-        return $this->cache->purgeFiles(
-            ...$command->getUrls()
+        $batches = array_chunk(
+            $command->getUrls(),
+            30
         );
+
+        foreach ($batches as $batch) {
+            $this->cache->purgeFiles(
+                ...$batch
+            );
+        }
     }
 }
