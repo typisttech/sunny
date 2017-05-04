@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Caches;
 
-use TypistTech\Sunny\Cloudflare\Cache;
+use TypistTech\Sunny\Api\Cache;
 
 /**
  * Final class Purger
@@ -26,7 +26,7 @@ use TypistTech\Sunny\Cloudflare\Cache;
 final class Purger
 {
     /**
-     * Api adopter
+     * Api adopter for caches
      *
      * @var Cache
      */
@@ -35,7 +35,7 @@ final class Purger
     /**
      * Handler constructor.
      *
-     * @param Cache $cache The api adopter.
+     * @param Cache $cache Api adopter for caches.
      */
     public function __construct(Cache $cache)
     {

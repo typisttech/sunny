@@ -6,7 +6,7 @@ namespace TypistTech\Sunny\Caches;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\Sunny\Cloudflare\Cache;
+use TypistTech\Sunny\Api\Cache;
 
 /**
  * @coversDefaultClass \TypistTech\Sunny\Caches\Purger
