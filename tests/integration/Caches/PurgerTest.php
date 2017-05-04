@@ -19,6 +19,11 @@ class PurgerTest extends WPTestCase
     protected $tester;
 
     /**
+     * @var \AspectMock\Proxy\FuncProxy
+     */
+    private $applyFiltersMock;
+
+    /**
      * @var \AspectMock\Proxy\InstanceProxy
      */
     private $cache;
@@ -40,6 +45,11 @@ class PurgerTest extends WPTestCase
             ]
         );
         $container->add(Cache::class, $this->cache->getObject());
+
+        $this->applyFiltersMock = Test::func(__NAMESPACE__, 'apply_filters', function ($_tag, $value, $_param) {
+            return $value;
+        });
+
         $this->purger = $container->get(Purger::class);
     }
 
@@ -86,5 +96,21 @@ class PurgerTest extends WPTestCase
         $this->cache->verifyInvokedMultipleTimes('purgeFiles', 2);
         $this->cache->verifyInvokedOnce('purgeFiles', [ $expectedFirstBatch ]);
         $this->cache->verifyInvokedOnce('purgeFiles', [ $expectedSecondBatch ]);
+    }
+
+    public function testSunnyPurgerUrlsFilter()
+    {
+        $event = new PurgeCommand('Post 123 updated', [ 'https://www.example.com/1' ]);
+
+        $this->purger->execute($event);
+
+        $expected = [
+            'sunny_purger_urls',
+            [ 'https://www.example.com/1' ],
+            $event,
+        ];
+
+        $this->applyFiltersMock->verifyInvokedMultipleTimes(1);
+        $this->applyFiltersMock->verifyInvokedOnce($expected);
     }
 }
