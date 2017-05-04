@@ -59,4 +59,32 @@ class PurgerTest extends WPTestCase
         $this->cache->verifyInvokedMultipleTimes('purgeFiles', 1);
         $this->cache->verifyInvokedOnce('purgeFiles', [ $urls ]);
     }
+
+    /**
+     * @covers ::execute
+     */
+    public function testExecuteInBatches()
+    {
+        $urls = [];
+        for ($i = 0; $i < 45; $i++) {
+            $urls[] = 'https://www.example.com/' . $i;
+        }
+
+        $event = new PurgeCommand('Post 123 updated', $urls);
+
+        $this->purger->execute($event);
+
+        $expectedFirstBatch = [];
+        for ($i = 0; $i < 30; $i++) {
+            $expectedFirstBatch[] = 'https://www.example.com/' . $i;
+        }
+        $expectedSecondBatch = [];
+        for ($i = 30; $i < 45; $i++) {
+            $expectedSecondBatch[] = 'https://www.example.com/' . $i;
+        }
+
+        $this->cache->verifyInvokedMultipleTimes('purgeFiles', 2);
+        $this->cache->verifyInvokedOnce('purgeFiles', [ $expectedFirstBatch ]);
+        $this->cache->verifyInvokedOnce('purgeFiles', [ $expectedSecondBatch ]);
+    }
 }

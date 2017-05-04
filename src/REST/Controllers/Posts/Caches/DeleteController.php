@@ -97,21 +97,9 @@ final class DeleteController implements LoadableInterface
         }
 
         $command = $this->purgeCommandFactory->buildForPost($post, $reason);
-        $rawResult = $this->purger->execute($command);
+        $this->purger->execute($command);
 
-        if (is_wp_error($rawResult)) {
-            return new WP_Error(
-                $rawResult->get_error_code(),
-                $rawResult->get_error_message(),
-                [
-                    'status' => 422,
-                    'id' => $id,
-                    'reason' => $reason,
-                ]
-            );
-        }
-
-        return new WP_REST_Response(null, 204);
+        return new WP_REST_Response(null, 202);
     }
 
     /**

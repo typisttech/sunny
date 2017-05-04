@@ -5,12 +5,19 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Caches;
 
 use Codeception\Test\Unit;
+use InvalidArgumentException;
+use TypistTech\Sunny\UnitTester;
 
 /**
  * @coversDefaultClass \TypistTech\Sunny\Caches\PurgeCommand
  */
 class PurgeCommandTest extends Unit
 {
+    /**
+     * @var UnitTester
+     */
+    protected $tester;
+
     /**
      * @covers ::getReason
      */
@@ -58,5 +65,15 @@ class PurgeCommandTest extends Unit
         ];
 
         $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @covers ::setUrls
+     */
+    public function testNoUrlGiven()
+    {
+        $this->tester->expectException(new InvalidArgumentException('You must provide at least one url'), function () {
+            new PurgeCommand('Post 123 updated', []);
+        });
     }
 }
