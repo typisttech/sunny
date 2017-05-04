@@ -50,6 +50,7 @@ $keys = [
     'sunny_enqueue_notifications',
     'sunny_enqueued_admin_notices',
     'sunny_enqueued_notices',
+    'sunny_notifier_admin_notices',
     'sunny_purger_settings',
     'sunny_security',
     'sunny_settings',

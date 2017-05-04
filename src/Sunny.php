@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny;
 
+use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\ReviewNotice;
 use TypistTech\Sunny\Api\Admin as ApiAdmin;
@@ -70,6 +71,7 @@ final class Sunny implements LoadableInterface
             ApiAdmin::class,
             I18n::class,
             I18nPromoter::class,
+            Notifier::class,
             PostsCachesDeleteController::class,
             PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
