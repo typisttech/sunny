@@ -62,9 +62,9 @@ class PurgerTest extends WPTestCase
             'https://www.example.com/1',
             'https://www.example.com/2',
         ];
-        $event = new PurgeCommand('Post 123 updated', $urls);
+        $command = new PurgeCommand('Post 123 updated', $urls);
 
-        $this->purger->execute($event);
+        $this->purger->execute($command);
 
         $this->cache->verifyInvokedMultipleTimes('purgeFiles', 1);
         $this->cache->verifyInvokedOnce('purgeFiles', [ $urls ]);
@@ -80,9 +80,9 @@ class PurgerTest extends WPTestCase
             $urls[] = 'https://www.example.com/' . $i;
         }
 
-        $event = new PurgeCommand('Post 123 updated', $urls);
+        $command = new PurgeCommand('Post 123 updated', $urls);
 
-        $this->purger->execute($event);
+        $this->purger->execute($command);
 
         $expectedFirstBatch = [];
         for ($i = 0; $i < 30; $i++) {
