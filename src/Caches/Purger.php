@@ -51,10 +51,13 @@ final class Purger
      */
     public function execute(PurgeCommand $command)
     {
-        $batches = array_chunk(
+        $urls = apply_filters(
+            'sunny_purger_urls',
             $command->getUrls(),
-            30
+            $command
         );
+
+        $batches = array_chunk($urls, 30);
 
         foreach ($batches as $batch) {
             $this->cache->purgeFiles(
