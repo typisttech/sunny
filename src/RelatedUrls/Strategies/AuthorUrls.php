@@ -44,9 +44,10 @@ final class AuthorUrls implements StrategyInterface
     {
         $author = $post->post_author;
 
-        $related = [];
-        $related[] = get_author_posts_url($author);
-        $related[] = get_author_feed_link($author);
+        $related = [
+            get_author_posts_url($author),
+            get_author_feed_link($author),
+        ];
 
         return array_values(array_filter($related));
     }
