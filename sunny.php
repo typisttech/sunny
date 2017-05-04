@@ -17,7 +17,7 @@
 /**
  * Plugin Name:     Sunny
  * Plugin URI:      https://www.typist.tech/
- * Description:     Connecting WordPress with Cloudflare firewall.
+ * Description:     Automatically purge CloudFlare cache, including cache everything rules.
  * Version:         2.0.0
  * Author:          Typist Tech
  * Author URI:      https://www.typist.tech/

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Cloudflare;
+namespace TypistTech\Sunny\Api;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
@@ -10,7 +10,7 @@ use TypistTech\Sunny\OptionStore;
 use TypistTech\Sunny\Vendor\Cloudflare\Zone\Cache as CloudflareCache;
 
 /**
- * @coversDefaultClass \TypistTech\Sunny\Cloudflare\Cache
+ * @coversDefaultClass \TypistTech\Sunny\Api\Cache
  */
 class CacheTest extends WPTestCase
 {

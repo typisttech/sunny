@@ -44,9 +44,10 @@ final class PostTypeArchiveUrls implements StrategyInterface
     {
         $postType = get_post_type($post);
 
-        $related = [];
-        $related[] = get_post_type_archive_link($postType);
-        $related[] = get_post_type_archive_feed_link($postType);
+        $related = [
+            get_post_type_archive_link($postType),
+            get_post_type_archive_feed_link($postType),
+        ];
 
         return array_values(array_filter($related));
     }

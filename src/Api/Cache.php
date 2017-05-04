@@ -16,7 +16,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Cloudflare;
+namespace TypistTech\Sunny\Api;
 
 use TypistTech\Sunny\OptionStore;
 use TypistTech\Sunny\Vendor\Cloudflare\Zone\Cache as CloudflareCache;

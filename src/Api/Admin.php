@@ -16,7 +16,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Cloudflare;
+namespace TypistTech\Sunny\Api;
 
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Fields\Email;
@@ -28,7 +28,7 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
 /**
  * Final class Admin.
  *
- * The admin-specific functionality of Cloudflare settings.
+ * The admin-specific functionality of Cloudflare Api settings.
  */
 final class Admin implements LoadableInterface
 {
