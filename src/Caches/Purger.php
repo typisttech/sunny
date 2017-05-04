@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Caches;
 
+use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Api\Cache;
 
 /**
@@ -33,13 +34,22 @@ final class Purger
     private $cache;
 
     /**
+     * Notifier
+     *
+     * @var Notifier
+     */
+    private $notifier;
+
+    /**
      * Handler constructor.
      *
-     * @param Cache $cache Api adopter for caches.
+     * @param Cache    $cache    Api adopter for caches.
+     * @param Notifier $notifier Notifier.
      */
-    public function __construct(Cache $cache)
+    public function __construct(Cache $cache, Notifier $notifier)
     {
         $this->cache = $cache;
+        $this->notifier = $notifier;
     }
 
     /**
@@ -56,6 +66,17 @@ final class Purger
             $command->getUrls(),
             $command
         );
+
+        $randomNoticeId = 'sunny_purger_execute_' . wp_hash(date('c') . random_int(10, 15));
+
+        // Translators: %1$s is the reason to purge.
+        $noticeMessageFormat = __('<b>Sunny</b>: Purge initiated.<br/>Reason: %1$s', 'sunny');
+        $noticeMessage = sprintf(
+            $noticeMessageFormat,
+            $command->getReason()
+        );
+
+        $this->notifier->enqueue($randomNoticeId, $noticeMessage);
 
         $batches = array_chunk($urls, 30);
 

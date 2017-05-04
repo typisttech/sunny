@@ -62,6 +62,9 @@ before_install:
   - tnw-install-wordpress
   - tnw-prepare-codeception
 
+  # Enable WP_DEBUG
+  - wp core config --dbname=wordpress --dbuser=root --dbhost=localhost --locale=$en_US --force --path=/tmp/wordpress/ --extra-php="define( 'AUTOMATIC_UPDATER_DISABLED', true ); define( 'WP_DEBUG', true );"
+
   # Build the production plugin
   - travis_retry composer build
   # Activate the plugin

@@ -50,9 +50,9 @@ modules:
         WPWebDriver:
             url: 'http://wp.dev:8080'
             port: 4444
-            window_size: '1024x768'
-            adminUsername: 'admin'
-            adminPassword: 'password'
+            window_size: 1024x768
+            adminUsername: admin
+            adminPassword: password
             adminPath: /wp-admin
             host: 'wp.dev'
             browser: phantomjs
