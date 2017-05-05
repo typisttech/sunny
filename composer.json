@@ -1,6 +1,6 @@
 {
     "name": "typisttech/sunny",
-    "description": "Connecting WordPress with Cloudflare firewall, protect your WordPress site at DNS level. Automatically create firewall rules to block dangerous IPs",
+    "description": "Automatically purge CloudFlare cache, including cache everything rules.",
     "keywords": [
         "wordpress",
         "wp",
