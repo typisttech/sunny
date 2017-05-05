@@ -57,7 +57,7 @@ final class Admin implements LoadableInterface
             __('Sunny', 'sunny'),
             __('Sunny - Cloudflare', 'sunny'),
             null,
-            'dashicons-shield'
+            'dashicons-palmtree'
         );
 
         return $pages;
