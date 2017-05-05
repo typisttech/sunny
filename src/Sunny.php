@@ -21,6 +21,7 @@ namespace TypistTech\Sunny;
 use TypistTech\Sunny\Admin\Admin;
 use TypistTech\Sunny\Admin\AdminBars\Admin as AdminBarAdmin;
 use TypistTech\Sunny\Admin\AdminBars\AdminBar;
+use TypistTech\Sunny\Admin\Ads\Announcement;
 use TypistTech\Sunny\Admin\Ads\I18nPromoter;
 use TypistTech\Sunny\Admin\Ads\ReviewNotice;
 use TypistTech\Sunny\Admin\Notifications\Notifier;
@@ -75,6 +76,7 @@ final class Sunny implements LoadableInterface
             Admin::class,
             AdminBar::class,
             AdminBarAdmin::class,
+            Announcement::class,
             ApiAdmin::class,
             I18n::class,
             I18nPromoter::class,
