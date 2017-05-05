@@ -143,6 +143,7 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 == Screenshots ==
 
 1. Cloudflare Settings
+1. Admin Bar Settings
 1. Purge when posts updated
 
 == Changelog ==
