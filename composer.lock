@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "090947b7bd90e0156c2e7745ada27004",
+    "content-hash": "f4a058998dcb02fbc54c8ca9e955c862",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -375,16 +375,16 @@
         },
         {
             "name": "typisttech/wp-better-settings",
-            "version": "0.11.0",
+            "version": "0.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TypistTech/wp-better-settings.git",
-                "reference": "d7c303a979ea0fed23731939021b31ff082d3671"
+                "reference": "df4aa22c7e00470a83d47bebe8251de16b6147d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/d7c303a979ea0fed23731939021b31ff082d3671",
-                "reference": "d7c303a979ea0fed23731939021b31ff082d3671",
+                "url": "https://api.github.com/repos/TypistTech/wp-better-settings/zipball/df4aa22c7e00470a83d47bebe8251de16b6147d6",
+                "reference": "df4aa22c7e00470a83d47bebe8251de16b6147d6",
                 "shasum": ""
             },
             "require": {
@@ -434,7 +434,7 @@
                 "wordpress",
                 "wp"
             ],
-            "time": "2017-04-18T10:10:05+00:00"
+            "time": "2017-04-30T12:03:43+00:00"
         },
         {
             "name": "typisttech/wp-contained-hook",

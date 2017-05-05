@@ -18,6 +18,8 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny;
 
+use TypistTech\Sunny\Admin\AdminBars\Admin as AdminBarAdmin;
+use TypistTech\Sunny\Admin\AdminBars\AdminBar;
 use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\ReviewNotice;
@@ -62,13 +64,16 @@ final class Sunny implements LoadableInterface
 
         $optionStore = new OptionStore;
         $admin = new Admin($optionStore);
+
         $this->container->delegate(new ReflectionContainer);
-        $this->container->add('\\' . OptionStore::class, $optionStore);
-        $this->container->add('\\' . Admin::class, $admin);
+        $this->container->add(OptionStore::class, $optionStore);
+        $this->container->add(Admin::class, $admin);
 
         $loadables = [
             __CLASS__,
             Admin::class,
+            AdminBar::class,
+            AdminBarAdmin::class,
             ApiAdmin::class,
             I18n::class,
             I18nPromoter::class,
