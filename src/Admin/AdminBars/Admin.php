@@ -72,6 +72,7 @@ final class Admin implements LoadableInterface
         $pages[] = new SubmenuPage(
             'sunny-cloudflare',
             'sunny-admin-bar',
+            __('Admin Bar', 'sunny'),
             __('Sunny - Admin Bar', 'sunny')
         );
 
