@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\REST\RelatedUrls;
+namespace TypistTech\Sunny\REST\Posts\RelatedUrls;
 
 use TypistTech\Sunny\RestapiTester;
 
@@ -57,7 +57,7 @@ class IndexCest
         ]);
     }
 
-    public function testNonFound(RestapiTester $I)
+    public function testNotFound(RestapiTester $I)
     {
         $id = 9999999999999;
 

@@ -16,7 +16,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\RelatedUrls\Strategies;
+namespace TypistTech\Sunny\Posts\RelatedUrls\Strategies;
 
 use WP_Post;
 use WP_Term;

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Ads;
+namespace TypistTech\Sunny\Admin\Ads;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
-use TypistTech\Sunny\Admin;
+use TypistTech\Sunny\Admin\Admin;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\Yoast_I18n_WordPressOrg_v2;
 
 /**
- * @coversDefaultClass \TypistTech\Sunny\Ads\I18nPromoter
+ * @coversDefaultClass \TypistTech\Sunny\Admin\Ads\I18nPromoter
  */
 class I18nPromoterTest extends WPTestCase
 {

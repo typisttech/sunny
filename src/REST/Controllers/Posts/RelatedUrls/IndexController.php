@@ -20,7 +20,7 @@ namespace TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls;
 
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Posts\Post;
-use TypistTech\Sunny\RelatedUrls\RelatedUrls;
+use TypistTech\Sunny\Posts\RelatedUrls\RelatedUrls;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use WP_Error;
 use WP_Post;

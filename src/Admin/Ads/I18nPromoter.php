@@ -6,19 +6,19 @@
  *
  * @package   Sunny
  *
- * @author    Typist Tech <sunny@typist.tech>
+ * @author Typist Tech <sunny@typist.tech>
  * @copyright 2017 Typist Tech
- * @license   GPL-2.0+
+ * @license GPL-2.0+
  *
- * @see       https://www.typist.tech/projects/sunny
- * @see       https://wordpress.org/plugins/sunny/
+ * @see https://www.typist.tech/projects/sunny
+ * @see https://wordpress.org/plugins/sunny/
  */
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Ads;
+namespace TypistTech\Sunny\Admin\Ads;
 
-use TypistTech\Sunny\Admin;
+use TypistTech\Sunny\Admin\Admin;
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\Yoast_I18n_WordPressOrg_v2;

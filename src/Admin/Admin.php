@@ -6,18 +6,20 @@
  *
  * @package   Sunny
  *
- * @author    Typist Tech <sunny@typist.tech>
+ * @author Typist Tech <sunny@typist.tech>
  * @copyright 2017 Typist Tech
- * @license   GPL-2.0+
+ * @license GPL-2.0+
  *
- * @see       https://www.typist.tech/projects/sunny
- * @see       https://wordpress.org/plugins/sunny/
+ * @see https://www.typist.tech/projects/sunny
+ * @see https://wordpress.org/plugins/sunny/
  */
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny;
+namespace TypistTech\Sunny\Admin;
 
+use TypistTech\Sunny\LoadableInterface;
+use TypistTech\Sunny\OptionStore;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\PageRegister;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\PageInterface;
