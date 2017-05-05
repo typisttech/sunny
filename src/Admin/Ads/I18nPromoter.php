@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Admin\Ads;
 
-use TypistTech\Sunny\Admin;
+use TypistTech\Sunny\Admin\Admin;
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\Yoast_I18n_WordPressOrg_v2;
