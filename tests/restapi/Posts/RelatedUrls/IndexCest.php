@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\REST\RelatedUrls;
+namespace TypistTech\Sunny\REST\Posts\RelatedUrls;
 
 use TypistTech\Sunny\RestapiTester;
 

@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Caches;
 
-use TypistTech\Sunny\RelatedUrls\RelatedUrls;
+use TypistTech\Sunny\Posts\RelatedUrls\RelatedUrls;
 use WP_Post;
 
 /**

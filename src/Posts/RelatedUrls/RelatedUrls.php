@@ -16,13 +16,13 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\RelatedUrls;
+namespace TypistTech\Sunny\Posts\RelatedUrls;
 
-use TypistTech\Sunny\RelatedUrls\Strategies\AuthorUrls;
-use TypistTech\Sunny\RelatedUrls\Strategies\FeedUrls;
-use TypistTech\Sunny\RelatedUrls\Strategies\PostTypeArchiveUrls;
-use TypistTech\Sunny\RelatedUrls\Strategies\StrategyInterface;
-use TypistTech\Sunny\RelatedUrls\Strategies\TermsUrls;
+use TypistTech\Sunny\Posts\RelatedUrls\Strategies\AuthorUrls;
+use TypistTech\Sunny\Posts\RelatedUrls\Strategies\FeedUrls;
+use TypistTech\Sunny\Posts\RelatedUrls\Strategies\PostTypeArchiveUrls;
+use TypistTech\Sunny\Posts\RelatedUrls\Strategies\StrategyInterface;
+use TypistTech\Sunny\Posts\RelatedUrls\Strategies\TermsUrls;
 use WP_Post;
 
 /**

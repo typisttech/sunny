@@ -16,25 +16,25 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\RelatedUrls\Strategies;
+namespace TypistTech\Sunny\Posts\RelatedUrls\Strategies;
 
 use WP_Post;
 
 /**
- * Final class AuthorUrls
+ * Final class FeedUrls
  */
-final class AuthorUrls implements StrategyInterface
+final class FeedUrls implements StrategyInterface
 {
     /**
      * {@inheritdoc}
      */
     public function getKey(): string
     {
-        return 'author';
+        return 'feed';
     }
 
     /**
-     * Get author links related to this post.
+     * Get all the feed URLs.
      *
      * @param WP_Post $post The WP_Post object from which relationships are determined.
      *
@@ -42,11 +42,13 @@ final class AuthorUrls implements StrategyInterface
      */
     public function locate(WP_Post $post): array
     {
-        $author = $post->post_author;
-
         $related = [
-            get_author_posts_url($author),
-            get_author_feed_link($author),
+            get_bloginfo_rss('rdf_url'),
+            get_bloginfo_rss('rss_url'),
+            get_bloginfo_rss('rss2_url'),
+            get_bloginfo_rss('atom_url'),
+            get_bloginfo_rss('comments_rss2_url'),
+            get_post_comments_feed_link($post->ID),
         ];
 
         return array_values(array_filter($related));
