@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\Sunny\Ads;
+namespace TypistTech\Sunny\Admin\Ads;
 
 use AspectMock\Test;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\WP_Review_Me;
 
 /**
- * @coversDefaultClass \TypistTech\Sunny\Ads\ReviewNotice
+ * @coversDefaultClass \TypistTech\Sunny\Admin\Ads\ReviewNotice
  */
 class ReviewNoticeTest extends \Codeception\TestCase\WPTestCase
 {
