@@ -57,7 +57,7 @@ class IndexCest
         ]);
     }
 
-    public function testNonFound(RestapiTester $I)
+    public function testNotFound(RestapiTester $I)
     {
         $id = 9999999999999;
 
