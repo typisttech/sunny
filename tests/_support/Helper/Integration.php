@@ -26,9 +26,10 @@ class Integration extends Module
     {
         Test::clean();
 
-        delete_option('wpcfg_cloudflare_email');
-        delete_option('wpcfg_cloudflare_api_key');
-        delete_option('wpcfg_cloudflare_zone_id');
+        delete_option('sunny_admin_bar_disable_hide');
+        delete_option('sunny_cloudflare_email');
+        delete_option('sunny_cloudflare_api_key');
+        delete_option('sunny_cloudflare_zone_id');
     }
 
     public function assertHooked(AbstractHook $hook)
