@@ -4,7 +4,7 @@ Donate link: https://www.typist.tech/donate/sunny/
 Tags: cloudflare, firewall, security, spam
 Requires at least: 4.7
 Tested up to: 4.7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,8 +37,8 @@ At the time of writing, Cloudflare's [official plugin](https://wordpress.org/plu
 
 = Things You Need to Know =
 
-* You need PHP 7.0 or later
-* You need WordPress 4.7 or later
+* You need PHP `7.0` or later
+* You need WordPress `4.7` or later
 * You need a Cloudflare account (free plan is okay)
 * This plugin was not built by [Cloudflare, Inc](https://www.cloudflare.com/)
 
@@ -91,7 +91,24 @@ If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/
 
 = What version of PHP do I need? =
 
-PHP 7 or later.
+PHP `7.0` or later.
+
+= What version of WordPress do I need? =
+
+PHP `4.7` or later.
+
+= What to do when `Parse error: syntax error`? =
+
+If you encountered this error:
+
+`Parse error: syntax error, unexpected ‘:’, expecting ‘;’ or ‘{‘ in wp-content/plugins/sunny/src/Sunny.php on line XX`
+
+You probably running on a old version of PHP. Upgrade your server to PHP `7.0` or later.
+
+Don't know how to update PHP?
+* Contact you hosting company
+* Switch to a better hosting such as [WP Engine](https://www.typist.tech/go/wp-engine-isnt-business-worth-29-month/) or [Kinsta](https://www.typist.tech/go/kinsta-staging-environment/)
+* Hire me [https://www.typist.tech/contact](https://www.typist.tech/contact)
 
 = Is this plugin written by Cloudflare, Inc.? =
 
@@ -150,6 +167,10 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
 
+= 2.0.1 =
+
+* Self deactivate if PHP version is older than `7.0.0`
+
 = 2.0.0 =
 
 * Update to Cloudflare API v4
@@ -157,7 +178,8 @@ Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/m
 
 == Upgrade Notice ==
 
-= 2.0.0 =
+= 2.0.1 =
 
+* Sunny `2` requires PHP `7.0` or greater and WordPress `4.7` or greater
 * Security functionalities have been separated to [Sunny](https://wordpress.org/plugins/sunny/)
 * You have to re-enter Cloudflare settings.

@@ -132,6 +132,11 @@ class WPUpdatePhp {
 		if ( ! empty( $this->plugin_name ) ) {
             $message = '<p>Unfortunately, <code>' . $this->plugin_name . '</code> cannot run on PHP versions older than ' . $this->minimum_version . '. Read more information about <a href="http://www.wpupdatephp.com/update/">how you can update</a>.<br/>';
             $message .= '<code>' . $this->plugin_name . '</code> has <strong>deactivated</strong> itself to prevent fatal errors.</p>';
+            $message .= '<p>Don\'t know how to update PHP?<br/>';
+            $message .= '* Contact you hosting company</li>';
+            $message .= '* Switch to a better hosting such as <a href="https://www.typist.tech/go/wp-engine-isnt-business-worth-29-month/">WP Engine</a> or <a href="https://www.typist.tech/go/kinsta-staging-environment/">Kinsta</a><br/>';
+            $message .= '* Hire me <a href="https://www.typist.tech/contact">https://www.typist.tech/contact</a></p>';
+
             return $message;
 		} else {
 			return '<p>Unfortunately, this plugin cannot run on PHP versions older than ' . $this->minimum_version . '. Read more information about <a href="http://www.wpupdatephp.com/update/">how you can update</a>.</p>';
