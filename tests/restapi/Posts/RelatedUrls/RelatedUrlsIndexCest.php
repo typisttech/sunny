@@ -6,7 +6,7 @@ namespace TypistTech\Sunny\REST\Posts\RelatedUrls;
 
 use TypistTech\Sunny\RestapiTester;
 
-class IndexCest
+class RelatedUrlsIndexCest
 {
     public function testIndex(RestapiTester $I)
     {
@@ -43,8 +43,8 @@ class IndexCest
                 $siteUrl . '/author/manovotny/feed/',
             ],
             'post-type-archive' => [
-                $siteUrl,
-                $siteUrl . '?feed=rss2',
+                $siteUrl . '/blog/',
+                $siteUrl . '/blog/?feed=rss2',
             ],
             'feed' => [
                 $siteUrl . '/feed/rdf/',

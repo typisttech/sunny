@@ -19,8 +19,8 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Api;
 
 use TypistTech\Sunny\LoadableInterface;
-use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Fields\Email;
-use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Fields\Text;
+use TypistTech\Sunny\OptionStore;
+use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Factories\Fields\InputFactory;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Section;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
@@ -32,6 +32,23 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
  */
 final class Admin implements LoadableInterface
 {
+    /**
+     * The option store.
+     *
+     * @var OptionStore
+     */
+    private $optionStore;
+
+    /**
+     * Admin constructor.
+     *
+     * @param OptionStore $optionStore The option store.
+     */
+    public function __construct(OptionStore $optionStore)
+    {
+        $this->optionStore = $optionStore;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -72,40 +89,41 @@ final class Admin implements LoadableInterface
      */
     public function addSettingsSection(array $sections): array
     {
-        $email = new Email(
+        $inputFactory = new InputFactory($this->optionStore);
+
+        $email = $inputFactory->build(
             'sunny_cloudflare_email',
-            __('Cloudflare Email', 'sunny')
+            __('Cloudflare Email', 'sunny'),
+            [
+                'type' => 'email',
+                'description' => __('The email address associated with your Cloudflare account.', 'sunny'),
+            ]
         );
-        $email->getDecorator()
-              ->setDescription(
-                  __(
-                      'The email address associated with your Cloudflare account.',
-                      'sunny'
-                  )
-              );
 
-        $apiKey = new Text(
-            'sunny_cloudflare_api_key',
-            __('Global API Key', 'sunny')
-        );
+        // Translators: %1$s is the url to Cloudflare document.
+        $apiKeyFormat = __('Help: <a href="%1$s">Where do I find my Cloudflare API key?</a>', 'sunny');
         $apiKeyDesc = sprintf(
-            // Translators: %1$s is the url to Cloudflare document.
-            __('Help: <a href="%1$s">Where do I find my Cloudflare API key?</a>', 'sunny'),
-            esc_url_raw(
-                'https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-CloudFlare-API-key-'
-            )
+            $apiKeyFormat,
+            esc_url_raw('https://support.cloudflare.com/hc/en-us/articles/200167836')
         );
-        $apiKey->getDecorator()
-               ->setDescription($apiKeyDesc);
 
-        $zoneId = new Text(
-            'sunny_cloudflare_zone_id',
-            __('Zone ID', 'sunny')
+        $apiKey = $inputFactory->build(
+            'sunny_cloudflare_api_key',
+            __('Global API Key', 'sunny'),
+            [
+                'type' => 'text',
+                'description' => $apiKeyDesc,
+            ]
         );
-        $zoneId->getDecorator()
-               ->setDescription(
-                   __('Zone identifier for this domain', 'sunny')
-               );
+
+        $zoneId = $inputFactory->build(
+            'sunny_cloudflare_zone_id',
+            __('Zone ID', 'sunny'),
+            [
+                'type' => 'text',
+                'description' => __('Zone identifier for this domain', 'sunny'),
+            ]
+        );
 
         $sections[] = new Section(
             'sunny-cloudflare',
