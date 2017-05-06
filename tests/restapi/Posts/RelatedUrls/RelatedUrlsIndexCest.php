@@ -6,7 +6,7 @@ namespace TypistTech\Sunny\REST\Posts\RelatedUrls;
 
 use TypistTech\Sunny\RestapiTester;
 
-class IndexCest
+class RelatedUrlsIndexCest
 {
     public function testIndex(RestapiTester $I)
     {
