@@ -1,28 +1,43 @@
 # Change Log
 
+## [2.0.1](https://github.com/TypistTech/sunny/tree/2.0.1) (2017-05-06)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.0.0...2.0.1)
+
+**Closed issues:**
+
+- Check for PHP version [\#15](https://github.com/TypistTech/sunny/issues/15)
+- Cloudflare API v4 [\#6](https://github.com/TypistTech/sunny/issues/6)
+- Sunny breaks dashboard 'click to toggle' functionality [\#1](https://github.com/TypistTech/sunny/issues/1)
+
+**Merged pull requests:**
+
+- Self deactivate if PHP version is older than 7.0.0 [\#58](https://github.com/TypistTech/sunny/pull/58) ([TangRufus](https://github.com/TangRufus))
+- Fix: TravisCI expired GitHub token [\#54](https://github.com/TypistTech/sunny/pull/54) ([TangRufus](https://github.com/TangRufus))
+
 ## [2.0.0](https://github.com/TypistTech/sunny/tree/2.0.0) (2017-05-05)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/1.5.2...2.0.0)
 
 **Closed issues:**
 
+- Use TravisCI to deploy production code [\#27](https://github.com/TypistTech/sunny/issues/27)
+- Add yoast/i18n-module [\#19](https://github.com/TypistTech/sunny/issues/19)
+- Add review me notice [\#16](https://github.com/TypistTech/sunny/issues/16)
+- warning in uninstall.php [\#4](https://github.com/TypistTech/sunny/issues/4)
+- Purge Page on Update [\#3](https://github.com/TypistTech/sunny/issues/3)
+- Can Sunny purge the rss feed on publish? [\#2](https://github.com/TypistTech/sunny/issues/2)
 - Hide Admin Bar on front-end [\#44](https://github.com/TypistTech/sunny/issues/44)
 - Change Cloudflare namespace [\#40](https://github.com/TypistTech/sunny/issues/40)
 - Do purge when posts changed [\#38](https://github.com/TypistTech/sunny/issues/38)
 - Process purging in chunk, 30 per batch [\#28](https://github.com/TypistTech/sunny/issues/28)
-- Use TravisCI to deploy production code [\#27](https://github.com/TypistTech/sunny/issues/27)
 - Get related Urls [\#24](https://github.com/TypistTech/sunny/issues/24)
-- Add yoast/i18n-module [\#19](https://github.com/TypistTech/sunny/issues/19)
-- Add review me notice [\#16](https://github.com/TypistTech/sunny/issues/16)
 - Misc Integration [\#11](https://github.com/TypistTech/sunny/issues/11)
 - Add purge Url filter [\#10](https://github.com/TypistTech/sunny/issues/10)
 - Add tests [\#9](https://github.com/TypistTech/sunny/issues/9)
 - Clone from WP Cloudflare Guard@master [\#8](https://github.com/TypistTech/sunny/issues/8)
-- warning in uninstall.php [\#4](https://github.com/TypistTech/sunny/issues/4)
-- Purge Page on Update [\#3](https://github.com/TypistTech/sunny/issues/3)
-- Can Sunny purge the rss feed on publish? [\#2](https://github.com/TypistTech/sunny/issues/2)
 
 **Merged pull requests:**
 
+- Version bump 2.0.0 [\#53](https://github.com/TypistTech/sunny/pull/53) ([TangRufus](https://github.com/TangRufus))
 - Add announcement [\#52](https://github.com/TypistTech/sunny/pull/52) ([TangRufus](https://github.com/TangRufus))
 - Refactor [\#51](https://github.com/TypistTech/sunny/pull/51) ([TangRufus](https://github.com/TangRufus))
 - Hide admin bar on public-facing pages [\#50](https://github.com/TypistTech/sunny/pull/50) ([TangRufus](https://github.com/TangRufus))
