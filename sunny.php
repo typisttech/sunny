@@ -31,27 +31,67 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny;
 
+use TypistTech\Sunny\Vendor\WPUpdatePhp;
+
 // If this file is called directly, abort.
 if (! defined('WPINC')) {
     die;
 }
 
-require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
-require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/handler.php';
-require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/includes/helper-functions.php';
+/**
+ * Check requirements:
+ * - PHP version > 7.0.0
+ *
+ * Side effect: WPUpdatePhp prints admin notices.
+ *
+ * @todo Check WordPress core version.
+ *
+ * @return bool
+ */
+function sunny_is_requirements_meet()
+{
+    require_once plugin_dir_path(__FILE__) . '/lib/wpupdatephp/wp-update-php/src/WPUpdatePhp.php';
+
+    $updatePhp = new WPUpdatePhp('7.0.0');
+    $updatePhp->set_plugin_name('Sunny');
+
+    return $updatePhp->does_it_meet_required_php_version();
+}
 
 /**
  * Begins execution of the plugin.
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
  *
  * @return void
  */
 function run()
 {
+    // @codingStandardsIgnoreStart
+    require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+    require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/handler.php';
+    require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/includes/helper-functions.php';
+    // @codingStandardsIgnoreEnd
+
     $plugin = new Sunny;
     $plugin->run();
 }
 
-run();
+/**
+ * Deactivate sunny.
+ *
+ * @return void
+ */
+function sunny_self_deactivate()
+{
+    deactivate_plugins(plugin_basename(__FILE__));
+}
+
+/*
+ * Since everything within the plugin is registered via hooks,
+ * then kicking off the plugin from this point in the file does
+ * not affect the page life cycle.
+ */
+if (sunny_is_requirements_meet()) {
+    run();
+} else {
+    add_action('admin_init', '\TypistTech\Sunny\sunny_self_deactivate');
+}

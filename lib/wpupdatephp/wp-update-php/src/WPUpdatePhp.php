@@ -3,6 +3,8 @@
 /**
  * This file is cloned from wpupdatephp/wp-update-php@1.1.1
  *
+ * Admin notice messages have been modified.
+ *
  * @see https://github.com/WPupdatePHP/wp-update-php/commit/6c80444de04d8c688e3b42e164e40527b487a357
  * @see https://github.com/WPupdatePHP/wp-update-php
  */
@@ -128,7 +130,9 @@ class WPUpdatePhp {
 		}
 
 		if ( ! empty( $this->plugin_name ) ) {
-			return '<p>Unfortunately, ' . $this->plugin_name . ' cannot run on PHP versions older than ' . $this->minimum_version . '. Read more information about <a href="http://www.wpupdatephp.com/update/">how you can update</a>.</p>';
+            $message = '<p>Unfortunately, <code>' . $this->plugin_name . '</code> cannot run on PHP versions older than ' . $this->minimum_version . '. Read more information about <a href="http://www.wpupdatephp.com/update/">how you can update</a>.<br/>';
+            $message .= '<code>' . $this->plugin_name . '</code> has <strong>deactivated</strong> itself to prevent fatal errors.</p>';
+            return $message;
 		} else {
 			return '<p>Unfortunately, this plugin cannot run on PHP versions older than ' . $this->minimum_version . '. Read more information about <a href="http://www.wpupdatephp.com/update/">how you can update</a>.</p>';
 		}
