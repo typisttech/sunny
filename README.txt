@@ -95,7 +95,7 @@ PHP `7.0` or later.
 
 = What version of WordPress do I need? =
 
-PHP `4.7` or later.
+WordPress `4.7` or later.
 
 = What to do when `Parse error: syntax error`? =
 
