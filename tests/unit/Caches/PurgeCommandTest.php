@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Caches;
 
+use AspectMock\Test;
 use Codeception\Test\Unit;
 use InvalidArgumentException;
 use TypistTech\Sunny\UnitTester;
@@ -17,6 +18,11 @@ class PurgeCommandTest extends Unit
      * @var UnitTester
      */
     protected $tester;
+
+    /**
+     * @var \AspectMock\Proxy\FuncProxy
+     */
+    private $applyFiltersMock;
 
     /**
      * @covers ::getReason
@@ -59,9 +65,9 @@ class PurgeCommandTest extends Unit
         $actual = $event->getUrls();
 
         $expected = [
+            'https://www.example.com/3',
             'https://www.example.com/1',
             'https://www.example.com/2',
-            'https://www.example.com/3',
         ];
 
         $this->assertSame($expected, $actual);
@@ -74,6 +80,13 @@ class PurgeCommandTest extends Unit
     {
         $this->tester->expectException(new InvalidArgumentException('You must provide at least one url'), function () {
             new PurgeCommand('Post 123 updated', []);
+        });
+    }
+
+    protected function _before()
+    {
+        $this->applyFiltersMock = Test::func(__NAMESPACE__, 'apply_filters', function ($_tag, $value) {
+            return $value;
         });
     }
 }

@@ -61,12 +61,6 @@ final class Purger
      */
     public function execute(PurgeCommand $command)
     {
-        $urls = apply_filters(
-            'sunny_purger_urls',
-            $command->getUrls(),
-            $command
-        );
-
         $randomNoticeId = 'sunny_purger_execute_' . wp_hash(date('c') . random_int(10, 15));
 
         // Translators: %1$s is the reason to purge.
@@ -78,7 +72,10 @@ final class Purger
 
         $this->notifier->enqueue($randomNoticeId, $noticeMessage);
 
-        $batches = array_chunk($urls, 30);
+        $batches = array_chunk(
+            $command->getUrls(),
+            30
+        );
 
         foreach ($batches as $batch) {
             $this->cache->purgeFiles(
