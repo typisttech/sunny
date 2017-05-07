@@ -43,6 +43,7 @@ if (! defined('WP_UNINSTALL_PLUGIN')) {
 
 $keys = [
     'sunny_admin_bar',
+    'sunny_admin_bar_disable_hide',
     'sunny_cloudflare_account',
     'sunny_cloudflare_api_key',
     'sunny_cloudflare_email',
