@@ -8,20 +8,11 @@ use TypistTech\Sunny\RestapiTester;
 
 class TargetsHomepageCest
 {
-    public function testHomepageGroup(RestapiTester $I)
+    public function testForbidden(RestapiTester $I)
     {
-        $siteUrl = $I->grabSiteUrl();
-
-        $I->sendGET('/sunny/v2/targets', [
+        $id = 167;
+        $I->assertForbiddenGet('/sunny/v2/targets', [
             'group' => 'homepage',
-        ]);
-
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseContainsJson([
-            'homepage' => [
-                $siteUrl,
-                $siteUrl . '/blog/',
-            ],
         ]);
     }
 }

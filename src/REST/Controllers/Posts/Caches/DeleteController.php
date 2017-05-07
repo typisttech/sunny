@@ -105,7 +105,7 @@ final class DeleteController implements LoadableInterface
     /**
      * Register the routes for the objects of the controller.
      *
-     * @todo Permission Check
+     * @return void
      */
     public function registerRoutes()
     {
@@ -113,6 +113,9 @@ final class DeleteController implements LoadableInterface
             [
                 'methods' => WP_REST_Server::DELETABLE,
                 'callback' => [ $this, 'delete' ],
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                },
                 'args' => [
                     'id' => [
                         'description' => __('Unique identifier for the post.', 'sunny'),

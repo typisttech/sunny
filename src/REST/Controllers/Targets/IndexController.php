@@ -64,7 +64,7 @@ final class IndexController implements LoadableInterface
     /**
      * Register the routes for the objects of the controller.
      *
-     * @todo Permission Check
+     * @return void
      */
     public function registerRoutes()
     {
@@ -74,6 +74,9 @@ final class IndexController implements LoadableInterface
             [
                 'callback' => [ $this, 'index' ],
                 'methods' => WP_REST_Server::READABLE,
+                'permission_callback' => function () {
+                    return current_user_can('manage_options');
+                },
             ],
             'args' => [
                 'group' => [

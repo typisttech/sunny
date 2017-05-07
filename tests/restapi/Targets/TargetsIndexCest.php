@@ -8,18 +8,8 @@ use TypistTech\Sunny\RestapiTester;
 
 class TargetsIndexCest
 {
-    public function testIndex(RestapiTester $I)
+    public function testForbidden(RestapiTester $I)
     {
-        $siteUrl = $I->grabSiteUrl();
-
-        $I->sendGET('/sunny/v2/targets');
-
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseContainsJson([
-            'homepage' => [
-                $siteUrl,
-                $siteUrl . '/blog/',
-            ],
-        ]);
+        $I->assertForbiddenGet('/sunny/v2/targets');
     }
 }
