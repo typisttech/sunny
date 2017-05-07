@@ -18,6 +18,7 @@
 
     <description>PSR 2 and WordPress Coding Standards for Plugins</description>
 
+    <exclude-pattern>*.js</exclude-pattern>
     <exclude-pattern>/build/*</exclude-pattern>
     <exclude-pattern>/lib/*</exclude-pattern>
     <exclude-pattern>/node_modules/*</exclude-pattern>
@@ -25,7 +26,6 @@
     <exclude-pattern>/tests/_data/*</exclude-pattern>
     <exclude-pattern>/tests/_output/*</exclude-pattern>
     <exclude-pattern>/vendor/*</exclude-pattern>
-    <exclude-pattern>/Gruntfile.js</exclude-pattern>
 
     <rule ref="PSR2"/>
 

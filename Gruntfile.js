@@ -70,7 +70,13 @@ module.exports = function (grunt) {
                 },
                 src: ['.github_changelog_generator']
             },
-            php: {
+            class: {
+                options: {
+                    prefix: "const VERSION = '"
+                },
+                src: ['src/<%= pkg.name %>.php']
+            },
+            main: {
                 options: {
                     prefix: '\\* Version:\\s+'
                 },

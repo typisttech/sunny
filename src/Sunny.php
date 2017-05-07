@@ -24,6 +24,8 @@ use TypistTech\Sunny\Admin\AdminBars\AdminBar;
 use TypistTech\Sunny\Admin\Ads\Announcement;
 use TypistTech\Sunny\Admin\Ads\I18nPromoter;
 use TypistTech\Sunny\Admin\Ads\ReviewNotice;
+use TypistTech\Sunny\Admin\Debuggers\Admin as DebuggersAdmin;
+use TypistTech\Sunny\Admin\Debuggers\Targets;
 use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Api\Admin as ApiAdmin;
 use TypistTech\Sunny\Posts\Listener as PostsListener;
@@ -43,6 +45,8 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
  */
 final class Sunny implements LoadableInterface
 {
+    const VERSION = '2.0.1';
+
     /**
      * The dependency injection container.
      *
@@ -80,6 +84,7 @@ final class Sunny implements LoadableInterface
             AdminBarAdmin::class,
             Announcement::class,
             ApiAdmin::class,
+            DebuggersAdmin::class,
             Homepage::class,
             I18n::class,
             I18nPromoter::class,
@@ -88,6 +93,7 @@ final class Sunny implements LoadableInterface
             PostsListener::class,
             PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
+            Targets::class,
             TargetsIndexController::class,
         ];
 
