@@ -19,7 +19,6 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Admin\Debuggers;
 
 use TypistTech\Sunny\LoadableInterface;
-use TypistTech\Sunny\OptionStore;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;

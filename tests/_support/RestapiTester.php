@@ -26,16 +26,6 @@ class RestapiTester extends Actor
 {
     use _generated\RestapiTesterActions;
 
-    public function assertForbiddenGet(string $route, array $params = null)
-    {
-        $params = $params ?? [];
-
-        $this->haveHttpHeader('Content-Type', 'application/json');
-        $this->sendGET($route, $params);
-
-        $this->assertForbidden();
-    }
-
     public function assertForbiddenDelete(string $route, array $params = null, array $files = null)
     {
         $params = $params ?? [];
@@ -58,5 +48,15 @@ class RestapiTester extends Actor
             ],
         ]);
         $this->seeResponseCodeIs(403);
+    }
+
+    public function assertForbiddenGet(string $route, array $params = null)
+    {
+        $params = $params ?? [];
+
+        $this->haveHttpHeader('Content-Type', 'application/json');
+        $this->sendGET($route, $params);
+
+        $this->assertForbidden();
     }
 }
