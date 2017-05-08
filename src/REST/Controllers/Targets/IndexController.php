@@ -19,8 +19,8 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\REST\Controllers\Targets;
 
 use TypistTech\Sunny\LoadableInterface;
+use TypistTech\Sunny\Targets\Targets;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
-use WP_REST_Request;
 use WP_REST_Server;
 
 /**
@@ -41,24 +41,15 @@ final class IndexController implements LoadableInterface
     /**
      * Get all targets of Purger::execute
      *
-     * @param WP_REST_Request $request Full data about the request.
-     *
      * @return \WP_REST_Response|\WP_Error
      */
-    public function index(WP_REST_Request $request)
+    public function index()
     {
-        $params = $request->get_params();
-        $group = $params['group'] ?? null;
+        $targets = new Targets;
 
-        $targets = apply_filters('sunny_purger_targets', [], null);
-
-        if (null !== $group) {
-            return rest_ensure_response([
-                $group => $targets[ $group ] ?? [],
-            ]);
-        }
-
-        return rest_ensure_response($targets);
+        return rest_ensure_response(
+            $targets->all()
+        );
     }
 
     /**
@@ -77,18 +68,6 @@ final class IndexController implements LoadableInterface
                 'permission_callback' => function () {
                     return current_user_can('manage_options');
                 },
-            ],
-            'args' => [
-                'group' => [
-                    'description' => __('Group of the targets.', 'sunny'),
-                    'enum' => $groups,
-                    'required' => false,
-                    'sanitize_callback' => 'sanitize_key',
-                    'type' => 'string',
-                    'validate_callback' => function ($param) use ($groups) {
-                        return in_array($param, $groups, true);
-                    },
-                ],
             ],
         ]);
     }

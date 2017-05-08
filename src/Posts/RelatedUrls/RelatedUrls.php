@@ -58,7 +58,7 @@ final class RelatedUrls
                 new FeedUrls,
             ];
 
-        $filteredStrategies = apply_filters('sunny_related_urls_strategies', $strategies);
+        $filteredStrategies = apply_filters('sunny_post_related_urls_strategies', $strategies);
 
         $this->setStrategies(...$filteredStrategies);
     }
@@ -91,7 +91,7 @@ final class RelatedUrls
         }, []);
 
         return apply_filters(
-            'sunny_related_urls_for_post',
+            'sunny_post_related_urls',
             array_filter($related),
             $post
         );

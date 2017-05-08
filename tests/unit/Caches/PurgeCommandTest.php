@@ -7,6 +7,7 @@ namespace TypistTech\Sunny\Caches;
 use AspectMock\Test;
 use Codeception\Test\Unit;
 use InvalidArgumentException;
+use TypistTech\Sunny\Targets\Targets;
 use TypistTech\Sunny\UnitTester;
 
 /**
@@ -20,16 +21,16 @@ class PurgeCommandTest extends Unit
     protected $tester;
 
     /**
-     * @var \AspectMock\Proxy\FuncProxy
+     * @var Targets
      */
-    private $applyFiltersMock;
+    private $targets;
 
     /**
      * @covers ::getReason
      */
     public function testGetReason()
     {
-        $event = new PurgeCommand('Post 123 updated', [ 'https://www.example.com/1' ]);
+        $event = new PurgeCommand('Post 123 updated', [ 'https://www.example.com/1' ], $this->targets);
 
         $actual = $event->getReason();
 
@@ -41,7 +42,7 @@ class PurgeCommandTest extends Unit
      */
     public function testGetSingleUrl()
     {
-        $event = new PurgeCommand('Post 123 updated', [ 'https://www.example.com/1' ]);
+        $event = new PurgeCommand('Post 123 updated', [ 'https://www.example.com/1' ], $this->targets);
 
         $actual = $event->getUrls();
 
@@ -60,7 +61,7 @@ class PurgeCommandTest extends Unit
             ],
             'https://www.example.com/3',
         ];
-        $event = new PurgeCommand('Post 123 updated', $urls);
+        $event = new PurgeCommand('Post 123 updated', $urls, $this->targets);
 
         $actual = $event->getUrls();
 
@@ -79,14 +80,17 @@ class PurgeCommandTest extends Unit
     public function testNoUrlGiven()
     {
         $this->tester->expectException(new InvalidArgumentException('You must provide at least one url'), function () {
-            new PurgeCommand('Post 123 updated', []);
+            new PurgeCommand('Post 123 updated', [], $this->targets);
         });
     }
 
     protected function _before()
     {
-        $this->applyFiltersMock = Test::func(__NAMESPACE__, 'apply_filters', function ($_tag, $value) {
-            return $value;
-        });
+        $this->targets = Test::double(
+            Test::double(Targets::class)->make(),
+            [
+                'all' => [],
+            ]
+        )->getObject();
     }
 }

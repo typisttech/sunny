@@ -32,5 +32,5 @@ declare(strict_types=1);
         <tbody id="targets-list"></tbody>
     </table>
 
-    <p>Targets are filterable by <code>sunny_purger_targets</code> and <code>sunny_target_groups</code></p>
+    <p>Targets are filterable by <code>sunny_targets_strategies</code> and <code>sunny_targets</code></p>
 </div>
