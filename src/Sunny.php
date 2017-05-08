@@ -25,6 +25,7 @@ use TypistTech\Sunny\Admin\Ads\Announcement;
 use TypistTech\Sunny\Admin\Ads\I18nPromoter;
 use TypistTech\Sunny\Admin\Ads\ReviewNotice;
 use TypistTech\Sunny\Admin\Debuggers\Admin as DebuggersAdmin;
+use TypistTech\Sunny\Admin\Debuggers\Posts as PostsDebugger;
 use TypistTech\Sunny\Admin\Debuggers\Targets;
 use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Api\Admin as ApiAdmin;
@@ -90,6 +91,7 @@ final class Sunny implements LoadableInterface
             I18nPromoter::class,
             Notifier::class,
             PostsCachesDeleteController::class,
+            PostsDebugger::class,
             PostsListener::class,
             PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
