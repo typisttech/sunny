@@ -19,8 +19,10 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Admin\Debuggers;
 
 use TypistTech\Sunny\LoadableInterface;
+use TypistTech\Sunny\Sunny;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
+use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
 
 /**
@@ -30,6 +32,8 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
  */
 final class Admin implements LoadableInterface
 {
+    const HOOK_SUFFIX = 'sunny_page_sunny-debuggers';
+
     /**
      * {@inheritdoc}
      */
@@ -37,6 +41,8 @@ final class Admin implements LoadableInterface
     {
         return [
             new Filter('sunny_pages', __CLASS__, 'addPage'),
+            new Action('load-sunny_page_sunny-debuggers', __CLASS__, 'registerMetaBoxes'),
+            new Action('admin_enqueue_scripts', __CLASS__, 'enqueueAdminScripts'),
         ];
     }
 
@@ -63,5 +69,39 @@ final class Admin implements LoadableInterface
         $pages[] = $debuggers;
 
         return $pages;
+    }
+
+    /**
+     * Enqueue admin scripts.
+     *
+     * @param string|null $hook Hook suffix of the current admin page.
+     *
+     * @return void
+     */
+    public function enqueueAdminScripts(string $hook = null)
+    {
+        wp_register_script(
+            'sunny_debuggers',
+            plugins_url('partials/debuggers.js', __FILE__),
+            [ 'postbox' ],
+            Sunny::VERSION
+        );
+
+        if (self::HOOK_SUFFIX !== $hook) {
+            return;
+        }
+
+        wp_enqueue_script('sunny_debuggers');
+    }
+
+    /**
+     * Trigger debugger meta boxes registration.
+     *
+     * @return void
+     */
+    public function registerMetaBoxes()
+    {
+        // Trigger meta box registrations.
+        do_action('sunny_add_debugger_boxes');
     }
 }

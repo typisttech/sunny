@@ -18,8 +18,19 @@ declare(strict_types=1);
 
 ?>
 
-<h3>Targets</h3>
-<table class="form-table">
-    <tbody id="targets-table-body">
-    </tbody>
-</table>
+<div class="inside">
+    <p>Sunny purges these additional urls for <strong>every purge</strong>, no matter what triggers one.</p>
+
+    <table id="targets" class="widefat fixed striped targets">
+        <thead>
+        <tr>
+            <th scope="col">Group</th>
+            <th scope="col">Urls</th>
+        </tr>
+        </thead>
+
+        <tbody id="targets-list"></tbody>
+    </table>
+
+    <p>Targets are filterable by <code>sunny_purger_targets</code> and <code>sunny_target_groups</code></p>
+</div>

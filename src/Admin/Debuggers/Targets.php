@@ -34,9 +34,25 @@ final class Targets implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action('sunny_debuggers_content', __CLASS__, 'renderHtml'),
+            new Action('sunny_add_debugger_boxes', __CLASS__, 'addMetaBox'),
             new Action('admin_enqueue_scripts', __CLASS__, 'enqueueAdminScripts'),
         ];
+    }
+
+    /**
+     * Register meta box.
+     *
+     * @return void
+     */
+    public function addMetaBox()
+    {
+        add_meta_box(
+            'debugger_target',
+            __('Targets', 'sunny'),
+            [ $this, 'renderHtml' ],
+            'sunny_debuggers',
+            'normal'
+        );
     }
 
     /**
@@ -60,7 +76,7 @@ final class Targets implements LoadableInterface
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
 
-        if ('sunny_page_sunny-debuggers' !== $hook) {
+        if (Admin::HOOK_SUFFIX !== $hook) {
             return;
         }
 
