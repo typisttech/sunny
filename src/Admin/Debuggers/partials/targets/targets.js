@@ -14,40 +14,36 @@
  */
 
 jQuery(document).ready(function () {
-    console.log('hi');
-
     jQuery.ajax({
         url: sunnyDebuggersTargets.route,
         method: 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('X-WP-Nonce', sunnyDebuggersTargets.nonce);
-        },
-        data: {
-            'title': 'Hello Moon'
         }
     }).done(function (response) {
         jQuery.map(response, function (values, index) {
-            jQuery('tbody#targets-table-body').append(
+            jQuery('tbody#targets-list').append(
                 "<tr id='" + index + "'>" +
-                "<th scope='row'><h4>" + index + '</h4></th>' +
-                '<td></td>' +
+                "<td class='target-group'><strong class='row-title'>" + index + '</strong></td>' +
+                "<td class='target-urls'></td>" +
                 '</tr>'
             );
 
             jQuery.map(values, function (value) {
-                jQuery('tr#' + index + '>td').append(
+                jQuery('tr#' + index + '>td.target-urls').append(
                     value + '<br/>'
                 );
             });
         })
     }).fail(function (response) {
-        jQuery('tbody#targets-table-body').append(
-            '<p>Error fetching data.<br/>' +
+        jQuery('table#targets').replaceWith(
+            '<div class="error notice">' +
+            '<p class="row-title">Error fetching data.</p>' +
+            '<p>' +
             'Status: ' + response.status + ' ' + response.statusText + '<br/>' +
-            'Code: ' + response.responseJSON.code + '<br/>' +
-            'Message: ' + response.responseJSON.message + '<br/>' +
-            '</p>'
+            'Code: <code>' + response.responseJSON.code + '</code><br/>' +
+            'Message: <strong>' + response.responseJSON.message + '</strong>' +
+            '</p></div>'
         );
-        console.log(response);
     });
 });

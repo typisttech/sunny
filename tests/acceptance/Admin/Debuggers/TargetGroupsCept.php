@@ -10,4 +10,4 @@ $I->wantToTest('target groups show on debuggers page');
 $I->loginToSunnySettingPage();
 $I->amOnAdminPage('admin.php?page=sunny-debuggers');
 
-$I->waitForText('homepage', 10, 'th h4');
+$I->waitForText('homepage', 10, '.target-group > .row-title');

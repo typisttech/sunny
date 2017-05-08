@@ -53,7 +53,25 @@ echo '</h2>';
 
 do_action($context->getSnakecasedMenuSlug() . '_after_nav_tabs');
 
-do_action($context->getSnakecasedMenuSlug() . '_content');
+?>
 
-do_action($context->getSnakecasedMenuSlug() . '_after_option_form');
-echo '</div>';
+<div id="poststuff">
+    <div id="post-body" class="metabox-holder columns-2">
+
+        <div id="post-body-content">
+        </div>
+
+        <div id="postbox-container-1" class="postbox-container">
+            <?php do_meta_boxes($context->getSnakecasedMenuSlug(), 'side', null); ?>
+        </div>
+
+        <div id="postbox-container-2" class="postbox-container">
+            <?php do_meta_boxes($context->getSnakecasedMenuSlug(), 'normal', null); ?>
+            <?php do_meta_boxes($context->getSnakecasedMenuSlug(), 'advanced', null); ?>
+        </div>
+
+    </div><!-- #post-body -->
+
+</div><!-- #poststuff -->
+
+</div><!-- .wrap -->
