@@ -20,10 +20,10 @@ Automatically purge CloudFlare cache, including cache everything rules.
 * Use the latest Cloudflare API v4
 * Support custom post type
 * Hide admin bar from public-facing pages
+* WP REST API support
 
 = Coming soon =
 
-* WP REST Api support
 * WP CLI support
 
 = How does Sunny different from Cloudflare's official plugin? =
@@ -166,6 +166,11 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 == Changelog ==
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
+
+= Unreleased =
+
+* Add debuggers.
+* Fix: Missing post url when purging.
 
 = 2.0.1 =
 
