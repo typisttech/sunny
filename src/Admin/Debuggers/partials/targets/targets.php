@@ -21,7 +21,7 @@ declare(strict_types=1);
 <div class="inside">
     <p>Sunny purges these additional urls for <strong>every purge</strong>, no matter what triggers one.</p>
 
-    <table id="targets" class="widefat fixed striped targets">
+    <table id="targets" class="widefat striped targets">
         <thead>
         <tr>
             <th scope="col">Group</th>
