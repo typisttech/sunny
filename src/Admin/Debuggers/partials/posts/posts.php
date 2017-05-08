@@ -63,7 +63,7 @@ declare(strict_types=1);
     </div>
 
     <p>
-        Related urls are filterable by <code>sunny_related_urls_strategies</code> and
-        <code>sunny_related_urls_for_post</code>
+        Related urls are filterable by <code>sunny_post_related_urls_strategies</code> and
+        <code>sunny_post_related_urls</code>
     </p>
 </div>

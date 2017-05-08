@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Caches;
 
 use InvalidArgumentException;
+use TypistTech\Sunny\Targets\Targets;
 
 /**
  * Final class PurgeCommand
@@ -42,29 +43,34 @@ final class PurgeCommand
     /**
      * Command constructor.
      *
-     * @param string   $reason Reason to trigger a purge.
-     * @param string[] $urls   Urls to be purged.
+     * @param string   $reason  Reason to trigger a purge.
+     * @param string[] $urls    Optional. Urls to be purged.
+     * @param Targets  $targets Optional. Inject targets to every purge.
      */
-    public function __construct(string $reason, array $urls)
+    public function __construct(string $reason, array $urls = null, Targets $targets = null)
     {
         $this->reason = $reason;
-        $this->setUrls($urls);
+        $this->setUrls($urls ?? [], $targets ?? new Targets);
     }
 
     /**
      * Urls setter.
      *
-     * @param string[] $urls Urls to be purged. Maybe multidimensional.
+     * @todo Test Me!!!
+     *
+     * @param string[] $urls    Urls to be purged. Maybe multidimensional.
+     * @param Targets  $targets Inject targets to every purge.
      *
      * @throws InvalidArgumentException If no url is given.
      *
      * @return void
      */
-    private function setUrls(array $urls)
+    private function setUrls(array $urls, Targets $targets)
     {
-        $filteredUrls = apply_filters('sunny_purge_targets', $urls);
-
-        $this->urls = $this->flattenIntoStringArray($filteredUrls);
+        $this->urls = $this->flattenIntoStringArray([
+            $urls,
+            $targets->all(),
+        ]);
 
         if (count($this->urls) < 1) {
             throw new InvalidArgumentException('You must provide at least one url');

@@ -7,6 +7,7 @@ namespace TypistTech\Sunny\Caches;
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
 use TypistTech\Sunny\Api\Cache;
+use TypistTech\Sunny\Targets\Targets;
 
 /**
  * @coversDefaultClass \TypistTech\Sunny\Caches\Purger
@@ -28,11 +29,24 @@ class PurgerTest extends WPTestCase
      */
     private $purger;
 
+    /**
+     * @var Targets
+     */
+    private $targets;
+
     public function setUp()
     {
         parent::setUp();
 
         $container = $this->tester->getContainer();
+
+        $this->targets = Test::double(
+            Test::double(Targets::class)->make(),
+            [
+                'all' => [],
+            ]
+        )->getObject();
+
         $this->cache = Test::double(
             $container->get(Cache::class),
             [
@@ -53,7 +67,7 @@ class PurgerTest extends WPTestCase
             'https://www.example.com/1',
             'https://www.example.com/2',
         ];
-        $command = new PurgeCommand('Post 123 updated', $urls);
+        $command = new PurgeCommand('Post 123 updated', $urls, $this->targets);
 
         $this->purger->execute($command);
 
@@ -71,7 +85,7 @@ class PurgerTest extends WPTestCase
             $urls[] = 'https://www.example.com/' . $i;
         }
 
-        $command = new PurgeCommand('Post 123 updated', $urls);
+        $command = new PurgeCommand('Post 123 updated', $urls, $this->targets);
 
         $this->purger->execute($command);
 

@@ -33,7 +33,6 @@ use TypistTech\Sunny\Posts\Listener as PostsListener;
 use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
 use TypistTech\Sunny\REST\Controllers\Targets\IndexController as TargetsIndexController;
-use TypistTech\Sunny\Targets\Homepage\Homepage;
 use TypistTech\Sunny\Vendor\League\Container\Container;
 use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
@@ -86,7 +85,6 @@ final class Sunny implements LoadableInterface
             Announcement::class,
             ApiAdmin::class,
             DebuggersAdmin::class,
-            Homepage::class,
             I18n::class,
             I18nPromoter::class,
             Notifier::class,
