@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Posts\RelatedUrls;
 
 use TypistTech\Sunny\Posts\RelatedUrls\Strategies\AuthorUrls;
+use TypistTech\Sunny\Posts\RelatedUrls\Strategies\Culprit;
 use TypistTech\Sunny\Posts\RelatedUrls\Strategies\FeedUrls;
 use TypistTech\Sunny\Posts\RelatedUrls\Strategies\PostTypeArchiveUrls;
 use TypistTech\Sunny\Posts\RelatedUrls\Strategies\StrategyInterface;
@@ -49,6 +50,7 @@ final class RelatedUrls
     public function __construct(array $strategies = null)
     {
         $strategies = $strategies ?? [
+                new Culprit,
                 new TermsUrls('category'),
                 new TermsUrls('post_tag'),
                 new AuthorUrls,
