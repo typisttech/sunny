@@ -1,5 +1,25 @@
 # Change Log
 
+## [2.1.0](https://github.com/TypistTech/sunny/tree/2.1.0) (2017-05-08)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.0.1...2.1.0)
+
+**Closed issues:**
+
+- Purge `page\_for\_posts` [\#57](https://github.com/TypistTech/sunny/issues/57)
+- Purge homepage [\#55](https://github.com/TypistTech/sunny/issues/55)
+- Debugger: Show all urls to be purged for a given post [\#20](https://github.com/TypistTech/sunny/issues/20)
+
+**Merged pull requests:**
+
+- Refactor Targets [\#71](https://github.com/TypistTech/sunny/pull/71) ([TangRufus](https://github.com/TangRufus))
+- Add debugger: Posts [\#70](https://github.com/TypistTech/sunny/pull/70) ([TangRufus](https://github.com/TangRufus))
+- Style deubggers with PostBox [\#67](https://github.com/TypistTech/sunny/pull/67) ([TangRufus](https://github.com/TangRufus))
+- Add debugger: Targets; Protect REST endpinots with permission checks [\#65](https://github.com/TypistTech/sunny/pull/65) ([TangRufus](https://github.com/TangRufus))
+- Clean sunny\_admin\_bar\_disable\_hide settings during uninstallation [\#64](https://github.com/TypistTech/sunny/pull/64) ([TangRufus](https://github.com/TangRufus))
+- Fix typo [\#62](https://github.com/TypistTech/sunny/pull/62) ([TangRufus](https://github.com/TangRufus))
+- Purge homepage and `page\_for\_posts` [\#61](https://github.com/TypistTech/sunny/pull/61) ([TangRufus](https://github.com/TangRufus))
+- Move urls filter from Purger into PurgeCommand [\#60](https://github.com/TypistTech/sunny/pull/60) ([TangRufus](https://github.com/TangRufus))
+
 ## [2.0.1](https://github.com/TypistTech/sunny/tree/2.0.1) (2017-05-06)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/2.0.0...2.0.1)
 
@@ -11,6 +31,7 @@
 
 **Merged pull requests:**
 
+- Version bump 2.0.1 [\#59](https://github.com/TypistTech/sunny/pull/59) ([TangRufus](https://github.com/TangRufus))
 - Self deactivate if PHP version is older than 7.0.0 [\#58](https://github.com/TypistTech/sunny/pull/58) ([TangRufus](https://github.com/TangRufus))
 - Fix: TravisCI expired GitHub token [\#54](https://github.com/TypistTech/sunny/pull/54) ([TangRufus](https://github.com/TangRufus))
 
