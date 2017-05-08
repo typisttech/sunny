@@ -1,10 +1,10 @@
 === Sunny ===
 Contributors: typisttech, tangrufus
 Donate link: https://www.typist.tech/donate/sunny/
-Tags: cloudflare, firewall, security, spam
+Tags: cloudflare, firewall, security, spam, rest-api
 Requires at least: 4.7
 Tested up to: 4.7.4
-Stable tag: 2.0.1
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,13 @@ Automatically purge CloudFlare cache, including cache everything rules.
 * Support custom post type
 * Hide admin bar from public-facing pages
 * WP REST API support
+
+= Debuggers =
+
+Go `Sunny` --> `Debuggers`, it shows
+
+* All related urls to be purged for a given post
+* Show targeted urls which always be purged
 
 = Coming soon =
 
@@ -161,16 +168,21 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 1. Cloudflare Settings
 1. Admin Bar Settings
-1. Purge when posts updated
+1. Purge when Posts Updated
+1. Debuggers
+1. Debuggers - Related URLs for a Given Post
 
 == Changelog ==
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
 
-= Unreleased =
+= 2.1.0 =
 
-* Add debuggers.
-* Fix: Missing post url when purging.
+* Better WP REST API support
+* Purge homepage (both dynamic and static)
+* Add Debugger: Show all urls to be purged for a given post
+* Add Debugger: Show targeted urls which always be purged
+* Fix: Missing post url when purging
 
 = 2.0.1 =
 
@@ -183,8 +195,6 @@ Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/m
 
 == Upgrade Notice ==
 
-= 2.0.1 =
+= 2.1.0 =
 
-* Sunny `2` requires PHP `7.0` or greater and WordPress `4.7` or greater
-* Security functionalities have been separated to [Sunny](https://wordpress.org/plugins/sunny/)
-* You have to re-enter Cloudflare settings.
+* Go `Sunny` --> `Debuggers` after upgrading
