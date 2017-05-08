@@ -58,9 +58,6 @@ do_action($context->getSnakecasedMenuSlug() . '_after_nav_tabs');
 <div id="poststuff">
     <div id="post-body" class="metabox-holder columns-2">
 
-        <div id="post-body-content">
-        </div>
-
         <div id="postbox-container-1" class="postbox-container">
             <?php do_meta_boxes($context->getSnakecasedMenuSlug(), 'side', null); ?>
         </div>
