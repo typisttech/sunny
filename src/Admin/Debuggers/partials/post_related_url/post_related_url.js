@@ -14,47 +14,50 @@
  */
 
 jQuery(document).ready(function () {
+    jQuery("form#sunny_post_related_url_debugger-form").submit(function (event) {
+        event.preventDefault();
 
-    jQuery("input#sunny-debugger-post-id-submit").on('click', showRelatedUrls);
+        resetResultArea();
+        getResult();
+    });
 
-    function showRelatedUrls() {
-
-        // Reset results table.
-        jQuery('#post-related-urls-results').html(
-            '<table id="post-related-urls" class="widefat striped posts">' +
-            '<thead>' +
-            '<tr>' +
-            '<th scope="col">Group</th>' +
-            '<th scope="col">Urls</th>' +
-            '</tr>' +
-            '</thead>' +
-            '<tbody id="post-related-urls-list"></tbody>' +
-            '</table>'
+    function resetResultArea() {
+        jQuery('div#sunny_post_related_url_debugger-result').replaceWith(
+            '<div id="sunny_post_related_url_debugger-result">' +
+            '<div class="notice-info notice"><p class="row-title">Fetching data...</p></div>' +
+            '</div>'
         );
+    }
 
-        var id = jQuery("input#sunny-debugger-post-id").val();
-
-        if (!jQuery.isNumeric(id)) {
-            jQuery('table#post-related-urls').replaceWith(
-                '<div class="error notice">' +
-                '<p class="row-title">Error fetching data.</p>' +
-                '<p>' +
-                'Message: <strong>Please enter a valid post ID. It should be a positive integer.</strong>' +
-                '</p>' +
-                '</div>'
-            );
-            return;
-        }
+    function getResult() {
+        id = jQuery("input#sunny_post_related_url_debugger-post-id").val();
 
         jQuery.ajax({
-            url: sunny_post_related_url_debugger.route + id + '/related-urls',
+            url: sunny_post_related_url_debugger.route + id + '/related-urls/',
             method: 'GET',
+            'data': {
+                'id': id
+            },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('X-WP-Nonce', sunny_post_related_url_debugger.nonce);
             }
         }).done(function (response) {
+            jQuery('div#sunny_post_related_url_debugger-result').replaceWith(
+                '<div id="sunny_post_related_url_debugger-result">' +
+                '<table id="sunny_post_related_url_debugger-table" class="widefat striped cache-status">' +
+                '<thead>' +
+                '<tr>' +
+                '<th scope="col">Group</th>' +
+                '<th scope="col">Urls</th>' +
+                '</tr>' +
+                '</thead>' +
+                '<tbody id="sunny_post_related_url_debugger-result-body"></tbody>' +
+                '</table>' +
+                '</div>'
+            );
+
             jQuery.map(response, function (values, index) {
-                jQuery('tbody#post-related-urls-list').append(
+                jQuery('tbody#sunny_post_related_url_debugger-result-body').append(
                     "<tr id='" + index + "'>" +
                     "<td class='target-group'><strong class='row-title'>" + index + '</strong></td>' +
                     "<td class='target-urls'></td>" +
@@ -67,15 +70,19 @@ jQuery(document).ready(function () {
                     );
                 });
             });
+
         }).fail(function (response) {
-            jQuery('table#post-related-urls').replaceWith(
-                '<div class="error notice">' +
+            jQuery('div#sunny_post_related_url_debugger-result').replaceWith(
+                '<div id="sunny_post_related_url_debugger-result">' +
+                '<div class="notice-error notice">' +
                 '<p class="row-title">Error fetching data.</p>' +
                 '<p>' +
                 'Status: ' + response.status + ' ' + response.statusText + '<br/>' +
                 'Code: <code>' + response.responseJSON.code + '</code><br/>' +
-                'Message: <strong>' + response.responseJSON.message + '</strong>' +
+                'Message: <strong>' + response.responseJSON.message + '</strong><br/>' +
+                'Post ID: <strong>' + response.responseJSON.data.id + '</strong>' +
                 '</p>' +
+                '</div>' +
                 '</div>'
             );
         });

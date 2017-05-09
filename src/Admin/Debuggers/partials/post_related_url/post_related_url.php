@@ -16,54 +16,48 @@
 
 declare(strict_types=1);
 
+use TypistTech\Sunny\Admin\Debuggers\AbstractDebugger;
+
+/* @var AbstractDebugger $context Context */
+
 ?>
 
-<div class="inside">
-    <p>When you change or comment on a post, a page or any custom post type, we purge its related urls as well.</p>
+<p>When you change or comment on a post, a page or any custom post type, we purge its related urls as well.</p>
 
-    <div>
-        <table class="form-table">
-            <tbody>
-            <tr>
-                <th scope="row"><label for="sunny-debugger-post-id">Enter a Post ID: </label></th>
-                <td>
-                    <input name="sunny-debugger-post-id"
-                           id="sunny-debugger-post-id"
-                           type="number"
-                           class="regular-text"
-                           step="1"
-                           min="1"
-                           value=""
-                           aria-describedby="sunny-debugger-post-id-description">
-                    <p class="description" id="sunny-debugger-post-id-description">
-                        <a href="https://www.typist.tech/go/find-wordpress-post-id/">How to find WordPress post id?</a>
-                    </p>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<form id="<?php echo esc_attr($context->getId()); ?>-form">
+    <table class="form-table">
+        <tbody>
+        <tr>
+            <th scope="row">
+                <label for="<?php echo esc_attr($context->getId()); ?>-post-id">Enter a Post ID: </label>
+            </th>
+            <td>
+                <input name="<?php echo esc_attr($context->getId()); ?>-post-id"
+                       id="<?php echo esc_attr($context->getId()); ?>-post-id"
+                       type="number"
+                       class="regular-text"
+                       step="1"
+                       min="1"
+                       value=""
+                       aria-describedby="<?php echo esc_attr($context->getId()); ?>-post-id-description"/>
+                <p class="description" id="<?php echo esc_attr($context->getId()); ?>-post-id-description">
+                    <a href="https://www.typist.tech/go/find-wordpress-post-id/">How to find WordPress post id?</a>
+                </p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-        <?php
-        submit_button(
-            'Check Related URLs',
-            'primary',
-            'sunny-debugger-post-id-submit',
-            true,
-            [
-                'id' => 'sunny-debugger-post-id-submit',
-            ]
-        );
-        ?>
-    </div>
+    <?php submit_button('Check Related URLs', 'primary'); ?>
+</form>
 
-    <br/>
-    <br/>
+<br/>
+<br/>
 
-    <div id="post-related-urls-results">
-    </div>
-
-    <p>
-        Related urls are filterable by <code>sunny_post_related_urls_strategies</code> and
-        <code>sunny_post_related_urls</code>
-    </p>
+<div id="<?php echo esc_attr($context->getId()); ?>-result">
 </div>
+
+<p>
+    Post related urls are filterable by <code>sunny_post_related_urls_strategies</code> and
+    <code>sunny_post_related_urls</code>
+</p>

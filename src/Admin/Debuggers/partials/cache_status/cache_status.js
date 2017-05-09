@@ -14,7 +14,7 @@
  */
 
 jQuery(document).ready(function () {
-    jQuery("form#sunny-debugger-cache-status-form").submit(function (event) {
+    jQuery("form#sunny_cache_status_debugger-form").submit(function (event) {
         event.preventDefault();
 
         resetResultArea();
@@ -22,22 +22,19 @@ jQuery(document).ready(function () {
     });
 
     function resetResultArea() {
-        // Reset result table.
         jQuery('div#cache-status-result').replaceWith(
             '<div id="cache-status-result">' +
             '<div class="notice-info notice"><p class="row-title">Fetching data...</p></div>' +
             '</div>'
         );
-
-        getResult();
     }
 
-    function getResult(url) {
+    function getResult() {
         jQuery.ajax({
             url: sunny_cache_status_debugger.route,
             method: 'GET',
             'data': {
-                'url': jQuery("input#sunny-debugger-cache-status-url").val()
+                'url': jQuery("input#sunny_cache_status_debugger-url").val()
             },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('X-WP-Nonce', sunny_cache_status_debugger.nonce);
@@ -46,7 +43,7 @@ jQuery(document).ready(function () {
             jQuery('div#cache-status-result').replaceWith(
                 '<div id="cache-status-result">' +
                 '<table id="cache-status-table" class="widefat striped cache-status">' +
-                '<tbody id="cache-status-result-body"></tbody>' +
+                '<tbody id="cache-status-result-body">' +
 
                 '<tr>' +
                 "<td><strong class='row-title'>URL</strong></td>" +
@@ -68,6 +65,7 @@ jQuery(document).ready(function () {
                 '<td><span>' + response.status_message + '</span></td>' +
                 '</tr>' +
 
+                '</tbody>' +
                 '</table>' +
                 '</div>'
             );

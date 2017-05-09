@@ -18,79 +18,26 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Admin\Debuggers;
 
-use TypistTech\Sunny\LoadableInterface;
-use TypistTech\Sunny\Sunny;
-use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
-use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
-
 /**
  * Final class CacheStatusDebugger
  */
-final class CacheStatusDebugger implements LoadableInterface
+final class CacheStatusDebugger extends AbstractDebugger
 {
+    const NAME = 'cache_status';
+
     /**
      * {@inheritdoc}
      */
-    public static function getHooks(): array
+    protected function getJsRoute(): string
     {
-        return [
-            new Action('sunny_add_debugger_boxes', __CLASS__, 'addMetaBox'),
-            new Action('admin_enqueue_scripts', __CLASS__, 'enqueueAdminScripts'),
-        ];
+        return esc_url_raw(rest_url('sunny/v2/caches/status'));
     }
 
     /**
-     * Register meta box.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function addMetaBox()
+    protected function getMetaBoxTitle(): string
     {
-        add_meta_box(
-            'debugger_cache_status',
-            __('Cache Status', 'sunny'),
-            [ $this, 'renderHtml' ],
-            'sunny_debuggers',
-            'normal'
-        );
-    }
-
-    /**
-     * Enqueue admin scripts.
-     *
-     * @param string|null $hook Hook suffix of the current admin page.
-     *
-     * @return void
-     */
-    public function enqueueAdminScripts(string $hook = null)
-    {
-        wp_register_script(
-            'sunny_cache_status_debugger',
-            plugins_url('partials/cache_status/cache_status.js', __FILE__),
-            [ 'jquery' ],
-            Sunny::VERSION
-        );
-
-        wp_localize_script('sunny_cache_status_debugger', 'sunny_cache_status_debugger', [
-            'route' => esc_url_raw(rest_url('sunny/v2/caches/status')),
-            'nonce' => wp_create_nonce('wp_rest'),
-        ]);
-
-        if (Admin::HOOK_SUFFIX !== $hook) {
-            return;
-        }
-
-        wp_enqueue_script('sunny_cache_status_debugger');
-    }
-
-    /**
-     * Render the debugger HTML.
-     *
-     * @return void
-     */
-    public function renderHtml()
-    {
-        $view = new View(__DIR__ . '/partials/cache_status/cache_status.php');
-        $view->echoKses($this);
+        return __('Cache Status', 'sunny');
     }
 }

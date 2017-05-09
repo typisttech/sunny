@@ -16,21 +16,27 @@
 
 declare(strict_types=1);
 
+use TypistTech\Sunny\Admin\Debuggers\AbstractDebugger;
+
+/* @var AbstractDebugger $context Context */
+
 ?>
 
 <p>Check how does Cloudflare cache your site.</p>
 
-<form id="sunny-debugger-cache-status-form">
+<form id="<?php echo esc_attr($context->getId()); ?>-form">
     <table class="form-table">
         <tbody>
         <tr>
-            <th scope="row"><label for="sunny-debugger-cache-status-url">Enter a Url: </label></th>
+            <th scope="row">
+                <label for="<?php echo esc_attr($context->getId()); ?>-url">Enter a Url: </label>
+            </th>
             <td>
-                <input name="sunny-debugger-cache-status-url"
-                       id="sunny-debugger-cache-status-url"
+                <input name="<?php echo esc_attr($context->getId()); ?>-url"
+                       id="<?php echo esc_attr($context->getId()); ?>-url"
                        type="url"
                        class="regular-text"
-                       aria-describedby="sunny-debugger-cache-status-url-description"/>
+                       aria-describedby="<?php echo esc_attr($context->getId()); ?>-url-description"/>
             </td>
         </tr>
         </tbody>
