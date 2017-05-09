@@ -168,7 +168,7 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 1. Cloudflare Settings
 1. Admin Bar Settings
-1. Purge when Posts Updated
+1. Purge when PostRelatedUrlDebugger Updated
 1. Debuggers
 1. Debuggers - Related URLs for a Given Post
 

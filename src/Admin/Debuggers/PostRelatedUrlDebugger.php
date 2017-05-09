@@ -24,9 +24,9 @@ use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
- * Final class Posts
+ * Final class PostRelatedUrlDebugger
  */
-final class Posts implements LoadableInterface
+final class PostRelatedUrlDebugger implements LoadableInterface
 {
     /**
      * {@inheritdoc}
@@ -47,8 +47,8 @@ final class Posts implements LoadableInterface
     public function addMetaBox()
     {
         add_meta_box(
-            'debugger_post',
-            __('Posts', 'sunny'),
+            'sunny_post_related_url_debugger',
+            __('Post Related Url Debugger', 'sunny'),
             [ $this, 'renderHtml' ],
             'sunny_debuggers',
             'normal'
@@ -65,13 +65,13 @@ final class Posts implements LoadableInterface
     public function enqueueAdminScripts(string $hook = null)
     {
         wp_register_script(
-            'sunny_debuggers_posts',
-            plugins_url('partials/posts/posts.js', __FILE__),
+            'sunny_post_related_url_debugger',
+            plugins_url('partials/post_related_url/post_related_url.js', __FILE__),
             [ 'jquery' ],
             Sunny::VERSION
         );
 
-        wp_localize_script('sunny_debuggers_posts', 'sunnyDebuggersPosts', [
+        wp_localize_script('sunny_post_related_url_debugger', 'sunny_post_related_url_debugger', [
             'route' => esc_url_raw(rest_url('sunny/v2/posts/')),
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
@@ -80,7 +80,7 @@ final class Posts implements LoadableInterface
             return;
         }
 
-        wp_enqueue_script('sunny_debuggers_posts');
+        wp_enqueue_script('sunny_post_related_url_debugger');
     }
 
     /**
@@ -90,7 +90,7 @@ final class Posts implements LoadableInterface
      */
     public function renderHtml()
     {
-        $view = new View(__DIR__ . '/partials/posts/posts.php');
+        $view = new View(__DIR__ . '/partials/post_related_url/post_related_url.php');
         $view->echoKses($this);
     }
 }

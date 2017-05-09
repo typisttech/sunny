@@ -47,10 +47,10 @@ jQuery(document).ready(function () {
         }
 
         jQuery.ajax({
-            url: sunnyDebuggersPosts.route + id + '/related-urls',
+            url: sunny_post_related_url_debugger.route + id + '/related-urls',
             method: 'GET',
             beforeSend: function (xhr) {
-                xhr.setRequestHeader('X-WP-Nonce', sunnyDebuggersPosts.nonce);
+                xhr.setRequestHeader('X-WP-Nonce', sunny_post_related_url_debugger.nonce);
             }
         }).done(function (response) {
             jQuery.map(response, function (values, index) {
