@@ -24,10 +24,11 @@ Automatically purge CloudFlare cache, including cache everything rules.
 
 = Debuggers =
 
-Go `Sunny` --> `Debuggers`, it shows
+Go `Sunny` --> `Debuggers`, it shows:
 
 * All related urls to be purged for a given post
 * Show targeted urls which always be purged
+* `Cache Status` of a given URL
 
 = Coming soon =
 
@@ -168,7 +169,7 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 1. Cloudflare Settings
 1. Admin Bar Settings
-1. Purge when Posts Updated
+1. Purge when Post Updated
 1. Debuggers
 1. Debuggers - Related URLs for a Given Post
 

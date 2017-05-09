@@ -24,18 +24,20 @@ use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
- * Final class CacheStatus
+ * Abstract class AbstractDebugger
  */
-final class CacheStatus implements LoadableInterface
+abstract class AbstractDebugger implements LoadableInterface
 {
+    const NAME = self::NAME;
+
     /**
      * {@inheritdoc}
      */
     public static function getHooks(): array
     {
         return [
-            new Action('sunny_add_debugger_boxes', __CLASS__, 'addMetaBox'),
-            new Action('admin_enqueue_scripts', __CLASS__, 'enqueueAdminScripts'),
+            new Action('sunny_add_debugger_boxes', static::class, 'addMetaBox'),
+            new Action('admin_enqueue_scripts', static::class, 'enqueueAdminScripts'),
         ];
     }
 
@@ -47,13 +49,30 @@ final class CacheStatus implements LoadableInterface
     public function addMetaBox()
     {
         add_meta_box(
-            'debugger_cache_status',
-            __('Cache Status', 'sunny'),
+            $this->getId(),
+            $this->getMetaBoxTitle(),
             [ $this, 'renderHtml' ],
             'sunny_debuggers',
             'normal'
         );
     }
+
+    /**
+     * Id getter.
+     *
+     * @return string
+     */
+    public function getId(): string
+    {
+        return 'sunny_' . static::NAME . '_debugger';
+    }
+
+    /**
+     * Meta box title getter.
+     *
+     * @return mixed
+     */
+    abstract protected function getMetaBoxTitle(): string;
 
     /**
      * Enqueue admin scripts.
@@ -65,14 +84,14 @@ final class CacheStatus implements LoadableInterface
     public function enqueueAdminScripts(string $hook = null)
     {
         wp_register_script(
-            'sunny_debuggers_cache_status',
-            plugins_url('partials/cache_status/cache_status.js', __FILE__),
+            $this->getId(),
+            plugins_url('partials/' . static::NAME . '/' . static::NAME . '.js', __FILE__),
             [ 'jquery' ],
             Sunny::VERSION
         );
 
-        wp_localize_script('sunny_debuggers_cache_status', 'sunnyDebuggersCacheStatus', [
-            'route' => esc_url_raw(rest_url('sunny/v2/caches/status')),
+        wp_localize_script($this->getId(), $this->getId(), [
+            'route' => $this->getJsRoute(),
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
 
@@ -80,8 +99,15 @@ final class CacheStatus implements LoadableInterface
             return;
         }
 
-        wp_enqueue_script('sunny_debuggers_cache_status');
+        wp_enqueue_script($this->getId());
     }
+
+    /**
+     * JS route getter.
+     *
+     * @return string
+     */
+    abstract protected function getJsRoute(): string;
 
     /**
      * Render the debugger HTML.
@@ -90,7 +116,7 @@ final class CacheStatus implements LoadableInterface
      */
     public function renderHtml()
     {
-        $view = new View(__DIR__ . '/partials/cache_status/cache_status.php');
+        $view = new View(__DIR__ . '/partials/' . static::NAME . '/' . static::NAME . '.php');
         $view->echoKses($this);
     }
 }
