@@ -34,13 +34,13 @@ jQuery(document).ready(function () {
 
     function getResult(url) {
         jQuery.ajax({
-            url: sunnyDebuggersCacheStatus.route,
+            url: sunny_cache_status_debugger.route,
             method: 'GET',
             'data': {
                 'url': jQuery("input#sunny-debugger-cache-status-url").val()
             },
             beforeSend: function (xhr) {
-                xhr.setRequestHeader('X-WP-Nonce', sunnyDebuggersCacheStatus.nonce);
+                xhr.setRequestHeader('X-WP-Nonce', sunny_cache_status_debugger.nonce);
             }
         }).done(function (response) {
             jQuery('div#cache-status-result').replaceWith(

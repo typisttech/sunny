@@ -24,9 +24,9 @@ use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
- * Final class CacheStatus
+ * Final class CacheStatusDebugger
  */
-final class CacheStatus implements LoadableInterface
+final class CacheStatusDebugger implements LoadableInterface
 {
     /**
      * {@inheritdoc}
@@ -65,13 +65,13 @@ final class CacheStatus implements LoadableInterface
     public function enqueueAdminScripts(string $hook = null)
     {
         wp_register_script(
-            'sunny_debuggers_cache_status',
+            'sunny_cache_status_debugger',
             plugins_url('partials/cache_status/cache_status.js', __FILE__),
             [ 'jquery' ],
             Sunny::VERSION
         );
 
-        wp_localize_script('sunny_debuggers_cache_status', 'sunnyDebuggersCacheStatus', [
+        wp_localize_script('sunny_cache_status_debugger', 'sunny_cache_status_debugger', [
             'route' => esc_url_raw(rest_url('sunny/v2/caches/status')),
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
@@ -80,7 +80,7 @@ final class CacheStatus implements LoadableInterface
             return;
         }
 
-        wp_enqueue_script('sunny_debuggers_cache_status');
+        wp_enqueue_script('sunny_cache_status_debugger');
     }
 
     /**
