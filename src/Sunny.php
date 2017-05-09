@@ -26,11 +26,13 @@ use TypistTech\Sunny\Admin\Ads\I18nPromoter;
 use TypistTech\Sunny\Admin\Ads\Newsletter;
 use TypistTech\Sunny\Admin\Ads\ReviewNotice;
 use TypistTech\Sunny\Admin\Debuggers\Admin as DebuggersAdmin;
+use TypistTech\Sunny\Admin\Debuggers\CacheStatus;
 use TypistTech\Sunny\Admin\Debuggers\Posts as PostsDebugger;
 use TypistTech\Sunny\Admin\Debuggers\Targets;
 use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Api\Admin as ApiAdmin;
 use TypistTech\Sunny\Posts\Listener as PostsListener;
+use TypistTech\Sunny\REST\Controllers\Caches\Status\ShowController as CachesStatusShowController;
 use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
 use TypistTech\Sunny\REST\Controllers\Targets\IndexController as TargetsIndexController;
@@ -85,6 +87,8 @@ final class Sunny implements LoadableInterface
             AdminBarAdmin::class,
             Announcement::class,
             ApiAdmin::class,
+            CacheStatus::class,
+            CachesStatusShowController::class,
             DebuggersAdmin::class,
             I18n::class,
             I18nPromoter::class,

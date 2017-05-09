@@ -24,9 +24,9 @@ use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
- * Final class Posts
+ * Final class CacheStatus
  */
-final class Posts implements LoadableInterface
+final class CacheStatus implements LoadableInterface
 {
     /**
      * {@inheritdoc}
@@ -47,8 +47,8 @@ final class Posts implements LoadableInterface
     public function addMetaBox()
     {
         add_meta_box(
-            'debugger_post',
-            __('Posts', 'sunny'),
+            'debugger_cache_status',
+            __('Cache Status', 'sunny'),
             [ $this, 'renderHtml' ],
             'sunny_debuggers',
             'normal'
@@ -65,14 +65,14 @@ final class Posts implements LoadableInterface
     public function enqueueAdminScripts(string $hook = null)
     {
         wp_register_script(
-            'sunny_debuggers_posts',
-            plugins_url('partials/posts/posts.js', __FILE__),
+            'sunny_debuggers_cache_status',
+            plugins_url('partials/cache_status/cache_status.js', __FILE__),
             [ 'jquery' ],
             Sunny::VERSION
         );
 
-        wp_localize_script('sunny_debuggers_posts', 'sunnyDebuggersPosts', [
-            'route' => esc_url_raw(rest_url('sunny/v2/posts/')),
+        wp_localize_script('sunny_debuggers_cache_status', 'sunnyDebuggersCacheStatus', [
+            'route' => esc_url_raw(rest_url('sunny/v2/caches/status')),
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
 
@@ -80,7 +80,7 @@ final class Posts implements LoadableInterface
             return;
         }
 
-        wp_enqueue_script('sunny_debuggers_posts');
+        wp_enqueue_script('sunny_debuggers_cache_status');
     }
 
     /**
@@ -90,7 +90,7 @@ final class Posts implements LoadableInterface
      */
     public function renderHtml()
     {
-        $view = new View(__DIR__ . '/partials/posts/posts.php');
+        $view = new View(__DIR__ . '/partials/cache_status/cache_status.php');
         $view->echoKses($this);
     }
 }

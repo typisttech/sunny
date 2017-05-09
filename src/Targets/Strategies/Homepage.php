@@ -26,14 +26,6 @@ final class Homepage implements StrategyInterface
     /**
      * {@inheritdoc}
      */
-    public function getKey(): string
-    {
-        return 'homepage';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function all(): array
     {
         // This is equivalent to array_values(array_unique()).
@@ -77,5 +69,13 @@ final class Homepage implements StrategyInterface
         }
 
         return [ $permalink ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getKey(): string
+    {
+        return 'homepage';
     }
 }
