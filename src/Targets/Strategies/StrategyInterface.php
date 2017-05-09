@@ -6,12 +6,12 @@
  *
  * @package   Sunny
  *
- * @author Typist Tech <sunny@typist.tech>
+ * @author    Typist Tech <sunny@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
+ * @license   GPL-2.0+
  *
- * @see https://www.typist.tech/projects/sunny
- * @see https://wordpress.org/plugins/sunny/
+ * @see       https://www.typist.tech/projects/sunny
+ * @see       https://wordpress.org/plugins/sunny/
  */
 
 declare(strict_types=1);
@@ -24,16 +24,16 @@ namespace TypistTech\Sunny\Targets\Strategies;
 interface StrategyInterface
 {
     /**
-     * Key of the strategy.
-     *
-     * @return string
-     */
-    public function getKey(): string;
-
-    /**
      * Get all target urls of this strategy.
      *
      * @return array
      */
     public function all(): array;
+
+    /**
+     * Key of the strategy.
+     *
+     * @return string
+     */
+    public function getKey(): string;
 }

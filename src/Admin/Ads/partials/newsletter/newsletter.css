@@ -13,7 +13,6 @@
  * @see https://wordpress.org/plugins/sunny/
  */
 
-
 #mlb2-4959648,
 #mlb2-4959648 *,
 #mlb2-4959648 a:hover,
@@ -201,23 +200,23 @@
 }
 
 #mlb2-4959648.ml-subscribe-form button[disabled] {
-    cursor: not-allowed!important;
+    cursor: not-allowed !important;
 }
 
 #mlb2-4959648.ml-subscribe-form .form-section.ml-error label {
-    color: red!important;
+    color: red !important;
 }
 
 #mlb2-4959648.ml-subscribe-form .form-group.ml-error label {
-    color: red!important;
+    color: red !important;
 }
 
 #mlb2-4959648.ml-subscribe-form .form-group.ml-error .form-control {
-    border-color: red!important;
+    border-color: red !important;
 }
 
 /* WordPress */
 #mlb2-4959648 div.subscribe-form.ml-block-success,
-#mlb2-4959648 button.loading  {
+#mlb2-4959648 button.loading {
     display: none;
 }
