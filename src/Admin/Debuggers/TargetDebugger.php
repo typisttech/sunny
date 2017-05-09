@@ -24,9 +24,9 @@ use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
- * Final class Targets
+ * Final class TargetDebugger
  */
-final class Targets implements LoadableInterface
+final class TargetDebugger implements LoadableInterface
 {
     /**
      * {@inheritdoc}
@@ -47,7 +47,7 @@ final class Targets implements LoadableInterface
     public function addMetaBox()
     {
         add_meta_box(
-            'debugger_target',
+            'sunny_target_debugger',
             __('Targets', 'sunny'),
             [ $this, 'renderHtml' ],
             'sunny_debuggers',
@@ -65,13 +65,13 @@ final class Targets implements LoadableInterface
     public function enqueueAdminScripts(string $hook = null)
     {
         wp_register_script(
-            'sunny_debuggers_targets',
-            plugins_url('partials/targets/targets.js', __FILE__),
+            'sunny_target_debugger',
+            plugins_url('partials/target/target.js', __FILE__),
             [ 'jquery' ],
             Sunny::VERSION
         );
 
-        wp_localize_script('sunny_debuggers_targets', 'sunnyDebuggersTargets', [
+        wp_localize_script('sunny_target_debugger', 'sunny_target_debugger', [
             'route' => esc_url_raw(rest_url('sunny/v2/targets')),
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
@@ -80,7 +80,7 @@ final class Targets implements LoadableInterface
             return;
         }
 
-        wp_enqueue_script('sunny_debuggers_targets');
+        wp_enqueue_script('sunny_target_debugger');
     }
 
     /**
@@ -90,7 +90,7 @@ final class Targets implements LoadableInterface
      */
     public function renderHtml()
     {
-        $view = new View(__DIR__ . '/partials/targets/targets.php');
+        $view = new View(__DIR__ . '/partials/target/target.php');
         $view->echoKses($this);
     }
 }

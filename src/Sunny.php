@@ -28,7 +28,7 @@ use TypistTech\Sunny\Admin\Ads\ReviewNotice;
 use TypistTech\Sunny\Admin\Debuggers\Admin as DebuggersAdmin;
 use TypistTech\Sunny\Admin\Debuggers\CacheStatusDebugger;
 use TypistTech\Sunny\Admin\Debuggers\PostRelatedUrlDebugger;
-use TypistTech\Sunny\Admin\Debuggers\Targets;
+use TypistTech\Sunny\Admin\Debuggers\TargetDebugger;
 use TypistTech\Sunny\Admin\Notifications\Notifier;
 use TypistTech\Sunny\Api\Admin as ApiAdmin;
 use TypistTech\Sunny\Posts\Listener as PostsListener;
@@ -99,7 +99,7 @@ final class Sunny implements LoadableInterface
             PostsListener::class,
             PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
-            Targets::class,
+            TargetDebugger::class,
             TargetsIndexController::class,
         ];
 

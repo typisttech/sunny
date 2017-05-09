@@ -15,10 +15,10 @@
 
 jQuery(document).ready(function () {
     jQuery.ajax({
-        url: sunnyDebuggersTargets.route,
+        url: sunny_target_debugger.route,
         method: 'GET',
         beforeSend: function (xhr) {
-            xhr.setRequestHeader('X-WP-Nonce', sunnyDebuggersTargets.nonce);
+            xhr.setRequestHeader('X-WP-Nonce', sunny_target_debugger.nonce);
         }
     }).done(function (response) {
         jQuery.map(response, function (values, index) {
