@@ -30,7 +30,7 @@ use TypistTech\Sunny\Debuggers\DebuggerAdmin;
 use TypistTech\Sunny\Debuggers\PostRelatedUrlDebugger;
 use TypistTech\Sunny\Debuggers\TargetDebugger;
 use TypistTech\Sunny\Notifications\Notifier;
-use TypistTech\Sunny\Posts\Listener as PostsListener;
+use TypistTech\Sunny\Posts\PostListener;
 use TypistTech\Sunny\REST\Controllers\Caches\Status\ShowController as CachesStatusShowController;
 use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
@@ -95,7 +95,7 @@ final class Sunny implements LoadableInterface
             Notifier::class,
             PostRelatedUrlDebugger::class,
             PostsCachesDeleteController::class,
-            PostsListener::class,
+            PostListener::class,
             PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
             TargetDebugger::class,

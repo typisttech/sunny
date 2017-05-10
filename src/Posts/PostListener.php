@@ -25,9 +25,9 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use WP_Post;
 
 /**
- * Final class Listener
+ * Final class PostListener
  */
-final class Listener implements LoadableInterface
+final class PostListener implements LoadableInterface
 {
     /**
      * PurgeCommandFactory
@@ -44,7 +44,7 @@ final class Listener implements LoadableInterface
     private $purger;
 
     /**
-     * Listener constructor.
+     * PostListener constructor.
      *
      * @param PurgeCommandFactory $purgeCommandFactory Purge command factory.
      * @param Purger              $purger              Purger.
