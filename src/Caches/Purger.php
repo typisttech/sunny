@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Caches;
 
-use TypistTech\Sunny\Admin\Notifications\Notifier;
+use TypistTech\Sunny\Notifications\Notifier;
 use TypistTech\Sunny\Api\Cache;
 
 /**
