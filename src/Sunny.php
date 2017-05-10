@@ -18,20 +18,19 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny;
 
-use TypistTech\Sunny\Admin\Admin;
-use TypistTech\Sunny\Admin\AdminBars\Admin as AdminBarAdmin;
-use TypistTech\Sunny\Admin\AdminBars\AdminBar;
-use TypistTech\Sunny\Admin\Ads\Announcement;
-use TypistTech\Sunny\Admin\Ads\I18nPromoter;
-use TypistTech\Sunny\Admin\Ads\Newsletter;
-use TypistTech\Sunny\Admin\Ads\ReviewNotice;
-use TypistTech\Sunny\Admin\Debuggers\Admin as DebuggersAdmin;
-use TypistTech\Sunny\Admin\Debuggers\CacheStatusDebugger;
-use TypistTech\Sunny\Admin\Debuggers\PostRelatedUrlDebugger;
-use TypistTech\Sunny\Admin\Debuggers\TargetDebugger;
-use TypistTech\Sunny\Admin\Notifications\Notifier;
-use TypistTech\Sunny\Api\Admin as ApiAdmin;
-use TypistTech\Sunny\Posts\Listener as PostsListener;
+use TypistTech\Sunny\AdminBars\AdminBar;
+use TypistTech\Sunny\AdminBars\AdminBarAdmin;
+use TypistTech\Sunny\Ads\Announcement;
+use TypistTech\Sunny\Ads\I18nPromoter;
+use TypistTech\Sunny\Ads\Newsletter;
+use TypistTech\Sunny\Ads\ReviewNotice;
+use TypistTech\Sunny\Api\ApiAdmin;
+use TypistTech\Sunny\Debuggers\CacheStatusDebugger;
+use TypistTech\Sunny\Debuggers\DebuggerAdmin;
+use TypistTech\Sunny\Debuggers\PostRelatedUrlDebugger;
+use TypistTech\Sunny\Debuggers\TargetDebugger;
+use TypistTech\Sunny\Notifications\Notifier;
+use TypistTech\Sunny\Posts\PostListener;
 use TypistTech\Sunny\REST\Controllers\Caches\Status\ShowController as CachesStatusShowController;
 use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
@@ -89,14 +88,14 @@ final class Sunny implements LoadableInterface
             ApiAdmin::class,
             CachesStatusShowController::class,
             CacheStatusDebugger::class,
-            DebuggersAdmin::class,
+            DebuggerAdmin::class,
             I18n::class,
             I18nPromoter::class,
             Newsletter::class,
             Notifier::class,
             PostRelatedUrlDebugger::class,
             PostsCachesDeleteController::class,
-            PostsListener::class,
+            PostListener::class,
             PostsRelatedUrlsIndexController::class,
             ReviewNotice::class,
             TargetDebugger::class,
