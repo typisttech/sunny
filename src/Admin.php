@@ -28,8 +28,6 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
  * Final class Admin.
- *
- * The admin-specific functionality of the plugin.
  */
 final class Admin implements LoadableInterface
 {
@@ -55,7 +53,7 @@ final class Admin implements LoadableInterface
     private $sections = [];
 
     /**
-     * Admin constructor.
+     * AdminBarAdmin constructor.
      *
      * @param OptionStore $optionStore The Sunny option store.
      */

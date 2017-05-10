@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Ads;
 
-use TypistTech\Sunny\Debuggers\Admin;
+use TypistTech\Sunny\Debuggers\DebuggerAdmin;
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Sunny;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
@@ -89,7 +89,7 @@ final class Newsletter implements LoadableInterface
             Sunny::VERSION
         );
 
-        if (Admin::HOOK_SUFFIX !== $hook) {
+        if (DebuggerAdmin::HOOK_SUFFIX !== $hook) {
             return;
         }
 

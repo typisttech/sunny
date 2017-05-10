@@ -26,11 +26,9 @@ use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Section;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
 
 /**
- * Final class Admin.
- *
- * The admin-specific functionality of Cloudflare Api settings.
+ * Final class AdminBarAdmin.
  */
-final class Admin implements LoadableInterface
+final class AdminBarAdmin implements LoadableInterface
 {
     /**
      * Option store
@@ -40,7 +38,7 @@ final class Admin implements LoadableInterface
     private $optionStore;
 
     /**
-     * Admin constructor.
+     * AdminBarAdmin constructor.
      *
      * @param OptionStore $optionStore The option store.
      */

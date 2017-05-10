@@ -95,7 +95,7 @@ abstract class AbstractDebugger implements LoadableInterface
             'nonce' => wp_create_nonce('wp_rest'),
         ]);
 
-        if (Admin::HOOK_SUFFIX !== $hook) {
+        if (DebuggerAdmin::HOOK_SUFFIX !== $hook) {
             return;
         }
 

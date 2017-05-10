@@ -26,11 +26,9 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
 
 /**
- * Final class Admin.
- *
- * The admin-specific functionality of Cloudflare Api settings.
+ * Final class DebuggerAdmin.
  */
-final class Admin implements LoadableInterface
+final class DebuggerAdmin implements LoadableInterface
 {
     const HOOK_SUFFIX = 'sunny_page_sunny-debuggers';
 
