@@ -81,8 +81,8 @@ final class Announcement implements LoadableInterface
     public function run()
     {
         $hooks = array_map(function (string $menuSlug) {
-            return str_replace('-', '_', $menuSlug . '_after_option_form');
-        }, $this->admin->getMenuSlugs());
+            return $menuSlug . '_after_postbox_containers';
+        }, $this->admin->getSnakecasedMenuSlugs());
 
         foreach ($hooks as $hook) {
             add_action($hook, [ $this, 'render' ]);

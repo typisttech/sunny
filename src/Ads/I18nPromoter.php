@@ -63,8 +63,8 @@ final class I18nPromoter implements LoadableInterface
     public function run()
     {
         $hooks = array_map(function (string $menuSlug) {
-            return str_replace('-', '_', $menuSlug . '_after_option_form');
-        }, $this->admin->getMenuSlugs());
+            return $menuSlug . '_after_postbox_containers';
+        }, $this->admin->getSnakecasedMenuSlugs());
 
         foreach ($hooks as $hook) {
             new Yoast_I18n_WordPressOrg_v2([

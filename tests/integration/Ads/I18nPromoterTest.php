@@ -34,9 +34,9 @@ class I18nPromoterTest extends WPTestCase
         $admin = Test::double(
             $container->get(Admin::class),
             [
-                'getMenuSlugs' => [
-                    'sunny-page-one',
-                    'sunny-page-two',
+                'getSnakecasedMenuSlugs' => [
+                    'sunny_page_one',
+                    'sunny_page_two',
                 ],
             ]
         );
@@ -80,14 +80,14 @@ class I18nPromoterTest extends WPTestCase
             [
                 'textdomain' => 'sunny',
                 'plugin_name' => 'Sunny',
-                'hook' => 'sunny_page_one_after_option_form',
+                'hook' => 'sunny_page_one_after_postbox_containers',
             ],
         ]);
         $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
             [
                 'textdomain' => 'sunny',
                 'plugin_name' => 'Sunny',
-                'hook' => 'sunny_page_two_after_option_form',
+                'hook' => 'sunny_page_two_after_postbox_containers',
             ],
         ]);
     }

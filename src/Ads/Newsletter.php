@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Ads;
 
-use TypistTech\Sunny\Debuggers\DebuggerAdmin;
+use TypistTech\Sunny\Admin;
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Sunny;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
@@ -31,20 +31,35 @@ use WP_User;
 final class Newsletter implements LoadableInterface
 {
     /**
+     * Sunny admin instance.
+     *
+     * @var Admin
+     */
+    private $admin;
+
+    /**
+     * Newsletter constructor.
+     *
+     * @param Admin $admin Sunny admin instance.
+     */
+    public function __construct(Admin $admin)
+    {
+        $this->admin = $admin;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getHooks(): array
     {
         return [
-            new Action('sunny_add_debugger_boxes', __CLASS__, 'addMetaBox'),
+            new Action('add_meta_boxes', __CLASS__, 'addMetaBox'),
             new Action('admin_enqueue_scripts', __CLASS__, 'enqueueAdminScripts'),
         ];
     }
 
     /**
      * Register meta box.
-     *
-     * @todo Add to all Sunny pages.
      *
      * @return void
      */
@@ -54,7 +69,7 @@ final class Newsletter implements LoadableInterface
             'sunny_newsletter',
             __('Newsletter', 'sunny'),
             [ $this, 'renderHtml' ],
-            'sunny_debuggers',
+            $this->admin->getSnakecasedMenuSlugs(),
             'side'
         );
     }
@@ -89,7 +104,7 @@ final class Newsletter implements LoadableInterface
             Sunny::VERSION
         );
 
-        if (DebuggerAdmin::HOOK_SUFFIX !== $hook) {
+        if (! in_array($hook, $this->admin->getHookSuffixes(), true)) {
             return;
         }
 
