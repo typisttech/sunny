@@ -48,6 +48,7 @@ class CacheTest extends WPTestCase
             ]
         )->getObject();
         $container->add(OptionStore::class, $optionStore);
+
         $this->cache = new Cache(
             $optionStore,
             $this->cloudflareCache->getObject()

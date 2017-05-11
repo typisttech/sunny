@@ -1,0 +1,15 @@
+# Codeception Test Suite Configuration
+
+# Suite for WordPress acceptance tests.
+# Perform tests using or simulating a browser.
+
+modules:
+    config:
+        WPDb:
+            dsn: 'mysql:host=vvv.dev;dbname=sunny-tester'
+            user: external
+            password: external
+            url: 'http://sunny-tester.dev'
+        WPWebDriver:
+            url: 'http://sunny-tester.dev'
+            host: '127.0.0.1'

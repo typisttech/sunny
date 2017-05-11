@@ -142,9 +142,9 @@ Contact: [Tang Rufus](mailto:tangrufus@gmail.com)
 ## Running the Tests
 
 [Sunny](https://github.com/TypistTech/sunny) run tests on [Codeception](http://codeception.com/) and relies [wp-browser](https://github.com/lucatume/wp-browser) to provide WordPress integration.
-Before testing, you have to install WordPress locally and add a [codeception.yml](http://codeception.com/docs/reference/Configuration) file.
+Before testing, you have to install WordPress locally and add [*.suite.yml](http://codeception.com/docs/reference/Configuration) files.
 
-See [codeception.example.yml](codeception.example.yml) for a [Varying Vagrant Vagrants](https://varyingvagrantvagrants.org/) configuration example.
+See [*.suite.example.yml](/tests) for a [Varying Vagrant Vagrants](https://varyingvagrantvagrants.org/) configuration example.
 
 Actually run the tests:
 

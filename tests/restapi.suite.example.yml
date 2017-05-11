@@ -1,0 +1,17 @@
+modules:
+    config:
+        REST:
+            url: 'http://sunny-tester.dev/wp-json'
+        WPDb:
+            dsn: 'mysql:host=vvv.dev;dbname=sunny-tester'
+            user: external
+            password: external
+            url: 'http://sunny-tester.dev'
+        WPBrowser:
+            url: 'http://sunny-tester.dev'
+        WPLoader:
+            wpRootFolder: /Users/me/vagrant-local/www/sunny-tester/htdocs/
+            dbHost: vvv.dev # same as WPDb
+            dbName: sunny-tester # same as WPDb
+            dbUser: external # same as WPDb
+            dbPassword: external # same as WPDb

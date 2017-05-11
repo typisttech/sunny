@@ -1,0 +1,35 @@
+class_name: RestapiTester
+modules:
+    enabled:
+        - \TypistTech\Sunny\Helper\Restapi
+        - REST
+        - WPBrowser
+        - WPDb
+        - WPLoader
+    config:
+        REST:
+            depends: WPBrowser
+            url: 'http://wp.dev:8080/wp-json'
+        WPBrowser:
+            url: 'http://wp.dev:8080'
+            adminUsername: 'admin'
+            adminPassword: 'password'
+            adminPath: /wp-admin
+        WPDb:
+            dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
+            user: root
+            password: ''
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true
+            url: 'http://wp.dev:8080'
+        WPLoader:
+            loadOnly: true
+            wpRootFolder: /tmp/wordpress
+            dbName: wordpress # same as WPDb
+            dbHost: 127.0.0.1 # same as WPDb
+            dbUser: root # same as WPDb
+            dbPassword: '' # same as WPDb
+            tablePrefix: wp_ # same as WPDb
+            domain: wordpress.dev
+            adminEmail: admin@wordpress.dev
