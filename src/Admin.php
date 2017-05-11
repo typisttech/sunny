@@ -18,12 +18,12 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny;
 
-use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\PageRegister;
+use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\PageRegistrar;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\MenuPage;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\PageInterface;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Section;
-use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\SettingRegister;
+use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\SettingRegistrar;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 
 /**
@@ -74,14 +74,14 @@ final class Admin implements LoadableInterface
     }
 
     /**
-     * Menu slugs getter.
+     * Hook suffixes getter.
      *
      * @return string[]
      */
-    public function getMenuSlugs(): array
+    public function getHookSuffixes(): array
     {
         return array_map(function (PageInterface $page) {
-            return $page->getMenuSlug();
+            return $page->getHookSuffix();
         }, $this->getPages());
     }
 
@@ -105,13 +105,25 @@ final class Admin implements LoadableInterface
     }
 
     /**
+     * Snakecased slugs getter.
+     *
+     * @return string[]
+     */
+    public function getSnakecasedMenuSlugs(): array
+    {
+        return array_map(function (PageInterface $page) {
+            return $page->getSnakecasedMenuSlug();
+        }, $this->getPages());
+    }
+
+    /**
      * Add menus and submenus.
      *
      * @return void
      */
     public function registerPages()
     {
-        $pageRegister = new PageRegister(
+        $pageRegister = new PageRegistrar(
             $this->getPages()
         );
         $pageRegister->run();
@@ -124,7 +136,7 @@ final class Admin implements LoadableInterface
      */
     public function registerSettings()
     {
-        $settingRegister = new SettingRegister(
+        $settingRegister = new SettingRegistrar(
             $this->optionStore,
             ...$this->getSections()
         );

@@ -13,6 +13,6 @@
  * @see https://wordpress.org/plugins/sunny/
  */
 
-jQuery(document).ready(function () {
-    postboxes.add_postbox_toggles(pagenow);
-});
+.sunny_page_sunny-debuggers #post-body-content {
+    display: none;
+}

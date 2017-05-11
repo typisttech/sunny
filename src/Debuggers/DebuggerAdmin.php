@@ -21,7 +21,6 @@ namespace TypistTech\Sunny\Debuggers;
 use TypistTech\Sunny\LoadableInterface;
 use TypistTech\Sunny\Sunny;
 use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Pages\SubmenuPage;
-use TypistTech\Sunny\Vendor\TypistTech\WPBetterSettings\Views\View;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Filter;
 
@@ -32,6 +31,8 @@ final class DebuggerAdmin implements LoadableInterface
 {
     const HOOK_SUFFIX = 'sunny_page_sunny-debuggers';
 
+    const SCREEN = 'sunny_debuggers';
+
     /**
      * {@inheritdoc}
      */
@@ -39,7 +40,6 @@ final class DebuggerAdmin implements LoadableInterface
     {
         return [
             new Filter('sunny_pages', __CLASS__, 'addPage'),
-            new Action('load-sunny_page_sunny-debuggers', __CLASS__, 'registerMetaBoxes'),
             new Action('admin_enqueue_scripts', __CLASS__, 'enqueueAdminScripts'),
         ];
     }
@@ -53,18 +53,12 @@ final class DebuggerAdmin implements LoadableInterface
      */
     public function addPage(array $pages): array
     {
-        $debuggers = new SubmenuPage(
+        $pages[] = new SubmenuPage(
             'sunny-cloudflare',
             'sunny-debuggers',
             __('Debuggers', 'sunny'),
             __('Sunny - Debuggers', 'sunny')
         );
-
-        $debuggersView = new View(__DIR__ . '/partials/debuggers.php');
-        $debuggers->getDecorator()
-                  ->setView($debuggersView);
-
-        $pages[] = $debuggers;
 
         return $pages;
     }
@@ -78,10 +72,10 @@ final class DebuggerAdmin implements LoadableInterface
      */
     public function enqueueAdminScripts(string $hook = null)
     {
-        wp_register_script(
+        wp_register_style(
             'sunny_debuggers',
-            plugins_url('partials/debuggers.js', __FILE__),
-            [ 'postbox' ],
+            plugins_url('partials/debuggers.css', __FILE__),
+            [],
             Sunny::VERSION
         );
 
@@ -89,17 +83,6 @@ final class DebuggerAdmin implements LoadableInterface
             return;
         }
 
-        wp_enqueue_script('sunny_debuggers');
-    }
-
-    /**
-     * Trigger debugger meta boxes registration.
-     *
-     * @return void
-     */
-    public function registerMetaBoxes()
-    {
-        // Trigger meta box registrations.
-        do_action('sunny_add_debugger_boxes');
+        wp_enqueue_style('sunny_debuggers');
     }
 }

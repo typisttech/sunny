@@ -36,7 +36,7 @@ abstract class AbstractDebugger implements LoadableInterface
     public static function getHooks(): array
     {
         return [
-            new Action('sunny_add_debugger_boxes', static::class, 'addMetaBox'),
+            new Action('load-' . DebuggerAdmin::HOOK_SUFFIX, static::class, 'addMetaBox'),
             new Action('admin_enqueue_scripts', static::class, 'enqueueAdminScripts'),
         ];
     }
@@ -52,7 +52,7 @@ abstract class AbstractDebugger implements LoadableInterface
             $this->getId(),
             $this->getMetaBoxTitle(),
             [ $this, 'renderHtml' ],
-            'sunny_debuggers',
+            DebuggerAdmin::SCREEN,
             'normal'
         );
     }
