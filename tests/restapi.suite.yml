@@ -2,6 +2,13 @@ class_name: RestapiTester
 modules:
     enabled:
         - \TypistTech\Sunny\Helper\Restapi
-        - WPDb
-        - WPBrowser
         - REST
+        - WPBrowser
+        - WPDb
+        - WPLoader
+    config:
+        WPDb:
+            tablePrefix: wp_rest_
+        WPLoader:
+            loadOnly: true
+            tablePrefix: wp_rest_

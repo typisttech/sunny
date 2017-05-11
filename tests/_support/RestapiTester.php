@@ -59,4 +59,13 @@ class RestapiTester extends Actor
 
         $this->assertForbidden();
     }
+
+    public function setAdminAuth()
+    {
+        $this->loginAsAdmin();
+        $_COOKIE[ LOGGED_IN_COOKIE ] = $this->grabCookie(LOGGED_IN_COOKIE);
+        wp_set_current_user(1);
+        $restNonce = wp_create_nonce('wp_rest');
+        $this->haveHttpHeader('X-WP-Nonce', $restNonce);
+    }
 }

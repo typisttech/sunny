@@ -12,4 +12,30 @@ class TargetsIndexCest
     {
         $I->assertForbiddenGet('/sunny/v2/targets');
     }
+
+    public function testGetContainsHomepage(RestapiTester $I)
+    {
+        $I->setAdminAuth();
+
+        $I->sendGET('/sunny/v2/targets');
+
+        $siteUrl = $I->grabSiteUrl();
+
+        $I->seeResponseContainsJson([
+            'homepage' => [
+                $siteUrl,
+                $siteUrl . '/blog/',
+            ],
+        ]);
+    }
+
+    public function testGetReturnsJson(RestapiTester $I)
+    {
+        $I->setAdminAuth();
+
+        $I->sendGET('/sunny/v2/targets');
+
+        $I->seeResponseCodeIs(200);
+        $I->seeResponseIsJson();
+    }
 }
