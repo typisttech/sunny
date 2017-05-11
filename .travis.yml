@@ -76,8 +76,20 @@ install:
   - travis_retry composer install --prefer-dist --no-suggest
 
 script:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run --coverage --coverage-xml; fi
-  - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run integration,unit --coverage --coverage-xml; fi
+  - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run integration,unit; fi
+
+  - vendor/bin/codecept run functional
+  - vendor/bin/codecept run acceptance
+
+  # WP REST API testing
+  - rm -dfr /tmp/wordpress/wp-content/plugins/sunny
+  - cp -R $TRAVIS_BUILD_DIR /tmp/wordpress/wp-content/plugins/sunny
+  - cd /tmp/wordpress/wp-content/plugins/sunny
+  - vendor/bin/codecept run restapi
+
+  # Go back to build directory
+  - cd $TRAVIS_BUILD_DIR
 
 after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi

@@ -14,48 +14,6 @@ settings:
 coverage:
     include:
         - src/*
-modules:
-    config:
-        REST:
-            depends: WPBrowser
-            url: 'http://wp.dev:8080/wp-json'
-        WPDb:
-            dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
-            user: root
-            password: ''
-            dump: tests/_data/dump.sql
-            populate: true
-            cleanup: true
-            url: 'http://wp.dev:8080'
-            tablePrefix: wp_
-        WPBrowser:
-            url: 'http://wp.dev:8080'
-            adminUsername: 'admin'
-            adminPassword: 'password'
-            adminPath: /wp-admin
-        WordPress:
-            depends: WPDb
-            wpRootFolder: /tmp/wordpress
-            adminUsername: 'admin'
-            adminPassword: 'password'
-        WPLoader:
-            wpRootFolder: /tmp/wordpress
-            dbName: wordpress_int
-            dbHost: 127.0.0.1
-            dbUser: root
-            dbPassword: ''
-            tablePrefix: int_wp_
-            domain: wordpress.dev
-            adminEmail: admin@wordpress.dev
-        WPWebDriver:
-            url: 'http://wp.dev:8080'
-            port: 4444
-            window_size: 1024x768
-            adminUsername: admin
-            adminPassword: password
-            adminPath: /wp-admin
-            host: 'wp.dev'
-            browser: phantomjs
 extensions:
     enabled:
         - Codeception\Extension\Phantoman

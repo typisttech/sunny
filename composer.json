@@ -78,13 +78,18 @@
         ],
         "post-install-cmd": "@transform-vendor",
         "post-update-cmd": "@transform-vendor",
-        "test": "codecept run",
+        "test": [
+            "@test-unit",
+            "@test-integration",
+            "@test-restapi",
+            "@test-functional",
+            "@test-acceptance"
+        ],
         "test-acceptance": "codecept run acceptance",
         "test-functional": "codecept run functional",
         "test-integration": "codecept run integration",
         "test-restapi": "codecept run restapi",
         "test-unit": "codecept run unit",
-        "test-with-coverage": "codecept run --coverage --coverage-xml --coverage-html",
         "transform-vendor": [
             "yarn install",
             "yarn grunt clean:install",

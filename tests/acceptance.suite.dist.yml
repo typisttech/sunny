@@ -1,0 +1,30 @@
+# Codeception Test Suite Configuration
+
+# Suite for WordPress acceptance tests.
+# Perform tests using or simulating a browser.
+
+
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - \TypistTech\Sunny\Helper\Acceptance
+        - WPDb
+        - WPWebDriver
+    config:
+        WPDb:
+            dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
+            user: root
+            password: ''
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true
+            url: 'http://wp.dev:8080'
+        WPWebDriver:
+            url: 'http://wp.dev:8080'
+            port: 4444
+            window_size: 1024x768
+            adminUsername: admin
+            adminPassword: password
+            adminPath: /wp-admin
+            host: 'wp.dev'
+            browser: phantomjs
