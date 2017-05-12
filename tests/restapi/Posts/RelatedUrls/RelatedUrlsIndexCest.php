@@ -15,6 +15,16 @@ class RelatedUrlsIndexCest
         $I->assertForbiddenGet('/sunny/v2/posts/' . self::POST_ID . '/related-urls');
     }
 
+    public function testGetContainsAdjacentPost(RestapiTester $I)
+    {
+        $this->assertGetContains(
+            $I,
+            'adjacent-post',
+            '/2012/10/02/many-categories/',
+            '/2012/12/02/post-format-video-videopress/'
+        );
+    }
+
     public function testGetContainsAuthor(RestapiTester $I)
     {
         $this->assertGetContains(
