@@ -27,7 +27,7 @@ $I->haveOptionInDatabase($optionName, $lastEnqueueTimestamp);
 $I->amOnAdminPage('/options-general.php');
 $I->seeLink('leave a review on WordPress.org', 'https://wordpress.org/support/plugin/sunny/reviews/?filter=5#new-post');
 
-$I->wantToTest('new review me notice last enqueue timestamp is set in the last 3 seconds');
+$I->wantToTest('new review me notice last enqueue timestamp is set in the last 10 seconds');
 $lastEnqueueTimestamp = $I->grabOptionFromDatabase($optionName);
-$I->assertGreaterOrEquals(time() - 3, $lastEnqueueTimestamp->getTimestamp());
+$I->assertGreaterOrEquals(time() - 10, $lastEnqueueTimestamp->getTimestamp());
 $I->assertLessOrEquals(time(), $lastEnqueueTimestamp->getTimestamp());

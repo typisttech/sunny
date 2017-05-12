@@ -28,7 +28,7 @@ $I->amOnAdminPage('/options-general.php');
 $I->see("If you're looking for help with development");
 $I->seeLink('contact form', 'https://www.typist.tech/contact/');
 
-$I->wantToTest('new hire me notice last enqueue timestamp is set in the last 3 seconds');
+$I->wantToTest('new hire me notice last enqueue timestamp is set in the last 10 seconds');
 $lastEnqueueTimestamp = $I->grabOptionFromDatabase($optionName);
-$I->assertGreaterOrEquals(time() - 3, $lastEnqueueTimestamp->getTimestamp());
+$I->assertGreaterOrEquals(time() - 10, $lastEnqueueTimestamp->getTimestamp());
 $I->assertLessOrEquals(time(), $lastEnqueueTimestamp->getTimestamp());
