@@ -4,7 +4,7 @@ Donate link: https://www.typist.tech/donate/sunny/
 Tags: cloudflare, firewall, security, spam, rest-api
 Requires at least: 4.7
 Tested up to: 4.7.4
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,12 +170,19 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 1. Cloudflare Settings
 1. Admin Bar Settings
 1. Purge when Post Updated
-1. Debuggers
+1. Debuggers - Cache Status for a Given URL
 1. Debuggers - Related URLs for a Given Post
+1. Debuggers - Additional URLs for Every Purge
 
 == Changelog ==
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
+
+= 2.2.0 =
+
+* Purge adjacent posts urls
+* Debugger: Check whether a url is cached by Cloudflare
+* Add lots of tests
 
 = 2.1.0 =
 
@@ -196,6 +203,6 @@ Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/m
 
 == Upgrade Notice ==
 
-= 2.1.0 =
+= 2.2.0 =
 
 * Go `Sunny` --> `Debuggers` after upgrading
