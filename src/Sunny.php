@@ -21,9 +21,11 @@ namespace TypistTech\Sunny;
 use TypistTech\Sunny\AdminBars\AdminBar;
 use TypistTech\Sunny\AdminBars\AdminBarAdmin;
 use TypistTech\Sunny\Ads\Announcement;
+use TypistTech\Sunny\Ads\DonateMeNotice;
+use TypistTech\Sunny\Ads\HireMeNotice;
 use TypistTech\Sunny\Ads\I18nPromoter;
 use TypistTech\Sunny\Ads\Newsletter;
-use TypistTech\Sunny\Ads\ReviewNotice;
+use TypistTech\Sunny\Ads\ReviewMeNotice;
 use TypistTech\Sunny\Api\ApiAdmin;
 use TypistTech\Sunny\Debuggers\CacheStatusDebugger;
 use TypistTech\Sunny\Debuggers\DebuggerAdmin;
@@ -89,15 +91,17 @@ final class Sunny implements LoadableInterface
             CachesStatusShowController::class,
             CacheStatusDebugger::class,
             DebuggerAdmin::class,
+            DonateMeNotice::class,
+            HireMeNotice::class,
             I18n::class,
             I18nPromoter::class,
             Newsletter::class,
             Notifier::class,
+            PostListener::class,
             PostRelatedUrlDebugger::class,
             PostsCachesDeleteController::class,
-            PostListener::class,
             PostsRelatedUrlsIndexController::class,
-            ReviewNotice::class,
+            ReviewMeNotice::class,
             TargetDebugger::class,
             TargetsIndexController::class,
         ];

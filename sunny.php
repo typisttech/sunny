@@ -65,11 +65,7 @@ function sunny_is_requirements_meet()
  */
 function run()
 {
-    // @codingStandardsIgnoreStart
     require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
-    require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/handler.php';
-    require_once plugin_dir_path(__FILE__) . '/lib/julien731/wp-dismissible-notices-handler/includes/helper-functions.php';
-    // @codingStandardsIgnoreEnd
 
     $plugin = new Sunny;
     $plugin->run();
