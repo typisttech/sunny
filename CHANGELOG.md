@@ -1,5 +1,26 @@
 # Change Log
 
+## [2.2.0](https://github.com/TypistTech/sunny/tree/2.2.0) (2017-05-12)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.1.0...2.2.0)
+
+**Closed issues:**
+
+- Debugger: Check whether a url is cached by Cloudflare [\#74](https://github.com/TypistTech/sunny/issues/74)
+- Add back restapi tests [\#68](https://github.com/TypistTech/sunny/issues/68)
+- Posts/RelatedUrls: Add adjacent posts [\#66](https://github.com/TypistTech/sunny/issues/66)
+- Add hire me notice [\#31](https://github.com/TypistTech/sunny/issues/31)
+- Add donate me notice [\#30](https://github.com/TypistTech/sunny/issues/30)
+
+**Merged pull requests:**
+
+- Purge adjacent posts [\#81](https://github.com/TypistTech/sunny/pull/81) ([TangRufus](https://github.com/TangRufus))
+- Add delayed notices [\#80](https://github.com/TypistTech/sunny/pull/80) ([TangRufus](https://github.com/TangRufus))
+- Add back REST API tests [\#79](https://github.com/TypistTech/sunny/pull/79) ([TangRufus](https://github.com/TangRufus))
+- Add newsletter metabox to all option pages; Upgrade WPBS to v0.13.0 [\#78](https://github.com/TypistTech/sunny/pull/78) ([TangRufus](https://github.com/TangRufus))
+- Avoid duplicated class names; Remove Admin namespace [\#77](https://github.com/TypistTech/sunny/pull/77) ([TangRufus](https://github.com/TangRufus))
+- Refactor debuggers [\#76](https://github.com/TypistTech/sunny/pull/76) ([TangRufus](https://github.com/TangRufus))
+- Add Debugger: Cache Status [\#75](https://github.com/TypistTech/sunny/pull/75) ([TangRufus](https://github.com/TangRufus))
+
 ## [2.1.0](https://github.com/TypistTech/sunny/tree/2.1.0) (2017-05-08)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/2.0.1...2.1.0)
 
@@ -11,6 +32,8 @@
 
 **Merged pull requests:**
 
+- Version bump 2.1.0 [\#73](https://github.com/TypistTech/sunny/pull/73) ([TangRufus](https://github.com/TangRufus))
+- Add newsletter form to debuggers page [\#72](https://github.com/TypistTech/sunny/pull/72) ([TangRufus](https://github.com/TangRufus))
 - Refactor Targets [\#71](https://github.com/TypistTech/sunny/pull/71) ([TangRufus](https://github.com/TangRufus))
 - Add debugger: Posts [\#70](https://github.com/TypistTech/sunny/pull/70) ([TangRufus](https://github.com/TangRufus))
 - Style deubggers with PostBox [\#67](https://github.com/TypistTech/sunny/pull/67) ([TangRufus](https://github.com/TangRufus))
