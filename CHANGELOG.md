@@ -1,5 +1,14 @@
 # Change Log
 
+## [2.2.1](https://github.com/TypistTech/sunny/tree/2.2.1) (2017-05-20)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.2.0...2.2.1)
+
+**Merged pull requests:**
+
+- Do not force sticky notice when WP\_DEBUG is true [\#87](https://github.com/TypistTech/sunny/pull/87) ([TangRufus](https://github.com/TangRufus))
+- Ensure admins have a chance to view PHP 5.x unsupported notice [\#86](https://github.com/TypistTech/sunny/pull/86) ([TangRufus](https://github.com/TangRufus))
+- Update lucatume/wp-browser and test config examples to VVV 2 [\#85](https://github.com/TypistTech/sunny/pull/85) ([TangRufus](https://github.com/TangRufus))
+
 ## [2.2.0](https://github.com/TypistTech/sunny/tree/2.2.0) (2017-05-12)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/2.1.0...2.2.0)
 
@@ -13,6 +22,7 @@
 
 **Merged pull requests:**
 
+- Version bump 2.2.0 [\#82](https://github.com/TypistTech/sunny/pull/82) ([TangRufus](https://github.com/TangRufus))
 - Purge adjacent posts [\#81](https://github.com/TypistTech/sunny/pull/81) ([TangRufus](https://github.com/TangRufus))
 - Add delayed notices [\#80](https://github.com/TypistTech/sunny/pull/80) ([TangRufus](https://github.com/TangRufus))
 - Add back REST API tests [\#79](https://github.com/TypistTech/sunny/pull/79) ([TangRufus](https://github.com/TangRufus))
