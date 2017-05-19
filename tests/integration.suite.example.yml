@@ -6,8 +6,8 @@
 modules:
     config:
         WPLoader:
-            wpRootFolder: /Users/me/vagrant-local/www/sunny-tester/htdocs/
+            wpRootFolder: /Users/me/vagrant-local/www/sunnytester/public_html/
             dbHost: vvv.dev
-            dbName: sunny-tester
+            dbName: sunnytester
             dbUser: external
             dbPassword: external
