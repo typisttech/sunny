@@ -80,6 +80,7 @@ final class Sunny implements LoadableInterface
         $this->container->delegate(new ReflectionContainer);
         $this->container->add(OptionStore::class, $optionStore);
         $this->container->add(Admin::class, $admin);
+        $this->container->add(Notifier::class, null, true);
 
         $loadables = [
             __CLASS__,
