@@ -6,10 +6,10 @@
 modules:
     config:
         WPDb:
-            dsn: 'mysql:host=vvv.dev;dbname=sunny-tester'
+            dsn: 'mysql:host=vvv.dev;dbname=sunnytester'
             user: external
             password: external
-            url: 'http://sunny-tester.dev'
+            url: 'http://sunnytester.dev'
         WPWebDriver:
-            url: 'http://sunny-tester.dev'
+            url: 'http://sunnytester.dev'
             host: '127.0.0.1'

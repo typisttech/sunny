@@ -20,8 +20,6 @@ modules:
             user: root
             password: ''
             dump: tests/_data/dump.sql
-            populate: true
-            cleanup: true
             url: 'http://wp.dev:8080'
         WPLoader:
             loadOnly: true

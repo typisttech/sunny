@@ -17,7 +17,6 @@ modules:
             dbHost: 127.0.0.1
             dbUser: root
             dbPassword: ''
-            tablePrefix: wp_int_
             domain: wordpress.dev
             adminEmail: admin@wordpress.dev
 coverage:
