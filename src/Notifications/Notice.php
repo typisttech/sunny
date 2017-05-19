@@ -83,7 +83,7 @@ final class Notice
         $this->handle = sanitize_key($handle);
         $this->html = wp_kses_post($html);
         $this->type = sanitize_html_class($type ?? 'info');
-        $this->isSticky = $isSticky ?? (defined('WP_DEBUG') && true === WP_DEBUG);
+        $this->isSticky = $isSticky ?? false;
         $this->htmlClass = sanitize_html_class($htmlClass ?? 'sunny-admin-notice');
     }
 

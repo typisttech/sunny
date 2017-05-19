@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use TypistTech\Sunny\FunctionalTester;
+use TypistTech\Sunny\AcceptanceTester;
 
-$I = new FunctionalTester($scenario);
+$I = new AcceptanceTester($scenario);
 $I->wantToTest('purge initiated when post updated');
 
 $I->loginAsAdmin();
