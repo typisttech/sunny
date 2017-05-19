@@ -1,10 +1,10 @@
 === Sunny ===
 Contributors: typisttech, tangrufus
 Donate link: https://www.typist.tech/donate/sunny/
-Tags: cloudflare, firewall, security, spam, rest-api
+Tags: cloudflare, speed, caching, cache,rest-api
 Requires at least: 4.7
 Tested up to: 4.7.4
-Stable tag: 2.2.0
+Stable tag: 2.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -178,6 +178,11 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
 
+= 2.2.1 =
+
+* Fix: Ensure admins have a chance to view PHP 5.x unsupported notice
+* Fix: Do not force sticky notice when WP_DEBUG is true
+
 = 2.2.0 =
 
 * Purge adjacent posts urls
@@ -203,6 +208,6 @@ Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/m
 
 == Upgrade Notice ==
 
-= 2.2.0 =
+= 2.2.1 =
 
 * Go `Sunny` --> `Debuggers` after upgrading

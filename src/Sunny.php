@@ -49,7 +49,7 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
  */
 final class Sunny implements LoadableInterface
 {
-    const VERSION = '2.2.0';
+    const VERSION = '2.2.1';
 
     /**
      * The dependency injection container.

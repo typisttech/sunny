@@ -18,7 +18,7 @@
  * Plugin Name:     Sunny
  * Plugin URI:      https://www.typist.tech/
  * Description:     Automatically purge CloudFlare cache, including cache everything rules.
- * Version:         2.2.0
+ * Version:         2.2.1
  * Author:          Typist Tech
  * Author URI:      https://www.typist.tech/
  * License:         GPL-2.0+
