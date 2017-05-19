@@ -78,6 +78,11 @@ function run()
  */
 function sunny_self_deactivate()
 {
+    // Do nothing when doing ajax. Ensure admins have a chance to view PHP 5.x unsupported notice.
+    if (defined('DOING_AJAX') && DOING_AJAX) {
+        return;
+    }
+
     deactivate_plugins(plugin_basename(__FILE__));
 }
 
