@@ -55,6 +55,7 @@
     },
     "scripts": {
         "build": [
+            "rm -fr build",
             "rm -fr vendor",
             "composer install --no-dev --prefer-dist --optimize-autoloader --no-suggest",
             "yarn grunt clean",
