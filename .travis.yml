@@ -32,7 +32,6 @@ notifications:
 php:
   - 7.0
   - 7.1
-  - nightly
 
 env:
   global:
@@ -40,13 +39,6 @@ env:
   matrix:
     - WP_VERSION=nightly
     - WP_VERSION=latest WITH_COVERAGE=true
-    - WP_VERSION=4.7.3
-
-matrix:
-  allow_failures:
-    - php: nightly
-    - env: WP_VERSION=nightly
-  fast_finish: true
 
 before_install:
   # Set environment variables
@@ -96,43 +88,62 @@ after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
 
 before_deploy:
+  - phpenv config-rm xdebug.ini
+  # Build the production plugin
+  - travis_retry composer build
   - unzip -qo release/sunny.zip -d build
 
-deploy:
-  - provider: releases
-    api_key: $GITHUB_ACCESS_TOKEN
-    file: release/sunny.zip
-    skip_cleanup: true
-    on:
-      condition: "$WP_VERSION = latest"
-      php: 7.0
-      tags: true
-      repo: TypistTech/sunny
-  - provider: wordpress-plugin
-    edge:
-      source: TypistTech/dpl
-      branch: add-wordpress-plugin-deployment
-    slug: sunny
-    username: tangrufus
-    build_dir: build
-    assets_dir: assets
-    skip_cleanup: true
-    on:
-      condition: "$WP_VERSION = latest"
-      php: 7.1
-      tags: true
-      repo: TypistTech/sunny
-  - provider: build-branch
-    edge:
-      source: TypistTech/dpl
-      branch: add-build-branch
-    skip_cleanup: true
-    github_token: $GITHUB_ACCESS_TOKEN
-    local_dir: build
-    target_branch: nightly
-    project_name: "Sunny"
-    on:
-      branch: master
-      condition: "$WP_VERSION = latest"
-      php: 7.0
-      repo: TypistTech/sunny
+deploy_default: &deploy_default
+  stage: deploy
+  php: 7.0
+  addons: []
+  services: []
+  before_install: skip
+  # Wait for DPL supports Ruby 2.3.x
+  install: rvm install 2.2.7
+  script: skip
+  after_script: skip
+  deploy:
+  skip_cleanup: true
+  on:
+    repo: TypistTech/sunny
+
+jobs:
+  include:
+    - <<: *deploy_default
+      env: DEPLOY=GITHUB_RELEASE_ARTIFACTS
+      deploy:
+        provider: releases
+        api_key: $GITHUB_ACCESS_TOKEN
+        file: release/sunny.zip
+        on:
+          tags: true
+    - <<: *deploy_default
+      env: DEPLOY=WORDPRESS_PLUGIN
+      deploy:
+        provider: wordpress-plugin
+        edge:
+          source: TypistTech/dpl
+          branch: add-wordpress-plugin-deployment
+        slug: sunny
+        username: tangrufus
+        build_dir: build
+        assets_dir: assets
+        on:
+          tags: true
+    - <<: *deploy_default
+      env: DEPLOY=GITHUB_NIGHTLY_BRANCH
+      deploy:
+        provider: build-branch
+        edge:
+          source: TypistTech/dpl
+          branch: add-build-branch
+        github_token: $GITHUB_ACCESS_TOKEN
+        local_dir: build
+        target_branch: nightly
+        project_name: "Sunny"
+        on:
+          branch: master
+  allow_failures:
+    - env: WP_VERSION=nightly
+  fast_finish: true
