@@ -32,7 +32,6 @@ notifications:
 php:
   - 7.0
   - 7.1
-  - nightly
 
 env:
   global:
@@ -101,10 +100,11 @@ deploy_default: &deploy_default
   addons: []
   services: []
   before_install: skip
-  install: skip
+  # Wait for DPL supports Ruby 2.3.x
+  install: rvm install 2.2.7
   script: skip
+  after_script: skip
   deploy:
-  skip_cleanup: true
   on:
     repo: TypistTech/sunny
 
@@ -145,7 +145,5 @@ jobs:
         on:
           branch: master
   allow_failures:
-    - php: nightly
     - env: WP_VERSION=nightly
-    - stage: deploy
   fast_finish: true
