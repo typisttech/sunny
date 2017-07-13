@@ -26,5 +26,3 @@ use TypistTech\Sunny\Debuggers\AbstractDebugger;
 
 <div id="<?php echo esc_attr($context->getId()); ?>-result">
 </div>
-
-<p>Targets are filterable by <code>sunny_targets_strategies</code> and <code>sunny_targets</code></p>
