@@ -18,13 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Posts\RelatedUrls;
 
-use TypistTech\Sunny\Posts\RelatedUrls\Strategies\AdjacentPostUrls;
-use TypistTech\Sunny\Posts\RelatedUrls\Strategies\AuthorUrls;
-use TypistTech\Sunny\Posts\RelatedUrls\Strategies\Culprit;
-use TypistTech\Sunny\Posts\RelatedUrls\Strategies\FeedUrls;
-use TypistTech\Sunny\Posts\RelatedUrls\Strategies\PostTypeArchiveUrls;
 use TypistTech\Sunny\Posts\RelatedUrls\Strategies\StrategyInterface;
-use TypistTech\Sunny\Posts\RelatedUrls\Strategies\TermsUrls;
 use WP_Post;
 
 /**
@@ -48,21 +42,9 @@ final class RelatedUrls
      *
      * @param StrategyInterface[] $strategies Strategies to get related urls.
      */
-    public function __construct(array $strategies = null)
+    public function __construct(array $strategies)
     {
-        $strategies = $strategies ?? [
-                new Culprit,
-                new AdjacentPostUrls,
-                new TermsUrls('category'),
-                new TermsUrls('post_tag'),
-                new AuthorUrls,
-                new PostTypeArchiveUrls,
-                new FeedUrls,
-            ];
-
-        $filteredStrategies = apply_filters('sunny_post_related_urls_strategies', $strategies);
-
-        $this->setStrategies(...$filteredStrategies);
+        $this->setStrategies(...$strategies);
     }
 
     /**
