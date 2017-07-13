@@ -1,7 +1,6 @@
 <?php
 /**
  * Sunny
- *
  * Automatically purge CloudFlare cache, including cache everything rules.
  *
  * @package   Sunny
@@ -32,14 +31,16 @@ use TypistTech\Sunny\Debuggers\DebuggerAdmin;
 use TypistTech\Sunny\Debuggers\PostRelatedUrlDebugger;
 use TypistTech\Sunny\Debuggers\TargetDebugger;
 use TypistTech\Sunny\Notifications\Notifier;
+use TypistTech\Sunny\Notifications\ServiceProvider as NotificationsServiceProvider;
 use TypistTech\Sunny\Posts\PostListener;
+use TypistTech\Sunny\Posts\ServiceProvider as PostsServiceProvider;
 use TypistTech\Sunny\REST\Controllers\Caches\Status\ShowController as CachesStatusShowController;
 use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCachesDeleteController;
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
 use TypistTech\Sunny\REST\Controllers\Targets\IndexController as TargetsIndexController;
+use TypistTech\Sunny\ServiceProvider as AppServiceProvider;
 use TypistTech\Sunny\Vendor\League\Container\Container;
 use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
-use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Action;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
 
 /**
@@ -47,9 +48,39 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
  *
  * The core plugin class.
  */
-final class Sunny implements LoadableInterface
+final class Sunny
 {
     const VERSION = '2.2.1';
+
+    const LOADABLES = [
+        Admin::class,
+        AdminBar::class,
+        AdminBarAdmin::class,
+        Announcement::class,
+        ApiAdmin::class,
+        CachesStatusShowController::class,
+        CacheStatusDebugger::class,
+        DebuggerAdmin::class,
+        DonateMeNotice::class,
+        HireMeNotice::class,
+        I18n::class,
+        I18nPromoter::class,
+        Newsletter::class,
+        Notifier::class,
+        PostListener::class,
+        PostRelatedUrlDebugger::class,
+        PostsCachesDeleteController::class,
+        PostsRelatedUrlsIndexController::class,
+        ReviewMeNotice::class,
+        TargetDebugger::class,
+        TargetsIndexController::class,
+    ];
+
+    const SERVICE_PROVIDERS = [
+        AppServiceProvider::class,
+        NotificationsServiceProvider::class,
+        PostsServiceProvider::class,
+    ];
 
     /**
      * The dependency injection container.
@@ -59,10 +90,10 @@ final class Sunny implements LoadableInterface
     private $container;
 
     /**
-     * The loader that's responsible for maintaining and registering allByPost hooks that power
+     * The loader that's responsible for maintaining and registering all hooks that power
      * the plugin.
      *
-     * @var Loader Maintains and registers allByPost hooks for the plugin.
+     * @var Loader Maintains and registers all hooks for the plugin.
      */
     private $loader;
 
@@ -72,65 +103,25 @@ final class Sunny implements LoadableInterface
     public function __construct()
     {
         $this->container = new Container;
-        $this->loader = new Loader($this->container);
-
-        $optionStore = new OptionStore;
-        $admin = new Admin($optionStore);
-
         $this->container->delegate(new ReflectionContainer);
-        $this->container->add(OptionStore::class, $optionStore);
-        $this->container->add(Admin::class, $admin);
-        $this->container->add(Notifier::class, null, true);
 
-        $loadables = [
-            __CLASS__,
-            Admin::class,
-            AdminBar::class,
-            AdminBarAdmin::class,
-            Announcement::class,
-            ApiAdmin::class,
-            CachesStatusShowController::class,
-            CacheStatusDebugger::class,
-            DebuggerAdmin::class,
-            DonateMeNotice::class,
-            HireMeNotice::class,
-            I18n::class,
-            I18nPromoter::class,
-            Newsletter::class,
-            Notifier::class,
-            PostListener::class,
-            PostRelatedUrlDebugger::class,
-            PostsCachesDeleteController::class,
-            PostsRelatedUrlsIndexController::class,
-            ReviewMeNotice::class,
-            TargetDebugger::class,
-            TargetsIndexController::class,
-        ];
-
-        foreach ($loadables as $loadable) {
-            /* @var LoadableInterface $loadable */
-            $this->loader->add(...$loadable::getHooks());
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function getHooks(): array
-    {
-        return [
-            new Action(__CLASS__, 'plugin_loaded', 'giveContainer', 5),
-        ];
+        $this->loader = new Loader($this->container);
     }
 
     /**
      * Expose Container via WordPress action.
      *
+     * Within the `sunny_register` action, you should only bind things into the container. You should never attempt to
+     * register any hooks, actions, filters or any other piece of functionality within `sunny_register` action.
+     * Otherwise, you may accidentally use an instance which has not been loaded yet.
+     *
+     * This is equivalent to Laravel's `register` method.
+     *
      * @return void
      */
-    public function giveContainer()
+    public function register()
     {
-        do_action('sunny_get_container', $this->getContainer());
+        do_action('sunny_register', $this->getContainer());
     }
 
     /**
@@ -144,12 +135,65 @@ final class Sunny implements LoadableInterface
     }
 
     /**
+     * Expose Container via WordPress action.
+     *
+     * The `sunny_boot` action is called after this plugin and all its addons have been registered, meaning you have
+     * access to all instance that have been registered by this plugin and its addons.
+     *
+     * This is equivalent to Laravel's `boot` method.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        do_action('sunny_boot', $this->getContainer());
+    }
+
+    /**
      * Run the loader to add all the hooks to WordPress.
+     * And bind necessary instance to the container.
+     *
+     * This method should only be called once in sunny.php
+     *
+     * @internal
      *
      * @return void
      */
     public function run()
     {
+        $this->addServiceProviders();
+
+        $this->addHooks();
+
         $this->loader->run();
+    }
+
+    /**
+     * Add service providers into the container.
+     *
+     * @return void
+     */
+    private function addServiceProviders()
+    {
+        $this->container->share(__CLASS__, $this);
+
+        foreach (self::SERVICE_PROVIDERS as $serviceProvider) {
+            $this->container->addServiceProvider($serviceProvider);
+        }
+    }
+
+    /**
+     * Add all actions and filters to loader.
+     *
+     * @return void
+     */
+    private function addHooks()
+    {
+        add_action('plugins_loaded', [ $this, 'register' ], PHP_INT_MIN + 1000);
+        add_action('plugins_loaded', [ $this, 'boot' ], PHP_INT_MAX - 1000);
+
+        foreach (self::LOADABLES as $loadable) {
+            $this->loader->add(...$loadable::getHooks());
+        }
     }
 }
