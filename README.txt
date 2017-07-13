@@ -97,6 +97,12 @@ If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/
 
 == Frequently Asked Questions ==
 
+= How can I purge extra URLs? =
+
+Post related urls are filterable by `StrategyInterface` and `sunny_post_related_urls`. See examples on [Sunny Purge Extra URLs Example](https://github.com/TypistTech/sunny-purge-extra-urls-example).
+
+If you don't understand the example code, [hire me](https://www.typist.tech/contact/) instead.
+
 = What version of PHP do I need? =
 
 PHP `7.0` or later.
@@ -113,10 +119,16 @@ If you encountered this error:
 
 You probably running on a old version of PHP. Upgrade your server to PHP `7.0` or later.
 
-Don't know how to update PHP?
+= Don't know how to update PHP? =
+
 * Contact you hosting company
 * Switch to a better hosting such as [WP Engine](https://www.typist.tech/go/wp-engine-isnt-business-worth-29-month/) or [Kinsta](https://www.typist.tech/go/kinsta-staging-environment/)
 * Hire me [https://www.typist.tech/contact](https://www.typist.tech/contact)
+
+= Will you support older versions of PHP or WordPress? =
+
+Depends. I accept this kind of custom coding jobs. However, I'll reject if the requirement doesn't make sense.
+Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [contact form](https://www.typist.tech/contact/).
 
 = Is this plugin written by Cloudflare, Inc.? =
 

@@ -110,6 +110,11 @@ Note: You need both `composer ` and `yarn` installed.
 
 
 
+## Extending Sunny
+
+Post related urls are filterable by `StrategyInterface` and `sunny_post_related_urls`. See examples on [Sunny Purge Extra URLs Example](https://github.com/TypistTech/sunny-purge-extra-urls-example).
+
+
 
 ## Branches
 
