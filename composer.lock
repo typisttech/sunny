@@ -507,16 +507,16 @@
     "packages-dev": [
         {
             "name": "antecedent/patchwork",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antecedent/patchwork.git",
-                "reference": "248daac9af59644ebf25ad1925f8780a7a5e4882"
+                "reference": "d8e772ee90390960c23c6c64e09f1279d8a7b0df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/248daac9af59644ebf25ad1925f8780a7a5e4882",
-                "reference": "248daac9af59644ebf25ad1925f8780a7a5e4882",
+                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/d8e772ee90390960c23c6c64e09f1279d8a7b0df",
+                "reference": "d8e772ee90390960c23c6c64e09f1279d8a7b0df",
                 "shasum": ""
             },
             "require": {
@@ -544,7 +544,7 @@
                 "runkit",
                 "testing"
             ],
-            "time": "2017-05-23T05:41:30+00:00"
+            "time": "2017-07-11T07:22:21+00:00"
         },
         {
             "name": "bacon/bacon-string-utils",
@@ -703,16 +703,16 @@
         },
         {
             "name": "codeception/codeception",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "67cd520b4f20cdfc3a52d1a0022924125822a8e6"
+                "reference": "b5391497f9a3c9d0a9c02ae39b53441e413e35a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/67cd520b4f20cdfc3a52d1a0022924125822a8e6",
-                "reference": "67cd520b4f20cdfc3a52d1a0022924125822a8e6",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/b5391497f9a3c9d0a9c02ae39b53441e413e35a8",
+                "reference": "b5391497f9a3c9d0a9c02ae39b53441e413e35a8",
                 "shasum": ""
             },
             "require": {
@@ -749,6 +749,7 @@
                 "php-amqplib/php-amqplib": "~2.4",
                 "predis/predis": "^1.0",
                 "squizlabs/php_codesniffer": "~2.0",
+                "symfony/process": ">=2.7 <4.0",
                 "vlucas/phpdotenv": "^2.4.0"
             },
             "suggest": {
@@ -793,7 +794,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2017-06-02T00:22:30+00:00"
+            "time": "2017-07-10T19:45:09+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -2039,16 +2040,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "1.21.6",
+            "version": "1.21.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "08be090b552f3b1c89220cd37c64d014ce50c7a6"
+                "reference": "7a8fca95d8d1b20ccdb675157c8f599bad7861ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/08be090b552f3b1c89220cd37c64d014ce50c7a6",
-                "reference": "08be090b552f3b1c89220cd37c64d014ce50c7a6",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/7a8fca95d8d1b20ccdb675157c8f599bad7861ac",
+                "reference": "7a8fca95d8d1b20ccdb675157c8f599bad7861ac",
                 "shasum": ""
             },
             "require": {
@@ -2096,7 +2097,7 @@
                 "codeception",
                 "wordpress"
             ],
-            "time": "2017-07-06T12:44:35+00:00"
+            "time": "2017-07-12T16:07:09+00:00"
         },
         {
             "name": "lucatume/wp-browser-commons",
@@ -2199,16 +2200,16 @@
         },
         {
             "name": "mustache/mustache",
-            "version": "v2.11.1",
+            "version": "v2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/mustache.php.git",
-                "reference": "a3f6d55996dd28b58f3a909d474189a3c1aa693f"
+                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/a3f6d55996dd28b58f3a909d474189a3c1aa693f",
-                "reference": "a3f6d55996dd28b58f3a909d474189a3c1aa693f",
+                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/fe8fe72e9d580591854de404cc59a1b83ca4d19e",
+                "reference": "fe8fe72e9d580591854de404cc59a1b83ca4d19e",
                 "shasum": ""
             },
             "require": {
@@ -2241,7 +2242,7 @@
                 "mustache",
                 "templating"
             ],
-            "time": "2016-07-31T06:18:27+00:00"
+            "time": "2017-07-11T12:54:05+00:00"
         },
         {
             "name": "myclabs/deep-copy",

@@ -3,8 +3,8 @@ Contributors: typisttech, tangrufus
 Donate link: https://www.typist.tech/donate/sunny/
 Tags: cloudflare, speed, caching, cache,rest-api
 Requires at least: 4.7
-Tested up to: 4.7.4
-Stable tag: 2.2.1
+Tested up to: 4.8
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ Automatically purge CloudFlare cache, including cache everything rules.
 * Support custom post type
 * Hide admin bar from public-facing pages
 * WP REST API support
+* Purge extra URLs by extending `Sunny`
 
 = Debuggers =
 
@@ -190,6 +191,10 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
 
+= 2.3.0 =
+
+* Expose Container via WordPress action in Laravel style
+
 = 2.2.1 =
 
 * Fix: Ensure admins have a chance to view PHP 5.x unsupported notice
@@ -217,9 +222,3 @@ Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/m
 
 * Update to Cloudflare API v4
 * Codebase rewrite
-
-== Upgrade Notice ==
-
-= 2.2.1 =
-
-* Go `Sunny` --> `Debuggers` after upgrading

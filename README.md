@@ -25,6 +25,7 @@ Automatically purge CloudFlare cache, including cache everything rules.
   - [Via WP CLI](#via-wp-cli)
 - [Developing](#developing)
 - [Build from Source](#build-from-source)
+- [Extending Sunny](#extending-sunny)
 - [Branches](#branches)
   - [Master](#master)
   - [Nightly](#nightly)
