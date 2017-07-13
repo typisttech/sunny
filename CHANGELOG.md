@@ -1,10 +1,29 @@
 # Change Log
 
-## [2.2.1](https://github.com/TypistTech/sunny/tree/2.2.1) (2017-05-20)
+## [2.3.0](https://github.com/TypistTech/sunny/tree/2.3.0) (2017-07-14)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.2.1...2.3.0)
+
+**Closed issues:**
+
+- Notification overload and cUrl Debugger error [\#84](https://github.com/TypistTech/sunny/issues/84)
+
+**Merged pull requests:**
+
+- Add document about Sunny Purge Extra URLs Example [\#101](https://github.com/TypistTech/sunny/pull/101) ([TangRufus](https://github.com/TangRufus))
+- Expose Container via WordPress action in Laravel style [\#100](https://github.com/TypistTech/sunny/pull/100) ([TangRufus](https://github.com/TangRufus))
+- yarn upgrade [\#99](https://github.com/TypistTech/sunny/pull/99) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#98](https://github.com/TypistTech/sunny/pull/98) ([TangRufus](https://github.com/TangRufus))
+- yarn upgrade [\#97](https://github.com/TypistTech/sunny/pull/97) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#96](https://github.com/TypistTech/sunny/pull/96) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#95](https://github.com/TypistTech/sunny/pull/95) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#90](https://github.com/TypistTech/sunny/pull/90) ([TangRufus](https://github.com/TangRufus))
+
+## [2.2.1](https://github.com/TypistTech/sunny/tree/2.2.1) (2017-05-19)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/2.2.0...2.2.1)
 
 **Merged pull requests:**
 
+- Version bump 2.2.1 [\#88](https://github.com/TypistTech/sunny/pull/88) ([TangRufus](https://github.com/TangRufus))
 - Do not force sticky notice when WP\_DEBUG is true [\#87](https://github.com/TypistTech/sunny/pull/87) ([TangRufus](https://github.com/TangRufus))
 - Ensure admins have a chance to view PHP 5.x unsupported notice [\#86](https://github.com/TypistTech/sunny/pull/86) ([TangRufus](https://github.com/TangRufus))
 - Update lucatume/wp-browser and test config examples to VVV 2 [\#85](https://github.com/TypistTech/sunny/pull/85) ([TangRufus](https://github.com/TangRufus))

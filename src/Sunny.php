@@ -50,7 +50,7 @@ use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
  */
 final class Sunny
 {
-    const VERSION = '2.2.1';
+    const VERSION = '2.3.0';
 
     const LOADABLES = [
         Admin::class,
