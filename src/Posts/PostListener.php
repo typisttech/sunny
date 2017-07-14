@@ -76,9 +76,11 @@ final class PostListener implements LoadableInterface
      */
     public function handlePostEdited(int $_id, WP_Post $post)
     {
-        // Translators: %1$s is the post id; %2$s is the old status; %3$s is the new status.
-        $reasonFormat = __('Post (ID: %1$s) is being edited', 'sunny');
-        $reason = sprintf($reasonFormat, $post->ID);
+        $postType = PostType::getSingularNameFor($post);
+
+        // Translators: %1$s is the post type; %2$s is the post id.
+        $reasonFormat = __('%1$s (ID: %2$s) is being edited', 'sunny');
+        $reason = sprintf($reasonFormat, $postType, $post->ID);
 
         $command = $this->purgeCommandFactory->buildForPost($post, $reason);
         $this->purger->execute($command);
@@ -112,9 +114,10 @@ final class PostListener implements LoadableInterface
             return;
         }
 
-        // Translators: %1$s is the post id; %2$s is the old status; %3$s is the new status.
-        $reasonFormat = __('Post (ID: %1$s) changed from %2$s to %3$s', 'sunny');
-        $reason = sprintf($reasonFormat, $post->ID, $oldStatus, $newStatus);
+        $postType = PostType::getSingularNameFor($post);
+        // Translators: %1$s is the post type; %2$s is the post id; %3$s is the old status; %4$s is the new status.
+        $reasonFormat = __('%1$s (ID: %2$s) changed from %3$s to %4$s', 'sunny');
+        $reason = sprintf($reasonFormat, $postType, $post->ID, $oldStatus, $newStatus);
 
         $command = $this->purgeCommandFactory->buildForPost($post, $reason);
         $this->purger->execute($command);
