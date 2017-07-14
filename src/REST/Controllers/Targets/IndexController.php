@@ -30,7 +30,7 @@ final class IndexController implements LoadableInterface
 {
     const NAMESPACE = 'sunny/v2';
     /**
-     * Targets instance.
+     * Targets finder.
      *
      * @var Targets
      */
@@ -39,7 +39,7 @@ final class IndexController implements LoadableInterface
     /**
      * IndexController constructor.
      *
-     * @param Targets $targets Targets instance.
+     * @param Targets $targets Targets finder.
      */
     public function __construct(Targets $targets)
     {
