@@ -191,6 +191,10 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
 
+= 2.4.0 =
+
+* Extract targets service provider
+
 = 2.3.0 =
 
 * Expose Container via WordPress action in Laravel style

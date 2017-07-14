@@ -18,7 +18,6 @@ declare(strict_types=1);
 
 namespace TypistTech\Sunny\Targets;
 
-use TypistTech\Sunny\Targets\Strategies\Homepage;
 use TypistTech\Sunny\Targets\Strategies\StrategyInterface;
 
 /**
@@ -38,15 +37,9 @@ final class Targets
      *
      * @param StrategyInterface[] $strategies Strategies to get related urls.
      */
-    public function __construct(array $strategies = null)
+    public function __construct(array $strategies)
     {
-        $strategies = $strategies ?? [
-                new Homepage,
-            ];
-
-        $filteredStrategies = apply_filters('sunny_targets_strategies', $strategies);
-
-        $this->setStrategies(...$filteredStrategies);
+        $this->setStrategies(...$strategies);
     }
 
     /**
@@ -68,7 +61,7 @@ final class Targets
      */
     public function all(): array
     {
-        $related = array_reduce($this->strategies, function (array $carry, StrategyInterface $strategy) {
+        $targets = array_reduce($this->strategies, function (array $carry, StrategyInterface $strategy) {
             $carry[ $strategy->getKey() ] = $strategy->all();
 
             return $carry;
@@ -76,7 +69,7 @@ final class Targets
 
         return apply_filters(
             'sunny_targets',
-            array_filter($related)
+            array_filter($targets)
         );
     }
 }

@@ -39,6 +39,7 @@ use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCach
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
 use TypistTech\Sunny\REST\Controllers\Targets\IndexController as TargetsIndexController;
 use TypistTech\Sunny\ServiceProvider as AppServiceProvider;
+use TypistTech\Sunny\Targets\ServiceProvider as TargetsServiceProvider;
 use TypistTech\Sunny\Vendor\League\Container\Container;
 use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
@@ -80,6 +81,7 @@ final class Sunny
         AppServiceProvider::class,
         NotificationsServiceProvider::class,
         PostsServiceProvider::class,
+        TargetsServiceProvider::class,
     ];
 
     /**

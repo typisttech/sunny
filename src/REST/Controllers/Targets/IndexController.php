@@ -29,6 +29,22 @@ use WP_REST_Server;
 final class IndexController implements LoadableInterface
 {
     const NAMESPACE = 'sunny/v2';
+    /**
+     * Targets instance.
+     *
+     * @var Targets
+     */
+    private $targets;
+
+    /**
+     * IndexController constructor.
+     *
+     * @param Targets $targets Targets instance.
+     */
+    public function __construct(Targets $targets)
+    {
+        $this->targets = $targets;
+    }
 
     /**
      * {@inheritdoc}
@@ -45,10 +61,8 @@ final class IndexController implements LoadableInterface
      */
     public function index()
     {
-        $targets = new Targets;
-
         return rest_ensure_response(
-            $targets->all()
+            $this->targets->all()
         );
     }
 

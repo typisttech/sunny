@@ -58,7 +58,7 @@ use TypistTech\Sunny\Debuggers\AbstractDebugger;
 </div>
 
 <p>
-    Post related urls are filterable by <code>StrategyInterface</code> and <code>sunny_post_related_urls</code>. See
+    Post related urls are filterable by <code>Strategies</code> and <code>sunny_post_related_urls</code>. See
     examples on <a href="https://github.com/TypistTech/sunny-purge-extra-urls-example">Sunny Purge Extra URLs
         Example</a>.
 </p>
