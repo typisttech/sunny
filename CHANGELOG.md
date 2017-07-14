@@ -1,6 +1,14 @@
 # Change Log
 
-## [2.3.0](https://github.com/TypistTech/sunny/tree/2.3.0) (2017-07-14)
+## [2.4.0](https://github.com/TypistTech/sunny/tree/2.4.0) (2017-07-14)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.3.0...2.4.0)
+
+**Merged pull requests:**
+
+- Show post type name in purge initiated notices [\#104](https://github.com/TypistTech/sunny/pull/104) ([TangRufus](https://github.com/TangRufus))
+- Extract targets service provider [\#103](https://github.com/TypistTech/sunny/pull/103) ([TangRufus](https://github.com/TangRufus))
+
+## [2.3.0](https://github.com/TypistTech/sunny/tree/2.3.0) (2017-07-13)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/2.2.1...2.3.0)
 
 **Closed issues:**
@@ -9,6 +17,7 @@
 
 **Merged pull requests:**
 
+- Version bump 2.3.0 [\#102](https://github.com/TypistTech/sunny/pull/102) ([TangRufus](https://github.com/TangRufus))
 - Add document about Sunny Purge Extra URLs Example [\#101](https://github.com/TypistTech/sunny/pull/101) ([TangRufus](https://github.com/TangRufus))
 - Expose Container via WordPress action in Laravel style [\#100](https://github.com/TypistTech/sunny/pull/100) ([TangRufus](https://github.com/TangRufus))
 - yarn upgrade [\#99](https://github.com/TypistTech/sunny/pull/99) ([TangRufus](https://github.com/TangRufus))
