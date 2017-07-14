@@ -19,18 +19,18 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Debuggers;
 
 /**
- * Final class PostRelatedUrlDebugger
+ * Final class TargetsDebugger
  */
-final class PostRelatedUrlDebugger extends AbstractDebugger
+final class TargetsDebugger extends AbstractDebugger
 {
-    const NAME = 'post_related_url';
+    const NAME = 'targets';
 
     /**
      * {@inheritdoc}
      */
     protected function getJsRoute(): string
     {
-        return esc_url_raw(rest_url('sunny/v2/posts/'));
+        return esc_url_raw(rest_url('sunny/v2/targets/'));
     }
 
     /**
@@ -38,6 +38,6 @@ final class PostRelatedUrlDebugger extends AbstractDebugger
      */
     protected function getMetaBoxTitle(): string
     {
-        return __('Post Related Urls', 'sunny');
+        return __('Targets', 'sunny');
     }
 }

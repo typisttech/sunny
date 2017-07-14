@@ -28,8 +28,8 @@ use TypistTech\Sunny\Ads\ReviewMeNotice;
 use TypistTech\Sunny\Api\ApiAdmin;
 use TypistTech\Sunny\Debuggers\CacheStatusDebugger;
 use TypistTech\Sunny\Debuggers\DebuggerAdmin;
-use TypistTech\Sunny\Debuggers\PostRelatedUrlDebugger;
-use TypistTech\Sunny\Debuggers\TargetDebugger;
+use TypistTech\Sunny\Debuggers\PostRelatedUrlsDebugger;
+use TypistTech\Sunny\Debuggers\TargetsDebugger;
 use TypistTech\Sunny\Notifications\Notifier;
 use TypistTech\Sunny\Notifications\ServiceProvider as NotificationsServiceProvider;
 use TypistTech\Sunny\Posts\PostListener;
@@ -69,11 +69,11 @@ final class Sunny
         Newsletter::class,
         Notifier::class,
         PostListener::class,
-        PostRelatedUrlDebugger::class,
+        PostRelatedUrlsDebugger::class,
         PostsCachesDeleteController::class,
         PostsRelatedUrlsIndexController::class,
         ReviewMeNotice::class,
-        TargetDebugger::class,
+        TargetsDebugger::class,
         TargetsIndexController::class,
     ];
 
