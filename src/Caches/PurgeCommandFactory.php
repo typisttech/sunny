@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace TypistTech\Sunny\Caches;
 
 use TypistTech\Sunny\Posts\RelatedUrls\RelatedUrls;
+use TypistTech\Sunny\Targets\Targets;
 use WP_Post;
 
 /**
@@ -34,13 +35,22 @@ final class PurgeCommandFactory
     private $relatedUrls;
 
     /**
+     * Targets finder
+     *
+     * @var Targets
+     */
+    private $targets;
+
+    /**
      * PurgeCommandFactory constructor.
      *
      * @param RelatedUrls $relatedUrls Related urls finder.
+     * @param Targets     $targets     Targets finder.
      */
-    public function __construct(RelatedUrls $relatedUrls)
+    public function __construct(RelatedUrls $relatedUrls, Targets $targets)
     {
         $this->relatedUrls = $relatedUrls;
+        $this->targets = $targets;
     }
 
     /**
@@ -55,7 +65,8 @@ final class PurgeCommandFactory
     {
         return new PurgeCommand(
             $reason,
-            $this->relatedUrls->allByPost($post)
+            $this->relatedUrls->allByPost($post),
+            $this->targets
         );
     }
 }

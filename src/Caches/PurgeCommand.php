@@ -43,14 +43,16 @@ final class PurgeCommand
     /**
      * Command constructor.
      *
+     * @todo Refactor!
+     *
      * @param string   $reason  Reason to trigger a purge.
      * @param string[] $urls    Optional. Urls to be purged.
      * @param Targets  $targets Optional. Inject targets to every purge.
      */
-    public function __construct(string $reason, array $urls = null, Targets $targets = null)
+    public function __construct(string $reason, array $urls = null, Targets $targets)
     {
         $this->reason = $reason;
-        $this->setUrls($urls ?? [], $targets ?? new Targets);
+        $this->setUrls($urls ?? [], $targets);
     }
 
     /**
