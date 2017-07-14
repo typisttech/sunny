@@ -100,7 +100,7 @@ If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/
 
 = How can I purge extra URLs? =
 
-Post related urls are filterable by `StrategyInterface` and `sunny_post_related_urls`. See examples on [Sunny Purge Extra URLs Example](https://github.com/TypistTech/sunny-purge-extra-urls-example).
+Post related urls are filterable by `Strategies`, `sunny_targets` and `sunny_post_related_urls`. See examples on [Sunny Purge Extra URLs Example](https://github.com/TypistTech/sunny-purge-extra-urls-example).
 
 If you don't understand the example code, [hire me](https://www.typist.tech/contact/) instead.
 
