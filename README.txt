@@ -194,6 +194,7 @@ Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/m
 = 2.4.0 =
 
 * Extract targets service provider
+* Show post type name in purge initiated notices
 
 = 2.3.0 =
 
