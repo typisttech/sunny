@@ -28,8 +28,8 @@ use TypistTech\Sunny\Ads\ReviewMeNotice;
 use TypistTech\Sunny\Api\ApiAdmin;
 use TypistTech\Sunny\Debuggers\CacheStatusDebugger;
 use TypistTech\Sunny\Debuggers\DebuggerAdmin;
-use TypistTech\Sunny\Debuggers\PostRelatedUrlDebugger;
-use TypistTech\Sunny\Debuggers\TargetDebugger;
+use TypistTech\Sunny\Debuggers\PostRelatedUrlsDebugger;
+use TypistTech\Sunny\Debuggers\TargetsDebugger;
 use TypistTech\Sunny\Notifications\Notifier;
 use TypistTech\Sunny\Notifications\ServiceProvider as NotificationsServiceProvider;
 use TypistTech\Sunny\Posts\PostListener;
@@ -39,6 +39,7 @@ use TypistTech\Sunny\REST\Controllers\Posts\Caches\DeleteController as PostsCach
 use TypistTech\Sunny\REST\Controllers\Posts\RelatedUrls\IndexController as PostsRelatedUrlsIndexController;
 use TypistTech\Sunny\REST\Controllers\Targets\IndexController as TargetsIndexController;
 use TypistTech\Sunny\ServiceProvider as AppServiceProvider;
+use TypistTech\Sunny\Targets\ServiceProvider as TargetsServiceProvider;
 use TypistTech\Sunny\Vendor\League\Container\Container;
 use TypistTech\Sunny\Vendor\League\Container\ReflectionContainer;
 use TypistTech\Sunny\Vendor\TypistTech\WPContainedHook\Loader;
@@ -68,11 +69,11 @@ final class Sunny
         Newsletter::class,
         Notifier::class,
         PostListener::class,
-        PostRelatedUrlDebugger::class,
+        PostRelatedUrlsDebugger::class,
         PostsCachesDeleteController::class,
         PostsRelatedUrlsIndexController::class,
         ReviewMeNotice::class,
-        TargetDebugger::class,
+        TargetsDebugger::class,
         TargetsIndexController::class,
     ];
 
@@ -80,6 +81,7 @@ final class Sunny
         AppServiceProvider::class,
         NotificationsServiceProvider::class,
         PostsServiceProvider::class,
+        TargetsServiceProvider::class,
     ];
 
     /**

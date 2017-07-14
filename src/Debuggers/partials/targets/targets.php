@@ -26,3 +26,9 @@ use TypistTech\Sunny\Debuggers\AbstractDebugger;
 
 <div id="<?php echo esc_attr($context->getId()); ?>-result">
 </div>
+
+<p>
+    Targets are filterable by <code>Strategies</code> and <code>sunny_targets</code>. See
+    examples on <a href="https://github.com/TypistTech/sunny-purge-extra-urls-example">Sunny Purge Extra URLs
+        Example</a>.
+</p>
