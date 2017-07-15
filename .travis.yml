@@ -2,8 +2,7 @@ language: php
 
 dist: trusty
 
-# Wait until travis bug fixes
-sudo: require
+sudo: false
 
 branches:
   only:
@@ -32,6 +31,7 @@ notifications:
 php:
   - 7.0
   - 7.1
+  - nightly
 
 env:
   global:
@@ -44,12 +44,16 @@ env:
 
 matrix:
   allow_failures:
+    - php: nightly
     - env: WP_VERSION=nightly
   fast_finish: true
 
 before_install:
+  # Disable test coverage on php nightly
+  - if [[ $(phpenv version-name) == "nightly" ]]; then export WITH_COVERAGE=false; fi
+
   # Disable xDebug to speed up the build unless test coverage is needed
-  - if [[ "$WITH_COVERAGE" != "true" ]]; then phpenv config-rm xdebug.ini; fi
+  - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then phpenv config-rm xdebug.ini; fi
 
   # Install helper scripts
   - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress
