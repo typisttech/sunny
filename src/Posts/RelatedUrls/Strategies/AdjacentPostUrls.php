@@ -48,10 +48,10 @@ final class AdjacentPostUrls implements StrategyInterface
      */
     public function locate(WP_Post $post): array
     {
-        return array_values(array_filter([
+        return [
             $this->getPreviousPostLink($post, self::MAX_TRY),
             $this->getNextPostLink($post, self::MAX_TRY),
-        ]));
+        ];
     }
 
     /**

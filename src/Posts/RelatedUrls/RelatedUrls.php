@@ -69,15 +69,18 @@ final class RelatedUrls
     public function allByPost(WP_Post $post): array
     {
         $related = array_reduce($this->strategies, function (array $carry, StrategyInterface $strategy) use ($post) {
-            $carry[ $strategy->getKey() ] = $strategy->locate($post);
+            // This is equivalent to array_values(array_unique(array_filter())).
+            $uniqueNonEmptyUrls = array_keys(array_count_values(array_filter(
+                $strategy->locate($post)
+            )));
+
+            if (! empty($uniqueNonEmptyUrls)) {
+                $carry[ $strategy->getKey() ] = $uniqueNonEmptyUrls;
+            }
 
             return $carry;
         }, []);
 
-        return apply_filters(
-            'sunny_post_related_urls',
-            array_filter($related),
-            $post
-        );
+        return apply_filters('sunny_post_related_urls', $related, $post);
     }
 }
