@@ -92,7 +92,9 @@ script:
   - cd $TRAVIS_BUILD_DIR
 
 after_script:
+  - ps aux
   - tnw-stop-nginx
+  - ps aux
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
 
