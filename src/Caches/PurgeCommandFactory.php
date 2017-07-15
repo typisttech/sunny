@@ -65,8 +65,8 @@ final class PurgeCommandFactory
     {
         return new PurgeCommand(
             $reason,
-            $this->relatedUrls->allByPost($post),
-            $this->targets
+            $this->targets,
+            $this->relatedUrls->allByPost($post)
         );
     }
 }

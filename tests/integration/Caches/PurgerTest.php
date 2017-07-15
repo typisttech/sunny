@@ -67,7 +67,7 @@ class PurgerTest extends WPTestCase
             'https://www.example.com/1',
             'https://www.example.com/2',
         ];
-        $command = new PurgeCommand('Post 123 updated', $urls, $this->targets);
+        $command = new PurgeCommand('Post 123 updated', $this->targets, $urls);
 
         $this->purger->execute($command);
 
@@ -85,7 +85,7 @@ class PurgerTest extends WPTestCase
             $urls[] = 'https://www.example.com/' . $i;
         }
 
-        $command = new PurgeCommand('Post 123 updated', $urls, $this->targets);
+        $command = new PurgeCommand('Post 123 updated', $this->targets, $urls);
 
         $this->purger->execute($command);
 
