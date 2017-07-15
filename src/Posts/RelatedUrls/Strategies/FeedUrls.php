@@ -42,7 +42,7 @@ final class FeedUrls implements StrategyInterface
      */
     public function locate(WP_Post $post): array
     {
-        $related = [
+        return [
             get_bloginfo_rss('rdf_url'),
             get_bloginfo_rss('rss_url'),
             get_bloginfo_rss('rss2_url'),
@@ -50,7 +50,5 @@ final class FeedUrls implements StrategyInterface
             get_bloginfo_rss('comments_rss2_url'),
             get_post_comments_feed_link($post->ID),
         ];
-
-        return array_values(array_filter($related));
     }
 }

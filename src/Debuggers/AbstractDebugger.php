@@ -70,7 +70,7 @@ abstract class AbstractDebugger implements LoadableInterface
     /**
      * Meta box title getter.
      *
-     * @return mixed
+     * @return string
      */
     abstract protected function getMetaBoxTitle(): string;
 

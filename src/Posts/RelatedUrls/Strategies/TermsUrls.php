@@ -66,15 +66,13 @@ final class TermsUrls implements StrategyInterface
             return [];
         }
 
-        /* @codingStandardsIgnoreStart */
-        $related = array_map(function (WP_Term $term) {
+        return array_map(function (WP_Term $term) {
+            /* @codingStandardsIgnoreStart */
             $link = get_term_link($term, $this->taxonomy);
+
+            /* @codingStandardsIgnoreEnd */
 
             return is_string($link) ? $link : null;
         }, $terms);
-
-        /* @codingStandardsIgnoreEnd */
-
-        return array_values(array_filter($related));
     }
 }

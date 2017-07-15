@@ -73,8 +73,6 @@ final class IndexController implements LoadableInterface
      */
     public function registerRoutes()
     {
-        $groups = apply_filters('sunny_target_groups', []);
-
         register_rest_route(self::NAMESPACE, '/targets', [
             [
                 'callback' => [ $this, 'index' ],

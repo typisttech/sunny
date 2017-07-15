@@ -48,7 +48,7 @@ if (! defined('WPINC')) {
  *
  * @return bool
  */
-function sunny_is_requirements_meet()
+function is_requirements_meet(): bool
 {
     require_once plugin_dir_path(__FILE__) . '/lib/wpupdatephp/wp-update-php/src/WPUpdatePhp.php';
 
@@ -76,7 +76,7 @@ function run()
  *
  * @return void
  */
-function sunny_self_deactivate()
+function self_deactivate()
 {
     // Do nothing when doing ajax. Ensure admins have a chance to view PHP 5.x unsupported notice.
     if (defined('DOING_AJAX') && DOING_AJAX) {
@@ -91,8 +91,8 @@ function sunny_self_deactivate()
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  */
-if (sunny_is_requirements_meet()) {
+if (is_requirements_meet()) {
     run();
 } else {
-    add_action('admin_init', '\TypistTech\Sunny\sunny_self_deactivate');
+    add_action('admin_init', '\TypistTech\Sunny\self_deactivate');
 }

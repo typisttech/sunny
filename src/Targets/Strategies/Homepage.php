@@ -28,47 +28,32 @@ final class Homepage implements StrategyInterface
      */
     public function all(): array
     {
-        // This is equivalent to array_values(array_unique()).
-        return array_keys(
-            array_count_values(
-                $this->getTargets()
-            )
-        );
-    }
-
-    /**
-     * Targets getter.
-     *
-     * @return string[]
-     */
-    private function getTargets(): array
-    {
-        $homepage = $this->getStaticHomepageUrls();
-        $homepage[] = get_home_url();
-        $homepage[] = get_site_url();
-
-        return $homepage;
+        return [
+            $this->getStaticHomepageUrls(),
+            get_home_url(),
+            get_site_url(),
+        ];
     }
 
     /**
      * Static homepage urls getter.
      *
-     * @return string[]
+     * @return string|null
      */
-    private function getStaticHomepageUrls(): array
+    private function getStaticHomepageUrls()
     {
         if ('page' !== get_option('show_on_front')) {
-            return [];
+            return null;
         }
 
         $homepageId = (int) get_option('page_for_posts');
         $permalink = get_permalink($homepageId);
 
-        if (false === $permalink) {
-            return [];
+        if (! is_string($permalink)) {
+            return null;
         }
 
-        return [ $permalink ];
+        return $permalink;
     }
 
     /**

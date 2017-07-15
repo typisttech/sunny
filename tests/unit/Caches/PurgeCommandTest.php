@@ -30,7 +30,7 @@ class PurgeCommandTest extends Unit
      */
     public function testGetReason()
     {
-        $event = new PurgeCommand('Post 123 updated', [ 'https://www.example.com/1' ], $this->targets);
+        $event = new PurgeCommand('Post 123 updated', $this->targets, [ 'https://www.example.com/1' ]);
 
         $actual = $event->getReason();
 
@@ -42,7 +42,7 @@ class PurgeCommandTest extends Unit
      */
     public function testGetSingleUrl()
     {
-        $event = new PurgeCommand('Post 123 updated', [ 'https://www.example.com/1' ], $this->targets);
+        $event = new PurgeCommand('Post 123 updated', $this->targets, [ 'https://www.example.com/1' ]);
 
         $actual = $event->getUrls();
 
@@ -61,7 +61,7 @@ class PurgeCommandTest extends Unit
             ],
             'https://www.example.com/3',
         ];
-        $event = new PurgeCommand('Post 123 updated', $urls, $this->targets);
+        $event = new PurgeCommand('Post 123 updated', $this->targets, $urls);
 
         $actual = $event->getUrls();
 
@@ -80,7 +80,7 @@ class PurgeCommandTest extends Unit
     public function testNoUrlGiven()
     {
         $this->tester->expectException(new InvalidArgumentException('You must provide at least one url'), function () {
-            new PurgeCommand('Post 123 updated', [], $this->targets);
+            new PurgeCommand('Post 123 updated', $this->targets, []);
         });
     }
 
