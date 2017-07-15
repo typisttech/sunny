@@ -56,7 +56,7 @@ before_install:
   - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then phpenv config-rm xdebug.ini; fi
 
   # Install helper scripts
-  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress
+  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress:dev-add-tnw-stop-nginx
   - export PATH=$HOME/.composer/vendor/bin:$PATH
   - tnw-install-nginx
   - tnw-install-wordpress
@@ -92,7 +92,7 @@ script:
   - cd $TRAVIS_BUILD_DIR
 
 after_script:
-  - nginx -c "$TNW_NGINX_DIR/nginx.conf" -s stop
+  - tnw-stop-nginx
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
 
