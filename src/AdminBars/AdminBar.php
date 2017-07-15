@@ -49,7 +49,7 @@ final class AdminBar implements LoadableInterface
      */
     public static function getHooks(): array
     {
-        return [ new Filter('show_admin_bar', __CLASS__, 'run') ];
+        return [ new Filter('show_admin_bar', __CLASS__, 'shouldShow') ];
     }
 
     /**
@@ -59,12 +59,10 @@ final class AdminBar implements LoadableInterface
      *
      * @return bool
      */
-    public function run(bool $isShow): bool
+    public function shouldShow(bool $isShow): bool
     {
-        if ($this->optionStore->getBoolean('sunny_admin_bar_disable_hide')) {
-            return $isShow;
-        }
-
-        return false;
+        return $this->optionStore->getBoolean('sunny_admin_bar_disable_hide') ?
+            $isShow :
+            false;
     }
 }
