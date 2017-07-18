@@ -113,7 +113,13 @@ Note: You need both `composer ` and `yarn` installed.
 
 ## Extending Sunny
 
-Post related urls are filterable by `StrategyInterface` and `sunny_post_related_urls`. See examples on [Sunny Purge Extra URLs Example](https://github.com/TypistTech/sunny-purge-extra-urls-example).
+`Targets` and `Post related urls` are filterable by `StrategyInterface`, `sunny_targets` and `sunny_post_related_urls`. See examples on [Sunny Purge Extra URLs Example](https://github.com/TypistTech/sunny-purge-extra-urls-example).
+
+Under the hood, Sunny uses [WP Contained Hook](https://github.com/TypistTech/wp-contained-hook) and [league/container](https://container.thephpleague.com/).  Sunny exposes its `container` via WordPress actions `sunny_register` and `sunny_boot` in [Laravel](https://laravel.com/docs/master/providers) style.
+
+Within the `sunny_register` action, you should only bind things into the container. You should never attempt to register any hooks, actions, filters or any other piece of functionality within `sunny_register` action. Otherwise, you may accidentally use an instance which has not been loaded yet.
+
+The `sunny_boot` action is called after this plugin and all its addons have been registered, meaning you have access to all instance that have been registered by this plugin and its addons. 
 
 
 

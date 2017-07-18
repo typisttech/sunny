@@ -21,7 +21,7 @@ Automatically purge CloudFlare cache, including cache everything rules.
 * Support custom post type
 * Hide admin bar from public-facing pages
 * WP REST API support
-* Purge extra URLs by extending `Sunny`
+* [Extendable Laravel-like container](https://github.com/Typisttech/sunny#extending-sunny)
 
 = Debuggers =
 
@@ -60,6 +60,8 @@ If you have written an article about `Sunny`, do [let me know](https://www.typis
 = For Developers =
 
 Sunny is open source and hosted on [GitHub](https://github.com/TypistTech/sunny). Feel free to make [pull requests](https://github.com/Typisttech/sunny/pulls).
+
+You can also tweak `Sunny` to work for you by [extending its Laravel-like container](https://github.com/Typisttech/sunny#extending-sunny).
 
 = Who make this plugin? =
 
@@ -103,6 +105,10 @@ If you know what `GitHub` is, use [GitHub issues](https://github.com/Typisttech/
 Post related urls are filterable by `Strategies`, `sunny_targets` and `sunny_post_related_urls`. See examples on [Sunny Purge Extra URLs Example](https://github.com/TypistTech/sunny-purge-extra-urls-example).
 
 If you don't understand the example code, [hire me](https://www.typist.tech/contact/) instead.
+
+= How can I tweak Sunny to work on my special needs?=
+
+Extend its [Laravel-like container](https://github.com/Typisttech/sunny#extending-sunny).
 
 = What version of PHP do I need? =
 
