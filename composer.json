@@ -43,7 +43,7 @@
         "lucatume/wp-browser": "^1.21.3",
         "neronmoon/scriptsdev": "^0.1.1",
         "site5/phantoman": "^1.1",
-        "wp-coding-standards/wpcs": "^0.11.0"
+        "wp-coding-standards/wpcs": "^0.12.0"
     },
     "autoload": {
         "classmap": [
