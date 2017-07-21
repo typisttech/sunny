@@ -51,12 +51,16 @@ class StatusTest extends WPTestCase
      */
     public function testKnownStatus(string $status, string $statusMessage)
     {
-        Test::func(__NAMESPACE__, 'wp_safe_remote_get', [
-            'headers' => [
-                'cf-ray' => 'abc123',
-                'cf-cache-status' => $status,
-            ],
-        ]);
+        Test::func(
+            __NAMESPACE__,
+            'wp_safe_remote_get',
+            [
+                'headers' => [
+                    'cf-ray' => 'abc123',
+                    'cf-cache-status' => $status,
+                ],
+            ]
+        );
 
         $subject = new Status('https://example.com');
 
@@ -78,9 +82,13 @@ class StatusTest extends WPTestCase
      */
     public function testNotCloudflare()
     {
-        Test::func(__NAMESPACE__, 'wp_safe_remote_get', [
-            'headers' => [],
-        ]);
+        Test::func(
+            __NAMESPACE__,
+            'wp_safe_remote_get',
+            [
+                'headers' => [],
+            ]
+        );
 
         $status = new Status('https://example.com');
 
@@ -102,12 +110,16 @@ class StatusTest extends WPTestCase
      */
     public function testUnknownStatus()
     {
-        Test::func(__NAMESPACE__, 'wp_safe_remote_get', [
-            'headers' => [
-                'cf-ray' => 'abc123',
-                'cf-cache-status' => 'weird',
-            ],
-        ]);
+        Test::func(
+            __NAMESPACE__,
+            'wp_safe_remote_get',
+            [
+                'headers' => [
+                    'cf-ray' => 'abc123',
+                    'cf-cache-status' => 'weird',
+                ],
+            ]
+        );
 
         $status = new Status('https://example.com');
 

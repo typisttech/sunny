@@ -47,25 +47,29 @@ final class ShowController implements LoadableInterface
      */
     public function registerRoutes()
     {
-        register_rest_route(self::NAMESPACE, '/caches/status', [
+        register_rest_route(
+            self::NAMESPACE,
+            '/caches/status',
             [
-                'methods' => WP_REST_Server::READABLE,
-                'callback' => [ $this, 'show' ],
-                'permission_callback' => function () {
-                    return current_user_can('manage_options');
-                },
-                'args' => [
-                    'url' => [
-                        'description' => __('Resource url to check.', 'sunny'),
-                        'type' => 'string',
-                        'required' => true,
-                        'sanitize_callback' => function ($param) {
-                            return esc_url_raw($param);
-                        },
+                [
+                    'methods' => WP_REST_Server::READABLE,
+                    'callback' => [ $this, 'show' ],
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                    'args' => [
+                        'url' => [
+                            'description' => __('Resource url to check.', 'sunny'),
+                            'type' => 'string',
+                            'required' => true,
+                            'sanitize_callback' => function ($param) {
+                                return esc_url_raw($param);
+                            },
+                        ],
                     ],
                 ],
-            ],
-        ]);
+            ]
+        );
     }
 
     /**
@@ -106,10 +110,12 @@ final class ShowController implements LoadableInterface
             $error = new WP_Error('sunny_unknown', 'Unknown error');
         }
 
-        $error->add_data([
-            'status' => 422,
-            'url' => $url,
-        ]);
+        $error->add_data(
+            [
+                'status' => 422,
+                'url' => $url,
+            ]
+        );
 
         return $error;
     }

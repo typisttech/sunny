@@ -73,14 +73,18 @@ final class IndexController implements LoadableInterface
      */
     public function registerRoutes()
     {
-        register_rest_route(self::NAMESPACE, '/targets', [
+        register_rest_route(
+            self::NAMESPACE,
+            '/targets',
             [
-                'callback' => [ $this, 'index' ],
-                'methods' => WP_REST_Server::READABLE,
-                'permission_callback' => function () {
-                    return current_user_can('manage_options');
-                },
-            ],
-        ]);
+                [
+                    'callback' => [ $this, 'index' ],
+                    'methods' => WP_REST_Server::READABLE,
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                ],
+            ]
+        );
     }
 }

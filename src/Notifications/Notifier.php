@@ -46,13 +46,22 @@ final class Notifier implements LoadableInterface
             $maybeNotices = [];
         }
 
-        $this->notices = array_filter($maybeNotices, function ($notice) {
-            return $notice instanceof Notice;
-        });
+        $this->notices = array_filter(
+            $maybeNotices,
+            function ($notice) {
+                return $notice instanceof Notice;
+            }
+        );
 
-        update_option(self::OPTION_KEY, array_filter($this->notices, function (Notice $notice) {
-            return $notice->isSticky();
-        }));
+        update_option(
+            self::OPTION_KEY,
+            array_filter(
+                $this->notices,
+                function (Notice $notice) {
+                    return $notice->isSticky();
+                }
+            )
+        );
     }
 
     /**
@@ -76,17 +85,26 @@ final class Notifier implements LoadableInterface
      */
     public function dismissStickyNotice()
     {
-        $stickyNotices = array_filter($this->notices, function (Notice $notice) {
-            return $notice->isSticky();
-        });
+        $stickyNotices = array_filter(
+            $this->notices,
+            function (Notice $notice) {
+                return $notice->isSticky();
+            }
+        );
 
         $dismissed = sanitize_key(
             filter_input(INPUT_POST, 'handle', FILTER_SANITIZE_STRING)
         );
 
-        update_option(self::OPTION_KEY, array_filter($stickyNotices, function (Notice $notice) use ($dismissed) {
-            return $notice->getHandle() !== $dismissed;
-        }));
+        update_option(
+            self::OPTION_KEY,
+            array_filter(
+                $stickyNotices,
+                function (Notice $notice) use ($dismissed) {
+                    return $notice->getHandle() !== $dismissed;
+                }
+            )
+        );
 
         wp_die();
     }

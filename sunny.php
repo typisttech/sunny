@@ -67,7 +67,7 @@ function run()
 {
     require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 
-    $plugin = new Sunny;
+    $plugin = new Sunny();
     $plugin->run();
 }
 

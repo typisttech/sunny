@@ -25,6 +25,27 @@ class RelatedUrlsIndexCest
         );
     }
 
+    private function assertGetContains(RestapiTester $I, string $group, string ...$urls)
+    {
+        $I->setAdminAuth();
+
+        $I->sendGET('/sunny/v2/posts/' . self::POST_ID . '/related-urls');
+
+        $siteUrl = $I->grabSiteUrl();
+        $expected = array_map(
+            function (string $url) use ($siteUrl) {
+                return $siteUrl . $url;
+            },
+            $urls
+        );
+
+        $I->seeResponseContainsJson(
+            [
+                $group => $expected,
+            ]
+        );
+    }
+
     public function testGetContainsAuthor(RestapiTester $I)
     {
         $this->assertGetContains(
@@ -33,22 +54,6 @@ class RelatedUrlsIndexCest
             '/author/manovotny/',
             '/author/manovotny/feed/'
         );
-    }
-
-    private function assertGetContains(RestapiTester $I, string $group, string ...$urls)
-    {
-        $I->setAdminAuth();
-
-        $I->sendGET('/sunny/v2/posts/' . self::POST_ID . '/related-urls');
-
-        $siteUrl = $I->grabSiteUrl();
-        $expected = array_map(function (string $url) use ($siteUrl) {
-            return $siteUrl . $url;
-        }, $urls);
-
-        $I->seeResponseContainsJson([
-            $group => $expected,
-        ]);
     }
 
     public function testGetContainsCategory(RestapiTester $I)

@@ -83,7 +83,7 @@ abstract class AbstractDelayedNotice implements LoadableInterface
         if (! $lastEnqueue instanceof DateTime) {
             update_option(
                 static::TIMESTAMP_OPTION_KEY,
-                new DateTime
+                new DateTime()
             );
 
             return;
@@ -102,7 +102,7 @@ abstract class AbstractDelayedNotice implements LoadableInterface
 
         update_option(
             static::TIMESTAMP_OPTION_KEY,
-            new DateTime
+            new DateTime()
         );
     }
 

@@ -109,28 +109,32 @@ final class DeleteController implements LoadableInterface
      */
     public function registerRoutes()
     {
-        register_rest_route(self::NAMESPACE, '/posts/(?P<id>[\d]+)/caches', [
+        register_rest_route(
+            self::NAMESPACE,
+            '/posts/(?P<id>[\d]+)/caches',
             [
-                'methods' => WP_REST_Server::DELETABLE,
-                'callback' => [ $this, 'delete' ],
-                'permission_callback' => function () {
-                    return current_user_can('manage_options');
-                },
-                'args' => [
-                    'id' => [
-                        'description' => __('Unique identifier for the post.', 'sunny'),
-                        'type' => 'integer',
-                        'required' => true,
-                        'sanitize_callback' => 'absint',
-                    ],
-                    'reason' => [
-                        'description' => __('Reason for requesting this purge.', 'sunny'),
-                        'type' => 'string',
-                        'required' => true,
-                        'sanitize_callback' => 'sanitize_text_field',
+                [
+                    'methods' => WP_REST_Server::DELETABLE,
+                    'callback' => [ $this, 'delete' ],
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                    'args' => [
+                        'id' => [
+                            'description' => __('Unique identifier for the post.', 'sunny'),
+                            'type' => 'integer',
+                            'required' => true,
+                            'sanitize_callback' => 'absint',
+                        ],
+                        'reason' => [
+                            'description' => __('Reason for requesting this purge.', 'sunny'),
+                            'type' => 'string',
+                            'required' => true,
+                            'sanitize_callback' => 'sanitize_text_field',
+                        ],
                     ],
                 ],
-            ],
-        ]);
+            ]
+        );
     }
 }

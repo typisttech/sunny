@@ -40,13 +40,15 @@ class RestapiTester extends Actor
     private function assertForbidden()
     {
         $this->seeResponseIsJson();
-        $this->seeResponseContainsJson([
-            'code' => 'rest_forbidden',
-            'message' => 'Sorry, you are not allowed to do that.',
-            'data' => [
-                'status' => 403,
-            ],
-        ]);
+        $this->seeResponseContainsJson(
+            [
+                'code' => 'rest_forbidden',
+                'message' => 'Sorry, you are not allowed to do that.',
+                'data' => [
+                    'status' => 403,
+                ],
+            ]
+        );
         $this->seeResponseCodeIs(403);
     }
 

@@ -80,9 +80,12 @@ final class Announcement implements LoadableInterface
      */
     public function run()
     {
-        $hooks = array_map(function (string $menuSlug) {
-            return $menuSlug . '_after_postbox_containers';
-        }, $this->admin->getSnakecasedMenuSlugs());
+        $hooks = array_map(
+            function (string $menuSlug) {
+                return $menuSlug . '_after_postbox_containers';
+            },
+            $this->admin->getSnakecasedMenuSlugs()
+        );
 
         foreach ($hooks as $hook) {
             add_action($hook, [ $this, 'render' ]);

@@ -62,16 +62,21 @@ final class I18nPromoter implements LoadableInterface
      */
     public function run()
     {
-        $hooks = array_map(function (string $menuSlug) {
-            return $menuSlug . '_after_postbox_containers';
-        }, $this->admin->getSnakecasedMenuSlugs());
+        $hooks = array_map(
+            function (string $menuSlug) {
+                return $menuSlug . '_after_postbox_containers';
+            },
+            $this->admin->getSnakecasedMenuSlugs()
+        );
 
         foreach ($hooks as $hook) {
-            new Yoast_I18n_WordPressOrg_v2([
-                'textdomain' => 'sunny',
-                'plugin_name' => 'Sunny',
-                'hook' => $hook,
-            ]);
+            new Yoast_I18n_WordPressOrg_v2(
+                [
+                    'textdomain' => 'sunny',
+                    'plugin_name' => 'Sunny',
+                    'hook' => $hook,
+                ]
+            );
         }
     }
 }

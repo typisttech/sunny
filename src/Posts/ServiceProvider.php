@@ -54,22 +54,28 @@ final class ServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->share('related_urls_strategies', function () {
-            return [
-                new Culprit,
-                new AdjacentPostUrls,
-                new TermsUrls('category'),
-                new TermsUrls('post_tag'),
-                new AuthorUrls,
-                new PostTypeArchiveUrls,
-                new FeedUrls,
-            ];
-        });
+        $this->getContainer()->share(
+            'related_urls_strategies',
+            function () {
+                return [
+                    new Culprit(),
+                    new AdjacentPostUrls(),
+                    new TermsUrls('category'),
+                    new TermsUrls('post_tag'),
+                    new AuthorUrls(),
+                    new PostTypeArchiveUrls(),
+                    new FeedUrls(),
+                ];
+            }
+        );
 
-        $this->getContainer()->share(RelatedUrls::class, function () {
-            return new  RelatedUrls(
-                $this->getContainer()->get('related_urls_strategies')
-            );
-        });
+        $this->getContainer()->share(
+            RelatedUrls::class,
+            function () {
+                return new  RelatedUrls(
+                    $this->getContainer()->get('related_urls_strategies')
+                );
+            }
+        );
     }
 }

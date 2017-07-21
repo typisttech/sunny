@@ -33,7 +33,7 @@ class CacheTest extends WPTestCase
     {
         parent::setUp();
         $this->cloudflareCache = Test::double(
-            new CloudflareCache,
+            new CloudflareCache(),
             [
                 'purgeFiles' => [ true ],
             ]

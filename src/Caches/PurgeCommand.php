@@ -67,10 +67,12 @@ final class PurgeCommand
      */
     private function setUrls(array $urls, Targets $targets)
     {
-        $this->urls = $this->flattenIntoStringArray([
-            $urls,
-            $targets->all(),
-        ]);
+        $this->urls = $this->flattenIntoStringArray(
+            [
+                $urls,
+                $targets->all(),
+            ]
+        );
 
         if (count($this->urls) < 1) {
             throw new InvalidArgumentException('You must provide at least one url');

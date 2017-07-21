@@ -79,9 +79,12 @@ class PurgeCommandTest extends Unit
      */
     public function testNoUrlGiven()
     {
-        $this->tester->expectException(new InvalidArgumentException('You must provide at least one url'), function () {
-            new PurgeCommand('Post 123 updated', $this->targets, []);
-        });
+        $this->tester->expectException(
+            new InvalidArgumentException('You must provide at least one url'),
+            function () {
+                new PurgeCommand('Post 123 updated', $this->targets, []);
+            }
+        );
     }
 
     protected function _before()
