@@ -21,12 +21,14 @@ class TargetsIndexCest
 
         $siteUrl = $I->grabSiteUrl();
 
-        $I->seeResponseContainsJson([
-            'homepage' => [
-                $siteUrl,
-                $siteUrl . '/blog/',
-            ],
-        ]);
+        $I->seeResponseContainsJson(
+            [
+                'homepage' => [
+                    $siteUrl,
+                    $siteUrl . '/blog/',
+                ],
+            ]
+        );
     }
 
     public function testGetReturnsJson(RestapiTester $I)

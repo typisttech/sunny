@@ -104,8 +104,8 @@ final class Sunny
      */
     public function __construct()
     {
-        $this->container = new Container;
-        $this->container->delegate(new ReflectionContainer);
+        $this->container = new Container();
+        $this->container->delegate(new ReflectionContainer());
 
         $this->loader = new Loader($this->container);
     }

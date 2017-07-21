@@ -48,16 +48,22 @@ final class ServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->share('targets_strategies', function () {
-            return [
-                new Homepage,
-            ];
-        });
+        $this->getContainer()->share(
+            'targets_strategies',
+            function () {
+                return [
+                    new Homepage(),
+                ];
+            }
+        );
 
-        $this->getContainer()->share(Targets::class, function () {
-            return new Targets(
-                $this->getContainer()->get('targets_strategies')
-            );
-        });
+        $this->getContainer()->share(
+            Targets::class,
+            function () {
+                return new Targets(
+                    $this->getContainer()->get('targets_strategies')
+                );
+            }
+        );
     }
 }

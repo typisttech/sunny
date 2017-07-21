@@ -90,10 +90,14 @@ abstract class AbstractDebugger implements LoadableInterface
             Sunny::VERSION
         );
 
-        wp_localize_script($this->getId(), $this->getId(), [
-            'route' => $this->getJsRoute(),
-            'nonce' => wp_create_nonce('wp_rest'),
-        ]);
+        wp_localize_script(
+            $this->getId(),
+            $this->getId(),
+            [
+                'route' => $this->getJsRoute(),
+                'nonce' => wp_create_nonce('wp_rest'),
+            ]
+        );
 
         if (DebuggerAdmin::HOOK_SUFFIX !== $hook) {
             return;

@@ -97,22 +97,26 @@ final class IndexController implements LoadableInterface
      */
     public function registerRoutes()
     {
-        register_rest_route(self::NAMESPACE, '/posts/(?P<id>[\d]+)/related-urls', [
+        register_rest_route(
+            self::NAMESPACE,
+            '/posts/(?P<id>[\d]+)/related-urls',
             [
-                'methods' => WP_REST_Server::READABLE,
-                'callback' => [ $this, 'index' ],
-                'permission_callback' => function () {
-                    return current_user_can('manage_options');
-                },
-                'args' => [
-                    'id' => [
-                        'description' => __('Unique identifier for the post.', 'sunny'),
-                        'type' => 'integer',
-                        'required' => true,
-                        'sanitize_callback' => 'absint',
+                [
+                    'methods' => WP_REST_Server::READABLE,
+                    'callback' => [ $this, 'index' ],
+                    'permission_callback' => function () {
+                        return current_user_can('manage_options');
+                    },
+                    'args' => [
+                        'id' => [
+                            'description' => __('Unique identifier for the post.', 'sunny'),
+                            'type' => 'integer',
+                            'required' => true,
+                            'sanitize_callback' => 'absint',
+                        ],
                     ],
                 ],
-            ],
-        ]);
+            ]
+        );
     }
 }

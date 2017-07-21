@@ -76,19 +76,25 @@ class I18nPromoterTest extends WPTestCase
         $this->i18nPromoter->run();
 
         $yoastI18nWordPressOrgV2->verifyInvokedMultipleTimes('__construct', 2);
-        $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
+        $yoastI18nWordPressOrgV2->verifyInvokedOnce(
+            '__construct',
             [
-                'textdomain' => 'sunny',
-                'plugin_name' => 'Sunny',
-                'hook' => 'sunny_page_one_after_postbox_containers',
-            ],
-        ]);
-        $yoastI18nWordPressOrgV2->verifyInvokedOnce('__construct', [
+                [
+                    'textdomain' => 'sunny',
+                    'plugin_name' => 'Sunny',
+                    'hook' => 'sunny_page_one_after_postbox_containers',
+                ],
+            ]
+        );
+        $yoastI18nWordPressOrgV2->verifyInvokedOnce(
+            '__construct',
             [
-                'textdomain' => 'sunny',
-                'plugin_name' => 'Sunny',
-                'hook' => 'sunny_page_two_after_postbox_containers',
-            ],
-        ]);
+                [
+                    'textdomain' => 'sunny',
+                    'plugin_name' => 'Sunny',
+                    'hook' => 'sunny_page_two_after_postbox_containers',
+                ],
+            ]
+        );
     }
 }

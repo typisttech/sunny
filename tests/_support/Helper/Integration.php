@@ -44,7 +44,7 @@ class Integration extends Module
     public function getContainer(): Container
     {
         if (null === $this->container) {
-            $sunny = new Sunny;
+            $sunny = new Sunny();
             $sunny->run();
 
             $this->container = $sunny->getContainer();

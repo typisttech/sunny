@@ -29,7 +29,7 @@ class OptionStoreTest extends WPTestCase
         update_option('sunny_cloudflare_api_key', 'passkey123');
         update_option('sunny_cloudflare_zone_id', 'two46o1');
 
-        $this->optionStore = new OptionStore;
+        $this->optionStore = new OptionStore();
     }
 
     /**

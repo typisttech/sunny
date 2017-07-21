@@ -51,7 +51,7 @@ final class Cache
     public function __construct(OptionStore $optionStore, CloudflareCache $client = null)
     {
         $this->optionStore = $optionStore;
-        $this->client = $client ?? new CloudflareCache;
+        $this->client = $client ?? new CloudflareCache();
     }
 
     /**

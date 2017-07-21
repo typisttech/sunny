@@ -47,7 +47,7 @@ final class ServiceProvider extends AbstractServiceProvider
      */
     public function register()
     {
-        $optionStore = new OptionStore;
+        $optionStore = new OptionStore();
         $admin = new Admin($optionStore);
 
         $this->container->share(OptionStore::class, $optionStore);

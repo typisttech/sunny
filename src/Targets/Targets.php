@@ -61,18 +61,26 @@ final class Targets
      */
     public function all(): array
     {
-        $targets = array_reduce($this->strategies, function (array $carry, StrategyInterface $strategy) {
-            // This is equivalent to array_values(array_unique(array_filter())).
-            $uniqueNonEmptyUrls = array_keys(array_count_values(array_filter(
-                $strategy->all()
-            )));
+        $targets = array_reduce(
+            $this->strategies,
+            function (array $carry, StrategyInterface $strategy) {
+                // This is equivalent to array_values(array_unique(array_filter())).
+                $uniqueNonEmptyUrls = array_keys(
+                    array_count_values(
+                        array_filter(
+                            $strategy->all()
+                        )
+                    )
+                );
 
-            if (! empty($uniqueNonEmptyUrls)) {
-                $carry[ $strategy->getKey() ] = $uniqueNonEmptyUrls;
-            }
+                if (! empty($uniqueNonEmptyUrls)) {
+                    $carry[ $strategy->getKey() ] = $uniqueNonEmptyUrls;
+                }
 
-            return $carry;
-        }, []);
+                return $carry;
+            },
+            []
+        );
 
         return apply_filters(
             'sunny_targets',
