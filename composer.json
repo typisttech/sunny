@@ -39,6 +39,7 @@
     },
     "require-dev": {
         "codeception/aspect-mock": "^2.0",
+        "doctrine/annotations": "<1.5.0",
         "jakoch/phantomjs-installer": "^2.1",
         "lucatume/wp-browser": "^1.21.3",
         "neronmoon/scriptsdev": "^0.1.1",

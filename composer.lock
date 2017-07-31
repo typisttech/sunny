@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5528b2757cd5141f6d16907f9d6157c",
+    "content-hash": "0b88b8e464cd75ce49804ab14e55e788",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -1094,21 +1094,21 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.5.0",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "5beebb01b025c94e93686b7a0ed3edae81fe3e7f"
+                "reference": "54cacc9b81758b14e3ce750f205a393d52339e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/5beebb01b025c94e93686b7a0ed3edae81fe3e7f",
-                "reference": "5beebb01b025c94e93686b7a0ed3edae81fe3e7f",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/54cacc9b81758b14e3ce750f205a393d52339e97",
+                "reference": "54cacc9b81758b14e3ce750f205a393d52339e97",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": "^7.1"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
@@ -1117,7 +1117,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -1158,7 +1158,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2017-07-22T10:58:02+00:00"
+            "time": "2017-02-24T16:22:25+00:00"
         },
         {
             "name": "doctrine/inflector",
