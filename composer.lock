@@ -507,16 +507,16 @@
     "packages-dev": [
         {
             "name": "antecedent/patchwork",
-            "version": "2.0.7",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antecedent/patchwork.git",
-                "reference": "d8e772ee90390960c23c6c64e09f1279d8a7b0df"
+                "reference": "5d3556e0586df8c0a237c9b8f541ffe0731924c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/d8e772ee90390960c23c6c64e09f1279d8a7b0df",
-                "reference": "d8e772ee90390960c23c6c64e09f1279d8a7b0df",
+                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/5d3556e0586df8c0a237c9b8f541ffe0731924c2",
+                "reference": "5d3556e0586df8c0a237c9b8f541ffe0731924c2",
                 "shasum": ""
             },
             "require": {
@@ -544,7 +544,7 @@
                 "runkit",
                 "testing"
             ],
-            "time": "2017-07-11T07:22:21+00:00"
+            "time": "2017-07-27T17:13:25+00:00"
         },
         {
             "name": "bacon/bacon-string-utils",
@@ -1094,21 +1094,21 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.4.0",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "54cacc9b81758b14e3ce750f205a393d52339e97"
+                "reference": "5beebb01b025c94e93686b7a0ed3edae81fe3e7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/54cacc9b81758b14e3ce750f205a393d52339e97",
-                "reference": "54cacc9b81758b14e3ce750f205a393d52339e97",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/5beebb01b025c94e93686b7a0ed3edae81fe3e7f",
+                "reference": "5beebb01b025c94e93686b7a0ed3edae81fe3e7f",
                 "shasum": ""
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": "^5.6 || ^7.0"
+                "php": "^7.1"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
@@ -1117,7 +1117,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.5.x-dev"
                 }
             },
             "autoload": {
@@ -1158,37 +1158,37 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2017-02-24T16:22:25+00:00"
+            "time": "2017-07-22T10:58:02+00:00"
         },
         {
             "name": "doctrine/inflector",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae"
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/90b2128806bfde671b6952ab8bea493942c1fdae",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e11d84c6e018beedd929cff5220969a3c6d1d462",
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": "^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "^6.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Inflector\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1225,36 +1225,36 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06T14:35:42+00:00"
+            "time": "2017-07-22T12:18:28+00:00"
         },
         {
             "name": "doctrine/instantiator",
-            "version": "1.0.5",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
+                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
-                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
+                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3,<8.0-DEV"
+                "php": "^7.1"
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-                "phpunit/phpunit": "~4.0",
-                "squizlabs/php_codesniffer": "~2.0"
+                "phpunit/phpunit": "^6.2.3",
+                "squizlabs/php_codesniffer": "^3.0.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -1279,7 +1279,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14T21:17:01+00:00"
+            "time": "2017-07-22T11:58:36+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -2041,16 +2041,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "1.21.10",
+            "version": "1.21.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "6643bbb185d509029d8f9be19f904da92b17391b"
+                "reference": "0052fea84bef02773a2d806cf3e2eee41628df36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/6643bbb185d509029d8f9be19f904da92b17391b",
-                "reference": "6643bbb185d509029d8f9be19f904da92b17391b",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/0052fea84bef02773a2d806cf3e2eee41628df36",
+                "reference": "0052fea84bef02773a2d806cf3e2eee41628df36",
                 "shasum": ""
             },
             "require": {
@@ -2062,6 +2062,7 @@
                 "wp-cli/wp-cli": "^1.1"
             },
             "require-dev": {
+                "eventviva/php-image-resize": "^1.6",
                 "mikey179/vfsstream": "^1.6",
                 "ofbeaton/console-tester": "^1.1",
                 "site5/phantoman": "^1.1",
@@ -2098,7 +2099,7 @@
                 "codeception",
                 "wordpress"
             ],
-            "time": "2017-07-14T15:55:34+00:00"
+            "time": "2017-07-28T16:04:37+00:00"
         },
         {
             "name": "lucatume/wp-browser-commons",
@@ -2380,16 +2381,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.0.6",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "0808939f81c1347a3c8a82a5925385a08074b0f1"
+                "reference": "4d4896e553f2094e657fe493506dc37c509d4e2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/0808939f81c1347a3c8a82a5925385a08074b0f1",
-                "reference": "0808939f81c1347a3c8a82a5925385a08074b0f1",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4d4896e553f2094e657fe493506dc37c509d4e2b",
+                "reference": "4d4896e553f2094e657fe493506dc37c509d4e2b",
                 "shasum": ""
             },
             "require": {
@@ -2427,7 +2428,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-06-28T20:53:48+00:00"
+            "time": "2017-07-28T14:45:09+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -5146,16 +5147,16 @@
         },
         {
             "name": "wp-cli/autoload-splitter",
-            "version": "v0.1.3",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/autoload-splitter.git",
-                "reference": "446f73de57ab4e7bf38a4ba2779cd3630905185c"
+                "reference": "ad9e4c67b64002b7a60368998ea536b861eb2b53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/autoload-splitter/zipball/446f73de57ab4e7bf38a4ba2779cd3630905185c",
-                "reference": "446f73de57ab4e7bf38a4ba2779cd3630905185c",
+                "url": "https://api.github.com/repos/wp-cli/autoload-splitter/zipball/ad9e4c67b64002b7a60368998ea536b861eb2b53",
+                "reference": "ad9e4c67b64002b7a60368998ea536b861eb2b53",
                 "shasum": ""
             },
             "require": {
@@ -5183,7 +5184,7 @@
             ],
             "description": "Composer plugin for splitting a generated autoloader into two distinct parts.",
             "homepage": "https://wp-cli.org",
-            "time": "2017-05-03T06:21:26+00:00"
+            "time": "2017-07-24T13:19:52+00:00"
         },
         {
             "name": "wp-cli/cache-command",
@@ -6046,16 +6047,16 @@
         },
         {
             "name": "wp-cli/php-cli-tools",
-            "version": "v0.11.3",
+            "version": "v0.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/php-cli-tools.git",
-                "reference": "09075e5a5ba804df43e148f887cbf4466bebfa2c"
+                "reference": "2d2b582d79c935f790c4e49e74906859025ffeb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/php-cli-tools/zipball/09075e5a5ba804df43e148f887cbf4466bebfa2c",
-                "reference": "09075e5a5ba804df43e148f887cbf4466bebfa2c",
+                "url": "https://api.github.com/repos/wp-cli/php-cli-tools/zipball/2d2b582d79c935f790c4e49e74906859025ffeb3",
+                "reference": "2d2b582d79c935f790c4e49e74906859025ffeb3",
                 "shasum": ""
             },
             "require": {
@@ -6092,7 +6093,7 @@
                 "cli",
                 "console"
             ],
-            "time": "2017-06-08T12:06:09+00:00"
+            "time": "2017-07-25T21:46:43+00:00"
         },
         {
             "name": "wp-cli/rewrite-command",
