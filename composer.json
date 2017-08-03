@@ -45,7 +45,7 @@
         "lucatume/wp-browser": "^1.21.3",
         "neronmoon/scriptsdev": "^0.1.1",
         "site5/phantoman": "^1.1",
-        "wp-coding-standards/wpcs": "^0.12.0"
+        "wp-coding-standards/wpcs": "^0.13.0"
     },
     "autoload": {
         "classmap": [
@@ -72,8 +72,8 @@
             "yarn doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
-        "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
-        "fix-style": "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
+        "check-style": "phpcs --standard=ruleset.xml --colors -p -s",
+        "fix-style": "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1",
         "install-dev-extra": [
             "PhantomInstaller\\Installer::installPhantomJS",
             "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
