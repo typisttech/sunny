@@ -2,7 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/typisttech/wp-better-settings).
+We accept contributions via Pull Requests on [Github](https://github.com/typisttech/sunny).
 
 
 ## Pull Requests
