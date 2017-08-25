@@ -1,10 +1,26 @@
 # Change Log
 
+## [2.4.1](https://github.com/TypistTech/sunny/tree/2.4.1) (2017-08-25)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.4.0...2.4.1)
+
+**Merged pull requests:**
+
+- Add required php version to README.txt [\#119](https://github.com/TypistTech/sunny/pull/119) ([TangRufus](https://github.com/TangRufus))
+- Rename: CONDUCT.md --\> CODE\_OF\_CONDUCT.md [\#117](https://github.com/TypistTech/sunny/pull/117) ([TangRufus](https://github.com/TangRufus))
+- Fix incorrect link [\#116](https://github.com/TypistTech/sunny/pull/116) ([TangRufus](https://github.com/TangRufus))
+- Update WordPress coding standards to 0.13.0 [\#114](https://github.com/TypistTech/sunny/pull/114) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#113](https://github.com/TypistTech/sunny/pull/113) ([TangRufus](https://github.com/TangRufus))
+- Update dependencies; Apply code style patch [\#112](https://github.com/TypistTech/sunny/pull/112) ([TangRufus](https://github.com/TangRufus))
+- Readme: Add notes about extending Sunny container [\#109](https://github.com/TypistTech/sunny/pull/109) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Add PHP nightly [\#108](https://github.com/TypistTech/sunny/pull/108) ([TangRufus](https://github.com/TangRufus))
+- Refactor according to ScrutinizerCI [\#107](https://github.com/TypistTech/sunny/pull/107) ([TangRufus](https://github.com/TangRufus))
+
 ## [2.4.0](https://github.com/TypistTech/sunny/tree/2.4.0) (2017-07-14)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/2.3.0...2.4.0)
 
 **Merged pull requests:**
 
+- Version bump 2.4.0 [\#105](https://github.com/TypistTech/sunny/pull/105) ([TangRufus](https://github.com/TangRufus))
 - Show post type name in purge initiated notices [\#104](https://github.com/TypistTech/sunny/pull/104) ([TangRufus](https://github.com/TangRufus))
 - Extract targets service provider [\#103](https://github.com/TypistTech/sunny/pull/103) ([TangRufus](https://github.com/TangRufus))
 
