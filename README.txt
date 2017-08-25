@@ -5,7 +5,7 @@ Tags: cloudflare, speed, caching, cache,rest-api
 Requires at least: 4.7
 Requires PHP: 7.0.0
 Tested up to: 4.8
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -197,6 +197,13 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 == Changelog ==
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
+
+= 2.4.1 =
+
+* Add required php version to README.txt
+* Apply code style patches and minor refactoring
+* Test on PHP nightly
+* Update dependencies
 
 = 2.4.0 =
 
