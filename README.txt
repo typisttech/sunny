@@ -3,6 +3,7 @@ Contributors: typisttech, tangrufus
 Donate link: https://www.typist.tech/donate/sunny/
 Tags: cloudflare, speed, caching, cache,rest-api
 Requires at least: 4.7
+Requires PHP: 7.0.0
 Tested up to: 4.8
 Stable tag: 2.4.0
 License: GPLv2 or later
