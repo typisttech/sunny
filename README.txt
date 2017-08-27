@@ -199,6 +199,7 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 1. Debuggers - Cache Status for a Given URL
 1. Debuggers - Related URLs for a Given Post
 1. Debuggers - Additional URLs for Every Purge
+1. Annoying Sunny v1 deprecated notice
 
 == Changelog ==
 
