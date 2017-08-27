@@ -32,8 +32,8 @@ if (! defined('WPINC')) {
     die;
 }
 
-add_action('admin_notices', 'sample_admin_notice__error');
-function sample_admin_notice__error()
+add_action('admin_notices', 'sunny_annoying_notice');
+function sunny_annoying_notice()
 {
     ?>
     <div class="notice notice-error">
