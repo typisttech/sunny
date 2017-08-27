@@ -127,6 +127,12 @@ If you encountered this error:
 
 You probably running on a old version of PHP. Upgrade your server to PHP `7.0` or later.
 
+= Should I install Sunny version 1 because of PHP 5 incompatibles? =
+
+No.
+Sunny version 1 uses Cloudflare API v1 which [deprecated since 9th November, 2016](https://blog.cloudflare.com/sunsetting-api-v1-in-favor-of-cloudflares-current-client-api-api-v4/).
+Either update your server or uninstall Sunny.
+
 = Don't know how to update PHP? =
 
 * Contact you hosting company
@@ -193,6 +199,7 @@ Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use this [co
 1. Debuggers - Cache Status for a Given URL
 1. Debuggers - Related URLs for a Given Post
 1. Debuggers - Additional URLs for Every Purge
+1. Annoying Sunny v1 deprecated notice
 
 == Changelog ==
 
