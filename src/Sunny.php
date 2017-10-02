@@ -64,7 +64,6 @@ final class Sunny
         DebuggerAdmin::class,
         DonateMeNotice::class,
         HireMeNotice::class,
-        I18n::class,
         I18nPromoter::class,
         Newsletter::class,
         Notifier::class,
