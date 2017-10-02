@@ -26,14 +26,12 @@ class FunctionalTester extends Actor
 {
     use _generated\FunctionalTesterActions;
 
-    public function amOnSunnySettingPage()
-    {
-        $this->amOnAdminPage('/admin.php?page=sunny-cloudflare');
-    }
-
     public function loginToSunnySettingPage()
     {
         $this->loginAsAdmin();
-        $this->amOnAdminPage('/admin.php?page=sunny-cloudflare');
+        $this->activatePlugin('sunny');
+        $this->fail();
+        $this->amOnAdminPage('admin.php?page=sunny-cloudflare');
+        $this->fail();
     }
 }

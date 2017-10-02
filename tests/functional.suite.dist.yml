@@ -23,5 +23,5 @@ modules:
         WordPress:
             depends: WPDb
             wpRootFolder: /tmp/wordpress
-            adminUsername: 'admin'
-            adminPassword: 'password'
+            adminUsername: admin
+            adminPassword: password
