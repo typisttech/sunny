@@ -84,11 +84,9 @@
             "@test-unit",
             "@test-integration",
             "@test-restapi",
-            "@test-functional",
             "@test-acceptance"
         ],
         "test-acceptance": "codecept run acceptance",
-        "test-functional": "codecept run functional",
         "test-integration": "codecept run integration",
         "test-restapi": "codecept run restapi",
         "test-unit": "codecept run unit",

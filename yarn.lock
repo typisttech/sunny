@@ -369,9 +369,9 @@ grunt-legacy-util@~1.0.0:
     underscore.string "~3.2.3"
     which "~1.2.1"
 
-grunt-version@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/grunt-version/-/grunt-version-1.1.1.tgz#0b9f280212ca3c84ca8441a688ad1a07a474e6f3"
+grunt-version@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/grunt-version/-/grunt-version-1.2.1.tgz#3ef998a0f823d4d0dac25336a69e7ac3fe8de189"
   dependencies:
     grunt "0.4.5 - 1"
     semver "^4.0.0"
