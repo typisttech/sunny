@@ -1,10 +1,5 @@
 language: php
 
-dist: trusty
-
-# TravisCI hangs after build completed
-sudo: required
-
 branches:
   only:
     - master
@@ -41,8 +36,9 @@ env:
   matrix:
     - WP_VERSION=nightly
     - WP_VERSION=latest WITH_COVERAGE=true
-    - WP_VERSION=4.8
-    - WP_VERSION=4.7.5
+    - WP_VERSION=4.9.1
+    - WP_VERSION=4.8.4
+    - WP_VERSION=4.7.8
 
 matrix:
   allow_failures:
@@ -105,7 +101,7 @@ deploy:
     file: release/sunny.zip
     skip_cleanup: true
     on:
-      condition: "$WP_VERSION = latest"
+      condition: "$WP_VERSION = 4.8.4"
       php: 7.0
       tags: true
       repo: TypistTech/sunny
@@ -119,8 +115,8 @@ deploy:
     assets_dir: assets
     skip_cleanup: true
     on:
-      condition: "$WP_VERSION = latest"
-      php: 7.1
+      condition: "$WP_VERSION = 4.9.1"
+      php: 7.0
       tags: true
       repo: TypistTech/sunny
   - provider: pages
