@@ -5,7 +5,7 @@ Tags: cloudflare, speed, caching, cache, rest-api
 Requires at least: 4.7
 Requires PHP: 7.0.0
 Tested up to: 4.9.1
-Stable tag: 2.4.1
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -211,6 +211,12 @@ Hire me! Shoot me an email at [info@typist.tech](mailto:info@typist.tech) or use
 == Changelog ==
 
 Full change log available at [GitHub](https://github.com/typisttech/sunny/blob/master/CHANGELOG.md)
+
+= 2.5.0 =
+
+* Remove class `I18n`
+* Update dependencies
+* Update readme
 
 = 2.4.1 =
 

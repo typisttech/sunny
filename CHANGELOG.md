@@ -1,10 +1,43 @@
 # Change Log
 
+## [2.5.0](https://github.com/TypistTech/sunny/tree/2.5.0) (2018-01-08)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/1.6.1...2.5.0)
+
+**Closed issues:**
+
+- Remove class `I18n` [\#122](https://github.com/TypistTech/sunny/issues/122)
+
+**Merged pull requests:**
+
+- Update readme [\#133](https://github.com/TypistTech/sunny/pull/133) ([TangRufus](https://github.com/TangRufus))
+- Update dependencies & Adjust with wpcs 0.14.0 [\#132](https://github.com/TypistTech/sunny/pull/132) ([TangRufus](https://github.com/TangRufus))
+- Travis: Update WP versions & Deploy from PHP 7.0 & Update travis config [\#131](https://github.com/TypistTech/sunny/pull/131) ([TangRufus](https://github.com/TangRufus))
+- Travis: Test against PHP 7.2 [\#130](https://github.com/TypistTech/sunny/pull/130) ([TangRufus](https://github.com/TangRufus))
+- Fix broken link [\#126](https://github.com/TypistTech/sunny/pull/126) ([TangRufus](https://github.com/TangRufus))
+- Update WordPress coding standard config [\#125](https://github.com/TypistTech/sunny/pull/125) ([TangRufus](https://github.com/TangRufus))
+- Remove class `I18n` [\#124](https://github.com/TypistTech/sunny/pull/124) ([TangRufus](https://github.com/TangRufus))
+- Remove functional tests [\#123](https://github.com/TypistTech/sunny/pull/123) ([TangRufus](https://github.com/TangRufus))
+
+## [1.6.1](https://github.com/TypistTech/sunny/tree/1.6.1) (2017-08-27)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/1.6.0...1.6.1)
+
+**Merged pull requests:**
+
+- FAQ: Add note about Sunny v1 [\#121](https://github.com/TypistTech/sunny/pull/121) ([TangRufus](https://github.com/TangRufus))
+
+## [1.6.0](https://github.com/TypistTech/sunny/tree/1.6.0) (2017-08-27)
+[Full Changelog](https://github.com/TypistTech/sunny/compare/2.4.1...1.6.0)
+
+**Closed issues:**
+
+- Build `stable` branch from TravisCI for tagged commits [\#110](https://github.com/TypistTech/sunny/issues/110)
+
 ## [2.4.1](https://github.com/TypistTech/sunny/tree/2.4.1) (2017-08-25)
 [Full Changelog](https://github.com/TypistTech/sunny/compare/2.4.0...2.4.1)
 
 **Merged pull requests:**
 
+- Version bump 2.4.1 [\#120](https://github.com/TypistTech/sunny/pull/120) ([TangRufus](https://github.com/TangRufus))
 - Add required php version to README.txt [\#119](https://github.com/TypistTech/sunny/pull/119) ([TangRufus](https://github.com/TangRufus))
 - Rename: CONDUCT.md --\> CODE\_OF\_CONDUCT.md [\#117](https://github.com/TypistTech/sunny/pull/117) ([TangRufus](https://github.com/TangRufus))
 - Fix incorrect link [\#116](https://github.com/TypistTech/sunny/pull/116) ([TangRufus](https://github.com/TangRufus))
@@ -117,21 +150,21 @@
 
 **Closed issues:**
 
-- Use TravisCI to deploy production code [\#27](https://github.com/TypistTech/sunny/issues/27)
-- Add yoast/i18n-module [\#19](https://github.com/TypistTech/sunny/issues/19)
-- Add review me notice [\#16](https://github.com/TypistTech/sunny/issues/16)
-- warning in uninstall.php [\#4](https://github.com/TypistTech/sunny/issues/4)
-- Purge Page on Update [\#3](https://github.com/TypistTech/sunny/issues/3)
-- Can Sunny purge the rss feed on publish? [\#2](https://github.com/TypistTech/sunny/issues/2)
 - Hide Admin Bar on front-end [\#44](https://github.com/TypistTech/sunny/issues/44)
 - Change Cloudflare namespace [\#40](https://github.com/TypistTech/sunny/issues/40)
 - Do purge when posts changed [\#38](https://github.com/TypistTech/sunny/issues/38)
 - Process purging in chunk, 30 per batch [\#28](https://github.com/TypistTech/sunny/issues/28)
+- Use TravisCI to deploy production code [\#27](https://github.com/TypistTech/sunny/issues/27)
 - Get related Urls [\#24](https://github.com/TypistTech/sunny/issues/24)
+- Add yoast/i18n-module [\#19](https://github.com/TypistTech/sunny/issues/19)
+- Add review me notice [\#16](https://github.com/TypistTech/sunny/issues/16)
 - Misc Integration [\#11](https://github.com/TypistTech/sunny/issues/11)
 - Add purge Url filter [\#10](https://github.com/TypistTech/sunny/issues/10)
 - Add tests [\#9](https://github.com/TypistTech/sunny/issues/9)
 - Clone from WP Cloudflare Guard@master [\#8](https://github.com/TypistTech/sunny/issues/8)
+- warning in uninstall.php [\#4](https://github.com/TypistTech/sunny/issues/4)
+- Purge Page on Update [\#3](https://github.com/TypistTech/sunny/issues/3)
+- Can Sunny purge the rss feed on publish? [\#2](https://github.com/TypistTech/sunny/issues/2)
 
 **Merged pull requests:**
 
