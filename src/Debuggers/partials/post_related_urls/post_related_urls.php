@@ -33,13 +33,13 @@ use TypistTech\Sunny\Debuggers\AbstractDebugger;
             </th>
             <td>
                 <input name="<?php echo esc_attr($context->getId()); ?>-post-id"
-                       id="<?php echo esc_attr($context->getId()); ?>-post-id"
-                       type="number"
-                       class="regular-text"
-                       step="1"
-                       min="1"
-                       value=""
-                       aria-describedby="<?php echo esc_attr($context->getId()); ?>-post-id-description"/>
+                    id="<?php echo esc_attr($context->getId()); ?>-post-id"
+                    type="number"
+                    class="regular-text"
+                    step="1"
+                    min="1"
+                    value=""
+                    aria-describedby="<?php echo esc_attr($context->getId()); ?>-post-id-description"/>
                 <p class="description" id="<?php echo esc_attr($context->getId()); ?>-post-id-description">
                     <a href="https://www.typist.tech/go/find-wordpress-post-id/">How to find WordPress post id?</a>
                 </p>
