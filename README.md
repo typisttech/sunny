@@ -14,7 +14,7 @@
 [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/sunny/)
 [![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://www.typist.tech/contact/)
 
-Automatically purge CloudFlare cache, including cache everything rules.
+Automatically purge Cloudflare cache, including cache everything rules.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -45,7 +45,7 @@ Automatically purge CloudFlare cache, including cache everything rules.
 
 
 
-This repository is a development version of [Sunny](https://wordpress.org/plugins/sunny/) intended to facilitate communication with developers. It is not stable and not intended for installation on production sites. 
+This repository is a development version of [Sunny](https://wordpress.org/plugins/sunny/) intended to facilitate communication with developers. It is not stable and not intended for installation on production sites.
 
 Bug reports and pull requests are welcome.
 
@@ -119,7 +119,7 @@ Under the hood, Sunny uses [WP Contained Hook](https://github.com/TypistTech/wp-
 
 Within the `sunny_register` action, you should only bind things into the container. You should never attempt to register any hooks, actions, filters or any other piece of functionality within `sunny_register` action. Otherwise, you may accidentally use an instance which has not been loaded yet.
 
-The `sunny_boot` action is called after this plugin and all its addons have been registered, meaning you have access to all instance that have been registered by this plugin and its addons. 
+The `sunny_boot` action is called after this plugin and all its addons have been registered, meaning you have access to all instance that have been registered by this plugin and its addons.
 
 
 
@@ -139,13 +139,13 @@ The `nightly` branch is built by TravisCI whenever the `master` branch is update
 
 ### Donate via PayPal [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/sunny/)
 
-Love Sunny? Help me maintain Sunny, a [donation here](https://www.typist.tech/donate/sunny/) can help with it. 
+Love Sunny? Help me maintain Sunny, a [donation here](https://www.typist.tech/donate/sunny/) can help with it.
 
 ### Why don't you hire me?
 
 Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email [info@typist.tech](mailto:info@typist.tech)
 
-### Want to help in other way? Want to be a sponsor? 
+### Want to help in other way? Want to be a sponsor?
 
 Contact: [Tang Rufus](mailto:tangrufus@gmail.com)
 
