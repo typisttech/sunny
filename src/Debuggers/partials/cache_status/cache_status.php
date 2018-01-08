@@ -33,10 +33,10 @@ use TypistTech\Sunny\Debuggers\AbstractDebugger;
             </th>
             <td>
                 <input name="<?php echo esc_attr($context->getId()); ?>-url"
-                       id="<?php echo esc_attr($context->getId()); ?>-url"
-                       type="url"
-                       class="regular-text"
-                       aria-describedby="<?php echo esc_attr($context->getId()); ?>-url-description"/>
+                    id="<?php echo esc_attr($context->getId()); ?>-url"
+                    type="url"
+                    class="regular-text"
+                    aria-describedby="<?php echo esc_attr($context->getId()); ?>-url-description"/>
             </td>
         </tr>
         </tbody>
@@ -55,4 +55,3 @@ use TypistTech\Sunny\Debuggers\AbstractDebugger;
     Learn more about <code>Cache Status</code> on
     <a href="https://support.cloudflare.com/hc/en-us/articles/200168266">Cloudflare knowledge base</a>
 </p>
-

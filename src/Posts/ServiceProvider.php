@@ -72,7 +72,7 @@ final class ServiceProvider extends AbstractServiceProvider
         $this->getContainer()->share(
             RelatedUrls::class,
             function () {
-                return new  RelatedUrls(
+                return new RelatedUrls(
                     $this->getContainer()->get('related_urls_strategies')
                 );
             }

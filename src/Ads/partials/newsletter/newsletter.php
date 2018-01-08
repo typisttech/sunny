@@ -30,11 +30,11 @@ declare(strict_types=1);
             </div>
         </div>
         <form class="ml-block-form"
-              action="//app.mailerlite.com/webforms/submit/b3e8l2"
-              data-id="404526"
-              data-code="b3e8l2"
-              method="POST"
-              target="_blank">
+            action="//app.mailerlite.com/webforms/submit/b3e8l2"
+            data-id="404526"
+            data-code="b3e8l2"
+            method="POST"
+            target="_blank">
             <div class="subscribe-form">
                 <div class="form-section mb10">
                     <h4>Typist Tech Articles</h4>
@@ -43,15 +43,15 @@ declare(strict_types=1);
                 <div class="form-section">
                     <div class="form-group ml-field-email ml-validate-required ml-validate-email">
                         <input type="email"
-                               name="fields[email]"
-                               class="form-control"
-                               placeholder="Email*"
-                               value="<?php echo esc_html($context->getCurrentUserEmail()); ?>"
-                               autocomplete="email"
-                               x-autocompletetype="email"
-                               spellcheck="false"
-                               autocapitalize="off"
-                               autocorrect="off">
+                            name="fields[email]"
+                            class="form-control"
+                            placeholder="Email*"
+                            value="<?php echo esc_html($context->getCurrentUserEmail()); ?>"
+                            autocomplete="email"
+                            x-autocompletetype="email"
+                            spellcheck="false"
+                            autocapitalize="off"
+                            autocorrect="off">
                     </div>
                 </div>
                 <input type="hidden" name="ml-submit" value="1"/>
@@ -60,7 +60,7 @@ declare(strict_types=1);
                 </button>
                 <button disabled="disabled" style="display: none;" type="button" class="loading">
                     <img src="//static.mailerlite.com/images/rolling.gif" width="20" height="20"
-                         style="width: 20px; height: 20px;">
+                        style="width: 20px; height: 20px;">
                 </button>
             </div>
         </form>
