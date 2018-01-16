@@ -9,7 +9,7 @@
         "security"
     ],
     "homepage": "https://github.com/TypistTech/sunny",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Typist Tech",
