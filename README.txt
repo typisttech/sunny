@@ -2,11 +2,11 @@
 Contributors: typisttech, tangrufus
 Donate link: https://typist.tech/donation/
 Tags: cloudflare, speed, caching, cache, rest-api
-Requires at least: 4.7
-Requires PHP: 7.0.0
+Requires at least: 4.9
+Requires PHP: 7.1.0
 Tested up to: 4.9.1
 Stable tag: 2.5.0
-License: GPLv2 or later
+License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Automatically purge Cloudflare cache, including cache everything rules.

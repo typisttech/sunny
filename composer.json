@@ -9,7 +9,7 @@
         "security"
     ],
     "homepage": "https://github.com/TypistTech/sunny",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Typist Tech",
@@ -30,17 +30,15 @@
         "source": "https://github.com/TypistTech/sunny"
     },
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "league/container": "^2.4",
         "typisttech/cloudflare-wp-api": "^0.3.0",
-        "typisttech/imposter-plugin": "^0.2.5",
+        "typisttech/imposter-plugin": "^0.3.0",
         "typisttech/wp-better-settings": "^0.13.0",
         "typisttech/wp-contained-hook": "^0.1.1"
     },
     "require-dev": {
         "codeception/aspect-mock": "^2.0",
-        "doctrine/annotations": "~1.4.0",
-        "doctrine/instantiator": "~1.0.0",
         "jakoch/phantomjs-installer": "^2.1",
         "lucatume/wp-browser": "^1.21",
         "neronmoon/scriptsdev": "^0.1.1",
