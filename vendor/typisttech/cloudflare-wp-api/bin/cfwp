@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+build() {
+    local api_file=./vendor/jamesryanbell/cloudflare/src/CloudFlare/Api.php
+    local base_api_file=./vendor/jamesryanbell/cloudflare/src/CloudFlare/BaseApi.php
+
+    if [ -f ${api_file} ]
+    then
+        echo '> ' rm -f ${base_api_file}
+        rm -f ${base_api_file}
+
+        echo '> ' sed -i.cfwpbak -e 's/class Api/class BaseApi/' ${api_file}
+        sed -i.cfwpbak -e 's/class Api/class BaseApi/' ${api_file}
+
+        echo '> ' mv ${api_file} ${base_api_file}
+        mv ${api_file} ${base_api_file}
+
+        echo '> ' rm -f ${api_file}.cfwpbak
+        rm -f ${api_file}.cfwpbak
+
+        echo 'Done.'
+    else
+        if [ -f ${base_api_file} ]
+        then
+            echo "Already build. Skipping."
+        else
+            echo "Error - File not found"
+            exit 1
+        fi
+    fi
+
+    exit 0
+}
+
+if [[ $1 =~ ^(build)$ ]]; then
+  "$@"
+else
+  echo "Invalid sub-command $1" >&2
+  echo "Usage: cfwp build" >&2
+  exit 1
+fi

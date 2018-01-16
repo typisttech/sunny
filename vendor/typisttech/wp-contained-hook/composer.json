@@ -1,0 +1,79 @@
+{
+    "name": "typisttech/wp-contained-hook",
+    "type": "library",
+    "description": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
+    "keywords": [
+        "action",
+        "container",
+        "dependency",
+        "di",
+        "filter",
+        "hook",
+        "injection",
+        "wordpress"
+    ],
+    "homepage": "https://www.typist.tech/projects/wp-contained-hook",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Typist Tech",
+            "email": "wp-contained-hook@typist.tech",
+            "homepage": "https://www.typist.tech"
+        },
+        {
+            "name": "Tang Rufus",
+            "email": "tangrufus@gmail.com",
+            "homepage": "https://www.typist.tech",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "wp-contained-hook@typist.tech",
+        "issues": "https://github.com/TypistTech/wp-contained-hook/issues",
+        "source": "https://github.com/TypistTech/wp-contained-hook"
+    },
+    "require": {
+        "php": "^7.0",
+        "league/container": "^2.4 | ^3.0"
+    },
+    "require-dev": {
+        "codeception/aspect-mock": "^2.0",
+        "codeception/base": "^2.2",
+        "neronmoon/scriptsdev": "^0.1.1",
+        "wp-coding-standards/wpcs": "^0.11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TypistTech\\WPContainedHook\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TypistTech\\WPContainedHook\\Test\\": "tests/_data"
+        },
+        "files": [
+            "tests/unit/AbstractHookTestTrait.php"
+        ]
+    },
+    "scripts": {
+        "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
+        "fix-style": "phpcbf -p --standard=ruleset.xml --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
+        "install-dev-extra": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+        "pre-tag": [
+            "composer update",
+            "doctoc README.md",
+            "github_changelog_generator --no-verbose"
+        ],
+        "test": "codecept run",
+        "test-with-coverage": "codecept run --coverage --coverage-html --coverage-xml"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "scripts-dev": {
+            "post-install-cmd": "@install-dev-extra",
+            "post-update-cmd": "@install-dev-extra"
+        }
+    }
+}

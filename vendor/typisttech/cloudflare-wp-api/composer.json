@@ -1,0 +1,69 @@
+{
+    "name": "typisttech/cloudflare-wp-api",
+    "type": "library",
+    "description": "WordPress HTTP API replacement of the jamesryanbell/cloudflare package.",
+    "version": "0.3.0",
+    "keywords": [
+        "typisttech",
+        "cloudflare-wp-api",
+        "wordpress",
+        "cloudflare"
+    ],
+    "homepage": "https://github.com/TypistTech/cloudflare-wp-api",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Typist Tech",
+            "email": "cloudflare-wp-api@typist.tech",
+            "homepage": "https://www.typist.tech/"
+        },
+        {
+            "name": "Tang Rufus",
+            "email": "tangrufus@gmail.com",
+            "homepage": "https://www.typist.tech/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "cloudflare-wp-api@typist.tech",
+        "issues": "https://github.com/TypistTech/cloudflare-wp-api/issues",
+        "source": "https://github.com/TypistTech/cloudflare-wp-api"
+    },
+    "require": {
+        "php": "^7.0",
+        "jamesryanbell/cloudflare": "^1.10"
+    },
+    "require-dev": {
+        "lucatume/wp-browser": "^1.19",
+        "php-mock/php-mock-phpunit": "^1.1",
+        "squizlabs/php_codesniffer": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cloudflare\\": "src"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-install-cmd": "./bin/cfwp build",
+        "post-update-cmd": "./bin/cfwp build",
+        "pre-autoload-dump": "./bin/cfwp build",
+        "check-style": "phpcs . --standard=ruleset.xml --colors -p -s",
+        "fix-style": "phpcbf . --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1",
+        "pre-tag": [
+            "npm update",
+            "grunt pre-tag",
+            "doctoc README.md",
+            "github_changelog_generator --no-verbose"
+        ],
+        "test": "codecept run",
+        "test-unit": "@test",
+        "test-with-coverage": "@test --coverage --coverage-xml --coverage-html"
+    },
+    "bin": [
+        "bin/cfwp"
+    ]
+}

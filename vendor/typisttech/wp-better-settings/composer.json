@@ -1,0 +1,97 @@
+{
+    "name": "typisttech/wp-better-settings",
+    "description": "A simplified OOP implementation of the WP Settings API",
+    "keywords": [
+        "wordpress",
+        "wp",
+        "settings api"
+    ],
+    "homepage": "https://www.typist.tech/projects/wp-better-settings",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Typist Tech",
+            "email": "wp-better-settings@typist.tech",
+            "homepage": "https://www.typist.tech/"
+        },
+        {
+            "name": "Tang Rufus",
+            "email": "tangrufus@gmail.com",
+            "homepage": "https://www.typist.tech/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "wp-better-settings@typist.tech",
+        "issues": "https://github.com/TypistTech/wp-better-settings/issues",
+        "source": "https://github.com/TypistTech/wp-better-settings"
+    },
+    "require": {
+        "php": ">7.0"
+    },
+    "require-dev": {
+        "codeception/aspect-mock": "^2.0",
+        "jakoch/phantomjs-installer": "^2.1",
+        "lucatume/wp-browser": "^1.19",
+        "neronmoon/scriptsdev": "^0.1.1",
+        "site5/phantoman": "^1.1",
+        "wp-coding-standards/wpcs": "^0.11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TypistTech\\WPBetterSettings\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "tests/unit/Pages/PageTestTrait.php",
+            "tests/unit/Views/ViewAwareTestTrait.php"
+        ]
+    },
+    "scripts": {
+        "build": [
+            "rm -fr vendor",
+            "composer install --no-dev --prefer-dist --no-suggest",
+            "composer archive --format=zip --dir=release --file=wp-better-settings"
+        ],
+        "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
+        "fix-style": "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
+        "install-dev-extra": [
+            "PhantomInstaller\\Installer::installPhantomJS",
+            "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
+        ],
+        "pre-tag": [
+            "composer update --no-suggest",
+            "doctoc README.md",
+            "github_changelog_generator --no-verbose"
+        ],
+        "test": "codecept run",
+        "test-acceptance": "codecept run acceptance",
+        "test-functional": "codecept run functional",
+        "test-integration": "codecept run integration",
+        "test-unit": "codecept run unit",
+        "test-with-coverage": "codecept run --coverage --coverage-xml --coverage-html"
+    },
+    "extra": {
+        "scripts-dev": {
+            "post-install-cmd": "@install-dev-extra",
+            "post-update-cmd": "@install-dev-extra"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "archive": {
+        "exclude": [
+            "/*",
+            ".*",
+            "!/languages",
+            "!/partials",
+            "!/src",
+            "!/vendor",
+            "!/LICENSE",
+            "!/README.txt",
+            "!/*.php"
+        ]
+    }
+}
